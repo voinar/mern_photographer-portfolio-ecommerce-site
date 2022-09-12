@@ -1,14 +1,14 @@
-import "./styles/style.css";
+import './styles/style.css';
 
-import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
-import Context from "./contexts/Context";
+import { Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
+import Context from './contexts/Context';
 
-import Navbar from "./components/Navbar";
-import SectionWelcome from "./pages/SectionWelcome";
-import SectionContent from "./pages/SectionContent";
-import About from "./pages/About";
-import Exercises from "./pages/Exercises";
+import Navbar from './components/Navbar';
+import SectionWelcome from './pages/SectionWelcome';
+import SectionContent from './pages/SectionContent';
+import About from './pages/About';
+import Exercises from './pages/Exercises';
 
 // {localStorage.setItem('user', 'name')}
 // {sessionStorage.setItem('status', 'unread')}
@@ -27,7 +27,7 @@ function App() {
           <Route path="/witaj" element={<SectionWelcome />} />
           <Route path="/:category" element={<SectionContent />} />
           <Route path="/o%20mnie" element={<About />} />
-          <Route path="/exercises" element={<Exercises props={darkMode}/>} />
+          <Route path="/exercises" element={<Exercises props={darkMode} />} />
         </Routes>
       </div>
     </Context.Provider>
