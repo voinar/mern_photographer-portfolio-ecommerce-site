@@ -1,0 +1,119 @@
+{
+  "categories": [
+    "sport",
+    "emocje",
+    "galerie",
+    "o mnie",
+    "kontakt",
+    "sklep"
+  ],
+
+  "dropdownCategories": [
+    "z lotu ptaka",
+    "wydarzenia",
+    "portret",
+    "inne"
+],
+  "images": [
+    {
+      "title": "BiegSokoła_cz1_001",
+      "description": "",
+      "thumbnail": "../assets/BiegSokoła_cz1_001.jpg",
+      "url": "../assets/BiegSokoła_cz1_001.jpg",
+      "category": "sport",
+      "location": "location",
+      "event": "event",
+      "price": 10
+    },
+    {
+      "title": "BiegSokoła_cz1_006",
+      "description": "",
+      "thumbnail": "../BiegSokoła_cz1_006.jpg",
+      "url": "../assets/BiegSokoła_cz1_006.jpg",
+      "category": "z lotu ptaka",
+      "location": "location",
+      "event": "event",
+      "price": 10
+    },
+    {
+      "title": "image title",
+      "description": "",
+      "thumbnail": "",
+      "url": "../assets/DSC_0090.jpg",
+      "category": "pejzaż",
+      "location": "location",
+      "event": "event",
+      "price": 10
+    },
+    {
+      "title": "image title",
+      "description": "",
+      "thumbnail": "",
+      "url": "../assets/DSC_1417copy.jpg",
+      "category": "emocje",
+      "location": "location",
+      "event": "event",
+      "price": 10
+    },
+    {
+      "title": "image title",
+      "description": "",
+      "thumbnail": "",
+      "url": "../assets/IMG_0053.jpg",
+      "category": "pejzaż",
+      "location": "location",
+      "event": "event",
+      "price": 10
+    },
+    {
+      "title": "image title",
+      "description": "",
+      "thumbnail": "",
+      "url": "../assets/IMG_01922.jpg",
+      "category": "pejzaż",
+      "location": "location",
+      "event": "event",
+      "price": 10
+    },
+    {
+      "title": "image title",
+      "description": "",
+      "thumbnail": "",
+      "url": "../assets/JagaKora_2022_cz1_005.jpg",
+      "category": "sport",
+      "location": "location",
+      "event": "event",
+      "price": 10
+    },
+    {
+      "title": "image title",
+      "description": "",
+      "thumbnail": "",
+      "url": "../assets/JagaKora_2022_cz1_074.jpg",
+      "category": "sport",
+      "location": "location",
+      "event": "event",
+      "price": 10
+    },
+    {
+      "title": "image title",
+      "description": "",
+      "thumbnail": "",
+      "url": "../assets/PUT_cz1_513.jpg",
+      "category": "sport",
+      "location": "location",
+      "event": "event",
+      "price": 10
+    },
+    {
+      "title": "image title",
+      "description": "",
+      "thumbnail": "",
+      "url": "../assets/PUT_cz1_612.jpg",
+      "category": "sport",
+      "location": "location",
+      "event": "event",
+      "price": 10
+    }
+  ]
+}

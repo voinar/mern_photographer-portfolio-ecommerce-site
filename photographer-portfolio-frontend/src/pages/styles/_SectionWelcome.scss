@@ -1,0 +1,70 @@
+.section__welcome {
+    animation: 3s ease-out 0s 1 fadeIn;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.cover__icons {
+    position: fixed;
+    bottom: 10vh;
+    right: 5vw;
+
+    img {
+        margin-left: 8px;
+    }
+}
+
+.cover__icons__row-container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.cover__image {
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+}
+
+.cover__icons__social img{
+    height: 50px;
+}
+
+.icon__chevron-right {
+    transform: rotate(90deg);
+    height: 50px;
+}
+
+.icon__chevron-left {
+    transform: rotate(270deg);
+    height: 50px;
+}
+
+.cover__icons__nav--left, .cover__icons__nav--right {
+    opacity: .7;
+}
+
+.control-arrow {
+    // border: 3px solid white !important;
+    width: 80px;
+}
+
+.control-dots li {
+    .dot {
+    height: 10px;
+    border: 3px solid white !important;
+    }
+}
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

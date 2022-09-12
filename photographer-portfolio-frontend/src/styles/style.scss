@@ -1,0 +1,35 @@
+// general
+
+@import './reset'; // global css reset
+@import './variables'; // style variables container for colors, fonts and other global styles
+
+
+// pages
+@import '../pages/styles/_SectionWelcome';
+@import '../pages/styles/_SectionContent';
+@import '../pages/styles/_About';
+
+// components
+@import '../components/styles/_navbar';
+@import '../components/styles/_footer';
+
+
+html * {
+    // outline: 1px solid black;
+}
+
+body {
+    font-family: $--font-main;
+    color: $--c-black;
+    background-color: black;
+    min-width: 600px;
+    // overflow: hidden;
+    scroll-behavior: smooth;
+}
+
+h1 {
+    font-weight: thin;
+}
+
+
+
