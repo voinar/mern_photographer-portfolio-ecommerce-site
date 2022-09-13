@@ -238,9 +238,13 @@ select {
 }
 
 .section__about__contact__row h3 {
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 400;
   margin-left: 12px;
+}
+
+.section__about__contact__row img {
+  height: 36px;
 }
 
 .section__about__content {
@@ -248,7 +252,7 @@ select {
 }
 
 .section__about__content p {
-  font-size: 17px;
+  font-size: 15px;
 }
 
 .section__about__image--secondary {

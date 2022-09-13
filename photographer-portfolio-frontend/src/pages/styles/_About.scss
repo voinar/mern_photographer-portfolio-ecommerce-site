@@ -34,16 +34,20 @@
   align-items: center;
 
   h3 {
-    font-size: 30px;
+    font-size: 28px;
     font-weight: 400;
     margin-left: 12px;
+  }
+
+  img {
+    height: 36px;
   }
 }
 
 .section__about__content {
     margin-bottom: 100px;
     p {
-        font-size: 17px;
+        font-size: 15px;
     }
 }
 
