@@ -8,9 +8,10 @@ import Context from '../contexts/Context';
 // import iconMoon from "../img/icons/icon-moon.svg";
 
 const Navbar = () => {
+  // const { darkMode, setDarkMode } = useContext(Context);
   const { darkMode } = useContext(Context);
 
-  // console.log(darkMode)
+  console.log(darkMode)
 
   return (
     <nav className={darkMode ? `${'navbar navbar--dark'}` : `${'navbar'}`}>
@@ -21,10 +22,23 @@ const Navbar = () => {
       </div>
       <ul className="navbar__content">
         {categoryData.categories.map((category) => {
-          if (category === 'galerie') {
+          if (category === 'sklep') {
+            return (
+              <li key={category} className="navbar__section-link">
+                <Link
+                  className="navbar__section-link navbar__section-link__shop"
+                  to={category}
+                >
+                  {category}
+                </Link>
+              </li>
+            );
+          }
+
+          if (category === 'więcej') {
             return (
               <ul key={category} className="navbar__section__dropdown">
-                galeria
+                więcej
                 {categoryData.dropdownCategories.map((dropdownCategory) => {
                   return (
                     <li
@@ -37,7 +51,8 @@ const Navbar = () => {
                 })}
               </ul>
             );
-          } else if (category !== 'galerie') {
+          }
+          if (category !== 'więcej') {
             return (
               <li key={category} className="navbar__section-link">
                 <Link to={category}>{category}</Link>

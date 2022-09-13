@@ -16,17 +16,17 @@ import Exercises from './pages/Exercises';
 // {document.cookie='myCookie=init; expires=' + new Date(2022, 7, 28, 11, 52, 30)}
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
 
   return (
     <Context.Provider value={{ darkMode, setDarkMode }}>
       <div className="App">
-        <Navbar />
+        <Navbar props={darkMode} />
         <Routes>
           <Route path="/" element={<SectionWelcome />} />
           <Route path="/witaj" element={<SectionWelcome />} />
           <Route path="/:category" element={<SectionContent />} />
-          <Route path="/o%20mnie" element={<About />} />
+          <Route path="/o%20mnie" element={<About />}/>
           <Route path="/exercises" element={<Exercises props={darkMode} />} />
         </Routes>
       </div>

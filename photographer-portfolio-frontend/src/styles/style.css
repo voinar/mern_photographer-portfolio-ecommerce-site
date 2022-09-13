@@ -206,14 +206,17 @@ select {
   gap: 80px;
 }
 
-.section__about__main img {
+.section__about__main .section__about__image--main {
   -o-object-fit: cover;
      object-fit: cover;
-  border-radius: 10px;
+  border-radius: 4px;
 }
 
 .section__about__contact {
-  padding: 80px 0 200px;
+  margin: 80px 0 10px;
+  padding: 30px 20px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
 }
 
 .section__about__contact h2 {
@@ -240,6 +243,16 @@ select {
   margin-left: 12px;
 }
 
+.section__about__content p {
+  font-size: 17px;
+}
+
+.section__about__image--secondary {
+  padding: 200px 0;
+  border-radius: 14px;
+  width: 100%;
+}
+
 .navbar {
   position: fixed;
   top: 0;
@@ -251,8 +264,8 @@ select {
       -ms-flex-direction: row;
           flex-direction: row;
   padding: 80px 120px;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(30%, rgba(0, 0, 0, 0)), to(rgba(4, 2, 14, 0.8)));
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 30%, rgba(4, 2, 14, 0.8) 100%);
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.4)));
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
   width: 100vw;
   height: 30vh;
   color: #dedede;
@@ -270,6 +283,39 @@ select {
   -webkit-transition: 0.3s ease-in-out;
   transition: 0.3s ease-in-out;
   text-shadow: 0px 0px 1px #0b2096;
+}
+
+.navbar .navbar__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-top: 14px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  font-weight: 500;
+  font-size: 24px;
+  letter-spacing: 0px;
+}
+
+.navbar .navbar__logo {
+  padding: 0;
+}
+
+.navbar .navbar__section-link {
+  margin: 0 20px 0 0;
+  width: 110px;
+}
+
+.navbar .navbar__section-link__shop {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  padding: 2px 30px;
 }
 
 .navbar--dark {
@@ -295,33 +341,6 @@ select {
   background-color: rgba(208, 208, 208, 0.3);
   color: #3a3939;
   font-weight: 500;
-}
-
-.navbar__content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  margin-top: 14px;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  width: 100%;
-  font-weight: 500;
-  font-size: 24px;
-  letter-spacing: 0px;
-}
-
-.navbar__logo {
-  padding: 0;
-}
-
-.navbar__section-link {
-  margin: 0 20px 0 0;
-  width: 110px;
 }
 
 .navbar__section__dropdown {

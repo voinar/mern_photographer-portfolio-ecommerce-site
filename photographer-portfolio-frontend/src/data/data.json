@@ -1,10 +1,11 @@
 {
   "categories": [
-    "sport",
+    "biegi",
     "emocje",
-    "galerie",
+    "portret",
+    "krajobraz",
+    "więcej",
     "o mnie",
-    "kontakt",
     "sklep"
   ],
 
@@ -15,6 +16,171 @@
     "inne"
 ],
   "images": [
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/biegi/0.jpg",
+      "url": "../assets/portfolio/biegi/0.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/biegi/1.jpg",
+      "url": "../assets/portfolio/biegi/1.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/biegi/2.jpg",
+      "url": "../assets/portfolio/biegi/2.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/biegi/3.jpg",
+      "url": "../assets/portfolio/biegi/3.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/biegi/4.jpg",
+      "url": "../assets/portfolio/biegi/4.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/biegi/5.jpg",
+      "url": "../assets/portfolio/biegi/5.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/biegi/6.jpg",
+      "url": "../assets/portfolio/biegi/6.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/biegi/7.jpg",
+      "url": "../assets/portfolio/biegi/7.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/biegi/8.jpg",
+      "url": "../assets/portfolio/biegi/8.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/biegi/9.jpg",
+      "url": "../assets/portfolio/biegi/9.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/biegi/10.jpg",
+      "url": "../assets/portfolio/biegi/10.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/biegi/11.jpg",
+      "url": "../assets/portfolio/biegi/11.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/biegi/12.jpg",
+      "url": "../assets/portfolio/biegi/12.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/biegi/13.jpg",
+      "url": "../assets/portfolio/biegi/13.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/biegi/14.jpg",
+      "url": "../assets/portfolio/biegi/14.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+
+
+    {
+      "title": "BiegSokoła_cz1_001",
+      "description": "",
+      "thumbnail": "../assets/BiegSokoła_cz1_001.jpg",
+      "url": "../assets/BiegSokoła_cz1_001.jpg",
+      "category": "sport",
+      "location": "location",
+      "event": "event",
+      "price": 10
+    },
+
+
+
     {
       "title": "BiegSokoła_cz1_001",
       "description": "",
