@@ -243,12 +243,16 @@ select {
   margin-left: 12px;
 }
 
+.section__about__content {
+  margin-bottom: 100px;
+}
+
 .section__about__content p {
   font-size: 17px;
 }
 
 .section__about__image--secondary {
-  padding: 200px 0;
+  padding: 180px 0;
   border-radius: 14px;
   width: 100%;
 }
