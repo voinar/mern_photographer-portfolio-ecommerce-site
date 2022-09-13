@@ -29,7 +29,33 @@
     text-shadow: 0px 0px 1px rgb(11, 32, 150);
   }
 
+  .navbar--dark {
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(255, 255, 255, 0.9) 100%
+    );
+    // background: white;
+    color: $--c-black;
 
+    a {
+      color: $--c-black;
+    }
+
+    a:hover {
+      color: $--c-black;
+    }
+
+    .navbar__logo {
+      filter: invert(1);
+    }
+
+    .navbar__section__dropdown:hover .navbar__section__dropdown-link {
+      background-color: rgba(208, 208, 208, 0.3);
+      color: $--c-black;
+      font-weight: 500;
+    }
+  }
 
   .navbar__content {
     display: flex;
@@ -58,7 +84,6 @@
     padding: 2px 30px;
   }
 }
-
 .navbar--dark {
   background: linear-gradient(
     0deg,
@@ -86,7 +111,6 @@
     font-weight: 500;
   }
 }
-
 .navbar__section__dropdown {
   padding: 0;
   margin: 0 20px 0 0;

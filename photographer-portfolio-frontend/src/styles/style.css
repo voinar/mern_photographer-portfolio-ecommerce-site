@@ -285,6 +285,31 @@ select {
   text-shadow: 0px 0px 1px #0b2096;
 }
 
+.navbar .navbar--dark {
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0)), to(rgba(255, 255, 255, 0.9)));
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.9) 100%);
+  color: #3a3939;
+}
+
+.navbar .navbar--dark a {
+  color: #3a3939;
+}
+
+.navbar .navbar--dark a:hover {
+  color: #3a3939;
+}
+
+.navbar .navbar--dark .navbar__logo {
+  -webkit-filter: invert(1);
+          filter: invert(1);
+}
+
+.navbar .navbar--dark .navbar__section__dropdown:hover .navbar__section__dropdown-link {
+  background-color: rgba(208, 208, 208, 0.3);
+  color: #3a3939;
+  font-weight: 500;
+}
+
 .navbar .navbar__content {
   display: -webkit-box;
   display: -ms-flexbox;
