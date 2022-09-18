@@ -16,3 +16,19 @@
     padding: 200px 150px;
 }
 
+.section__photos__see-more {
+    position: fixed;
+    bottom: 10vh;
+    right: 5vw;
+
+    .section__photos__see-more__container {
+      display: flex;
+      flex-direction: row;
+      cursor: pointer;
+    }
+
+    .section__photos__see-more__icon img {
+      height: 50px;
+      transform: rotate(180deg)
+    }
+  }

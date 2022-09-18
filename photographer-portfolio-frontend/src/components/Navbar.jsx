@@ -11,10 +11,11 @@ const Navbar = () => {
   // const { darkMode, setDarkMode } = useContext(Context);
   const { darkMode } = useContext(Context);
 
-  console.log(darkMode)
+  console.log('darkMode ' + darkMode)
 
   return (
-    <nav className={darkMode ? `${'navbar navbar--dark'}` : `${'navbar'}`}>
+    <nav className={darkMode ? `${'navbar'}` : `${'navbar'}`}>
+    {/* <nav className={darkMode ? `${'navbar navbar--dark'}` : `${'navbar'}`}> */}
       <div className="navbar__logo">
         <Link to="/witaj">
           <img src={navLogo} alt="logo" />
@@ -34,25 +35,7 @@ const Navbar = () => {
               </li>
             );
           }
-
-          if (category === 'więcej') {
-            return (
-              <ul key={category} className="navbar__section__dropdown">
-                więcej
-                {categoryData.dropdownCategories.map((dropdownCategory) => {
-                  return (
-                    <li
-                      key={dropdownCategory}
-                      className="navbar__section__dropdown-link"
-                    >
-                      <Link to={dropdownCategory}>{dropdownCategory}</Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            );
-          }
-          if (category !== 'więcej') {
+          if (category !== 'sklep') {
             return (
               <li key={category} className="navbar__section-link">
                 <Link to={category}>{category}</Link>

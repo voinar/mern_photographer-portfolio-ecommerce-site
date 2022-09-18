@@ -5,13 +5,13 @@ import { useState } from "react";
 
 // wconst handleAdd = () => {};
 
-const nums = [1,2,3,4,5,6,7,8,9,10,11]
+// const nums = [1,2,3,4,5,6,7,8,9,10,11]
 
-const filtered = nums.filter(function(value){
-    return value !== 1
-})
+// const filtered = nums.filter(function(value){
+//     return value !== 1
+// })
 
-console.log(filtered)
+// console.log(filtered)
 
 const Exercises = () => {
   const [userName, setUserName] = useState("");

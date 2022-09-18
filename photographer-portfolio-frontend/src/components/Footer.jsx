@@ -45,16 +45,16 @@ const Footer = () => {
           </div>
         </div>
         <div className="footer__column">
-          <div>sport</div>
+          <div>biegi</div>
           <div>emocje</div>
-          <div>pejzaż</div>
-          <div>dron</div>
+          <div>portret</div>
+          <div>krajobraz</div>
+        </div>
+        <div className="footer__column">
+          <div>o więcej</div>
         </div>
         <div className="footer__column">
           <div>o mnie</div>
-        </div>
-        <div className="footer__column">
-          <div>kontakt</div>
         </div>
         <div className="footer__column">
           <div>sklep</div>

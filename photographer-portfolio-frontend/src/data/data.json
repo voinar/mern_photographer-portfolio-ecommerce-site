@@ -9,12 +9,110 @@
     "sklep"
   ],
 
-  "dropdownCategories": [
-    "z lotu ptaka",
-    "wydarzenia",
-    "portret",
-    "inne"
-],
+  "dropdownCategories": ["z lotu ptaka", "wydarzenia", "portret", "inne"],
+  "imagesWelcome": [
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/top/0.jpg",
+      "url": "../assets/portfolio/top/0.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/top/1.jpg",
+      "url": "../assets/portfolio/top/1.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/top/2.jpg",
+      "url": "../assets/portfolio/top/2.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/top/3.jpg",
+      "url": "../assets/portfolio/top/4.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/top/5.jpg",
+      "url": "../assets/portfolio/top/6.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/top/7.jpg",
+      "url": "../assets/portfolio/top/8.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/top/9.jpg",
+      "url": "../assets/portfolio/top/9.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/top/10.jpg",
+      "url": "../assets/portfolio/top/10.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/top/11.jpg",
+      "url": "../assets/portfolio/top/11.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/top/12.jpg",
+      "url": "../assets/portfolio/top/12.jpg",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    }
+  ],
+
   "images": [
     {
       "title": "",
@@ -159,127 +257,353 @@
     {
       "title": "",
       "description": "",
-      "thumbnail": "../assets/portfolio/biegi/14.jpg",
-      "url": "../assets/portfolio/biegi/14.jpg",
-      "category": "biegi",
+      "thumbnail": "../assets/portfolio/emocje/0.jpg",
+      "url": "../assets/portfolio/emocje/0.jpg",
+      "category": "emocje",
       "location": "",
       "event": "",
       "price": null
     },
-
-
     {
-      "title": "BiegSokoła_cz1_001",
+      "title": "",
       "description": "",
-      "thumbnail": "../assets/BiegSokoła_cz1_001.jpg",
-      "url": "../assets/BiegSokoła_cz1_001.jpg",
-      "category": "sport",
-      "location": "location",
-      "event": "event",
-      "price": 10
-    },
-
-
-
-    {
-      "title": "BiegSokoła_cz1_001",
-      "description": "",
-      "thumbnail": "../assets/BiegSokoła_cz1_001.jpg",
-      "url": "../assets/BiegSokoła_cz1_001.jpg",
-      "category": "sport",
-      "location": "location",
-      "event": "event",
-      "price": 10
-    },
-    {
-      "title": "BiegSokoła_cz1_006",
-      "description": "",
-      "thumbnail": "../BiegSokoła_cz1_006.jpg",
-      "url": "../assets/BiegSokoła_cz1_006.jpg",
-      "category": "z lotu ptaka",
-      "location": "location",
-      "event": "event",
-      "price": 10
-    },
-    {
-      "title": "image title",
-      "description": "",
-      "thumbnail": "",
-      "url": "../assets/DSC_0090.jpg",
-      "category": "pejzaż",
-      "location": "location",
-      "event": "event",
-      "price": 10
-    },
-    {
-      "title": "image title",
-      "description": "",
-      "thumbnail": "",
-      "url": "../assets/DSC_1417copy.jpg",
+      "thumbnail": "../assets/portfolio/emocje/1.jpg",
+      "url": "../assets/portfolio/emocje/1.jpg",
       "category": "emocje",
-      "location": "location",
-      "event": "event",
-      "price": 10
+      "location": "",
+      "event": "",
+      "price": null
     },
     {
-      "title": "image title",
+      "title": "",
       "description": "",
-      "thumbnail": "",
-      "url": "../assets/IMG_0053.jpg",
-      "category": "pejzaż",
-      "location": "location",
-      "event": "event",
-      "price": 10
+      "thumbnail": "../assets/portfolio/emocje/2.jpg",
+      "url": "../assets/portfolio/emocje/2.jpg",
+      "category": "emocje",
+      "location": "",
+      "event": "",
+      "price": null
     },
     {
-      "title": "image title",
+      "title": "",
       "description": "",
-      "thumbnail": "",
-      "url": "../assets/IMG_01922.jpg",
-      "category": "pejzaż",
-      "location": "location",
-      "event": "event",
-      "price": 10
+      "thumbnail": "../assets/portfolio/emocje/3.jpg",
+      "url": "../assets/portfolio/emocje/3.jpg",
+      "category": "emocje",
+      "location": "",
+      "event": "",
+      "price": null
     },
     {
-      "title": "image title",
+      "title": "",
       "description": "",
-      "thumbnail": "",
-      "url": "../assets/JagaKora_2022_cz1_005.jpg",
-      "category": "sport",
-      "location": "location",
-      "event": "event",
-      "price": 10
+      "thumbnail": "../assets/portfolio/emocje/4.jpg",
+      "url": "../assets/portfolio/emocje/4.jpg",
+      "category": "emocje",
+      "location": "",
+      "event": "",
+      "price": null
     },
     {
-      "title": "image title",
+      "title": "",
       "description": "",
-      "thumbnail": "",
-      "url": "../assets/JagaKora_2022_cz1_074.jpg",
-      "category": "sport",
-      "location": "location",
-      "event": "event",
-      "price": 10
+      "thumbnail": "../assets/portfolio/emocje/5.jpg",
+      "url": "../assets/portfolio/emocje/5.jpg",
+      "category": "emocje",
+      "location": "",
+      "event": "",
+      "price": null
     },
     {
-      "title": "image title",
+      "title": "",
       "description": "",
-      "thumbnail": "",
-      "url": "../assets/PUT_cz1_513.jpg",
-      "category": "sport",
-      "location": "location",
-      "event": "event",
-      "price": 10
+      "thumbnail": "../assets/portfolio/emocje/6.jpg",
+      "url": "../assets/portfolio/emocje/6.jpg",
+      "category": "emocje",
+      "location": "",
+      "event": "",
+      "price": null
     },
     {
-      "title": "image title",
+      "title": "",
       "description": "",
-      "thumbnail": "",
-      "url": "../assets/PUT_cz1_612.jpg",
-      "category": "sport",
-      "location": "location",
-      "event": "event",
-      "price": 10
+      "thumbnail": "../assets/portfolio/emocje/7.jpg",
+      "url": "../assets/portfolio/emocje/7.jpg",
+      "category": "emocje",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/emocje/8.jpg",
+      "url": "../assets/portfolio/emocje/8.jpg",
+      "category": "emocje",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/emocje/9.jpg",
+      "url": "../assets/portfolio/emocje/9.jpg",
+      "category": "emportretcje",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/portret/0.jpg",
+      "url": "../assets/portfolio/portret/0.jpg",
+      "category": "portret",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/portret/1.jpg",
+      "url": "../assets/portfolio/portret/1.jpg",
+      "category": "portret",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/portret/2.jpg",
+      "url": "../assets/portfolio/portret/2.jpg",
+      "category": "portret",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/portret/3.jpg",
+      "url": "../assets/portfolio/portret/3.jpg",
+      "category": "portret",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/portret/4.jpg",
+      "url": "../assets/portfolio/portret/4.jpg",
+      "category": "portret",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/portret/5.jpg",
+      "url": "../assets/portfolio/portret/5.jpg",
+      "category": "portret",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/portret/6.jpg",
+      "url": "../assets/portfolio/portret/6.jpg",
+      "category": "portret",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/portret/7.jpg",
+      "url": "../assets/portfolio/portret/7.jpg",
+      "category": "portret",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/portret/8.jpg",
+      "url": "../assets/portfolio/portret/8.jpg",
+      "category": "portret",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/portret/9.jpg",
+      "url": "../assets/portfolio/portret/9.jpg",
+      "category": "portret",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/krajobraz/0.jpg",
+      "url": "../assets/portfolio/krajobraz/0.jpg",
+      "category": "krajobraz",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/krajobraz/1.jpg",
+      "url": "../assets/portfolio/krajobraz/1.jpg",
+      "category": "krajobraz",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/krajobraz/2.jpg",
+      "url": "../assets/portfolio/krajobraz/2.jpg",
+      "category": "krajobraz",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/krajobraz/3.jpg",
+      "url": "../assets/portfolio/krajobraz/3.jpg",
+      "category": "krajobraz",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/krajobraz/4.jpg",
+      "url": "../assets/portfolio/krajobraz/4.jpg",
+      "category": "krajobraz",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/krajobraz/5.jpg",
+      "url": "../assets/portfolio/krajobraz/5.jpg",
+      "category": "krajobraz",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/krajobraz/6.jpg",
+      "url": "../assets/portfolio/krajobraz/6.jpg",
+      "category": "krajobraz",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/krajobraz/7.jpg",
+      "url": "../assets/portfolio/krajobraz/7.jpg",
+      "category": "krajobraz",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/krajobraz/8.jpg",
+      "url": "../assets/portfolio/krajobraz/8.jpg",
+      "category": "krajobraz",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/inne/1.jpg",
+      "url": "../assets/portfolio/inne/1.jpg",
+      "category": "więcej",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/inne/2.jpg",
+      "url": "../assets/portfolio/inne/2.jpg",
+      "category": "więcej",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/inne/3.jpg",
+      "url": "../assets/portfolio/inne/3.jpg",
+      "category": "więcej",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/inne/4.jpg",
+      "url": "../assets/portfolio/inne/4.jpg",
+      "category": "więcej",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/inne/5.jpg",
+      "url": "../assets/portfolio/inne/5.jpg",
+      "category": "więcej",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/inne/6.jpg",
+      "url": "../assets/portfolio/inne/6.jpg",
+      "category": "więcej",
+      "location": "",
+      "event": "",
+      "price": null
     }
+
   ]
 }

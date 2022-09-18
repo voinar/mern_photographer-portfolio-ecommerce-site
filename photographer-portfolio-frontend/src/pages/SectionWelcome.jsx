@@ -20,13 +20,13 @@ const SectionWelcome = () => {
           showStatus={false}
           // showArrows={true}
         >
-          {photographyData.images.map((images) => {
+          {photographyData.imagesWelcome.map((image) => {
             return (
               <div key={uuidv4()}>
                 <img
                   className="cover__image"
                   style={{ width: '100vw' }}
-                  src={images.url}
+                  src={image.url}
                   alt="moje zdjęcia"
                 />
                 {/* <p className="legend">Legend 1</p> */}
@@ -46,9 +46,6 @@ const SectionWelcome = () => {
               <img src={iconFacebook} alt="facebook" />
             </a>
           </div>
-          {/* <div className="cover__icons__social">
-            <img src={iconInstagram} alt="instagram" />
-          </div> */}
         </div>
       </div>
     </main>

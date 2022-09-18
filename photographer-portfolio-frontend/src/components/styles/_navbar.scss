@@ -1,81 +1,53 @@
 .navbar {
   position: fixed;
-  top: 0;
   display: flex;
   flex-direction: row;
-  // align-items: center;
   padding: 80px 120px;
   background: linear-gradient(
     0deg,
     rgba(0, 0, 0, 0) 0%,
     rgba(0, 0, 0, 0.4) 100%
   );
-  // background: black;
   width: 100vw;
-  height: 30vh;
-
   color: $--c-white;
   z-index: 2;
-
-  a {
-    color: $--c-white;
-    text-decoration: none;
-    width: 120px;
-  }
-
-  a:hover {
-    color: rgb(200, 200, 200);
-    transition: 0.3s ease-in-out;
-    text-shadow: 0px 0px 1px rgb(11, 32, 150);
-  }
-
-  .navbar--dark {
-    background: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(255, 255, 255, 0.9) 100%
-    );
-    // background: white;
-    color: $--c-black;
-
-    a {
-      color: $--c-black;
-    }
-
-    a:hover {
-      color: $--c-black;
-    }
-
-    .navbar__logo {
-      filter: invert(1);
-    }
-
-    .navbar__section__dropdown:hover .navbar__section__dropdown-link {
-      background-color: rgba(208, 208, 208, 0.3);
-      color: $--c-black;
-      font-weight: 500;
-    }
-  }
 
   .navbar__content {
     display: flex;
     flex-direction: row;
-    margin-top: 14px;
     justify-content: center;
     width: 100%;
+    padding: 0 7vw;
     font-weight: $--font-medium;
-    font-size: $--font-xl;
-    // text-transform: uppercase;
-    letter-spacing: 0px;
+    font-size: $--font-md;
   }
 
   .navbar__logo {
-    padding: 0;
+    height: 60px;
+    // width: 280px;
   }
 
   .navbar__section-link {
-    margin: 0 20px 0 0;
-    width: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    width: 80px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .5);
+
+    a {
+      display: flex;
+      justify-content: center;
+      color: $--c-white;
+      text-decoration: none;
+      // width: 120px;
+    }
+
+    a:hover {
+      color: rgb(200, 200, 200);
+      transition: 0.3s ease-in-out;
+      text-shadow: 0px 0px 1px rgb(11, 32, 150);
+    }
   }
 
   .navbar__section-link__shop {
@@ -84,6 +56,7 @@
     padding: 2px 30px;
   }
 }
+
 .navbar--dark {
   background: linear-gradient(
     0deg,
@@ -94,7 +67,7 @@
   color: $--c-black;
 
   a {
-    color: $--c-black;
+    color: $--c-black !important;
   }
 
   a:hover {
@@ -104,6 +77,14 @@
   .navbar__logo {
     filter: invert(1);
   }
+  .navbar__section-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    width: 80px;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, .3);
+  }
 
   .navbar__section__dropdown:hover .navbar__section__dropdown-link {
     background-color: rgba(208, 208, 208, 0.3);
@@ -111,6 +92,7 @@
     font-weight: 500;
   }
 }
+
 .navbar__section__dropdown {
   padding: 0;
   margin: 0 20px 0 0;

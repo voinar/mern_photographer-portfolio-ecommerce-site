@@ -1,6 +1,8 @@
 import { useParams } from 'react-router-dom';
 import photographyData from "../data/data.json";
 import Footer from "../components/Footer";
+import chevronUp from "../img/icons/chevron-up.svg";
+
 
 const SectionContent = () => {
   let { category } = useParams()
@@ -20,6 +22,13 @@ const SectionContent = () => {
             } else return null
           })}
         </ul>
+        <div className="section__photos__see-more">
+        <div className="section__photos__see-more__container">
+          <div className="section__photos__see-more__icon">
+              <img src={chevronUp} alt="facebook" />
+          </div>
+        </div>
+      </div>
       </main>
       <Footer />
     </>
