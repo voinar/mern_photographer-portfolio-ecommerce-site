@@ -5,7 +5,6 @@ import { useContext } from 'react';
 import Context from '../contexts/Context';
 import { useLocation } from 'react-router-dom';
 
-
 // import iconSun from "../img/icons/icon-sun.svg";
 // import iconMoon from "../img/icons/icon-moon.svg";
 import iconCart from '../img/icons/icon-cart.svg';
@@ -16,9 +15,9 @@ const Navbar = () => {
   const { darkMode } = useContext(Context);
 
   console.log('darkMode ' + darkMode);
-  console.log('path ' + window.location.pathname );
+  console.log('path ' + window.location.pathname);
 
-  const location = useLocation()
+  const location = useLocation();
 
   return (
     <nav className={darkMode ? `${'navbar navbar--dark'}` : `${'navbar'}`}>
@@ -31,7 +30,7 @@ const Navbar = () => {
 
       {location.pathname !== '/sklep' ? (
         <ul className="navbar__content">
-          {categoryData.categories.map((category) => {
+          {categoryData.categories.map((category) => { //map all portfolio categories from database
             if (category === 'sklep') {
               return (
                 <li key={category} className="navbar__section-link">
@@ -52,17 +51,8 @@ const Navbar = () => {
               );
             } else return null;
           })}
-          {/* {darkMode ? (
-          <li>
-            <img src={iconMoon} className="navbar__darkmode-toggle" onClick={()=>{setDarkMode(!darkMode)}} alt="toggle dark mode" />
-          </li>
-        ) : (
-          <li>
-            <img src={iconSun} className="navbar__darkmode-toggle" onClick={()=>{setDarkMode(!darkMode)}}alt="toggle dark mode" />
-          </li>
-        )} */}
         </ul>
-      ) : (
+      ) : ( //if currently in shop then show only cart and share icon (don't render portfolio links)
         <div className="navbar__shop-icons">
           <img
             src={iconCart}

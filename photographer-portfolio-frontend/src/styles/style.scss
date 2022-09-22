@@ -23,7 +23,7 @@
 body {
     font-family: $--font-main;
     color: $--c-black;
-    background-color: black;
+    background-color: $--c-white;
     min-width: 600px;
     // overflow: hidden;
     scroll-behavior: smooth;
@@ -38,4 +38,6 @@ a {
     color: $--c-black;
 }
 
-
+ul {
+    padding: 0;
+}

@@ -307,18 +307,29 @@ select {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  gap: 30px;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
 .shop__toolbar .shop__toolbar__element {
+  position: relative;
+  display: inline-block;
+}
+
+.shop__toolbar .shop__toolbar__element button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  width: 140px;
+  background-color: #ffffff77;
+  padding: 4px 16px;
+  font-size: 18px;
+  border: 2px solid gray;
+  border-radius: 6px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
 }
 
 .shop__toolbar .shop__toolbar__element span {
@@ -332,6 +343,26 @@ select {
       -ms-grid-row-align: center;
       align-self: center;
   margin-left: 4px;
+}
+
+.shop__toolbar .shop__toolbar__element .shop__toolbar__element__list-items {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 200px;
+  -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  padding: 10px 14px;
+}
+
+.shop__toolbar .shop__toolbar__element .shop__toolbar__element__list-items li {
+  padding: 8px;
+  width: 200px;
+}
+
+.shop__toolbar .shop__toolbar__element:hover .shop__toolbar__element__list-items {
+  display: block;
 }
 
 .shop__cards {
@@ -372,6 +403,7 @@ select {
 
 .shop__card .shop__card__title {
   font-size: 18px;
+  text-transform: capitalize;
 }
 
 .shop__card .shop__card__date {
@@ -381,8 +413,15 @@ select {
 
 .shop__card:hover {
   opacity: 1;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+
+.shop__card:hover img {
+  -webkit-transform: scale(1.025);
+          transform: scale(1.025);
+  -webkit-transition: ease-in-out 0.3s;
+  transition: ease-in-out 0.3s;
 }
 
 .album__container {
@@ -488,6 +527,14 @@ select {
           box-shadow: 0 0 18px rgba(0, 0, 0, 0.1);
 }
 
+.album__card:hover img {
+  -webkit-transform: scale(1.025);
+          transform: scale(1.025);
+  z-index: 20;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
 .album__card:hover {
   opacity: 1;
   -webkit-transition: all 0.3s;
@@ -501,7 +548,7 @@ select {
   width: 100vw;
   height: 100vh;
   background-color: rgba(255, 255, 255, 0.8);
-  z-index: 10;
+  z-index: 3;
 }
 
 .album__preview-image img {
@@ -511,7 +558,29 @@ select {
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  opacity: .95;
+  opacity: 0.95;
+}
+
+.album__preview-image__arrow {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.album__preview-image__arrow--prev {
+  bottom: 20vh;
+  right: 40vw;
+  -webkit-transform: rotate(270deg) !important;
+          transform: rotate(270deg) !important;
+}
+
+.album__preview-image__arrow--next {
+  bottom: 20vh;
+  left: 40vw;
+  -webkit-transform: rotate(90deg) !important;
+          transform: rotate(90deg) !important;
 }
 
 .navbar {
@@ -747,7 +816,7 @@ select {
 body {
   font-family: "Prompt", sans-serif;
   color: #3a3939;
-  background-color: black;
+  background-color: #dedede;
   min-width: 600px;
   scroll-behavior: smooth;
 }
@@ -759,5 +828,9 @@ h1 {
 a {
   text-decoration: none;
   color: #3a3939;
+}
+
+ul {
+  padding: 0;
 }
 /*# sourceMappingURL=style.css.map */

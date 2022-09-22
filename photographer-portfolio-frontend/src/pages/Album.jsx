@@ -7,15 +7,22 @@ const Album = () => {
   const [showPreviewImage, setShowPreviewImage] = useState(false);
   const [previewImageUrl, setPreviewImageUrl] = useState('');
 
-  let { album } = useParams();
+  const { album } = useParams();
 
-  let handleImagePreview = (e) => {
+  const handleImagePreview = (e) => {
     console.log(e.target.getAttribute('src'));
     setShowPreviewImage((prevState) => !prevState);
-    setPreviewImageUrl(e.target.getAttribute('src'))
-    console.log("previewImageUrl " + previewImageUrl);
+    setPreviewImageUrl(e.target.getAttribute('src'));
+    console.log('previewImageUrl ' + previewImageUrl);
   };
 
+  const handleImagePreviewPrev = () => {
+    let imageIndex = albumsData.albums[0]?.url;
+    console.log('previewImageUrl ' + imageIndex);
+  };
+
+  const handleImagePreviewNext = () => {};
+  console.log(album);
   return (
     <>
       <main>
@@ -52,10 +59,28 @@ const Album = () => {
             })}
           </div>
           {showPreviewImage && (
-            <div className="album__preview-image" onClick={handleImagePreview}>
-              {/* <img src={previewImageUrl} /> */}
-              <img src={previewImageUrl} alt="" />
-            </div>
+            <>
+              <img
+                className="album__preview-image__arrow album__preview-image__arrow--prev"
+                src={IconChevron}
+                alt="poprzednie zdjęcie"
+                title="poprzednie zdjęcie"
+                onClick={handleImagePreviewPrev}
+              />
+              <div
+                className="album__preview-image"
+                onClick={handleImagePreview}
+              >
+                <img src={previewImageUrl} alt="" />
+              </div>
+              <img
+                className="album__preview-image__arrow album__preview-image__arrow--next"
+                src={IconChevron}
+                alt="następne zdjęcie"
+                title="następne zdjęcie"
+                onClick={handleImagePreviewNext}
+              />
+            </>
           )}
         </div>
       </main>

@@ -28,13 +28,27 @@
   .shop__toolbar__elements {
     display: flex;
     flex-direction: row;
-    gap: 30px;
+    gap: 10px;
     margin-bottom: 20px;
   }
 
   .shop__toolbar__element {
-    display: flex;
-    flex-direction: row;
+    // display: flex;
+    // flex-direction: column;
+    position: relative;
+    display: inline-block;
+
+    button {
+      display: flex;
+      width: 140px;
+      background-color: #ffffff77;
+      padding: 4px 16px;
+      font-size: $--font-md;
+      border: 2px solid gray;
+      border-radius: 6px;
+      justify-content: center;
+      cursor: pointer;
+    }
 
     span {
       font-size: $--font-md;
@@ -46,6 +60,26 @@
       align-self: center;
       margin-left: 4px;
     }
+
+    .shop__toolbar__element__list-items {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 200px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      border-radius: 6px;
+      padding: 10px 14px;
+      //   z-index: 1;
+
+      li {
+        padding: 8px;
+        width: 200px;
+      }
+    }
+  }
+
+  .shop__toolbar__element:hover .shop__toolbar__element__list-items {
+    display: block;
   }
 }
 
@@ -77,6 +111,7 @@
 
   .shop__card__title {
     font-size: $--font-md;
+    text-transform: capitalize;
   }
 
   .shop__card__date {
@@ -87,5 +122,13 @@
 
 .shop__card:hover {
   opacity: 1;
-  transition: all 0.3s;
+  transition: all 1s;
+
+  img {
+    transform: scale(1.025);
+    transition: ease-in-out 0.3s;
+  }
+}
+
+.album__card:hover {
 }
