@@ -8,6 +8,8 @@
 @import '../pages/styles/_SectionWelcome';
 @import '../pages/styles/_SectionContent';
 @import '../pages/styles/_About';
+@import '../pages/styles/_Shop';
+@import '../pages/styles/_Album';
 
 // components
 @import '../components/styles/_navbar';
@@ -31,5 +33,9 @@ h1 {
     font-weight: thin;
 }
 
+a {
+    text-decoration: none;
+    color: $--c-black;
+}
 
 

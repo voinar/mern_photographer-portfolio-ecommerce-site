@@ -3,7 +3,6 @@ import photographyData from "../data/data.json";
 import Footer from "../components/Footer";
 import chevronUp from "../img/icons/chevron-up.svg";
 
-
 const SectionContent = () => {
   let { category } = useParams()
 

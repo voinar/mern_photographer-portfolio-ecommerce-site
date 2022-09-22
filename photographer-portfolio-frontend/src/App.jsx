@@ -8,6 +8,8 @@ import Navbar from './components/Navbar';
 import SectionWelcome from './pages/SectionWelcome';
 import SectionContent from './pages/SectionContent';
 import About from './pages/About';
+import Shop from './pages/Shop';
+import Album from './pages/Album';
 import Exercises from './pages/Exercises';
 
 // {localStorage.setItem('user', 'name')}
@@ -27,7 +29,9 @@ function App() {
           <Route path="/witaj" element={<SectionWelcome />} />
           <Route path="/:category" element={<SectionContent />} />
           <Route path="/o%20mnie" element={<About />}/>
-          <Route path="/exercises" element={<Exercises props={darkMode} />} />
+          <Route path="/sklep" element={<Shop />}/>
+          <Route path="/album/:album" element={<Album />}/>
+          {/* <Route path="/exercises" element={<Exercises props={darkMode} />} /> */}
         </Routes>
       </div>
     </Context.Provider>

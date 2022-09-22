@@ -51,7 +51,7 @@ const Footer = () => {
           <div>krajobraz</div>
         </div>
         <div className="footer__column">
-          <div>o więcej</div>
+          <div>więcej</div>
         </div>
         <div className="footer__column">
           <div>o mnie</div>

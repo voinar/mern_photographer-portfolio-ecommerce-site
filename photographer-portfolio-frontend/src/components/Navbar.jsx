@@ -3,47 +3,56 @@ import categoryData from '../data/data.json';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import Context from '../contexts/Context';
+import { useLocation } from 'react-router-dom';
+
 
 // import iconSun from "../img/icons/icon-sun.svg";
 // import iconMoon from "../img/icons/icon-moon.svg";
+import iconCart from '../img/icons/icon-cart.svg';
+import iconShare from '../img/icons/icon-share.svg';
 
 const Navbar = () => {
   // const { darkMode, setDarkMode } = useContext(Context);
   const { darkMode } = useContext(Context);
 
-  console.log('darkMode ' + darkMode)
+  console.log('darkMode ' + darkMode);
+  console.log('path ' + window.location.pathname );
+
+  const location = useLocation()
 
   return (
-    <nav className={darkMode ? `${'navbar'}` : `${'navbar'}`}>
-    {/* <nav className={darkMode ? `${'navbar navbar--dark'}` : `${'navbar'}`}> */}
+    <nav className={darkMode ? `${'navbar navbar--dark'}` : `${'navbar'}`}>
+      {/* <nav className={darkMode ? `${'navbar navbar--dark'}` : `${'navbar'}`}> */}
       <div className="navbar__logo">
         <Link to="/witaj">
           <img src={navLogo} alt="logo" />
         </Link>
       </div>
-      <ul className="navbar__content">
-        {categoryData.categories.map((category) => {
-          if (category === 'sklep') {
-            return (
-              <li key={category} className="navbar__section-link">
-                <Link
-                  className="navbar__section-link navbar__section-link__shop"
-                  to={category}
-                >
-                  {category}
-                </Link>
-              </li>
-            );
-          }
-          if (category !== 'sklep') {
-            return (
-              <li key={category} className="navbar__section-link">
-                <Link to={category}>{category}</Link>
-              </li>
-            );
-          } else return null;
-        })}
-        {/* {darkMode ? (
+
+      {location.pathname !== '/sklep' ? (
+        <ul className="navbar__content">
+          {categoryData.categories.map((category) => {
+            if (category === 'sklep') {
+              return (
+                <li key={category} className="navbar__section-link">
+                  <Link
+                    className="navbar__section-link navbar__section-link__shop"
+                    to={category}
+                  >
+                    {category}
+                  </Link>
+                </li>
+              );
+            }
+            if (category !== 'sklep') {
+              return (
+                <li key={category} className="navbar__section-link">
+                  <Link to={category}>{category}</Link>
+                </li>
+              );
+            } else return null;
+          })}
+          {/* {darkMode ? (
           <li>
             <img src={iconMoon} className="navbar__darkmode-toggle" onClick={()=>{setDarkMode(!darkMode)}} alt="toggle dark mode" />
           </li>
@@ -52,7 +61,23 @@ const Navbar = () => {
             <img src={iconSun} className="navbar__darkmode-toggle" onClick={()=>{setDarkMode(!darkMode)}}alt="toggle dark mode" />
           </li>
         )} */}
-      </ul>
+        </ul>
+      ) : (
+        <div className="navbar__shop-icons">
+          <img
+            src={iconCart}
+            className="navbar__icon-cart"
+            alt="zobacz koszyk"
+            title="zobacz koszyk"
+          />
+          <img
+            src={iconShare}
+            className="navbar__icon-share"
+            alt="udostępnij"
+            title="udostępnij"
+          />
+        </div>
+      )}
     </nav>
   );
 };

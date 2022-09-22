@@ -2,15 +2,15 @@
   position: fixed;
   display: flex;
   flex-direction: row;
-  padding: 80px 120px;
-  background: linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.4) 100%
-  );
+  padding: 40px 120px;
+  // background: linear-gradient(
+  //   0deg,
+  //   rgba(0, 0, 0, 0) 0%,
+  //   rgba(0, 0, 0, 0.4) 100%
+  // );
   width: 100vw;
   color: $--c-white;
-  z-index: 2;
+  z-index: 10;
 
   .navbar__content {
     display: flex;
@@ -24,7 +24,7 @@
 
   .navbar__logo {
     height: 60px;
-    // width: 280px;
+    width: 200px;
   }
 
   .navbar__section-link {
@@ -33,7 +33,7 @@
     justify-content: center;
     margin-left: auto;
     width: 80px;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, .5);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
 
     a {
       display: flex;
@@ -55,13 +55,22 @@
     border-radius: 4px;
     padding: 2px 30px;
   }
+
+  .navbar__shop-icons {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    height: 40px;
+    cursor: pointer;
+    gap: 10px;
+  }
 }
 
 .navbar--dark {
   background: linear-gradient(
     0deg,
     rgba(0, 0, 0, 0) 0%,
-    rgba(255, 255, 255, 0.9) 100%
+    rgba(255, 255, 255, 0.4) 100%
   );
   // background: white;
   color: $--c-black;
@@ -77,13 +86,14 @@
   .navbar__logo {
     filter: invert(1);
   }
+
   .navbar__section-link {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-left: auto;
     width: 80px;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, .3);
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
   }
 
   .navbar__section__dropdown:hover .navbar__section__dropdown-link {
