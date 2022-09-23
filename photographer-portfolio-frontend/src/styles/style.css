@@ -310,6 +310,7 @@ select {
 
 .shop__toolbar .shop__toolbar__title span {
   font-weight: 400;
+  text-transform: capitalize;
 }
 
 .shop__toolbar .shop__toolbar__elements {
@@ -492,6 +493,10 @@ select {
   cursor: pointer;
 }
 
+.album__toolbar .album__title h1 {
+  text-transform: capitalize;
+}
+
 .album__toolbar .album__toolbar__elements {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -627,7 +632,7 @@ select {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  padding: 40px 120px;
+  padding: 25px 100px;
   width: 100vw;
   color: #dedede;
   z-index: 10;
@@ -645,7 +650,7 @@ select {
       -ms-flex-pack: center;
           justify-content: center;
   width: 100%;
-  padding: 0 7vw;
+  padding: 0 100px;
   font-weight: 500;
   font-size: 18px;
 }

@@ -36,6 +36,10 @@
       transform: rotate(90deg);
       cursor: pointer;
     }
+
+    h1 {
+      text-transform: capitalize;
+    }
   }
 
   .album__toolbar__elements {
