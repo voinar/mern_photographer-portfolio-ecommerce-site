@@ -25,6 +25,19 @@
   width: 100vw;
   z-index: 3;
 
+  .album__title {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+
+    img {
+      height: 26px;
+      align-self: center;
+      transform: rotate(90deg);
+      cursor: pointer;
+    }
+  }
+
   .album__toolbar__elements {
     display: flex;
     flex-direction: row;

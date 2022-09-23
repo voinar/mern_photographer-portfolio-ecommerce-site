@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+
+
 import albumsData from '../data/albums.json';
 import IconChevron from '../img/icons/icon-chevron.svg';
 
@@ -8,6 +11,7 @@ const Album = () => {
   const [previewImageUrl, setPreviewImageUrl] = useState('');
 
   const { album } = useParams();
+  const navigate = useNavigate();
 
   const handleImagePreview = (e) => {
     console.log(e.target.getAttribute('src'));
@@ -28,7 +32,10 @@ const Album = () => {
       <main>
         <div className="album__container">
           <div className="album__toolbar">
-            <h1>{album}</h1>
+            <div className="album__title">
+              <img src={IconChevron} alt="zobacz" onClick={() => navigate(-1)}/>{' '}
+              <h1>{album}</h1>
+            </div>
             <h2>
               {albumsData.albums[0]?.location}, {albumsData.albums[0]?.date}
             </h2>

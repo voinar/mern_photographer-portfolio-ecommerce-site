@@ -1,20 +1,20 @@
 // import products from '../data/products'
-import { useState } from 'react'
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import albumsData from '../data/albums.json';
 import IconChevron from '../img/icons/icon-chevron.svg';
 import Footer from '../components/Footer';
 
-
 const Shop = () => {
-  const [filterName, setFilterName] = useState('biegi')
-  const [filterLocation, setFilterLocation] = useState('')
-  const [filterDate, setFilterDate] = useState('')
-
+  const [filterName, setFilterName] = useState('');
+  const [filterLocation, setFilterLocation] = useState('');
+  const [filterDate, setFilterDate] = useState('');
 
   const selectFilter = (e) => {
-    console.log(e.target.textContent);
-    setFilterName(e.target.textContent)
+    // console.log(e.target.textContent);
+    setFilterName(e.target.textContent);
+    setFilterLocation(e.target.textContent);
+    setFilterDate(e.target.textContent);
   };
 
   const selectAlbumByName = [
@@ -43,11 +43,77 @@ const Shop = () => {
     })
     .filter((value, index, self) => self.indexOf(value) === index);
 
+  const mapAlbums = albumsData.albums.map((image) => {
+    if (image.album === filterName) {
+      return (
+        <>
+          <Link to={`/album/${image.album}`}>
+            <div className="shop__card">
+              <img src={image.url} alt="" />
+              <div className="shop__card__info">
+                {/* <div className="shop__card__title">
+                    <span>{image.album}</span>
+                  </div> */}
+                <div className="shop__card__date">
+                  <span>{image.date}</span>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </>
+      );
+    }
+    if (image.location === filterLocation) {
+      return (
+        <>
+          <Link to={`/album/${image.album}`}>
+            <div className="shop__card">
+              <img src={image.url} alt="" />
+              <div className="shop__card__info">
+                {/* <div className="shop__card__title">
+                    <span>{image.album}</span>
+                  </div> */}
+                <div className="shop__card__date">
+                  <span>{image.date}</span>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </>
+      );
+    }
+    if (image.date === filterDate) {
+      return (
+        <>
+          <Link to={`/album/${image.album}`}>
+            <div className="shop__card">
+              <img src={image.url} alt="" />
+              <div className="shop__card__info">
+                {/* <div className="shop__card__title">
+                    <span>{image.album}</span>
+                  </div> */}
+                <div className="shop__card__date">
+                  <span>{image.date}</span>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </>
+      );
+    }
+    return null;
+  });
+
   return (
     <>
       <div className="shop__container">
         <div className="shop__toolbar">
-          <h1 className="shop__title">Przeglądaj albumy</h1>
+          <div className="shop__toolbar__title">
+            <h1>
+              Przeglądaj albumy{': '}
+              <span>{filterName}</span>
+            </h1>
+          </div>
 
           <div className="shop__toolbar__elements">
             <ul className="shop__toolbar__element">
@@ -56,6 +122,13 @@ const Shop = () => {
                 <img src={IconChevron} alt="zobacz" />
               </button>
               <div className="shop__toolbar__element__list-items">
+                <li
+                  onClick={() => {
+                    setFilterName('');
+                  }}
+                >
+                  wszystkie
+                </li>
                 {selectAlbumByName}
               </div>
             </ul>
@@ -78,70 +151,8 @@ const Shop = () => {
               </div>
             </ul>
           </div>
-          <h2>{filterName}</h2>
         </div>
-        <div className="shop__cards">
-          {albumsData.albums.map((image) => {
-            if (image.album === filterName) {
-              return (
-                <>
-                  <Link to={`/album/${image.album}`}>
-                    <div className="shop__card">
-                      <img src={image.url} alt="" />
-                      <div className="shop__card__info">
-                        <div className="shop__card__title">
-                          <span>{image.album}</span>
-                        </div>
-                        <div className="shop__card__date">
-                          <span>{image.date}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </>
-              );
-            } if (image.location === filterLocation) {
-              return (
-                <>
-                  <Link to={`/album/${image.album}`}>
-                    <div className="shop__card">
-                      <img src={image.url} alt="" />
-                      <div className="shop__card__info">
-                        <div className="shop__card__title">
-                          <span>{image.album}</span>
-                        </div>
-                        <div className="shop__card__date">
-                          <span>{image.date}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </>
-              );
-            }
-            if (image.date === filterDate) {
-              return (
-                <>
-                  <Link to={`/album/${image.album}`}>
-                    <div className="shop__card">
-                      <img src={image.url} alt="" />
-                      <div className="shop__card__info">
-                        <div className="shop__card__title">
-                          <span>{image.album}</span>
-                        </div>
-                        <div className="shop__card__date">
-                          <span>{image.date}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </>
-              );
-            }
-          }
-
-          )}
-        </div>
+        <div className="shop__cards">{mapAlbums}</div>
       </div>
       <Footer />
     </>

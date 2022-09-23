@@ -10,7 +10,11 @@ import SectionContent from './pages/SectionContent';
 import About from './pages/About';
 import Shop from './pages/Shop';
 import Album from './pages/Album';
-import Exercises from './pages/Exercises';
+
+import ScrollToTop from './components/ScrollToTop';
+
+
+// import Exercises from './pages/Exercises';
 
 // {localStorage.setItem('user', 'name')}
 // {sessionStorage.setItem('status', 'unread')}
@@ -22,6 +26,8 @@ function App() {
 
   return (
     <Context.Provider value={{ darkMode, setDarkMode }}>
+          <ScrollToTop />
+
       <div className="App">
         <Navbar props={darkMode} />
         <Routes>

@@ -293,10 +293,23 @@ select {
   z-index: 3;
 }
 
-.shop__toolbar h2 {
-  font-size: 18px;
-  font-weight: 600;
+.shop__toolbar .shop__toolbar__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.shop__toolbar .shop__toolbar__title h1 {
+  font-weight: 100;
   margin-top: 20px;
+}
+
+.shop__toolbar .shop__toolbar__title span {
+  font-weight: 400;
 }
 
 .shop__toolbar .shop__toolbar__elements {
@@ -309,6 +322,7 @@ select {
           flex-direction: row;
   gap: 10px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .shop__toolbar .shop__toolbar__element {
@@ -329,7 +343,6 @@ select {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  cursor: pointer;
 }
 
 .shop__toolbar .shop__toolbar__element span {
@@ -359,6 +372,7 @@ select {
 .shop__toolbar .shop__toolbar__element .shop__toolbar__element__list-items li {
   padding: 8px;
   width: 200px;
+  text-transform: capitalize;
 }
 
 .shop__toolbar .shop__toolbar__element:hover .shop__toolbar__element__list-items {
@@ -455,6 +469,27 @@ select {
   background-color: #dedede;
   width: 100vw;
   z-index: 3;
+}
+
+.album__toolbar .album__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 2px;
+}
+
+.album__toolbar .album__title img {
+  height: 26px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  cursor: pointer;
 }
 
 .album__toolbar .album__toolbar__elements {
