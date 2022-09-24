@@ -1,12 +1,24 @@
 // import products from '../data/products'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import albumsData from '../data/albums.json';
+import axios from 'axios';
+// import albumsData from '../data/albums.json';
 import IconChevron from '../img/icons/icon-chevron.svg';
 import Footer from '../components/Footer';
 
 const Shop = () => {
-  const [filterName, setFilterName] = useState('');
+
+  const [albumsData, setAlbumsData] = useState([]);
+  useEffect(()=>{
+    const fetchData = async () => {
+      const result = await axios.get('/api/data')
+      setAlbumsData(result.data)
+      // console.log(result)
+    }
+    fetchData();
+  },[])
+
+  const [filterName, setFilterName] = useState('biegi');
   const [filterDate, setFilterDate] = useState('');
 
   const selectFilter = (e) => {
@@ -16,7 +28,7 @@ const Shop = () => {
   };
 
   const selectAlbumByName = [
-    ...new Map(albumsData.albums.map((item) => [item['album'], item])).values(),
+    ...new Map(albumsData.map((item) => [item['album'], item])).values(),
   ]
     .map((eventName) => {
       return <li onClick={selectFilter}>{eventName.album}</li>;
@@ -34,14 +46,14 @@ const Shop = () => {
   //   .filter((value, index, self) => self.indexOf(value) === index);
 
   const selectAlbumByDate = [
-    ...new Map(albumsData.albums.map((item) => [item['date'], item])).values(),
+    ...new Map(albumsData.map((item) => [item['date'], item])).values(),
   ]
     .map((eventName) => {
       return <li onClick={selectFilter}>{eventName.date}</li>;
     })
     .filter((value, index, self) => self.indexOf(value) === index);
 
-  const mapAlbums = albumsData.albums.map((image) => {
+  const mapAlbums = albumsData.map((image) => {
     if (image.album === filterName) {
       return (
         <>
