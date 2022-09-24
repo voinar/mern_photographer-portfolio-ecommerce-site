@@ -1,22 +1,46 @@
 // import products from '../data/products'
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 // import albumsData from '../data/albums.json';
 import IconChevron from '../img/icons/icon-chevron.svg';
 import Footer from '../components/Footer';
 
-const Shop = () => {
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'FETCH_REQUEST':
+      return { ...state, loading: true };
+    case 'FETCH_SUCCESS':
+      return { ...state, albumsData: action.payload, loading: false };
+    case 'FETCH_FAIL':
+      return { ...state, loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
 
-  const [albumsData, setAlbumsData] = useState([]);
-  useEffect(()=>{
+const Shop = () => {
+  // const [albumsData, setAlbumsData] = useState([]);
+  const [{ loading, error, albumsData }, dispatch] = useReducer(reducer, {
+    albumsData: [],
+    loading: true,
+    error: '',
+  });
+
+  useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get('/api/data')
-      setAlbumsData(result.data)
+      dispatch({ type: 'FETCH_REQUEST' });
+      try {
+        const result = await axios.get('/api/data');
+        dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
+      } catch (err) {
+        dispatch({ type: 'FETCH_FAIL', payload: err.message });
+      }
+      // setAlbumsData(result.data)
       // console.log(result)
-    }
+    };
     fetchData();
-  },[])
+  }, []);
 
   const [filterName, setFilterName] = useState('biegi');
   const [filterDate, setFilterDate] = useState('');
