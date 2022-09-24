@@ -2,6 +2,7 @@
 import { useEffect, useReducer, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import logger from 'use-reducer-logger'
 // import albumsData from '../data/albums.json';
 import IconChevron from '../img/icons/icon-chevron.svg';
 import Footer from '../components/Footer';
@@ -21,7 +22,7 @@ const reducer = (state, action) => {
 
 const Shop = () => {
   // const [albumsData, setAlbumsData] = useState([]);
-  const [{ loading, error, albumsData }, dispatch] = useReducer(reducer, {
+  const [{ loading, error, albumsData }, dispatch] = useReducer(logger(reducer), {
     albumsData: [],
     loading: true,
     error: '',
