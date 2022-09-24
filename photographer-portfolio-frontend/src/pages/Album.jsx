@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import {useNavigate} from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 
 import albumsData from '../data/albums.json';
 import IconChevron from '../img/icons/icon-chevron.svg';
@@ -9,7 +8,6 @@ import IconChevron from '../img/icons/icon-chevron.svg';
 const Album = () => {
   const [showPreviewImage, setShowPreviewImage] = useState(false);
   const [previewImageUrl, setPreviewImageUrl] = useState('');
-
   const { album } = useParams();
   const navigate = useNavigate();
 
@@ -55,14 +53,17 @@ const Album = () => {
             </div>
           </div>
           <div className="album__cards">
-            {albumsData.albums.map((image) => {
+            {albumsData.albums.map((image) =>
+             {
+              if (image.album === album) {
               return (
                 <>
                   <div className="album__card" onClick={handleImagePreview}>
                     <img src={image.url} alt="" />
                   </div>
                 </>
-              );
+              )}
+              else { return null}
             })}
           </div>
           {showPreviewImage && (

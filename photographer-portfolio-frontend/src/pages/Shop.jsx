@@ -7,13 +7,11 @@ import Footer from '../components/Footer';
 
 const Shop = () => {
   const [filterName, setFilterName] = useState('');
-  const [filterLocation, setFilterLocation] = useState('');
   const [filterDate, setFilterDate] = useState('');
 
   const selectFilter = (e) => {
     // console.log(e.target.textContent);
     setFilterName(e.target.textContent);
-    setFilterLocation(e.target.textContent);
     setFilterDate(e.target.textContent);
   };
 
@@ -25,15 +23,15 @@ const Shop = () => {
     })
     .filter((value, index, self) => self.indexOf(value) === index);
 
-  const selectAlbumByLocation = [
-    ...new Map(
-      albumsData.albums.map((item) => [item['location'], item])
-    ).values(),
-  ]
-    .map((eventName) => {
-      return <li onClick={selectFilter}>{eventName.location}</li>;
-    })
-    .filter((value, index, self) => self.indexOf(value) === index);
+  // const selectAlbumByLocation = [
+  //   ...new Map(
+  //     albumsData.albums.map((item) => [item['location'], item])
+  //   ).values(),
+  // ]
+  //   .map((eventName) => {
+  //     return <li onClick={selectFilter}>{eventName.location}</li>;
+  //   })
+  //   .filter((value, index, self) => self.indexOf(value) === index);
 
   const selectAlbumByDate = [
     ...new Map(albumsData.albums.map((item) => [item['date'], item])).values(),
@@ -63,25 +61,7 @@ const Shop = () => {
         </>
       );
     }
-    if (image.location === filterLocation) {
-      return (
-        <>
-          <Link to={`/album/${image.album}`}>
-            <div className="shop__card">
-              <img src={image.url} alt="" />
-              <div className="shop__card__info">
-                {/* <div className="shop__card__title">
-                    <span>{image.album}</span>
-                  </div> */}
-                <div className="shop__card__date">
-                  <span>{image.date}</span>
-                </div>
-              </div>
-            </div>
-          </Link>
-        </>
-      );
-    }
+
     if (image.date === filterDate) {
       return (
         <>
@@ -132,15 +112,7 @@ const Shop = () => {
                 {selectAlbumByName}
               </div>
             </ul>
-            <ul className="shop__toolbar__element">
-              <button>
-                <span>Miejsce</span>
-                <img src={IconChevron} alt="zobacz" />
-              </button>
-              <div className="shop__toolbar__element__list-items">
-                {selectAlbumByLocation}
-              </div>
-            </ul>
+
             <ul className="shop__toolbar__element">
               <button>
                 <span>Data</span>
