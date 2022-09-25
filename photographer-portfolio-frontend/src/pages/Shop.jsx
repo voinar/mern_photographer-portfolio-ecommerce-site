@@ -7,6 +7,7 @@ import IconChevron from '../img/icons/icon-chevron.svg';
 import Footer from '../components/Footer';
 
 import AlbumCard from '../components/AlbumCard';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -143,7 +144,7 @@ const Shop = () => {
         </div>
         <div className="shop__cards">
           {loading ? (
-            <div>"loading"</div>
+            <LoadingSpinner />
           ) : error ? (
             <div>{error}</div>
           ) : (
