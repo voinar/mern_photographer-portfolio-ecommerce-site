@@ -9,7 +9,7 @@ const data = {
       location: 'Brzozów',
       event: 'Bieg Rzeźnika',
       date: '2022-11-11',
-      price: 11,
+      price: 10,
     },
     {
       title: '',

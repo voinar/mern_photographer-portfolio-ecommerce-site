@@ -1,11 +1,12 @@
 // import products from '../data/products'
 import { useEffect, useReducer, useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-import logger from 'use-reducer-logger'
+import logger from 'use-reducer-logger';
 // import albumsData from '../data/albums.json';
 import IconChevron from '../img/icons/icon-chevron.svg';
 import Footer from '../components/Footer';
+
+import AlbumCard from '../components/AlbumCard';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -22,11 +23,14 @@ const reducer = (state, action) => {
 
 const Shop = () => {
   // const [albumsData, setAlbumsData] = useState([]);
-  const [{ loading, error, albumsData }, dispatch] = useReducer(logger(reducer), {
-    albumsData: [],
-    loading: true,
-    error: '',
-  });
+  const [{ loading, error, albumsData }, dispatch] = useReducer(
+    logger(reducer),
+    {
+      albumsData: [],
+      loading: true,
+      error: '',
+    }
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -82,19 +86,7 @@ const Shop = () => {
     if (image.album === filterName) {
       return (
         <>
-          <Link to={`/album/${image.album}`}>
-            <div className="shop__card">
-              <img src={image.url} alt="" />
-              <div className="shop__card__info">
-                {/* <div className="shop__card__title">
-                    <span>{image.album}</span>
-                  </div> */}
-                <div className="shop__card__date">
-                  <span>{image.date}</span>
-                </div>
-              </div>
-            </div>
-          </Link>
+          <AlbumCard image={image} />
         </>
       );
     }
@@ -102,19 +94,7 @@ const Shop = () => {
     if (image.date === filterDate) {
       return (
         <>
-          <Link to={`/album/${image.album}`}>
-            <div className="shop__card">
-              <img src={image.url} alt="" />
-              <div className="shop__card__info">
-                {/* <div className="shop__card__title">
-                    <span>{image.album}</span>
-                  </div> */}
-                <div className="shop__card__date">
-                  <span>{image.date}</span>
-                </div>
-              </div>
-            </div>
-          </Link>
+          <AlbumCard image={image} />
         </>
       );
     }
@@ -161,7 +141,15 @@ const Shop = () => {
             </ul>
           </div>
         </div>
-        <div className="shop__cards">{mapAlbums}</div>
+        <div className="shop__cards">
+          {loading ? (
+            <div>"loading"</div>
+          ) : error ? (
+            <div>{error}</div>
+          ) : (
+            mapAlbums
+          )}
+        </div>
       </div>
       <Footer />
     </>
