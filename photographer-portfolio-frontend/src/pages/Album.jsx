@@ -5,8 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
-
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 
 //assets
 import IconChevron from '../img/icons/icon-chevron.svg';
@@ -14,7 +13,7 @@ import IconCartAdd from '../img/icons/icon-cart-add.svg';
 
 //components
 import AlbumImage from '../components/AlbumImage';
-import LoadingSpinner from '../components/LoadingSpinner';
+// import LoadingSpinner from '../components/LoadingSpinner';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -32,7 +31,14 @@ const reducer = (state, action) => {
 const Album = () => {
   const { album } = useParams(); //used to fetch current album data via axios
 
-  const [{ loading, currentAlbumData, error }, dispatch] = useReducer(reducer, {
+  const [
+    {
+      // loading,
+      currentAlbumData,
+      //  error
+    },
+    dispatch,
+  ] = useReducer(reducer, {
     loading: true,
     currentAlbumData: [],
     error: '',
@@ -54,7 +60,7 @@ const Album = () => {
   //local component state
   const [showPreviewImage, setShowPreviewImage] = useState(false);
   const [previewImageUrl, setPreviewImageUrl] = useState('');
-  const [currentPreviewId, setCurrentPreviewId] = useState('')
+  const [currentPreviewId, setCurrentPreviewId] = useState('');
 
   const navigate = useNavigate(); //used to return to previous page
   const goBack = () => navigate(-1);
@@ -65,7 +71,7 @@ const Album = () => {
   const handleImagePreview = (e) => {
     setShowPreviewImage((prevState) => !prevState);
     setPreviewImageUrl(e.target.getAttribute('src'));
-    setCurrentPreviewId(e.target.previousSibling.innerHTML)
+    setCurrentPreviewId(e.target.previousSibling.innerHTML);
     // console.log("currentPreviewId" + e.target.previousSibling.innerHTML)
   };
 

@@ -25,7 +25,11 @@
   padding: 20px;
 }
 
-// .section__about__image--main:hover .section__about__image__caption {
+.section__photos__images__image--vertical {
+  height: 100%;
+  width: auto;
+  object-fit: scale-down !important;
+}
 
 .section__photos__images__image:hover .section__photos__description {
   opacity: 1;

@@ -1,22 +1,9 @@
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
 
 import photographyData from '../data/staticData.json';
 import Footer from '../components/Footer';
 import chevronUp from '../img/icons/chevron-up.svg';
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'FETCH_REQUEST':
-      return { ...state, loading: true };
-    case 'FETCH_SUCCESS':
-      return { ...state, currentAlbumData: action.payload };
-    case 'FETCH_FAIL':
-      return { ...state, loading: false, error: action.payload };
-    default:
-      return state;
-  }
-};
 
 const SectionContent = () => {
   let { category } = useParams();
@@ -31,11 +18,22 @@ const SectionContent = () => {
               return (
                 <li className="section__photos__images" key={`${image.url}`}>
                   <div className="section__photos__images__image">
-                    <img src={`${image.url}`} alt={`${image.description}`} />
-                    <span className="section__photos__description">
-                      {image.description}
-                      {/* {image.url} */}
-                    </span>
+                    <img
+                      className={
+                        image.isVertical
+                          ? 'section__photos__images__image--vertical'
+                          : null
+                      }
+                      src={`${image.url}`}
+                      alt={`${image.description}`}
+                    />
+                    {image.description.length > 0 ? (
+                      <span className="section__photos__description">
+                        {image.description}
+                      </span>
+                    ) : (<span className="section__photos__description" style={{display: "none"}}>
+                        {image.description}
+                      </span>)}
                   </div>
                 </li>
               );
