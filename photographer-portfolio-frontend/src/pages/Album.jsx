@@ -1,68 +1,125 @@
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Store } from '../contexts/Store';
+
+import { useContext, useState, useReducer, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+
 import { Helmet } from 'react-helmet-async';
-import albumsData from '../data/albums.json';
+import axios from 'axios';
+
+import { v4 as uuidv4 } from 'uuid';
+
+//assets
 import IconChevron from '../img/icons/icon-chevron.svg';
 import IconCartAdd from '../img/icons/icon-cart-add.svg';
 
+//components
+import AlbumImage from '../components/AlbumImage';
+import LoadingSpinner from '../components/LoadingSpinner';
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'FETCH_REQUEST':
+      return { ...state, loading: true };
+    case 'FETCH_SUCCESS':
+      return { ...state, currentAlbumData: action.payload };
+    case 'FETCH_FAIL':
+      return { ...state, loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
 const Album = () => {
+  const { album } = useParams(); //used to fetch current album data via axios
+
+  const [{ loading, currentAlbumData, error }, dispatch] = useReducer(reducer, {
+    loading: true,
+    currentAlbumData: [],
+    error: '',
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      dispatch({ type: 'FETCH_REQUEST' });
+      try {
+        const result = await axios.get('/api/data');
+        dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
+      } catch (err) {
+        dispatch({ type: 'FETCH_FAIL', payload: err.message });
+      }
+    };
+    fetchData();
+  }, []);
+
+  //local component state
   const [showPreviewImage, setShowPreviewImage] = useState(false);
   const [previewImageUrl, setPreviewImageUrl] = useState('');
-  const { album } = useParams();
-  const navigate = useNavigate();
+  const [currentPreviewId, setCurrentPreviewId] = useState('')
 
+  const navigate = useNavigate(); //used to return to previous page
+  const goBack = () => navigate(-1);
+
+  //global state imports & operations
+
+  // preview images in album page
   const handleImagePreview = (e) => {
-    console.log(e.target.getAttribute('src'));
     setShowPreviewImage((prevState) => !prevState);
     setPreviewImageUrl(e.target.getAttribute('src'));
-    console.log('previewImageUrl ' + previewImageUrl);
+    setCurrentPreviewId(e.target.previousSibling.innerHTML)
+    // console.log("currentPreviewId" + e.target.previousSibling.innerHTML)
   };
 
   const handleImagePreviewPrev = () => {
-    let imageIndex = albumsData.albums[0]?.url;
+    let imageIndex = currentAlbumData[0]?.url;
     console.log('previewImageUrl ' + imageIndex);
   };
 
   const handleImagePreviewNext = () => {};
   // console.log(album);
 
+  const { state, dispatch: contextDispatch } = useContext(Store);
+
   const addToCart = () => {
-    console.log('added to cart');
+    contextDispatch({
+      type: 'CART_ADD_ITEM',
+      payload: { item: currentPreviewId },
+    });
+    // console.log('state' + JSON.stringify(id));
+    // console.log('added to cart' + JSON.stringify(e));
   };
 
-  const albumImage = albumsData.albums.map((image) => {
+  const albumImage = currentAlbumData.map((image) => {
     if (image.album === album) {
       return (
         <>
-          <div className="album__card" onClick={handleImagePreview}>
-            <img src={image.url} alt="" />
-          </div>
+          <AlbumImage
+            url={image.url}
+            id={image.id}
+            // uuid={uuidv4()}
+            handleImagePreview={handleImagePreview}
+          />
         </>
       );
     } else {
       return null;
     }
   });
+  console.log('state is ' + JSON.stringify(state));
 
   return (
     <>
       <main>
         <Helmet>
-          <title>{album}: Kacper Porada</title>
+          <title>{album}: Kacper Porada Fotografia</title>
         </Helmet>
         <div className="album__container">
           <div className="album__toolbar">
             <div className="album__title">
-              <img
-                src={IconChevron}
-                alt="zobacz"
-                onClick={() => navigate(-1)}
-              />
+              <img src={IconChevron} alt="zobacz" onClick={goBack} />
               <h1>{album}</h1>
             </div>
             <h2>
-              {albumsData.albums[0]?.location}, {albumsData.albums[0]?.date}
+              {currentAlbumData[0]?.location}, {currentAlbumData[0]?.date}
             </h2>
             <div className="album__toolbar__elements">
               <div className="album__toolbar__element">

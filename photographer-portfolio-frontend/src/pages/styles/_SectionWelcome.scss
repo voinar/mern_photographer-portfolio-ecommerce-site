@@ -14,13 +14,18 @@
     display: flex;
     flex-direction: row;
     cursor: pointer;
-  }
 
-  .cover__icons__social img {
-    height: 50px;
+    .cover__icons__social {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      
+      img {
+        height: 50px;
+      }
+    }
   }
 }
-
 
 .cover__image {
   height: 100vh;

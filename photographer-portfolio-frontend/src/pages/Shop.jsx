@@ -1,8 +1,8 @@
+// import albumsData from '../data/albums.json';
 // import products from '../data/products'
 import { useEffect, useReducer, useState } from 'react';
 import axios from 'axios';
 import logger from 'use-reducer-logger';
-// import albumsData from '../data/albums.json';
 import IconChevron from '../img/icons/icon-chevron.svg';
 import Footer from '../components/Footer';
 
@@ -24,14 +24,15 @@ const reducer = (state, action) => {
 
 const Shop = () => {
   // const [albumsData, setAlbumsData] = useState([]);
-  const [{ loading, error, albumsData }, dispatch] = useReducer(
+  const [{ loading, albumsData, error }, dispatch] = useReducer(
     logger(reducer),
     {
-      albumsData: [],
       loading: true,
+      albumsData: [],
       error: '',
     }
   );
+  console.log('albums state: ' + JSON.stringify(albumsData));
 
   useEffect(() => {
     const fetchData = async () => {
@@ -104,6 +105,7 @@ const Shop = () => {
 
   return (
     <>
+          {/* {loading === true ? "loading" : "loaded"} */}
       <div className="shop__container">
         <div className="shop__toolbar">
           <div className="shop__toolbar__title">
@@ -146,7 +148,7 @@ const Shop = () => {
           {loading ? (
             <LoadingSpinner />
           ) : error ? (
-            <div>{error}</div>
+            <div className="alert__container alert__container--red alert__container--standard">{error}</div>
           ) : (
             mapAlbums
           )}

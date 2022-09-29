@@ -1,5 +1,5 @@
 import navLogo from '../img/logo.png';
-import categoryData from '../data/data.json';
+import categoryData from '../data/staticData.json';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import Context from '../contexts/Context';
@@ -9,6 +9,8 @@ import { useLocation } from 'react-router-dom';
 // import iconMoon from "../img/icons/icon-moon.svg";
 import iconCart from '../img/icons/icon-cart.svg';
 import iconShare from '../img/icons/icon-share.svg';
+
+import Alert from './Alert'
 
 const Navbar = () => {
   // const { darkMode, setDarkMode } = useContext(Context);
@@ -20,6 +22,8 @@ const Navbar = () => {
   const location = useLocation();
 
   return (
+    <>
+    <Alert alertContent={"alert"} />
     <nav className={darkMode ? `${'navbar navbar--dark'}` : `${'navbar'}`}>
       {/* <nav className={darkMode ? `${'navbar navbar--dark'}` : `${'navbar'}`}> */}
       <div className="navbar__logo">
@@ -69,6 +73,7 @@ const Navbar = () => {
         </div>
       )}
     </nav>
+    </>
   );
 };
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import photographyData from "../data/data.json";
+import photographyData from "../data/staticData.json";
 
 const BrowseCoverImages = () => {
 

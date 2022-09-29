@@ -2,26 +2,33 @@ import Footer from '../components/Footer';
 // import bioPic from '../img/about.jpg';
 import iconEmail from '../img/icons/icon-email.svg';
 import iconPhone from '../img/icons/icon-phone.svg';
-import img0 from '../img/about/0.jpg';
-import img1 from '../img/about/1.jpg';
-import img2 from '../img/about/2.jpg';
+import img0 from '../img/about/about-1.jpg';
+import img1 from '../img/about/about-2.jpg';
+import img2 from '../img/about/about-3.jpg';
+import img3 from '../img/about/about-4.jpg';
 
 const About = () => {
   return (
     <>
       <div className="section__about">
         <div className="section__about__main">
-          <div>
-            <img
-              src={img0}
-              className="section__about__image--main"
-              alt="moje zdjęcie"
-            />
+          <div className="section__about__content--left">
+            <div className="section__about__image--main">
+              <img src={img0} alt="moje zdjęcie" />
+              <div className="section__about__image__caption">
+                <span>Ultrabies</span>
+              </div>
+            </div>
+
             <div className="section__about__contact">
               <h2>Kontakt</h2>
               <div className="section__about__contact__row">
                 <img src={iconEmail} alt="napisz email" />
-                <h3>kporadafoto@gmail.com</h3>
+                <h3>
+                  <a href="mailto:kporadafoto@gmail.com">
+                    kporadafoto@gmail.com
+                  </a>
+                </h3>
               </div>
               <div className="section__about__contact__row">
                 <img src={iconPhone} alt="zadzwoń" />
@@ -30,16 +37,16 @@ const About = () => {
             </div>
           </div>
 
-          <div className="section__about__content">
+          <div className="section__about__content--right">
             <h1>O mnie</h1>
             <br />
             <p>
               Świetnie odnajduję się tam gdzie są emocje. Specjalizuje się w
               fotografii sportowej, a najbliższe mojemu sercu są takie
               dyscypliny jak: bieganie oraz triathlon. Sam prężnie rozwijam się
-              jako biegacz górski, zdobywając wysokie lokaty na zawodach. Dzięki
-              czemu świetnie odnajduję się w tym środowisku, rozumiem temat,
-              utożsamiam się z sportowcami.
+              jako biegacz górski, zdobywając wysokie lokaty na zawodach, co
+              pozwala mi bardzo dobrze rozumieć temat, poczuć atmosferę
+              wydarzenia i utożsamić z jego bohaterami.
             </p>
             <br />
             <p>
@@ -57,24 +64,30 @@ const About = () => {
             </p>
             <br />
             <p>
-              Ciągle się rozwijam oraz poszerzam swoje umiejętności/kompetencje,
-              zbieram doświadczenie, oraz próbuję nowych wyzwań podczas
-              wszelkiego rodzaju zleceń. Działam głównie na Podkarpaciu, okolice
-              miasta Rzeszów, oraz Południu Polski.
+              Ciągle się rozwijam oraz poszerzam swoje umiejętności i
+              kompetencje, zbieram doświadczenie, oraz próbuję nowych wyzwań
+              podczas wszelkiego rodzaju zleceń. Działam głównie na Podkarpaciu,
+              okolice miasta Rzeszów, oraz Południu Polski.
             </p>
           </div>
         </div>
-        <div className="section__about__images"></div>
-        <img
-          src={img2}
-          className="section__about__image--secondary"
-          alt="moje zdjęcie"
-        />
-        <img
-          src={img1}
-          className="section__about__image--secondary"
-          alt="moje zdjęcie"
-        />
+        <div className="section__about__images">
+          <img
+            src={img2}
+            className="section__about__image--secondary"
+            alt="moje zdjęcie"
+          />
+          <img
+            src={img1}
+            className="section__about__image--secondary"
+            alt="moje zdjęcie"
+          />
+          <img
+            src={img3}
+            className="section__about__image--secondary"
+            alt="moje zdjęcie"
+          />
+        </div>
       </div>
       <Footer />
     </>

@@ -1,10 +1,11 @@
-import photographyData from '../data/data.json';
+import photographyData from '../data/staticData.json';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import { v4 as uuidv4 } from 'uuid';
 
 import iconFacebook from '../img/icons/icon-facebook.svg';
-// import iconInstagram from '../img/icons/icon-instagram.svg';
+import iconInstagram from '../img/icons/icon-instagram.svg';
+import iconMail from '../img/icons/icon-mail.svg';
 
 const SectionWelcome = () => {
   return (
@@ -44,6 +45,20 @@ const SectionWelcome = () => {
               rel="noreferrer"
             >
               <img src={iconFacebook} alt="facebook" />
+            </a>
+            <a
+              href="https://www.instagram.com/kapsel19/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={iconInstagram} alt="instagram" />
+            </a>
+            <a
+              href="/o%20mnie"
+              // target="_blank"
+              // rel="noreferrer"
+            >
+              <img src={iconMail} alt="kontakt" />
             </a>
           </div>
         </div>
