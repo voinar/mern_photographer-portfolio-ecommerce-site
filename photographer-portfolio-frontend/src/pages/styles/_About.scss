@@ -34,13 +34,14 @@
   }
 }
 
-.section__about__image--main:hover .section__about__image__caption {
-  opacity: 1;
-  transition: opacity 0.3s;
-}
+// .section__about__image--main:hover .section__about__image__caption {
+//   opacity: 1;
+//   transition: opacity 0.3s;
+// }
 
 .section__about__image__caption {
-  opacity: 0;
+  display: flex;
+  justify-content: center;
   position: absolute;
   background: rgba(0, 0, 0, 0.6);
   color: $--c-white;

@@ -46,6 +46,16 @@
       "title": "",
       "description": "",
       "thumbnail": "../assets/portfolio/top/3.jpg",
+      "url": "../assets/portfolio/top/3.jpg",
+      "category": "top",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/top/4.jpg",
       "url": "../assets/portfolio/top/4.jpg",
       "category": "top",
       "location": "",
@@ -56,6 +66,16 @@
       "title": "",
       "description": "",
       "thumbnail": "../assets/portfolio/top/5.jpg",
+      "url": "../assets/portfolio/top/5.jpg",
+      "category": "top",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/top/6.jpg",
       "url": "../assets/portfolio/top/6.jpg",
       "category": "top",
       "location": "",
@@ -66,6 +86,16 @@
       "title": "",
       "description": "",
       "thumbnail": "../assets/portfolio/top/7.jpg",
+      "url": "../assets/portfolio/top/7.jpg",
+      "category": "top",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/top/8.jpg",
       "url": "../assets/portfolio/top/8.jpg",
       "category": "top",
       "location": "",
@@ -97,16 +127,6 @@
       "description": "",
       "thumbnail": "../assets/portfolio/top/11.jpg",
       "url": "../assets/portfolio/top/11.jpg",
-      "category": "top",
-      "location": "",
-      "event": "",
-      "price": null
-    },
-    {
-      "title": "",
-      "description": "",
-      "thumbnail": "../assets/portfolio/top/12.jpg",
-      "url": "../assets/portfolio/top/12.jpg",
       "category": "top",
       "location": "",
       "event": "",
@@ -598,6 +618,16 @@
     {
       "title": "",
       "description": "Grand Chotowa Triathlon",
+      "thumbnail": "../assets/portfolio/inne/0.jpg",
+      "url": "../assets/portfolio/inne/0.jpg",
+      "category": "więcej",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "Prima Akademia Rzeszów",
       "thumbnail": "../assets/portfolio/inne/1.jpg",
       "url": "../assets/portfolio/inne/1.jpg",
       "category": "więcej",
@@ -607,7 +637,7 @@
     },
     {
       "title": "",
-      "description": "Prima Akademia Rzeszów. Spacer po kładce.",
+      "description": "BYLE DO METY!",
       "thumbnail": "../assets/portfolio/inne/2.jpg",
       "url": "../assets/portfolio/inne/2.jpg",
       "category": "więcej",
@@ -617,7 +647,7 @@
     },
     {
       "title": "",
-      "description": "Byle do mety!",
+      "description": "Triathlon Sokoła",
       "thumbnail": "../assets/portfolio/inne/3.jpg",
       "url": "../assets/portfolio/inne/3.jpg",
       "category": "więcej",
@@ -627,7 +657,7 @@
     },
     {
       "title": "",
-      "description": "Bieszczady o wschodzie",
+      "description": "Spacer po kładce",
       "thumbnail": "../assets/portfolio/inne/4.jpg",
       "url": "../assets/portfolio/inne/4.jpg",
       "category": "więcej",
@@ -637,7 +667,7 @@
     },
     {
       "title": "",
-      "description": "Triathlon Sokoła",
+      "description": "Bieszczady o wschodzie",
       "thumbnail": "../assets/portfolio/inne/5.jpg",
       "url": "../assets/portfolio/inne/5.jpg",
       "category": "więcej",
@@ -647,7 +677,7 @@
     },
     {
       "title": "",
-      "description": "Gminne dożynki Sokołów Małopolski",
+      "description": "Odprawa - Grand Chotowa Triathlon",
       "thumbnail": "../assets/portfolio/inne/6.jpg",
       "url": "../assets/portfolio/inne/6.jpg",
       "category": "więcej",
@@ -657,7 +687,7 @@
     },
     {
       "title": "",
-      "description": "Odprawa - Grand Chotowa Triathlon",
+      "description": "Kawa Pogórza- Natura wie co dobre",
       "thumbnail": "../assets/portfolio/inne/7.jpg",
       "url": "../assets/portfolio/inne/7.jpg",
       "category": "więcej",
@@ -667,7 +697,7 @@
     },
     {
       "title": "",
-      "description": "Kawa Pogórza - Natura wie co dobre",
+      "description": "Gminne dożynki Sokołów Małopolski",
       "thumbnail": "../assets/portfolio/inne/8.jpg",
       "url": "../assets/portfolio/inne/8.jpg",
       "category": "więcej",
@@ -677,7 +707,7 @@
     },
     {
       "title": "",
-      "description": "Byle przed siebie",
+      "description": "Kettlebell MP Debiuty, Rzeszów",
       "thumbnail": "../assets/portfolio/inne/9.jpg",
       "url": "../assets/portfolio/inne/9.jpg",
       "isVertical": true,

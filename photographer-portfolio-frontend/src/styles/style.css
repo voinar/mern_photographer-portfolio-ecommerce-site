@@ -189,7 +189,7 @@ select {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  bottom: 100px;
+  bottom: 120px;
   background: rgba(0, 0, 0, 0.4);
   color: #dedede;
   -webkit-backdrop-filter: blur(3px);
@@ -276,14 +276,13 @@ select {
   margin-bottom: 60px;
 }
 
-.section__about__image--main:hover .section__about__image__caption {
-  opacity: 1;
-  -webkit-transition: opacity 0.3s;
-  transition: opacity 0.3s;
-}
-
 .section__about__image__caption {
-  opacity: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   position: absolute;
   background: rgba(0, 0, 0, 0.6);
   color: #dedede;

@@ -19,7 +19,7 @@ const About = () => {
             <div className="section__about__image--main">
               <img src={img0} alt="moje zdjęcie" />
               <div className="section__about__image__caption">
-                <span>Ultrabies</span>
+                <span>Zwycięstwo UltraBies 45km, fot. Mała Gośka</span>
               </div>
             </div>
 
@@ -38,9 +38,8 @@ const About = () => {
                 <h3>+48 537 256 492</h3>
               </div>
 
-
               <div className="about__icons">
-              <h3>Znajdź mnie na: </h3>
+                <h3>Znajdź mnie na: </h3>
                 <div className="about__icons__row-container">
                   <div className="about__icons__social">
                     <div className="about__icon__social">
@@ -102,21 +101,37 @@ const About = () => {
           </div>
         </div>
         <div className="section__about__images">
-          <img
-            src={img2}
-            className="section__about__image--secondary"
-            alt="moje zdjęcie"
-          />
-          <img
-            src={img1}
-            className="section__about__image--secondary"
-            alt="moje zdjęcie"
-          />
-          <img
-            src={img3}
-            className="section__about__image--secondary"
-            alt="moje zdjęcie"
-          />
+          <div className="section__about__image--main">
+            <img
+              src={img2}
+              className="section__about__image--secondary"
+              alt="moje zdjęcie"
+            />
+            <span className="section__about__image__caption">
+              Góry pomagają mi "naładować baterie"
+            </span>
+          </div>
+          <div className="section__about__image--main">
+            <img
+              src={img1}
+              className="section__about__image--secondary"
+              alt="moje zdjęcie"
+            />
+            <span className="section__about__image__caption">
+              Mega utożsamiam się z grupa PODIUM! Wiele dobrego zawdzięczam tej
+              społeczności.
+            </span>
+          </div>
+          <div className="section__about__image--main">
+            <img
+              src={img3}
+              className="section__about__image--secondary"
+              alt="moje zdjęcie"
+            />
+            <span className="section__about__image__caption">
+              Uwielbiam wchody/zachody słońca
+            </span>
+          </div>
         </div>
       </div>
       <Footer />
