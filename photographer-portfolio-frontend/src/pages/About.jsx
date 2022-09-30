@@ -9,7 +9,6 @@ import img3 from '../img/about/about-4.jpg';
 
 import iconFacebook from '../img/icons/icon-facebook.svg';
 import iconInstagram from '../img/icons/icon-instagram.svg';
-import iconMail from '../img/icons/icon-mail.svg';
 
 const About = () => {
   return (
