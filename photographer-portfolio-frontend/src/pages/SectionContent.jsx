@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 // import axios from 'axios';
 
@@ -7,6 +8,20 @@ import chevronUp from '../img/icons/chevron-up.svg';
 
 const SectionContent = () => {
   let { category } = useParams();
+
+  const [scrollToContentBtn, setScrollToContentBtn] = useState(true);
+
+  const scrollToContent = () => {
+    window.scrollTo({ top: window.innerHeight + 160, behavior: 'smooth' });
+    console.log('slick');
+  };
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      window.scrollY > 100
+        ? setScrollToContentBtn(false)
+        : setScrollToContentBtn(true);
+    });
+  }, []);
 
   return (
     <>
@@ -31,18 +46,32 @@ const SectionContent = () => {
                       <span className="section__photos__description">
                         {image.description}
                       </span>
-                    ) : (<span className="section__photos__description" style={{display: "none"}}>
+                    ) : (
+                      <span
+                        className="section__photos__description"
+                        style={{ display: 'none' }}
+                      >
                         {image.description}
-                      </span>)}
+                      </span>
+                    )}
                   </div>
                 </li>
               );
             } else return null;
           })}
         </ul>
-        <div className="section__photos__see-more">
+        <div
+          className={
+            scrollToContentBtn
+              ? 'section__photos__see-more'
+              : 'section__photos__see-more section__photos__see-more--hidden'
+          }
+        >
           <div className="section__photos__see-more__container">
-            <div className="section__photos__see-more__icon">
+            <div
+              className="section__photos__see-more__icon"
+              onClick={scrollToContent}
+            >
               <img src={chevronUp} alt="facebook" />
             </div>
           </div>

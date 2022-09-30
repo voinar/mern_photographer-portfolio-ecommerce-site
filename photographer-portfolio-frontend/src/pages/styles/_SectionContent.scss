@@ -37,13 +37,14 @@
 }
 
 .section__photos > .section__photos__images:not(:first-child) {
-  padding: 200px 150px;
+  margin: 200px 150px;
 }
 
 .section__photos__see-more {
   position: fixed;
   bottom: 16vh;
   right: 50%;
+  opacity: 1;
 
   .section__photos__see-more__container {
     display: flex;
@@ -55,4 +56,9 @@
     height: 50px;
     transform: rotate(180deg);
   }
+}
+
+.section__photos__see-more--hidden {
+  opacity: 0;
+  transition: opacity 0.5s;
 }

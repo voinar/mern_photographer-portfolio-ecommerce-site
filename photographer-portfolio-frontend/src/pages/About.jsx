@@ -7,6 +7,10 @@ import img1 from '../img/about/about-2.jpg';
 import img2 from '../img/about/about-3.jpg';
 import img3 from '../img/about/about-4.jpg';
 
+import iconFacebook from '../img/icons/icon-facebook.svg';
+import iconInstagram from '../img/icons/icon-instagram.svg';
+import iconMail from '../img/icons/icon-mail.svg';
+
 const About = () => {
   return (
     <>
@@ -33,6 +37,33 @@ const About = () => {
               <div className="section__about__contact__row">
                 <img src={iconPhone} alt="zadzwoń" />
                 <h3>+48 537 256 492</h3>
+              </div>
+
+
+              <div className="about__icons">
+              <h3>Znajdź mnie na: </h3>
+                <div className="about__icons__row-container">
+                  <div className="about__icons__social">
+                    <div className="about__icon__social">
+                      <a
+                        href="https://www.facebook.com/profile.php?id=100069653350294"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <img src={iconFacebook} alt="facebook" />
+                      </a>
+                    </div>
+                    <div className="about__icon__social">
+                      <a
+                        href="https://www.instagram.com/kapsel19/"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <img src={iconInstagram} alt="instagram" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

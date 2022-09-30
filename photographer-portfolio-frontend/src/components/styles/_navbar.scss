@@ -2,15 +2,21 @@
   position: fixed;
   display: flex;
   flex-direction: row;
-  padding: 25px 100px;
-  // background: linear-gradient(
-  //   0deg,
-  //   rgba(0, 0, 0, 0) 0%,
-  //   rgba(0, 0, 0, 0.4) 100%
-  // );
+  padding: 50px 140px;
   width: 100vw;
   color: $--c-white;
   z-index: 10;
+  // filter: invert(100%);
+  // mix-blend-mode: hard-light;
+  // mix-blend-mode: difference;
+
+  // background: rgb(255,255,255);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, .9) 100%
+  );
+
 
   .navbar__content {
     display: flex;
@@ -32,27 +38,28 @@
     justify-content: center;
     margin-left: auto;
     width: 80px;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
 
     a {
       display: flex;
       justify-content: center;
       color: $--c-white;
       text-decoration: none;
-      // width: 120px;
+      text-transform: uppercase;
+      font-weight: 200;
     }
 
     a:hover {
       color: rgb(200, 200, 200);
       transition: 0.3s ease-in-out;
-      text-shadow: 0px 0px 1px rgb(11, 32, 150);
+      text-shadow: 0px 0px 1px rgb(0, 0, 0);
     }
   }
 
   .navbar__section-link__shop {
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 4px;
-    padding: 2px 30px;
+    padding: 3px 30px;
   }
 
   .navbar__shop-icons {
@@ -65,13 +72,38 @@
   }
 }
 
+.navbar--solid {
+  padding: 10px 80px;
+  background-color: rgba(20, 20, 20, 0.9);
+  transition: 0.5s ease-in-out;
+
+  .navbar__content {
+    font-size: 16px;
+    transition: ease-in .3s;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .navbar--dark {
   background: linear-gradient(
     0deg,
     rgba(0, 0, 0, 0) 0%,
-    rgba(255, 255, 255, 0.4) 100%
+    rgba(255, 255, 255, 0.5) 100%
   );
-  // background: white;
+  // background: rgba(255, 255, 255, 0.439);
   color: $--c-black;
 
   a {

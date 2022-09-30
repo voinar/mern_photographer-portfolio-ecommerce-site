@@ -68,7 +68,7 @@
 
 .section__about__contact:hover {
   background-color: rgba(255, 255, 255, 0.7);
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .section__about__contact__row {
@@ -96,4 +96,41 @@
 .section__about__image--secondary {
   border-radius: 14px;
   // width: 100%;
+}
+
+.about__icons {
+  // position: fixed;
+  // bottom: 10vh;
+  // right: 5vw;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0 0;
+
+  h3 {
+    margin: 0 8px 8px 0;
+  }
+
+  .about__icons__row-container {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    // filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
+
+    .about__icons__social {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+
+      img {
+        height: 40px;
+        filter: invert(100%);
+        cursor: pointer;
+      }
+
+      .about__icon__social {
+        display: flex;
+        flex-direction: row;
+      }
+    }
+  }
 }

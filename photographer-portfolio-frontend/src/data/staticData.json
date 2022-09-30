@@ -12,12 +12,11 @@
   "dropdownCategories": ["z lotu ptaka", "wydarzenia", "portret", "inne"],
   "imagesWelcome": [
     {
-      "id": "c9904ea3-7d9b-4215-a868-7b4060f18fd0",
       "title": "",
       "description": "",
-      "thumbnail": "../assets/portfolio/biegi/0.jpg",
-      "url": "../assets/portfolio/biegi/0.jpg",
-      "album": "biegi",
+      "thumbnail": "../assets/portfolio/top/0.jpg",
+      "url": "../assets/portfolio/top/0.jpg",
+      "album": "top",
       "location": "Brzozów",
       "event": "Bieg Rzeźnika",
       "date": "2022-11-11",
@@ -28,7 +27,7 @@
       "description": "",
       "thumbnail": "../assets/portfolio/top/1.jpg",
       "url": "../assets/portfolio/top/1.jpg",
-      "category": "biegi",
+      "category": "top",
       "location": "",
       "event": "",
       "price": null
@@ -38,7 +37,7 @@
       "description": "",
       "thumbnail": "../assets/portfolio/top/2.jpg",
       "url": "../assets/portfolio/top/2.jpg",
-      "category": "biegi",
+      "category": "top",
       "location": "",
       "event": "",
       "price": null
@@ -48,7 +47,7 @@
       "description": "",
       "thumbnail": "../assets/portfolio/top/3.jpg",
       "url": "../assets/portfolio/top/4.jpg",
-      "category": "biegi",
+      "category": "top",
       "location": "",
       "event": "",
       "price": null
@@ -58,7 +57,7 @@
       "description": "",
       "thumbnail": "../assets/portfolio/top/5.jpg",
       "url": "../assets/portfolio/top/6.jpg",
-      "category": "biegi",
+      "category": "top",
       "location": "",
       "event": "",
       "price": null
@@ -68,7 +67,7 @@
       "description": "",
       "thumbnail": "../assets/portfolio/top/7.jpg",
       "url": "../assets/portfolio/top/8.jpg",
-      "category": "biegi",
+      "category": "top",
       "location": "",
       "event": "",
       "price": null
@@ -78,7 +77,7 @@
       "description": "",
       "thumbnail": "../assets/portfolio/top/9.jpg",
       "url": "../assets/portfolio/top/9.jpg",
-      "category": "biegi",
+      "category": "top",
       "location": "",
       "event": "",
       "price": null
@@ -88,7 +87,7 @@
       "description": "",
       "thumbnail": "../assets/portfolio/top/10.jpg",
       "url": "../assets/portfolio/top/10.jpg",
-      "category": "biegi",
+      "category": "top",
       "location": "",
       "event": "",
       "price": null
@@ -98,7 +97,7 @@
       "description": "",
       "thumbnail": "../assets/portfolio/top/11.jpg",
       "url": "../assets/portfolio/top/11.jpg",
-      "category": "biegi",
+      "category": "top",
       "location": "",
       "event": "",
       "price": null
@@ -108,7 +107,7 @@
       "description": "",
       "thumbnail": "../assets/portfolio/top/12.jpg",
       "url": "../assets/portfolio/top/12.jpg",
-      "category": "biegi",
+      "category": "top",
       "location": "",
       "event": "",
       "price": null
@@ -118,7 +117,7 @@
   "images": [
     {
       "title": "",
-      "description": "Kwintesencja Trail Runningu, Wbiegnij na PODIUM z Buty Jana 2022",
+      "description": "Kwintesencja Trail Runningu. Wbiegnij na PODIUM z Buty Jana 2022",
       "thumbnail": "../assets/portfolio/biegi/0.jpg",
       "url": "../assets/portfolio/biegi/0.jpg",
       "category": "biegi",
@@ -268,7 +267,7 @@
     },
     {
       "title": "",
-      "description": "Punkt Widokowy Ultramaraton Jaga-Kora",
+      "description": "Ultramaraton Podkarpacki",
       "thumbnail": "../assets/portfolio/biegi/15.jpg",
       "url": "../assets/portfolio/biegi/15.jpg",
       "category": "biegi",
@@ -288,7 +287,7 @@
     },
     {
       "title": "",
-      "description": "Ultramaraton Podkarpacki 2022",
+      "description": "Pogórze Ultra Trail",
       "thumbnail": "../assets/portfolio/biegi/17.jpg",
       "url": "../assets/portfolio/biegi/17.jpg",
       "category": "biegi",

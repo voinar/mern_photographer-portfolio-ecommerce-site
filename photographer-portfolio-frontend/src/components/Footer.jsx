@@ -44,7 +44,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="footer__column">
+        {/* <div className="footer__column">
           <div>biegi</div>
           <div>emocje</div>
           <div>portret</div>
@@ -58,7 +58,7 @@ const Footer = () => {
         </div>
         <div className="footer__column">
           <div>sklep</div>
-        </div>
+        </div> */}
         <div className="footer__column">
           <img
             className="footer__return-to-top"
@@ -68,6 +68,7 @@ const Footer = () => {
           />
         </div>
       </div>
+      <div className="footer__slogan">Zobacz emocje</div>
       <div className="footer__copyright">
         <span>copyright Ⓒ 2022 Kacper Porada</span>
       </div>
