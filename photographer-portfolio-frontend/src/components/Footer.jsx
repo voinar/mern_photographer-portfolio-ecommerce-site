@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useContext } from "react";
 import Context from '../contexts/Context'
 
-import footerLogo from "../img/logo.png";
+import footerLogo from "../img/logo-full.png";
 import iconFacebook from "../img/icons/icon-facebook.svg";
 import iconInstagram from "../img/icons/icon-instagram.svg";
 import chevronUp from "../img/icons/chevron-up.svg";
@@ -44,6 +44,14 @@ const Footer = () => {
             </div>
           </div>
         </div>
+        <div className="footer__column">
+          <span>Fotografia</span>
+          <span>Fotograf Rzeszów</span>
+          <span>Fotografia sportowa</span>
+          <span>Zdjęcia imprez sportowych</span>
+          <span>Rzeszów fotografia</span>
+        </div>
+
         {/* <div className="footer__column">
           <div>biegi</div>
           <div>emocje</div>

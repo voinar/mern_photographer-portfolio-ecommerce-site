@@ -1,4 +1,4 @@
-import navLogo from '../img/logo.png';
+import navLogo from '../img/logo-nav.png';
 import categoryData from '../data/staticData.json';
 import { Link } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
