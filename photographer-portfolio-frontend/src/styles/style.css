@@ -172,11 +172,15 @@ select {
 }
 
 .section__photos__images img {
-  padding: 0px !important;
   height: 100vh;
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  border-radius: 4px;
+}
+
+.section__photos > .section__photos__images:first-child {
+  margin-bottom: 60px;
 }
 
 .section__photos > .section__photos__images:not(:first-child) {
@@ -186,10 +190,6 @@ select {
 
 .section__photos > .section__photos__images:not(:first-child) img {
   height: 80vh;
-}
-
-.section__photos > .section__photos__images:first-child {
-  margin-bottom: 60px;
 }
 
 .section__photos__images__image--vertical {
@@ -208,7 +208,9 @@ select {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  height: 100%;
   bottom: 120px;
+  text-align: center;
   background: rgba(0, 0, 0, 0.4);
   color: #dedede;
   -webkit-backdrop-filter: blur(3px);
@@ -224,8 +226,8 @@ select {
 
 .section__photos__see-more {
   position: fixed;
-  bottom: 16vh;
-  right: 50%;
+  bottom: 8vh;
+  right: 10vw;
   opacity: 1;
 }
 
@@ -241,7 +243,7 @@ select {
 }
 
 .section__photos__see-more .section__photos__see-more__icon img {
-  height: 50px;
+  height: 60px;
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
 }
@@ -250,6 +252,27 @@ select {
   opacity: 0;
   -webkit-transition: opacity 0.5s;
   transition: opacity 0.5s;
+}
+
+@media (max-width: 767px) {
+  .section__photos > .section__photos__images:not(:first-child) {
+    margin: 0 15px 50px;
+    padding: 0;
+    height: auto;
+  }
+  .section__photos > .section__photos__images:not(:first-child) img {
+    height: 100%;
+  }
+  .section__photos__description {
+    opacity: 1;
+    font-size: 14px;
+    bottom: 0px;
+    background: rgba(0, 0, 0, 0.05);
+    color: #3a3939;
+    -webkit-backdrop-filter: unset;
+            backdrop-filter: unset;
+    padding: 10px;
+  }
 }
 
 .section__about {
@@ -1326,7 +1349,7 @@ img {
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 *::-webkit-scrollbar-track {
