@@ -1,8 +1,8 @@
 import navLogo from '../img/logo-nav.png';
 import categoryData from '../data/staticData.json';
 import { Link } from 'react-router-dom';
-import { useEffect, useState, useContext, useRef } from 'react';
-import Context from '../contexts/Context';
+import { useEffect, useState, useRef } from 'react';
+// import Context from '../contexts/Context';
 import { useLocation } from 'react-router-dom';
 
 // import iconSun from "../img/icons/icon-sun.svg";
