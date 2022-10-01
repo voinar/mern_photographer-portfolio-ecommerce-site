@@ -51,7 +51,7 @@ const Navbar = () => {
         </button>
 
         <div className="navbar__logo">
-          <Link to="/witaj">
+          <Link to="/">
             <img src={navLogo} alt="logo" />
           </Link>
         </div>

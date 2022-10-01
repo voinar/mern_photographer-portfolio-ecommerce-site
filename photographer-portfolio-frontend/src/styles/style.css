@@ -123,7 +123,7 @@ select {
 }
 
 .cover__icons .cover__icons__row-container .cover__icons__social img {
-  height: 50px;
+  height: 40px;
 }
 
 .cover__image {
@@ -296,6 +296,7 @@ select {
 
 .section__about__main p {
   font-size: 16px;
+  text-align: justify;
 }
 
 .section__about__image--main {
@@ -424,6 +425,90 @@ select {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+}
+
+@media (max-width: 1024px) {
+  .section__about {
+    padding: 10px 30px;
+    width: 100vw;
+  }
+  .section__about h1 {
+    font-weight: 100;
+  }
+  .section__about__main {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 40px;
+  }
+  .section__about__main p {
+    font-size: 14px;
+    font-weight: 100;
+  }
+  .section__about__main .section__about__image--main img {
+    border-radius: 8px;
+    margin-bottom: 60px;
+  }
+  .section__about__main .section__about__image__caption {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+    color: #dedede;
+    padding: 8px 20px 10px;
+    bottom: 0;
+    width: 100%;
+  }
+  .section__about__main .section__about__contact {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 14px;
+  }
+  .section__about__main .section__about__contact h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+    font-weight: 300;
+  }
+  .section__about__main .section__about__contact:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+  .section__about__main .section__about__contact__row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .section__about__main .section__about__contact__row h3 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 8px;
+  }
+  .section__about__main .section__about__contact__row img {
+    height: 24px;
+  }
+  .section__about__main .about__icons {
+    margin: 20px 0 0;
+  }
+  .section__about__main .about__icons h3 {
+    font-weight: 300;
+  }
+  .section__about__main .about__icons .about__icons__row-container .about__icons__social img {
+    height: 36px;
+  }
 }
 
 .shop__container {
