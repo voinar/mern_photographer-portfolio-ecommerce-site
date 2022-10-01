@@ -12,7 +12,7 @@ const SectionContent = () => {
   const [scrollToContentBtn, setScrollToContentBtn] = useState(true);
 
   const scrollToContent = () => {
-    window.scrollTo({ top: window.innerHeight + 160, behavior: 'smooth' });
+    window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
     console.log('slick');
   };
   useEffect(() => {

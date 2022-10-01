@@ -174,10 +174,29 @@ select {
 .section__photos__images img {
   padding: 0px !important;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  border-radius: 8px;
+}
+
+.section__photos > .section__photos__images:not(:first-child) {
+  margin: 0 150px 30vh;
+  height: 80vh;
+}
+
+.section__photos > .section__photos__images:not(:first-child) img {
+  height: 80vh;
+}
+
+.section__photos > .section__photos__images:first-child {
+  margin-bottom: 60px;
+}
+
+.section__photos__images__image--vertical {
+  height: 100%;
+  width: auto;
+  -o-object-fit: scale-down !important;
+     object-fit: scale-down !important;
 }
 
 .section__photos__description {
@@ -197,21 +216,10 @@ select {
   padding: 20px;
 }
 
-.section__photos__images__image--vertical {
-  height: 100%;
-  width: auto;
-  -o-object-fit: scale-down !important;
-     object-fit: scale-down !important;
-}
-
 .section__photos__images__image:hover .section__photos__description {
   opacity: 1;
   -webkit-transition: opacity ease-in 0.3s;
   transition: opacity ease-in 0.3s;
-}
-
-.section__photos > .section__photos__images:not(:first-child) {
-  margin: 200px 150px;
 }
 
 .section__photos__see-more {
@@ -784,6 +792,7 @@ select {
 
 .navbar {
   position: fixed;
+  top: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -791,12 +800,12 @@ select {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  padding: 60px 140px;
-  width: 100vw;
+  padding: 60px 100px;
+  width: 100%;
   color: #dedede;
   z-index: 10;
-  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.9)));
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.9) 100%);
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(20%, rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.9)));
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.9) 100%);
 }
 
 .navbar .navbar__content {
@@ -808,13 +817,14 @@ select {
       -ms-flex-direction: row;
           flex-direction: row;
   width: 100%;
-  padding: 0 100px;
-  font-weight: 500;
-  font-size: 18px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 24px;
 }
 
 .navbar .navbar__logo {
-  width: 220px;
+  width: 200px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -833,8 +843,7 @@ select {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-left: auto;
-  width: 80px;
+  width: auto;
   text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
 }
 
@@ -879,7 +888,7 @@ select {
 }
 
 .navbar--solid {
-  padding: 10px 80px;
+  padding: 16px 60px;
   background-color: rgba(20, 20, 20, 0.9);
   -webkit-transition: 0.5s ease-in-out;
   transition: 0.5s ease-in-out;
@@ -893,87 +902,97 @@ select {
 
 .navbar--solid .navbar__content {
   font-size: 16px;
-  -webkit-transition: ease-in .3s;
-  transition: ease-in .3s;
+  -webkit-transition: ease-in 0.3s;
+  transition: ease-in 0.3s;
 }
 
-.navbar--dark {
-  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0)), to(rgba(255, 255, 255, 0.5)));
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.5) 100%);
-  color: #3a3939;
-}
-
-.navbar--dark a {
-  color: #3a3939 !important;
-}
-
-.navbar--dark a:hover {
-  color: #3a3939;
-}
-
-.navbar--dark .navbar__logo {
-  -webkit-filter: invert(1);
-          filter: invert(1);
-}
-
-.navbar--dark .navbar__section-link {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.navbar__menu__button {
+  all: unset;
+  display: none;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-left: auto;
-  width: 80px;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
+  position: fixed;
+  left: 12vw;
+  top: 4vh;
+  -webkit-filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.7));
+          filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.7));
+  z-index: 5;
 }
 
-.navbar--dark .navbar__section__dropdown:hover .navbar__section__dropdown-link {
-  background-color: rgba(208, 208, 208, 0.3);
-  color: #3a3939;
-  font-weight: 500;
+.navbar__menu__button img {
+  height: 72px;
 }
 
-.navbar__section__dropdown {
-  padding: 0;
-  margin: 0 20px 0 0;
-  width: 110px;
-  -webkit-transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
-  transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
-  cursor: pointer;
+.navbar__menu__button--close img {
+  height: 60px;
 }
 
-.navbar__section__dropdown-link {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  opacity: 0;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  font-size: 18px;
-  font-weight: 300;
-  margin-top: 4px;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+.navbar--show {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
 }
 
-.navbar__section__dropdown:hover .navbar__section__dropdown-link {
-  opacity: 1;
-  background-color: rgba(40, 40, 40, 0.9);
-  padding: 4px;
+/* Media Query for small monitors */
+/* Media Query for Tablets Ipads portrait mode */
+@media (max-width: 1024px) {
+  .navbar {
+    display: none;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+    height: 100vh;
+    width: 100%;
+    padding: 0;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+  }
+  .navbar .navbar__logo {
+    display: none;
+    margin-bottom: 20px;
+  }
+  .navbar .navbar__content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 4px;
+    width: 100vw;
+  }
+  .navbar .navbar__content .navbar__section-link {
+    width: 100vw;
+    font-size: 24px;
+  }
+  .navbar .navbar__content .navbar__section-link a {
+    width: 100%;
+    padding: 16px;
+    border: none;
+  }
+  .navbar .navbar__content .navbar__section-link a:hover {
+    background-color: black;
+  }
+  .navbar__menu__button {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
 }
 
-.navbar__darkmode-toggle {
-  height: 28px;
-}
-
+/* Media Query for low resolution Tablets, Ipads */
+/* Media Query for Mobile Devices */
 .footer {
-  height: 400px;
+  height: auto;
+  width: 100vw;
   padding: 40px 200px;
   background-color: #282828;
   display: -webkit-box;
@@ -986,6 +1005,7 @@ select {
   color: #dedede;
   font-size: 14px;
   line-height: 30px;
+  overflow: hidden;
 }
 
 .footer__content {
@@ -1059,6 +1079,12 @@ select {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 0;
+  }
 }
 
 .loading-spinner__container {
@@ -1263,11 +1289,14 @@ select {
   }
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   font-family: "Prompt", sans-serif;
   color: #3a3939;
   background-color: #dedede;
-  min-width: 600px;
   scroll-behavior: smooth;
 }
 
@@ -1282,5 +1311,31 @@ a {
 
 ul {
   padding: 0;
+}
+
+img {
+  pointer-events: none;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #8f54a0 #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #dedede;
+  border-radius: 10px;
+  border: 2px solid slategray;
 }
 /*# sourceMappingURL=style.css.map */

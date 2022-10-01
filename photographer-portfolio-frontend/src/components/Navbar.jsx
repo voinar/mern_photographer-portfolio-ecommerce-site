@@ -1,7 +1,7 @@
 import navLogo from '../img/logo-nav.png';
 import categoryData from '../data/staticData.json';
 import { Link } from 'react-router-dom';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext, useRef } from 'react';
 import Context from '../contexts/Context';
 import { useLocation } from 'react-router-dom';
 
@@ -9,17 +9,17 @@ import { useLocation } from 'react-router-dom';
 // import iconMoon from "../img/icons/icon-moon.svg";
 import iconCart from '../img/icons/icon-cart.svg';
 import iconShare from '../img/icons/icon-share.svg';
+import iconMenu from '../img/icons/icon-menu.svg';
+import iconClose from '../img/icons/icon-close.svg';
 
 import Alert from './Alert';
 
 const Navbar = () => {
-  // const { darkMode, setDarkMode } = useContext(Context);
-  const { darkMode } = useContext(Context);
-  console.log('darkMode ' + darkMode);
-  console.log('path ' + window.location.pathname);
+  // console.log('path ' + window.location.pathname);
 
   const location = useLocation();
 
+  //navbar behavior on scroll in desktop view. menu shrinks height and gains a solid background.
   const [scroll, setScroll] = useState(false);
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -27,11 +27,29 @@ const Navbar = () => {
     });
   }, []);
 
+  // useEffect(() => {
+  //   navRef.current.classList.add('navbar__menu--unhide');
+  // }, []);
+
+  const navRef = useRef();
+
+  const showNavbar = () => {
+    // return window.innerWidth < 1024 ?
+    navRef.current.classList.toggle('navbar--show');
+    // document.body.style.overflow = 'scroll';
+  };
+
   return (
     <>
       <Alert alertContent={'alert'} />
-      {/* <nav className={darkMode ? `${'navbar navbar--dark'}` : `${'navbar'}`}> */}
-      <nav className={scroll ? "navbar navbar--solid" : "navbar"}>
+      <nav className={scroll ? 'navbar navbar--solid' : 'navbar'} ref={navRef}>
+        <button
+          className="navbar__menu__button navbar__menu__button--close"
+          onClick={showNavbar}
+        >
+          <img src={iconClose} alt="zamknij menu"></img>
+        </button>
+
         <div className="navbar__logo">
           <Link to="/witaj">
             <img src={navLogo} alt="logo" />
@@ -48,6 +66,7 @@ const Navbar = () => {
                     <Link
                       className="navbar__section-link navbar__section-link__shop"
                       to={category}
+                      onClick={showNavbar}
                     >
                       {category}
                     </Link>
@@ -56,7 +75,11 @@ const Navbar = () => {
               }
               if (category !== 'sklep') {
                 return (
-                  <li key={category} className="navbar__section-link">
+                  <li
+                    key={category}
+                    className="navbar__section-link"
+                    onClick={showNavbar}
+                  >
                     <Link to={category}>{category}</Link>
                   </li>
                 );
@@ -81,6 +104,13 @@ const Navbar = () => {
           </div>
         )}
       </nav>
+
+      <button
+        className="navbar__menu__button navbar__menu__button--open"
+        onClick={showNavbar}
+      >
+        <img src={iconMenu} alt="rozwiń menu"></img>
+      </button>
     </>
   );
 };
