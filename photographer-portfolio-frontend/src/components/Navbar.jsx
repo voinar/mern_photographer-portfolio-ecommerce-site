@@ -111,6 +111,12 @@ const Navbar = () => {
       >
         <img src={iconMenu} alt="rozwiń menu"></img>
       </button>
+
+      <div className="mobile__logo">
+          <Link to="/">
+            <img src={navLogo} alt="logo" />
+          </Link>
+        </div>
     </>
   );
 };

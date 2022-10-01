@@ -913,8 +913,8 @@ select {
 .navbar--solid {
   padding: 16px 60px;
   background-color: rgba(20, 20, 20, 0.9);
-  -webkit-transition: 0.5s ease-in-out;
-  transition: 0.5s ease-in-out;
+  -webkit-transition: 0.7s ease-in-out;
+  transition: 0.7s ease-in-out;
 }
 
 .navbar--solid .navbar__logo {
@@ -944,17 +944,21 @@ select {
 }
 
 .navbar__menu__button img {
-  height: 72px;
+  height: 60px;
 }
 
 .navbar__menu__button--close img {
-  height: 60px;
+  height: 46px;
 }
 
 .navbar--show {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   display: flex !important;
+}
+
+.mobile__logo {
+  display: none;
 }
 
 /* Media Query for small monitors */
@@ -982,7 +986,6 @@ select {
   }
   .navbar .navbar__logo {
     display: none;
-    margin-bottom: 20px;
   }
   .navbar .navbar__content {
     -webkit-box-orient: vertical;
@@ -1008,6 +1011,20 @@ select {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+  }
+  .mobile__logo {
+    position: fixed;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    right: 12vw;
+    top: 5vh;
+    width: 100px;
+    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    -webkit-filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.7));
+            filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.7));
+    z-index: 10;
   }
 }
 
