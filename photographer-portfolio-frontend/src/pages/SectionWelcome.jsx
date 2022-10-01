@@ -20,6 +20,7 @@ const SectionWelcome = () => {
           infiniteLoop={true}
           showStatus={false}
           // showArrows={true}
+          swipeable={false}
         >
           {photographyData.imagesWelcome.map((image) => {
             return (

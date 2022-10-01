@@ -2,11 +2,8 @@ import navLogo from '../img/logo-nav.png';
 import categoryData from '../data/staticData.json';
 import { Link } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
-// import Context from '../contexts/Context';
 import { useLocation } from 'react-router-dom';
 
-// import iconSun from "../img/icons/icon-sun.svg";
-// import iconMoon from "../img/icons/icon-moon.svg";
 import iconCart from '../img/icons/icon-cart.svg';
 import iconShare from '../img/icons/icon-share.svg';
 import iconMenu from '../img/icons/icon-menu.svg';
@@ -27,9 +24,11 @@ const Navbar = () => {
     });
   }, []);
 
-  // useEffect(() => {
-  //   navRef.current.classList.add('navbar__menu--unhide');
-  // }, []);
+  useEffect(() => {
+    location.pathname === '/o%20mnie' ?
+    navRef.current.classList.add('navbar--invert') : navRef.current.classList.remove('navbar--invert')
+
+  });
 
   const navRef = useRef();
 
@@ -43,6 +42,7 @@ const Navbar = () => {
     <>
       <Alert alertContent={'alert'} />
       <nav className={scroll ? 'navbar navbar--solid' : 'navbar'} ref={navRef}>
+      {/* <nav className={scroll ? 'navbar navbar--solid' : 'navbar navbar--invert'} ref={navRef}> */}
         <button
           className="navbar__menu__button navbar__menu__button--close"
           onClick={showNavbar}

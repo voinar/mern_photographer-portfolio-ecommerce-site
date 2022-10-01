@@ -118,7 +118,7 @@ const About = () => {
               alt="moje zdjęcie"
             />
             <span className="section__about__image__caption">
-              Mega utożsamiam się z grupa PODIUM! Wiele dobrego zawdzięczam tej
+              Mega utożsamiam się z grupą PODIUM! Wiele dobrego zawdzięczam tej
               społeczności.
             </span>
           </div>
