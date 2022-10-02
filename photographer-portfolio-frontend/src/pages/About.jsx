@@ -19,7 +19,9 @@ const About = () => {
             <div className="section__about__image--main">
               <img src={img0} alt="moje zdjęcie" />
               <div className="section__about__image__caption">
-                <span>Zwycięstwo UltraBies 45km, fot. Mała Gośka</span>
+                <span>
+                  Zwycięstwo UltraBies 45km, <br /> fot. Mała Gośka
+                </span>
               </div>
             </div>
 
@@ -68,22 +70,19 @@ const About = () => {
 
           <div className="section__about__content--right">
             <h1>O mnie</h1>
-            <br />
             <p>
-              Świetnie odnajduję się tam gdzie są emocje. Specjalizuje się w
+              Świetnie odnajduję się tam gdzie są emocje. Specjalizuję się w
               fotografii sportowej, a najbliższe mojemu sercu są takie
               dyscypliny jak: bieganie oraz triathlon. Sam prężnie rozwijam się
               jako biegacz górski, zdobywając wysokie lokaty na zawodach, co
               pozwala mi bardzo dobrze rozumieć temat, poczuć atmosferę
               wydarzenia i utożsamić z jego bohaterami.
             </p>
-            <br />
             <p>
               Moją ulubioną dziedzina fotografii jest REPORTAŻ, czyli w miejsca
               gdzie akcja dzieje się cały czas, a ja mogę wykorzystać inne
               patrzenie na świat oraz duże zaangażowanie.
             </p>
-            <br />
             <p>
               Fotografia sprawia mi ogromną satysfakcję, co można poczuć podczas
               współpracy ze mną, cechuję się niezwykłym entuzjazmem oraz
@@ -91,7 +90,6 @@ const About = () => {
               mi, towarzyszenie Wam, w tak ważnych dla Was momentach,
               wydarzeniach, chwilach.
             </p>
-            <br />
             <p>
               Ciągle się rozwijam oraz poszerzam swoje umiejętności i
               kompetencje, zbieram doświadczenie, oraz próbuję nowych wyzwań

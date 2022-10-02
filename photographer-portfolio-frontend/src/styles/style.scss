@@ -16,9 +16,9 @@
 @import '../components/styles/_LoadingSpinner';
 @import '../components/styles/_Alert';
 
-html * {
-//   outline: 1px solid white;
-}
+// html * {
+//   //   outline: 1px solid white;
+// }
 
 html {
   overflow-x: hidden;
@@ -31,6 +31,10 @@ body {
   // min-width: 600px;
   // overflow: hidden;
   scroll-behavior: smooth;
+}
+
+h1,h2,h3,h4,h5,h6,p,a {
+  // font-family: $--font-main;
 }
 
 h1 {
@@ -52,23 +56,23 @@ img {
 }
 
 /* ===== Scrollbar CSS ===== */
-  /* Firefox */
-  * {
-    scrollbar-width: auto;
-    scrollbar-color: #8f54a0 #ffffff;
-  }
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #8f54a0 #ffffff;
+}
 
-  /* Chrome, Edge, and Safari */
-  *::-webkit-scrollbar {
-    width: 8px;
-  }
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+}
 
-  *::-webkit-scrollbar-track {
-    background: #000000;
-  }
+*::-webkit-scrollbar-track {
+  background: #000000;
+}
 
-  *::-webkit-scrollbar-thumb {
-    background-color: $--c-white;
-    border-radius: 10px;
-    border: 2px solid slategray;
-  }
+*::-webkit-scrollbar-thumb {
+  background-color: $--c-white;
+  border-radius: 10px;
+  border: 2px solid slategray;
+}

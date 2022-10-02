@@ -71,8 +71,10 @@ const Album = () => {
   const handleImagePreview = (e) => {
     setShowPreviewImage((prevState) => !prevState);
     setPreviewImageUrl(e.target.getAttribute('src'));
-    setCurrentPreviewId(e.target.previousSibling.innerHTML);
+    console.log(e.currentTarget);
+    // setCurrentPreviewId(e.target.previousSibling.innerHTML);
     // console.log("currentPreviewId" + e.target.previousSibling.innerHTML)
+
   };
 
   const handleImagePreviewPrev = () => {
