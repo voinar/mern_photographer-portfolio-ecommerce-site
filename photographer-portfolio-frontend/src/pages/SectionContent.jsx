@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 // import axios from 'axios';
 
-import AlbumImage from '../components/AlbumImage';
-
 import photographyData from '../data/staticData.json';
 import Footer from '../components/Footer';
 import chevronUp from '../img/icons/chevron-up.svg';

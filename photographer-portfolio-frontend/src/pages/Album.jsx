@@ -91,7 +91,7 @@ const Album = () => {
       type: 'CART_ADD_ITEM',
       payload: { item: currentPreviewId },
     });
-    // console.log('state' + JSON.stringify(id));
+    console.log('local state: ' + JSON.stringify(state));
     // console.log('added to cart' + JSON.stringify(e));
   };
 
