@@ -1,30 +1,11 @@
-// import categoryData from "../data/data.json";
-// import { Link } from "react-router-dom";
-import { useParams } from 'react-router-dom'
-import { useEffect, useContext } from "react";
-import Context from '../contexts/Context'
-
-import footerLogo from "../img/logo-full.png";
-import iconFacebook from "../img/icons/icon-facebook.svg";
-import iconInstagram from "../img/icons/icon-instagram.svg";
-import chevronUp from "../img/icons/chevron-up.svg";
+import footerLogo from '../img/logo-full.png';
+import iconFacebook from '../img/icons/icon-facebook.svg';
+import iconInstagram from '../img/icons/icon-instagram.svg';
+import chevronUp from '../img/icons/chevron-up.svg';
 
 const Footer = () => {
-  const { category } = useParams()
-  // console.log(category)
-
-  const { setDarkMode } = useContext(Context)
-
-  useEffect(() => {
-    if (category === undefined) {
-      setDarkMode(true);
-    } else {
-      setDarkMode(false);
-    }
-  }, [category, setDarkMode]);
-
   const returnToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -32,7 +13,7 @@ const Footer = () => {
       <div className="footer__content">
         <div className="footer__column">
           <div className="footer__logo">
-            <img src={footerLogo} alt="logo"/>
+            <img src={footerLogo} alt="logo" />
           </div>
           <div className="footer__social">
             <span>Znajdź mnie na</span>
@@ -44,7 +25,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="footer__column">
+        <div className="footer__column footer__tags">
           <span>Fotografia</span>
           <span>Fotograf Rzeszów</span>
           <span>Fotografia sportowa</span>
@@ -52,33 +33,16 @@ const Footer = () => {
           <span>Rzeszów fotografia</span>
         </div>
 
-        {/* <div className="footer__column">
-          <div>biegi</div>
-          <div>emocje</div>
-          <div>portret</div>
-          <div>krajobraz</div>
-        </div>
-        <div className="footer__column">
-          <div>więcej</div>
-        </div>
-        <div className="footer__column">
-          <div>o mnie</div>
-        </div>
-        <div className="footer__column">
-          <div>sklep</div>
-        </div> */}
-        <div className="footer__column">
+        <div className="footer__column footer__return" onClick={returnToTop}>
           <img
-            className="footer__return-to-top"
             src={chevronUp}
             alt="wróć do początku"
-            onClick={returnToTop}
           />
         </div>
       </div>
       <div className="footer__slogan">Zobacz emocje</div>
       <div className="footer__copyright">
-        <span>copyright Ⓒ 2022 Kacper Porada</span>
+        <a href="/o%20mnie"><span>copyright Ⓒ 2022 Kacper Porada</span></a>
       </div>
     </footer>
   );

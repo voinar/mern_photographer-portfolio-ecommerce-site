@@ -3,7 +3,6 @@
   z-index: 1;
   display: flex;
   flex-direction: row;
-  // opacity: .95;
 }
 
 .cover__icons {
@@ -21,7 +20,7 @@
       display: flex;
       flex-direction: row;
       gap: 10px;
-
+      z-index: 10;
       img {
         height: 40px;
       }
@@ -35,23 +34,12 @@
   object-fit: cover;
 }
 
-// .icon__chevron-right {
-//     transform: rotate(90deg);
-//     height: 50px;
-// }
-
-// .icon__chevron-left {
-//     transform: rotate(270deg);
-//     height: 50px;
-// }
-
 .cover__icons__nav--left,
 .cover__icons__nav--right {
   opacity: 0.7;
 }
 
 .control-arrow {
-  // border: 3px solid white !important;
   width: 80px;
   opacity: 1 !important;
 }
