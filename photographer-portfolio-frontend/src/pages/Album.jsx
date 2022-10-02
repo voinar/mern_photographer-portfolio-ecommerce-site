@@ -72,7 +72,7 @@ const Album = () => {
     setShowPreviewImage((prevState) => !prevState);
     setPreviewImageUrl(e.target.getAttribute('src'));
     console.log(e.currentTarget);
-    // setCurrentPreviewId(e.target.previousSibling.innerHTML);
+    setCurrentPreviewId(e.target.previousSibling.innerHTML);
     // console.log("currentPreviewId" + e.target.previousSibling.innerHTML)
 
   };
