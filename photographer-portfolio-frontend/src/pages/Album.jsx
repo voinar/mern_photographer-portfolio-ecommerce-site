@@ -74,7 +74,6 @@ const Album = () => {
     console.log(e.currentTarget);
     setCurrentPreviewId(e.target.previousSibling.innerHTML);
     // console.log("currentPreviewId" + e.target.previousSibling.innerHTML)
-
   };
 
   const handleImagePreviewPrev = () => {
@@ -112,7 +111,7 @@ const Album = () => {
       return null;
     }
   });
-  console.log('state is ' + JSON.stringify(state));
+  // console.log('state is ' + JSON.stringify(state));
 
   return (
     <>
@@ -176,7 +175,6 @@ const Album = () => {
                     title="następne zdjęcie"
                     onClick={handleImagePreviewNext}
                   />
-                  {/* <div className="album__preview-image__tools__cart-add"></div> */}
                 </div>
               </>
             )}

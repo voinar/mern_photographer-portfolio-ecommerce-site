@@ -25,9 +25,9 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    location.pathname === '/o%20mnie' ?
-    navRef.current.classList.add('navbar--invert') : navRef.current.classList.remove('navbar--invert')
-
+    location.pathname === '/o%20mnie'
+      ? navRef.current.classList.add('navbar--invert')
+      : navRef.current.classList.remove('navbar--invert');
   });
 
   const navRef = useRef();
@@ -42,7 +42,7 @@ const Navbar = () => {
     <>
       <Alert alertContent={'alert'} />
       <nav className={scroll ? 'navbar navbar--solid' : 'navbar'} ref={navRef}>
-      {/* <nav className={scroll ? 'navbar navbar--solid' : 'navbar navbar--invert'} ref={navRef}> */}
+        {/* <nav className={scroll ? 'navbar navbar--solid' : 'navbar navbar--invert'} ref={navRef}> */}
         <button
           className="navbar__menu__button navbar__menu__button--close"
           onClick={showNavbar}
@@ -113,10 +113,10 @@ const Navbar = () => {
       </button>
 
       <div className="mobile__logo">
-          <Link to="/">
-            <img src={navLogo} alt="logo" />
-          </Link>
-        </div>
+        <Link to="/">
+          <img src={navLogo} alt="logo" />
+        </Link>
+      </div>
     </>
   );
 };

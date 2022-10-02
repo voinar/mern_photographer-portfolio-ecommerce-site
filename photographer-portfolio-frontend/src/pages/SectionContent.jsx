@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 // import axios from 'axios';
 
+import AlbumImage from '../components/AlbumImage';
+
 import photographyData from '../data/staticData.json';
 import Footer from '../components/Footer';
 import chevronUp from '../img/icons/chevron-up.svg';
@@ -13,7 +15,6 @@ const SectionContent = () => {
 
   const scrollToContent = () => {
     window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
-    console.log('slick');
   };
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -22,6 +23,14 @@ const SectionContent = () => {
         : setScrollToContentBtn(true);
     });
   }, []);
+
+  const [showPreviewImage, setShowPreviewImage] = useState(false);
+  const [previewImageUrl, setPreviewImageUrl] = useState('');
+  const handleImagePreview = (e) => {
+    setShowPreviewImage((prevState) => !prevState);
+    setPreviewImageUrl(e.target.getAttribute('src'));
+    // console.log(e.target.getAttribute('src'));
+  };
 
   return (
     <>
@@ -32,7 +41,11 @@ const SectionContent = () => {
             if (image.category === category) {
               return (
                 <li className="section__photos__images" key={`${image.url}`}>
-                  <div className="section__photos__images__image">
+                  <div
+                    className="section__photos__images__image"
+                    src={image.url}
+                    onClick={handleImagePreview}
+                  >
                     <img
                       className={
                         image.isVertical
@@ -76,6 +89,20 @@ const SectionContent = () => {
             </div>
           </div>
         </div>
+        {showPreviewImage && window.innerWidth < 768 ? ( //image preview modal, show only in mobile mode
+          <>
+            <div
+              className="section__photos__preview"
+              onClick={handleImagePreview}
+            >
+              <img
+                className="section__photos__preview__image"
+                src={previewImageUrl}
+                alt=""
+              />
+            </div>
+          </>
+        ) : null}
       </main>
       <Footer />
     </>

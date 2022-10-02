@@ -36,7 +36,7 @@
   // width: 100%;
 
   img {
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    outline: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 4px;
     margin-bottom: 60px;
   }
@@ -53,8 +53,7 @@
   position: absolute;
   background: rgba(0, 0, 0, 0.6);
   color: $--c-white;
-  font-weight: 200;
-  font-size: $--font-sm;
+  font-weight: 100;
   text-align: center;
   line-height: 1.3;
   padding: 8px 20px 10px;
@@ -97,6 +96,15 @@
 
   img {
     height: 30px;
+  }
+}
+
+.section__about__contact__row:hover {
+  transition: ease-in-out 0.3s;
+
+  a,
+  h3 {
+    color: black;
   }
 }
 
@@ -152,7 +160,6 @@
   .section__about {
     padding: 10px 30px;
     width: 100vw;
-
   }
 
   .section__about__main {
@@ -171,17 +178,6 @@
         border-radius: 8px;
         margin-bottom: 60px;
       }
-    }
-
-    .section__about__image__caption {
-      display: flex;
-      // justify-content: center;
-      position: absolute;
-      background: rgba(0, 0, 0, 0.6);
-      color: $--c-white;
-      padding: 8px 20px 10px;
-      bottom: 0;
-      width: 100%;
     }
 
     .section__about__image__caption:hover {
@@ -272,5 +268,18 @@
         }
       }
     }
+  }
+
+  .section__about__image__caption {
+    display: flex;
+    // justify-content: center;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+    color: $--c-white;
+    font-size: $--font-xs;
+
+    padding: 8px 20px 10px;
+    bottom: 0;
+    width: 100%;
   }
 }
