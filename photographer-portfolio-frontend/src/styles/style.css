@@ -96,6 +96,7 @@ select {
   position: fixed;
   bottom: 10vh;
   right: 5vw;
+  z-index: 10;
 }
 
 .cover__icons .cover__icons__row-container {
@@ -120,7 +121,6 @@ select {
       -ms-flex-direction: row;
           flex-direction: row;
   gap: 10px;
-  z-index: 10;
 }
 
 .cover__icons .cover__icons__row-container .cover__icons__social img {
@@ -1277,6 +1277,12 @@ select {
 }
 
 @media (max-width: 1024px) {
+  .footer__slogan {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
   .footer {
     padding: 20px 40px;
   }
@@ -1284,17 +1290,17 @@ select {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: reverse;
-        -ms-flex-direction: column-reverse;
-            flex-direction: column-reverse;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
     gap: 6%;
+  }
+  .footer__column {
+    margin: 0 auto;
   }
   .footer__tags {
     display: none;
+  }
+  .footer__return {
+    position: absolute;
+    right: 30px;
   }
 }
 

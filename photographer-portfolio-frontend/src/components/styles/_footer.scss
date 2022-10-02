@@ -77,25 +77,35 @@
     color: $--c-white;
   }
 }
-
-
 @media (max-width: 1024px) {
+  .footer__slogan {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
   .footer {
     padding: 20px 40px;
   }
 
   .footer__content {
     display: flex;
-    flex-direction: column-reverse;
-    justify-content: flex-start;
+    // flex-direction: column-reverse;
     gap: 6%;
+  }
+
+  .footer__column {
+    margin: 0 auto;
   }
 
   .footer__tags {
     display: none;
   }
 
-  .footer__slogan {
-    // display: none;
+
+
+  .footer__return {
+    position: absolute;
+    right: 30px;
   }
 }
