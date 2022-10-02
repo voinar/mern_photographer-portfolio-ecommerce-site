@@ -35,8 +35,28 @@ const SectionContent = () => {
       {/* <span>{photographyData.images[0].url}</span> */}
       <main>
         <ul className="section__photos">
+          {console.log(window.innerWidth < 768)}
+          {window.innerWidth < 768
+            ? photographyData.images
+                .map((image) => {
+                  if (image.isMobile !== undefined) {
+                    if (image.category === category) {
+                      return (
+                        <li className="section">
+                          <div className="section__photos__images__image--mobile">
+                            <img src={image.url}></img>
+                          </div>
+                        </li>
+                      );
+                    }
+                  }
+
+                  return null;
+                })
+            : null}
+
           {photographyData.images.map((image) => {
-            if (image.category === category) {
+            if (image.category === category && image.isMobile === undefined) {
               return (
                 <li className="section__photos__images" key={`${image.url}`}>
                   <div

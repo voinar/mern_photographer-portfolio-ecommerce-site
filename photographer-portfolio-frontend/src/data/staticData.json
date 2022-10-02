@@ -137,6 +137,17 @@
   "images": [
     {
       "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/biegi/0-mobile.jpg",
+      "url": "../assets/portfolio/biegi/0-mobile.jpg",
+      "isMobile": "true",
+      "category": "biegi",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
       "description": "Kwintesencja Trail Runningu. Wbiegnij na PODIUM z Buty Jana 2022",
       "thumbnail": "../assets/portfolio/biegi/0.jpg",
       "url": "../assets/portfolio/biegi/0.jpg",
@@ -317,6 +328,17 @@
     },
     {
       "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/emocje/0-mobile.jpg",
+      "url": "../assets/portfolio/emocje/0-mobile.jpg",
+      "isMobile": "true",
+      "category": "emocje",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
       "description": "Meta Triathlon Sokoła",
       "thumbnail": "../assets/portfolio/emocje/0.jpg",
       "url": "../assets/portfolio/emocje/0.jpg",
@@ -428,6 +450,17 @@
     {
       "title": "",
       "description": "",
+      "thumbnail": "../assets/portfolio/portret/0-mobile.jpg",
+      "url": "../assets/portfolio/portret/0-mobile.jpg",
+      "isMobile": "true",
+      "category": "portret",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
       "thumbnail": "../assets/portfolio/portret/0.jpg",
       "url": "../assets/portfolio/portret/0.jpg",
       "category": "portret",
@@ -528,6 +561,17 @@
     {
       "title": "",
       "description": "",
+      "thumbnail": "../assets/portfolio/krajobraz/0-mobile.jpg",
+      "url": "../assets/portfolio/krajobraz/0-mobile.jpg",
+      "isMobile": "true",
+      "category": "krajobraz",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
       "thumbnail": "../assets/portfolio/krajobraz/0.jpg",
       "url": "../assets/portfolio/krajobraz/0.jpg",
       "category": "krajobraz",
@@ -611,6 +655,17 @@
       "thumbnail": "../assets/portfolio/krajobraz/8.jpg",
       "url": "../assets/portfolio/krajobraz/8.jpg",
       "category": "krajobraz",
+      "location": "",
+      "event": "",
+      "price": null
+    },
+    {
+      "title": "",
+      "description": "",
+      "thumbnail": "../assets/portfolio/inne/0-mobile.jpg",
+      "url": "../assets/portfolio/inne/0-mobile.jpg",
+      "isMobile": "true",
+      "category": "więcej",
       "location": "",
       "event": "",
       "price": null
