@@ -44,7 +44,10 @@ const SectionContent = () => {
                       return (
                         <li className="section">
                           <div className="section__photos__images__image--mobile">
-                            <img src={image.url}></img>
+                            <img
+                            src={image.url}
+                            alt={image.description}
+                            />
                           </div>
                         </li>
                       );
