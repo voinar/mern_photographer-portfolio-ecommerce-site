@@ -266,7 +266,8 @@ select {
   }
   .section__photos__description {
     opacity: 1;
-    font-size: 14px;
+    font-size: 10px;
+    font-weight: 300;
     bottom: 0px;
     background: rgba(255, 255, 255, 0.3);
     color: #3a3939;

@@ -79,9 +79,9 @@ const About = () => {
               wydarzenia i utożsamić z jego bohaterami.
             </p>
             <p>
-              Moją ulubioną dziedzina fotografii jest REPORTAŻ, czyli w miejsca
-              gdzie akcja dzieje się cały czas, a ja mogę wykorzystać inne
-              patrzenie na świat oraz duże zaangażowanie.
+              Moją ulubioną dziedzina fotografii jest <i>reportaż</i>, czyli w
+              miejsca gdzie akcja dzieje się cały czas, a ja mogę wykorzystać
+              inne patrzenie na świat oraz duże zaangażowanie.
             </p>
             <p>
               Fotografia sprawia mi ogromną satysfakcję, co można poczuć podczas
@@ -106,7 +106,7 @@ const About = () => {
               alt="moje zdjęcie"
             />
             <span className="section__about__image__caption">
-              Góry pomagają mi "naładować baterie"
+              Góry pomagają mi "naładować baterie".
             </span>
           </div>
           <div className="section__about__image--main">
@@ -127,7 +127,7 @@ const About = () => {
               alt="moje zdjęcie"
             />
             <span className="section__about__image__caption">
-              Uwielbiam wchody/zachody słońca
+              Uwielbiam wschody i zachody słońca.
             </span>
           </div>
         </div>
