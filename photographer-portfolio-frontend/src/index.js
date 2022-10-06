@@ -7,6 +7,8 @@ import { StoreProvider } from './contexts/Store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import './styles/style.css';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

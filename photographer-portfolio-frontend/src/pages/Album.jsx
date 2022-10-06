@@ -1,8 +1,6 @@
 import { Store } from '../contexts/Store';
-
 import { useContext, useState, useReducer, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
 import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
 // import { v4 as uuidv4 } from 'uuid';
@@ -71,25 +69,28 @@ const Album = () => {
   const handleImagePreview = (e) => {
     setShowPreviewImage((prevState) => !prevState);
     setPreviewImageUrl(e.target.getAttribute('src'));
-    console.log(e.currentTarget);
-    setCurrentPreviewId(e.target.previousSibling.innerHTML);
+    console.log('src: ' + e.currentTarget.getAttribute('src'));
+    // setCurrentPreviewId(e.target.previousSibling.innerHTML);
     // console.log("currentPreviewId" + e.target.previousSibling.innerHTML)
   };
 
   const handleImagePreviewPrev = () => {
-    let imageIndex = currentAlbumData[0]?.url;
-    console.log('previewImageUrl ' + imageIndex);
+    console.log('prev')
+    // let imageIndex = currentAlbumData[0]?.url;
+    // console.log('previewImageUrl ' + imageIndex);
   };
 
-  const handleImagePreviewNext = () => {};
-  // console.log(album);
+  const handleImagePreviewNext = () => {
+    console.log('next')
+  };
 
   const { state, dispatch: contextDispatch } = useContext(Store);
 
   const addToCart = () => {
+    console.log('add to cart')
     contextDispatch({
       type: 'CART_ADD_ITEM',
-      payload: { item: currentPreviewId },
+      payload: { item: previewImageUrl },
     });
     console.log('local state: ' + JSON.stringify(state));
     // console.log('added to cart' + JSON.stringify(e));
@@ -168,6 +169,7 @@ const Album = () => {
                     title="dodaj do koszyka"
                     onClick={addToCart}
                   />
+                  <button onClick={addToCart}> CLICK </button>
                   <img
                     className="album__preview-image__tools__arrow album__preview-image__tools__arrow--next"
                     src={IconChevron}

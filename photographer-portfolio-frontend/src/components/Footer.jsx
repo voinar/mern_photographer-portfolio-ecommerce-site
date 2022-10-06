@@ -18,10 +18,22 @@ const Footer = () => {
           <div className="footer__social">
             <span>Znajdź mnie na</span>
             <div className="footer__icon">
-              <img src={iconFacebook} alt="facebook" />
+              <a
+                href="https://www.facebook.com/profile.php?id=100069653350294"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src={iconFacebook} alt="facebook" />
+              </a>
             </div>
             <div className="footer__icon">
-              <img src={iconInstagram} alt="instagram" />
+              <a
+                href="https://www.instagram.com/kapsel19/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src={iconInstagram} alt="instagram" />
+              </a>
             </div>
           </div>
         </div>
@@ -34,15 +46,14 @@ const Footer = () => {
         </div>
 
         <div className="footer__column footer__return" onClick={returnToTop}>
-          <img
-            src={chevronUp}
-            alt="wróć do początku"
-          />
+          <img src={chevronUp} alt="wróć do początku" />
         </div>
       </div>
       <div className="footer__slogan">Zobacz emocje</div>
       <div className="footer__copyright">
-        <a href="/o%20mnie"><span>copyright Ⓒ 2022 Kacper Porada</span></a>
+        <a href="/o%20mnie">
+          <span>copyright Ⓒ 2022 Kacper Porada</span>
+        </a>
       </div>
     </footer>
   );

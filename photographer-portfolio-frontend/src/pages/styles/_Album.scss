@@ -97,7 +97,7 @@
 .album__card:hover {
   img {
     transform: scale(1.025);
-    z-index: 20;
+    // z-index: 20;
     transition: all 0.3s;
   }
 }
@@ -140,7 +140,7 @@
   left: 0;
   width: 100%;
   justify-content: center;
-  z-index: 5;
+  z-index: 14;
 
   img {
     background-color: #ffffffb1;
@@ -148,6 +148,7 @@
     border-radius: 4px;
     outline: 1px solid rgba(128, 128, 128, 0.5);
     height: 44px;
+    // z-index: -2 !important;
   }
 }
 

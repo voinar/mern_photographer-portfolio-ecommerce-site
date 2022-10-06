@@ -168,7 +168,7 @@ select {
 }
 
 .section__photos {
-  padding: 0;
+  padding: 0 0 1px 0;
   margin: 0;
   background-color: #dedede;
 }
@@ -598,7 +598,6 @@ select {
 
 .shop__toolbar .shop__toolbar__title h1 {
   font-weight: 100;
-  margin-top: 20px;
 }
 
 .shop__toolbar .shop__toolbar__title span {
@@ -864,7 +863,6 @@ select {
 .album__card:hover img {
   -webkit-transform: scale(1.025);
           transform: scale(1.025);
-  z-index: 20;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
@@ -925,7 +923,7 @@ select {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  z-index: 5;
+  z-index: 14;
 }
 
 .album__preview-image__tools img {
@@ -1101,6 +1099,69 @@ select {
 .navbar--invert {
   -webkit-filter: invert(100%);
           filter: invert(100%);
+}
+
+.navbar__shop {
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+  padding: 20px 100px;
+  z-index: 10;
+}
+
+.navbar__shop__logo {
+  width: 140px;
+  -webkit-filter: invert(100%);
+          filter: invert(100%);
+}
+
+.navbar__shop__icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-left: auto;
+  gap: 10px;
+}
+
+.navbar__shop__icons img {
+  width: 36px;
+  cursor: pointer;
+}
+
+.navbar__shop__icons .navbar__shop__icon__cart {
+  position: relative;
+}
+
+.navbar__shop__icons .navbar__shop__icon__cart .navbar__shop__icon__cart__count {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: black;
+  color: white;
+  font-size: 14px;
+  width: 22px;
+  height: 22px;
+  border-radius: 100px;
+  padding: 4px;
+  right: -10px;
+  top: -10px;
 }
 
 /* Media Query for small monitors */
@@ -1514,7 +1575,7 @@ html {
 body {
   font-family: "Prompt", sans-serif;
   color: #3a3939;
-  background-color: #dedede;
+  background-color: #3a3939;
   scroll-behavior: smooth;
 }
 

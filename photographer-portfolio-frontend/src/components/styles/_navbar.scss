@@ -1,3 +1,7 @@
+//--------------------
+//portfolio navbar
+//--------------------
+
 .navbar {
   position: fixed;
   top: 0;
@@ -125,8 +129,65 @@
   display: none;
 }
 
-.navbar--invert { //nverted color palette for 'about me' page
+.navbar--invert {
+  //nverted color palette for 'about me' and shop pages
   filter: invert(100%);
+}
+
+//--------------------
+//shop navbar
+//--------------------
+
+.navbar__shop {
+  // background: white;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 20px 100px;
+  // border: 2px solid red;
+  z-index: 10;
+}
+
+.navbar__shop__logo {
+  width: 140px;
+  filter: invert(100%);
+}
+
+.navbar__shop__icons {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  gap: 10px;
+
+  img {
+    width: 36px;
+    cursor: pointer;
+
+  }
+
+  .navbar__shop__icon__cart {
+    position: relative;
+
+    .navbar__shop__icon__cart__count {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: black;
+      color: white;
+      font-size: $--font-sm;
+      width: 22px;
+      height: 22px;
+      border-radius: 100px;
+      padding: 4px;
+      right: -10px;
+      top: -10px;
+    }
+  }
+}
+
+.navbar__shop--shrink {
 }
 
 /* Media Query for small monitors */
@@ -166,7 +227,7 @@
       width: 100vw;
 
       .navbar__section-link {
-          // width: 100%;
+        // width: 100%;
         width: 100vw;
         font-size: $--font-xl;
         a {
@@ -201,11 +262,11 @@
     z-index: 5;
   }
 
-  .navbar--invert { //nverted color palette for 'about me' page
+  .navbar--invert {
+    //nverted color palette for 'about me' page
     filter: invert(5%);
     background-color: black;
   }
-
 }
 /* Media Query for low resolution Tablets, Ipads */
 @media (min-width: 481px) and (max-width: 767px) {

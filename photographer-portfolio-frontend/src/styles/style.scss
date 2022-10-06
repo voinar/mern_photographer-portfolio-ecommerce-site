@@ -17,7 +17,7 @@
 @import '../components/styles/_Alert';
 
 // html * {
-//   //   outline: 1px solid white;
+//     outline: 1px solid blue;
 // }
 
 html {
@@ -27,7 +27,7 @@ html {
 body {
   font-family: $--font-main;
   color: $--c-black;
-  background-color: $--c-white;
+  background-color: $--c-black;
   // min-width: 600px;
   // overflow: hidden;
   scroll-behavior: smooth;
