@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-// import axios from 'axios';
 
 import photographyData from '../data/staticData.json';
 import Footer from '../components/Footer';
@@ -14,6 +13,7 @@ const SectionContent = () => {
   const scrollToContent = () => {
     window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
   };
+
   useEffect(() => {
     window.addEventListener('scroll', () => {
       window.scrollY > 100

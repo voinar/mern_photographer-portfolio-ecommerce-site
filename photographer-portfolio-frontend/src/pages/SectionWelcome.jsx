@@ -22,19 +22,31 @@ const SectionWelcome = () => {
           // showArrows={true}
           swipeable={false}
         >
-          {photographyData.imagesWelcome.map((image) => {
-            return (
-              <div key={uuidv4()}>
-                <img
-                  className="cover__image"
-                  style={{ width: '100vw' }}
-                  src={image.url}
-                  alt="moje zdjęcia"
-                />
-                {/* <p className="legend">Legend 1</p> */}
-              </div>
-            );
-          })}
+          {window.innerWidth > 768
+            ? photographyData.imagesWelcome.map((image) => {
+                return (
+                  <div key={uuidv4()}>
+                    <img
+                      className="cover__image"
+                      style={{ width: '100vw' }}
+                      src={image.url}
+                      alt="moje zdjęcia"
+                    />
+                  </div>
+                );
+              })
+            : photographyData.imagesWelcomeMobile.map((image) => {
+                return (
+                  <div key={uuidv4()}>
+                    <img
+                      className="cover__image"
+                      style={{ width: '100vw' }}
+                      src={image.url}
+                      alt="moje zdjęcia"
+                    />
+                  </div>
+                );
+              })}
         </Carousel>
       </div>
       <div className="cover__icons">
