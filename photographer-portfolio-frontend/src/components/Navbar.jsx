@@ -154,10 +154,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-{
-  /* ) : (
-          //if currently in shop then show only cart and share icon (don't render portfolio links)
-
-        )} */
-}

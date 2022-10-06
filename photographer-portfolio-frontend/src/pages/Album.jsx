@@ -58,7 +58,7 @@ const Album = () => {
   //local component state
   const [showPreviewImage, setShowPreviewImage] = useState(false);
   const [previewImageUrl, setPreviewImageUrl] = useState('');
-  const [currentPreviewId, setCurrentPreviewId] = useState('');
+  // const [currentPreviewId, setCurrentPreviewId] = useState('');
 
   const navigate = useNavigate(); //used to return to previous page
   const goBack = () => navigate(-1);

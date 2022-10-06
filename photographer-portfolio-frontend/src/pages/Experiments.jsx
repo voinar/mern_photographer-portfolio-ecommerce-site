@@ -73,12 +73,12 @@ const Experiments = () => {
     setName('');
   };
 
-  const handleEdit = (e) => {
-    e.preventDefault();
-    // dispatch({ type: ACTIONS.EDIT_TODO_END})
+  // const handleEdit = (e) => {
+  //   e.preventDefault();
+  //   // dispatch({ type: ACTIONS.EDIT_TODO_END})
 
-    setEdit('');
-  };
+  //   setEdit('');
+  // };
 
   // const submitEdit = (todo,e) => {
   //   // e.preventDefault();
