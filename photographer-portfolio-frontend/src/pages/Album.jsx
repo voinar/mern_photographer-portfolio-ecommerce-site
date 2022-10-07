@@ -75,22 +75,28 @@ const Album = () => {
   };
 
   const handleImagePreviewPrev = () => {
-    console.log('prev')
-    // let imageIndex = currentAlbumData[0]?.url;
-    // console.log('previewImageUrl ' + imageIndex);
+    setPreviewImageUrl(
+      previewImageUrl.toString().slice(0, -5) +
+        (Number(previewImageUrl.toString().slice(-5, -4)) - 1) +
+        previewImageUrl.toString().slice(-4)
+    );
   };
 
   const handleImagePreviewNext = () => {
-    console.log('next')
+    setPreviewImageUrl(
+      previewImageUrl.toString().slice(0, -5) +
+        (Number(previewImageUrl.toString().slice(-5, -4)) + 1) +
+        previewImageUrl.toString().slice(-4)
+    );
   };
 
   const { state, dispatch: contextDispatch } = useContext(Store);
 
   const addToCart = () => {
-    console.log('add to cart')
+    // console.log('add to cart');
     contextDispatch({
       type: 'CART_ADD_ITEM',
-      payload: { item: previewImageUrl },
+      payload: { id: previewImageUrl, item: previewImageUrl },
     });
     console.log('local state: ' + JSON.stringify(state));
     // console.log('added to cart' + JSON.stringify(e));
@@ -123,7 +129,9 @@ const Album = () => {
         <div className="album__container">
           <div className="album__toolbar">
             <div className="album__title">
-              <img src={IconChevron} alt="zobacz" onClick={goBack} />
+              <button onClick={goBack}>
+                <img src={IconChevron} alt="zobacz" />
+              </button>
               <h1>{album}</h1>
             </div>
             <h2>
@@ -156,27 +164,30 @@ const Album = () => {
                   />
                 </div>
                 <div className="album__preview-image__tools">
-                  <img
-                    className="album__preview-image__tools__arrow album__preview-image__tools__arrow--prev"
-                    src={IconChevron}
-                    alt="poprzednie zdjęcie"
-                    title="poprzednie zdjęcie"
-                    onClick={handleImagePreviewPrev}
-                  />
-                  <img
-                    src={IconCartAdd}
-                    alt="dodaj do koszyka"
-                    title="dodaj do koszyka"
-                    onClick={addToCart}
-                  />
-                  <button onClick={addToCart}> CLICK </button>
-                  <img
-                    className="album__preview-image__tools__arrow album__preview-image__tools__arrow--next"
-                    src={IconChevron}
-                    alt="następne zdjęcie"
-                    title="następne zdjęcie"
-                    onClick={handleImagePreviewNext}
-                  />
+                  <button onClick={handleImagePreviewPrev}>
+                    <img
+                      className="album__preview-image__tools__arrow album__preview-image__tools__arrow--prev"
+                      src={IconChevron}
+                      alt="poprzednie zdjęcie"
+                      title="poprzednie zdjęcie"
+                    />
+                  </button>
+                  <button onClick={addToCart}>
+                    <img
+                      src={IconCartAdd}
+                      alt="dodaj do koszyka"
+                      title="dodaj do koszyka"
+                      onClick={addToCart}
+                    />
+                  </button>
+                  <button onClick={handleImagePreviewNext}>
+                    <img
+                      className="album__preview-image__tools__arrow album__preview-image__tools__arrow--next"
+                      src={IconChevron}
+                      alt="następne zdjęcie"
+                      title="następne zdjęcie"
+                    />
+                  </button>
                 </div>
               </>
             )}

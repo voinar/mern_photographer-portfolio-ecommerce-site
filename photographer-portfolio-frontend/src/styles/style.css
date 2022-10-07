@@ -789,6 +789,11 @@ select {
   text-transform: capitalize;
 }
 
+.album__toolbar .album__title button {
+  all: unset;
+  cursor: pointer;
+}
+
 .album__toolbar .album__toolbar__elements {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -926,12 +931,18 @@ select {
   z-index: 14;
 }
 
-.album__preview-image__tools img {
+.album__preview-image__tools button {
+  all: unset;
+  background-color: white;
+  border-radius: 4px;
+}
+
+.album__preview-image__tools button img {
   background-color: #ffffffb1;
   padding: 6px;
-  border-radius: 4px;
   outline: 1px solid rgba(128, 128, 128, 0.5);
   height: 44px;
+  border-radius: 4px;
 }
 
 .album__preview-image__tools__arrow--prev {

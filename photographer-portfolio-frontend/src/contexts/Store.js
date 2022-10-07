@@ -9,16 +9,33 @@ const initialState = {
 };
 
 function reducer(state, action) {
+  const index = state.cart.cartItems.findIndex((object) => {
+    return object.id === action.payload.id;
+  });
+
   switch (action.type) {
     case 'CART_ADD_ITEM':
       //add item to cart
-      return {
-        ...state,
-        cart: {
-          ...state.cart,
-          cartItems: [...state.cart.cartItems, action.payload],
-        },
-      };
+      console.log(
+        state.cart.cartItems.findIndex((object) => {
+          return object.id === action.payload.id;
+        })
+      );
+
+      if (
+        state.cart.cartItems.findIndex((object) => {
+          return object.id === action.payload.id;
+        }) === -1
+      ) {
+        return {
+          ...state,
+          cart: {
+            ...state.cart,
+            cartItems: [...state.cart.cartItems, action.payload],
+          },
+        };
+      }
+
     default:
       return state;
   }

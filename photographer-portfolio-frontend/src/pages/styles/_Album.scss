@@ -40,6 +40,11 @@
     h1 {
       text-transform: capitalize;
     }
+
+    button {
+      all: unset;
+      cursor: pointer;
+    }
   }
 
   .album__toolbar__elements {
@@ -142,13 +147,18 @@
   justify-content: center;
   z-index: 14;
 
-  img {
-    background-color: #ffffffb1;
-    padding: 6px;
+  button {
+    all: unset;
+    background-color: white;
     border-radius: 4px;
-    outline: 1px solid rgba(128, 128, 128, 0.5);
-    height: 44px;
-    // z-index: -2 !important;
+
+    img {
+      background-color: #ffffffb1;
+      padding: 6px;
+      outline: 1px solid rgba(128, 128, 128, 0.5);
+      height: 44px;
+      border-radius: 4px;
+    }
   }
 }
 
