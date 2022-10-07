@@ -4,16 +4,20 @@ import { useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Store } from './contexts/Store';
 
-import Navbar from './components/Navbar';
-import Alert from './components/Alert';
+//pages
 import SectionWelcome from './pages/SectionWelcome';
 import SectionContent from './pages/SectionContent';
 import About from './pages/About';
 import Shop from './pages/Shop';
 import Album from './pages/Album';
-import ScrollToTop from './components/ScrollToTop';
+import Cart from './pages/Cart';
 
+//components
+import Navbar from './components/Navbar';
+import Alert from './components/Alert';
+import ScrollToTop from './components/ScrollToTop';
 import Experiments from './pages/Experiments';
+
 
 // {localStorage.setItem('user', 'name')}
 // {sessionStorage.setItem('status', 'unread')}
@@ -42,6 +46,7 @@ function App() {
           <Route path="/sklep" element={<Shop />} />
           <Route path="/album/:album" element={<Album />} />
           <Route path="/experiments" element={<Experiments />} />
+          <Route path="/koszyk" element={<Cart />} />
         </Routes>
       </div>
     </>

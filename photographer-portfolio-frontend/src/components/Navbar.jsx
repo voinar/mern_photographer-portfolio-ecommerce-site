@@ -1,6 +1,6 @@
 import navLogo from '../img/logo-nav.png';
 import categoryData from '../data/staticData.json';
-import { Link, useLocation  } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useState, useRef, useContext } from 'react';
 import { Store } from '../contexts/Store';
 
@@ -129,13 +129,19 @@ const Navbar = () => {
           </div>
           <div className="navbar__shop__icons">
             <div className="navbar__shop__icon__cart">
-              {state.cart.cartItems.length > 0 && (<div className="navbar__shop__icon__cart__count">{state.cart.cartItems.length}</div>)}
-              <img
-                src={iconCart}
-                className="navbar__shop__icon"
-                alt="zobacz koszyk"
-                title="zobacz koszyk"
-              />
+              {state.cart.cartItems.length > 0 && (
+                <div className="navbar__shop__icon__cart__count">
+                  {state.cart.cartItems.length}
+                </div>
+              )}
+              <Link to="/Koszyk">
+                <img
+                  src={iconCart}
+                  className="navbar__shop__icon"
+                  alt="zobacz koszyk"
+                  title="zobacz koszyk"
+                />
+              </Link>
             </div>
             <div className="navbar__shop__icon__share">
               <img
