@@ -17,10 +17,13 @@
 
 .section__photos > .section__photos__images:not(:first-child) {
   //all images except the first in album
-  margin: 0 150px 30vh;
-  height: 80vh;
+  margin: 0 150px 100px;
+  height: auto;
+  width: auto;
+
   img {
     height: 80vh;
+    object-fit: contain;
   }
 }
 
@@ -115,17 +118,15 @@
       object-fit: scale-down;
     }
   }
-  .section__photos__images__image{
-
+  .section__photos__images__image {
     // margin-top: 10px;
   }
-
 
   .section__photos__images__image--mobile {
     height: 100vh;
     width: 100vw;
     // border: 1px solid red;
-margin-bottom: 20px;
+    margin-bottom: 20px;
     img {
       height: 100vh;
       width: 100vw;

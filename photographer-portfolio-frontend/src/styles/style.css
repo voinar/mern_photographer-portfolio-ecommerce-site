@@ -186,12 +186,15 @@ select {
 }
 
 .section__photos > .section__photos__images:not(:first-child) {
-  margin: 0 150px 30vh;
-  height: 80vh;
+  margin: 0 150px 100px;
+  height: auto;
+  width: auto;
 }
 
 .section__photos > .section__photos__images:not(:first-child) img {
   height: 80vh;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .section__photos__images__image--vertical {
