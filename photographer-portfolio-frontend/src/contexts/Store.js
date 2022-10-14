@@ -9,9 +9,9 @@ const initialState = {
 };
 
 function reducer(state, action) {
-  const index = state.cart.cartItems.findIndex((object) => {
-    return object.id === action.payload.id;
-  });
+  // const index = state.cart.cartItems.findIndex((object) => {
+  //   return object.id === action.payload.id;
+  // });
 
   switch (action.type) {
     case 'CART_ADD_ITEM':
@@ -35,7 +35,8 @@ function reducer(state, action) {
           },
         };
       }
-
+      break;
+      
     default:
       return state;
   }

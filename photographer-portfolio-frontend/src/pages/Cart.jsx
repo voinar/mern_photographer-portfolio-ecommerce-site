@@ -29,7 +29,7 @@ const Cart = () => {
             {state.cart.cartItems.map((image) => {
               return (
                 <li className="cart__image">
-                  <img src={image.item}></img>
+                  <img src={image.item} alt=''></img>
                   {/* <span>{image.item}</span> */}
                   <div className="cart__image__tools">
                     <div>$Album</div>
