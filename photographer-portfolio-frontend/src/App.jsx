@@ -25,9 +25,9 @@ import Experiments from './pages/Experiments';
 // {document.cookie='myCookie=init; expires=' + new  Date(2022, 7, 28, 11, 52, 30)}
 
 function App() {
-  const { state } = useContext(Store);
-  const { cart } = state;
-  console.log('cart ' + JSON.stringify(cart));
+  // const { state } = useContext(Store);
+  // const { cart } = state;
+  // console.log('cart ' + JSON.stringify(cart));
 
   return (
     <>

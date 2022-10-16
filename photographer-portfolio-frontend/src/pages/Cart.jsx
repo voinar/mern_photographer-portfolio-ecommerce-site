@@ -1,18 +1,52 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { Store } from '../contexts/Store';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 //assets
 import IconChevron from '../img/icons/icon-chevron.svg';
-// import IconCartRemove from '../img/icons/icon-cart-remove.svg';
-
 import Footer from '../components/Footer';
 
 const Cart = () => {
-  const { state } = useContext(Store);
+  const { state, dispatch: contextDispatch } = useContext(Store);
+  const [localState, setLocalState] = useState([]);
 
   const navigate = useNavigate(); //used to return to previous page
   const goBack = () => navigate(-1);
+
+  const cartRemoveItem = (id) => {
+    contextDispatch({
+      type: 'CART_REMOVE_ITEM',
+      payload: { id: id },
+    });
+  };
+
+  useEffect(() => {
+    const getImagesData = async () => {
+      try {
+        const response = await axios.get(`/api/data/`);
+        setLocalState(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getImagesData();
+  }, [state]);
+
+  const getEventName = (id) => {
+    const item = localState.filter((item) => item.id === id);
+    return item[0]?.event;
+  };
+
+  const getPrice = (id) => {
+    const item = localState.filter((item) => item.id === id);
+    return item[0]?.price;
+  };
+
+  const getImageSrc = (id) => {
+    const item = localState.filter((item) => item.id === id);
+    return item[0]?.url;
+  };
 
   return (
     <>
@@ -25,17 +59,24 @@ const Cart = () => {
         </div>
         <div className="cart__sections">
           <ul className="cart__images">
-            {/* {JSON.stringify(state.cart.cartItems[0])} */}
+            <li className="cart__image">
+              <img src={''} alt=""/>
+              <div className="cart__image__tools cart__image__tools--header">
+                <span>Wydarzenie</span>
+                <span>Cena</span>
+                <span>Opcje</span>
+              </div>
+            </li>
             {state.cart.cartItems.map((image) => {
               return (
                 <li className="cart__image">
-                  <img src={image.item} alt=''></img>
-                  {/* <span>{image.item}</span> */}
+                  <img src={getImageSrc(image.id)} alt=""/>
                   <div className="cart__image__tools">
-                    <div>$Album</div>
-                    <div>Price
-                    {image.price}</div>
-                    <div>Remove</div>
+                    <span>{getEventName(image.id)}</span>
+                    <span>{getPrice(image.id)}PLN</span>
+                    <button onClick={() => cartRemoveItem(image.id)}>
+                      Usuń
+                    </button>
                   </div>
                 </li>
               );
@@ -43,10 +84,10 @@ const Cart = () => {
           </ul>
           <div className="cart__summary">
             <div>
-            <h2>Podsumowanie:</h2>
-            <span>int</span>
+              <h2>Podsumowanie:</h2>
+              <span>int</span>
             </div>
-            <br/>
+            <br />
             <button className="btn--primary">Kupuję</button>
             <button className="btn--secondary">Wracam do sklepu</button>
           </div>

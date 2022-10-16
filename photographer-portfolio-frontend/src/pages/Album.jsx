@@ -57,8 +57,8 @@ const Album = () => {
 
   //local component state
   const [showPreviewImage, setShowPreviewImage] = useState(false);
-  const [previewImageUrl, setPreviewImageUrl] = useState('');
-  // const [currentPreviewId, setCurrentPreviewId] = useState('');
+  const [previewImageUrl, setPreviewImageUrl] = useState(undefined);
+  const [previewImageId, setPreviewImageId] = useState(undefined);
 
   const navigate = useNavigate(); //used to return to previous page
   const goBack = () => navigate(-1);
@@ -66,12 +66,11 @@ const Album = () => {
   //global state imports & operations
 
   // preview images in album page
-  const handleImagePreview = (e) => {
+  const handleImagePreview = (image) => {
+    setPreviewImageId(image.id);
+    setPreviewImageUrl(image.url);
     setShowPreviewImage((prevState) => !prevState);
-    setPreviewImageUrl(e.target.getAttribute('src'));
-    console.log('src: ' + e.currentTarget.getAttribute('src'));
-    // setCurrentPreviewId(e.target.previousSibling.innerHTML);
-    // console.log("currentPreviewId" + e.target.previousSibling.innerHTML)
+    // console.log(previewImageId)
   };
 
   const handleImagePreviewPrev = () => {
@@ -93,13 +92,11 @@ const Album = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
 
   const addToCart = () => {
-    // console.log('add to cart');
     contextDispatch({
       type: 'CART_ADD_ITEM',
-      payload: { id: previewImageUrl, item: previewImageUrl },
+      payload: { id: previewImageId },
     });
-    console.log('local state: ' + JSON.stringify(state));
-    // console.log('added to cart' + JSON.stringify(e));
+    // console.log('local state: ' + JSON.stringify(state));
   };
 
   const albumImage = currentAlbumData.map((image) => {
@@ -107,11 +104,49 @@ const Album = () => {
       return (
         <>
           <AlbumImage
-            url={image.url}
+            key={image.id}
             id={image.id}
+            url={image.url}
+            price={image.price}
             // uuid={uuidv4()}
-            handleImagePreview={handleImagePreview}
+            handleImagePreview={() => handleImagePreview(image)}
           />
+          {showPreviewImage && (
+            <>
+              <div
+                className="album__preview"
+                onClick={handleImagePreview}
+              >
+                <img className="album__preview-image" src={previewImageUrl} alt="" />
+              </div>
+              <div className="album__preview-image__tools">
+                <button onClick={handleImagePreviewPrev}>
+                  <img
+                    className="album__preview-image__tools__arrow album__preview-image__tools__arrow--prev"
+                    src={IconChevron}
+                    alt="poprzednie zdjęcie"
+                    title="poprzednie zdjęcie"
+                  />
+                </button>
+                <button onClick={()=>addToCart(image.id)}>
+                  <img
+                    src={IconCartAdd}
+                    alt="dodaj do koszyka"
+                    title="dodaj do koszyka"
+                    // onClick={addToCart}
+                  />
+                </button>
+                <button onClick={handleImagePreviewNext}>
+                  <img
+                    className="album__preview-image__tools__arrow album__preview-image__tools__arrow--next"
+                    src={IconChevron}
+                    alt="następne zdjęcie"
+                    title="następne zdjęcie"
+                  />
+                </button>
+              </div>
+            </>
+          )}
         </>
       );
     } else {
@@ -152,46 +187,7 @@ const Album = () => {
               </div>
             </div>
           </div>
-          <div className="album__cards">
-            {albumImage}
-            {showPreviewImage && (
-              <>
-                <div className="album__preview" onClick={handleImagePreview}>
-                  <img
-                    className="album__preview-image"
-                    src={previewImageUrl}
-                    alt=""
-                  />
-                </div>
-                <div className="album__preview-image__tools">
-                  <button onClick={handleImagePreviewPrev}>
-                    <img
-                      className="album__preview-image__tools__arrow album__preview-image__tools__arrow--prev"
-                      src={IconChevron}
-                      alt="poprzednie zdjęcie"
-                      title="poprzednie zdjęcie"
-                    />
-                  </button>
-                  <button onClick={addToCart}>
-                    <img
-                      src={IconCartAdd}
-                      alt="dodaj do koszyka"
-                      title="dodaj do koszyka"
-                      onClick={addToCart}
-                    />
-                  </button>
-                  <button onClick={handleImagePreviewNext}>
-                    <img
-                      className="album__preview-image__tools__arrow album__preview-image__tools__arrow--next"
-                      src={IconChevron}
-                      alt="następne zdjęcie"
-                      title="następne zdjęcie"
-                    />
-                  </button>
-                </div>
-              </>
-            )}
-          </div>
+          <div className="album__cards">{albumImage}</div>
         </div>
       </main>
     </>
