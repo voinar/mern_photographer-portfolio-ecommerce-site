@@ -6,7 +6,7 @@ const AlbumCard = (props) => {
   return (
     <Link to={`/album/${image.album}`}>
       <div className="shop__card">
-        <img src={image.url} alt="" />
+        <img src={image.imageSmall} alt="" />
         <div className="shop__card__info">
           {/* <div className="shop__card__title">
                     <span>{image.album}</span>

@@ -6,21 +6,21 @@ const initialState = {
   cart: {
     // cartItems: [],
     cartItems: [
-      {
-        id: 'c9904ea3-7d9b-4215-a868-7b4060f18fd0',
-        // url: '../assets/portfolio/biegi/0.jpg',
-        // item: '../assets/portfolio/biegi/0.jpg',
-      },
-      {
-        id: '19f4c678-e05b-4bee-b516-38879f9ed836',
-        // url: '../assets/portfolio/biegi/1.jpg',
-        // item: '../assets/portfolio/biegi/1.jpg',
-      },
-      {
-        id: 'e7bb5fc9-9dd0-43af-b6ed-4e94fc9fc8f3',
-        // url: '../assets/portfolio/biegi/2.jpg',
-        // item: '../assets/portfolio/biegi/2.jpg',
-      },
+      // {
+      //   id: 'c9904ea3-7d9b-4215-a868-7b4060f18fd0',
+      //   // url: '../assets/portfolio/biegi/0.jpg',
+      //   // item: '../assets/portfolio/biegi/0.jpg',
+      // },
+      // {
+      //   id: '19f4c678-e05b-4bee-b516-38879f9ed836',
+      //   // url: '../assets/portfolio/biegi/1.jpg',
+      //   // item: '../assets/portfolio/biegi/1.jpg',
+      // },
+      // {
+      //   id: 'e7bb5fc9-9dd0-43af-b6ed-4e94fc9fc8f3',
+      //   // url: '../assets/portfolio/biegi/2.jpg',
+      //   // item: '../assets/portfolio/biegi/2.jpg',
+      // },
     ],
   },
 };

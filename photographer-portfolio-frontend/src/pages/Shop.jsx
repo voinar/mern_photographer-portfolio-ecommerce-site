@@ -33,24 +33,22 @@ const Shop = () => {
       error: '',
     }
   );
-  console.log('albums state: ' + JSON.stringify(albumsData));
+  // console.log('albums state: ' + JSON.stringify(albumsData));
 
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
-        const result = await axios.get('/api/data');
+        const result = await axios.get('/api/products');
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
       } catch (err) {
         dispatch({ type: 'FETCH_FAIL', payload: err.message });
       }
-      // setAlbumsData(result.data)
-      // console.log(result)
     };
     fetchData();
   }, []);
 
-  const [filterName, setFilterName] = useState('biegi');
+  const [filterName, setFilterName] = useState('');
   const [filterDate, setFilterDate] = useState('');
 
   const selectFilter = (e) => {
@@ -89,7 +87,7 @@ const Shop = () => {
     if (image.album === filterName) {
       return (
         <>
-          <AlbumCard image={image} />
+          <AlbumCard key={image._id} image={image} />
         </>
       );
     }
@@ -97,7 +95,7 @@ const Shop = () => {
     if (image.date === filterDate) {
       return (
         <>
-          <AlbumCard image={image} />
+          <AlbumCard key={image._id} image={image} />
         </>
       );
     }

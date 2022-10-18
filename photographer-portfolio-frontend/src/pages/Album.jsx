@@ -46,7 +46,7 @@ const Album = () => {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
-        const result = await axios.get('/api/data');
+        const result = await axios.get('/api/products');
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
       } catch (err) {
         dispatch({ type: 'FETCH_FAIL', payload: err.message });
@@ -67,10 +67,10 @@ const Album = () => {
 
   // preview images in album page
   const handleImagePreview = (image) => {
-    setPreviewImageId(image.id);
-    setPreviewImageUrl(image.url);
+    setPreviewImageId(image._id);
+    setPreviewImageUrl(image.imageMedium);
     setShowPreviewImage((prevState) => !prevState);
-    // console.log(previewImageId)
+    // console.log(image._id)
   };
 
   const handleImagePreviewPrev = () => {
@@ -96,7 +96,7 @@ const Album = () => {
       type: 'CART_ADD_ITEM',
       payload: { id: previewImageId },
     });
-    // console.log('local state: ' + JSON.stringify(state));
+    console.log('local state: ' + JSON.stringify(state));
   };
 
   const albumImage = currentAlbumData.map((image) => {
@@ -104,9 +104,9 @@ const Album = () => {
       return (
         <>
           <AlbumImage
-            key={image.id}
-            id={image.id}
-            url={image.url}
+            key={image._id}
+            id={image._id}
+            url={image.imageMedium}
             price={image.price}
             // uuid={uuidv4()}
             handleImagePreview={() => handleImagePreview(image)}
@@ -128,7 +128,7 @@ const Album = () => {
                     title="poprzednie zdjęcie"
                   />
                 </button>
-                <button onClick={()=>addToCart(image.id)}>
+                <button onClick={()=>addToCart(image._id)}>
                   <img
                     src={IconCartAdd}
                     alt="dodaj do koszyka"

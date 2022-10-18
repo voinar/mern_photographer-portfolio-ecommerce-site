@@ -24,8 +24,9 @@ const Cart = () => {
   useEffect(() => {
     const getImagesData = async () => {
       try {
-        const response = await axios.get(`/api/data/`);
+        const response = await axios.get(`/api/products/`);
         setLocalState(response.data);
+        // console.log(response)
       } catch (error) {
         console.error(error);
       }
@@ -35,7 +36,7 @@ const Cart = () => {
 
   const getEventName = (id) => {
     const item = localState.filter((item) => item.id === id);
-    return item[0]?.event;
+    return item[0]?.eventName;
   };
 
   const getPrice = (id) => {
@@ -45,7 +46,7 @@ const Cart = () => {
 
   const getImageSrc = (id) => {
     const item = localState.filter((item) => item.id === id);
-    return item[0]?.url;
+    return item[0]?.imageMedium;
   };
 
   return (

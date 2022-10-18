@@ -1,7 +1,7 @@
 const data = {
   albums: [
     {
-      id: 'c9904ea3-7d9b-4215-a868-7b4060f18fd0',
+      // id: 'c9904ea3-7d9b-4215-a868-7b4060f18fd0',
       title: '',
       description: 'Kwintesencja Trail Runningu, Wbiegnij na PODIUM z Buty Jana 2022',
       thumbnail: '../assets/portfolio/biegi/0.jpg',
@@ -13,7 +13,7 @@ const data = {
       price: 15,
     },
     {
-      id: '19f4c678-e05b-4bee-b516-38879f9ed836',
+      // id: '19f4c678-e05b-4bee-b516-38879f9ed836',
       title: '',
       description: '',
       thumbnail: '../assets/portfolio/biegi/1.jpg',
@@ -24,7 +24,7 @@ const data = {
       price: 10,
     },
     {
-      id: 'e7bb5fc9-9dd0-43af-b6ed-4e94fc9fc8f3',
+      // id: 'e7bb5fc9-9dd0-43af-b6ed-4e94fc9fc8f3',
       title: '',
       description: '',
       thumbnail: '../assets/portfolio/biegi/2.jpg',
@@ -35,7 +35,7 @@ const data = {
       price: 10,
     },
     {
-      id: 'ccb0dfd4-98dc-4f57-9cd0-d686c35ea942',
+      // id: 'ccb0dfd4-98dc-4f57-9cd0-d686c35ea942',
       title: '',
       description: '',
       thumbnail: '../assets/portfolio/biegi/3.jpg',
@@ -46,7 +46,7 @@ const data = {
       price: 10,
     },
     {
-      id: '3b05da8a-715f-4373-93be-937a26fa8ebd',
+      // id: '3b05da8a-715f-4373-93be-937a26fa8ebd',
       title: '',
       description: '',
       thumbnail: '../assets/portfolio/biegi/4.jpg',
