@@ -26,7 +26,6 @@ const Cart = () => {
       try {
         const response = await axios.get(`/api/products/`);
         setLocalState(response.data);
-        // console.log(response)
       } catch (error) {
         console.error(error);
       }
@@ -35,20 +34,21 @@ const Cart = () => {
   }, [state]);
 
   const getEventName = (id) => {
-    const item = localState.filter((item) => item.id === id);
-    return item[0]?.eventName;
+    const image = localState.filter((image) => image._id === id);
+    return image[0]?.eventName;
   };
 
   const getPrice = (id) => {
-    const item = localState.filter((item) => item.id === id);
-    return item[0]?.price;
+    const image = localState.filter((image) => image._id === id);
+    return image[0]?.price;
   };
 
   const getImageSrc = (id) => {
-    const item = localState.filter((item) => item.id === id);
-    return item[0]?.imageMedium;
+    const image = localState.filter((image) => image._id === id);
+    return image[0]?.imageMedium;
   };
 
+  console.log('cart contents: ' + state.cart.cartItems)
   return (
     <>
       <div className="cart__container">
@@ -71,11 +71,11 @@ const Cart = () => {
             {state.cart.cartItems.map((image) => {
               return (
                 <li className="cart__image">
-                  <img src={getImageSrc(image.id)} alt=""/>
+                  <img src={getImageSrc(image)} alt=""/>
                   <div className="cart__image__tools">
-                    <span>{getEventName(image.id)}</span>
-                    <span>{getPrice(image.id)}PLN</span>
-                    <button onClick={() => cartRemoveItem(image.id)}>
+                    <span>{getEventName(image)}</span>
+                    <span>{getPrice(image)}PLN</span>
+                    <button onClick={() => cartRemoveItem(image)}>
                       Usuń
                     </button>
                   </div>

@@ -1089,6 +1089,61 @@ select {
   background-color: rgba(0, 255, 0, 0.5);
 }
 
+.signin__container {
+  background-color: #f2f2f2;
+  color: #3a3939;
+  height: auto;
+  padding: 180px 100px 200px;
+  margin: 0 auto;
+}
+
+.signin__container h1 {
+  font-weight: 400;
+}
+
+.signin__container h2 {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 8px 0 26px;
+}
+
+.signin__form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.signin__form .signin__form__group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.signin__form__create-account {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 40px;
+}
+
 .navbar {
   position: fixed;
   top: 0;

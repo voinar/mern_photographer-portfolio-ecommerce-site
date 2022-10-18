@@ -6,6 +6,8 @@ import axios from 'axios';
 import IconChevron from '../img/icons/icon-chevron.svg';
 import Footer from '../components/Footer';
 
+import { v4 as uuidv4 } from 'uuid';
+
 import AlbumCard from '../components/AlbumCard';
 import LoadingSpinner from '../components/LoadingSpinner';
 
@@ -41,6 +43,7 @@ const Shop = () => {
       try {
         const result = await axios.get('/api/products');
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
+        // console.log(result);
       } catch (err) {
         dispatch({ type: 'FETCH_FAIL', payload: err.message });
       }
@@ -61,7 +64,11 @@ const Shop = () => {
     ...new Map(albumsData.map((item) => [item['album'], item])).values(),
   ]
     .map((eventName) => {
-      return <li onClick={selectFilter}>{eventName.album}</li>;
+      return (
+        <li key={uuidv4()} onClick={selectFilter}>
+          {eventName.album}
+        </li>
+      );
     })
     .filter((value, index, self) => self.indexOf(value) === index);
 
@@ -76,27 +83,32 @@ const Shop = () => {
   //   .filter((value, index, self) => self.indexOf(value) === index);
 
   const selectAlbumByDate = [
-    ...new Map(albumsData.map((item) => [item['date'], item])).values(),
+    ...new Map(albumsData.map((item) => [item['eventDate'], item])).values(),
   ]
-    .map((eventName) => {
-      return <li onClick={selectFilter}>{eventName.date}</li>;
+    .map((event) => {
+      return (
+        <li key={uuidv4()} onClick={selectFilter}>
+          {event.eventDate}
+        </li>
+      );
     })
     .filter((value, index, self) => self.indexOf(value) === index);
 
   const mapAlbums = albumsData.map((image) => {
     if (image.album === filterName) {
+      console.log(image._id);
       return (
-        <>
-          <AlbumCard key={image._id} image={image} />
-        </>
+        <li key={image._id}>
+          <AlbumCard image={image} />
+        </li>
       );
     }
 
-    if (image.date === filterDate) {
+    if (image.eventDate === filterDate) {
       return (
-        <>
-          <AlbumCard key={image._id} image={image} />
-        </>
+        <li key={image._id}>
+          <AlbumCard image={image} />
+        </li>
       );
     }
     return null;
@@ -109,8 +121,7 @@ const Shop = () => {
         <div className="shop__toolbar">
           <div className="shop__toolbar__title">
             <h1>
-              Przeglądaj albumy{': '}
-              <span>{filterName}</span>
+              Przeglądaj albumy: <span>{filterName}</span>
             </h1>
           </div>
 
@@ -122,6 +133,7 @@ const Shop = () => {
               </button>
               <div className="shop__toolbar__element__list-items">
                 <li
+                  key={uuidv4()}
                   onClick={() => {
                     setFilterName('');
                   }}
@@ -151,7 +163,7 @@ const Shop = () => {
               {error}
             </div>
           ) : (
-            mapAlbums
+            <ul>{mapAlbums}</ul>
           )}
         </div>
       </div>

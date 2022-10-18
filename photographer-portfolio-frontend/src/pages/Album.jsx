@@ -97,21 +97,21 @@ const Album = () => {
       payload: { id: previewImageId },
     });
     console.log('local state: ' + JSON.stringify(state));
+    console.log('previewImageId: ' + previewImageId);
   };
 
   const albumImage = currentAlbumData.map((image) => {
     if (image.album === album) {
       return (
-        <>
+        <li key={image._id}>
           <AlbumImage
-            key={image._id}
             id={image._id}
             url={image.imageMedium}
             price={image.price}
             // uuid={uuidv4()}
             handleImagePreview={() => handleImagePreview(image)}
           />
-          {showPreviewImage && (
+          {showPreviewImage && ( //image preview overlay
             <>
               <div
                 className="album__preview"
@@ -147,7 +147,7 @@ const Album = () => {
               </div>
             </>
           )}
-        </>
+        </li>
       );
     } else {
       return null;
@@ -170,9 +170,9 @@ const Album = () => {
               <h1>{album}</h1>
             </div>
             <h2>
-              {currentAlbumData[0]?.location}, {currentAlbumData[0]?.date}
+              {currentAlbumData[0]?.location} {currentAlbumData[0]?.date}
             </h2>
-            <div className="album__toolbar__elements">
+            {/* <div className="album__toolbar__elements">
               <div className="album__toolbar__element">
                 <span>Nazwa</span>
                 <img src={IconChevron} alt="zobacz" />
@@ -185,7 +185,7 @@ const Album = () => {
                 <span>Data</span>
                 <img src={IconChevron} alt="zobacz" />
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="album__cards">{albumImage}</div>
         </div>

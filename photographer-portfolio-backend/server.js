@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import data from './data/albumsNew.js';
+import data from './data/data.js';
 import dotenv from 'dotenv';
 import seedRouter from './routes/seedRoutes.js';
 import productRouter from './routes/productRoutes.js';

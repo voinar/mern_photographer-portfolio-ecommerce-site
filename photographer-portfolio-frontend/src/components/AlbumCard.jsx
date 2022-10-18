@@ -1,22 +1,23 @@
 import { Link } from 'react-router-dom';
 
 const AlbumCard = (props) => {
+  // console.log('id is: ' + JSON.stringify(props.image._id));
   const { image } = props;
 
   return (
-    <Link to={`/album/${image.album}`}>
-      <div className="shop__card">
-        <img src={image.imageSmall} alt="" />
-        <div className="shop__card__info">
-          {/* <div className="shop__card__title">
+      <Link key={props.image._id} to={`/album/${image.album}`}>
+        <div className="shop__card">
+          <img src={image.imageSmall} alt="" />
+          <div className="shop__card__info">
+            {/* <div className="shop__card__title">
                     <span>{image.album}</span>
                   </div> */}
-          <div className="shop__card__date">
-            <span>{image.date}</span>
+            <div className="shop__card__date">
+              <span>{image.date}</span>
+            </div>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
   );
 };
 
