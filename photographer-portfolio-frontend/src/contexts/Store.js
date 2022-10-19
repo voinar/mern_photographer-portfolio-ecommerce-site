@@ -11,6 +11,7 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
+
     case 'CART_ADD_ITEM': {
       //check if item is already in cart //add item to cart
       // console.log('img id: ' + JSON.stringify(image.id))
@@ -29,6 +30,7 @@ function reducer(state, action) {
         return state;
       }
     }
+
     case 'CART_REMOVE_ITEM': {
       //remove item from cart by id
       const cartItems = state.cart.cartItems.filter(
@@ -36,6 +38,11 @@ function reducer(state, action) {
       );
       return { ...state, cart: { ...state.cart, cartItems } };
     }
+
+    case 'USER_SIGNIN': {
+      return {...state, userInfo: action.payload}
+    }
+
     default:
       console.log('default');
       return state;

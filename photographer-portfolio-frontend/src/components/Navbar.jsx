@@ -8,6 +8,7 @@ import iconCart from '../img/icons/icon-cart.svg';
 import iconShare from '../img/icons/icon-share.svg';
 import iconMenu from '../img/icons/icon-menu.svg';
 import iconClose from '../img/icons/icon-close.svg';
+import iconLogin from '../img/icons/icon-login.svg';
 
 const Navbar = () => {
   const { state } = useContext(Store);
@@ -128,6 +129,33 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="navbar__shop__icons">
+            <div className="navbar__shop__userinfo">
+              {state?.userInfo?.name?.length > 0 ? (
+                <>
+                  <Link to="/Logowanie">
+                    <img
+                      src={iconLogin}
+                      className="navbar__shop__icon"
+                      alt="zobacz koszyk"
+                      title="zobacz koszyk"
+                    />
+                  </Link>
+                  <span>{'Witaj ' + state?.userInfo?.name + '!'}</span>
+                </>
+              ) : (
+                <>
+                  <span>Zaloguj</span>
+                  <Link to="/Logowanie">
+                    <img
+                      src={iconLogin}
+                      className="navbar__shop__icon"
+                      alt="zobacz koszyk"
+                      title="zobacz koszyk"
+                    />
+                  </Link>
+                </>
+              )}
+            </div>
             <div className="navbar__shop__icon__cart">
               {state.cart.cartItems.length > 0 && (
                 <div className="navbar__shop__icon__cart__count">

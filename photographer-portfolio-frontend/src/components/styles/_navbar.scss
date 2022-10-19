@@ -154,11 +154,21 @@
   filter: invert(100%);
 }
 
+.navbar__shop__userinfo {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  align-items: center;
+  gap: 10px;
+  font-weight: 300;
+}
+
 .navbar__shop__icons {
   display: flex;
   flex-direction: row;
   margin-left: auto;
   gap: 10px;
+  align-items: center;
 
   img {
     width: 36px;

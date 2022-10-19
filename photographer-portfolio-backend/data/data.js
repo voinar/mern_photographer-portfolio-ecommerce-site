@@ -13,7 +13,7 @@ const data = {
       email: 'mpwojnar@gmail.com',
       password: bcrypt.hashSync('user'),
       isAdmin: false,
-    }
+    },
   ],
 
   products: [

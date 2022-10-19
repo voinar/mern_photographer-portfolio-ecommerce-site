@@ -1090,11 +1090,12 @@ select {
 }
 
 .signin__container {
-  background-color: #f2f2f2;
+  background-color: rgba(255, 255, 255, 0.85);
   color: #3a3939;
-  height: auto;
   padding: 180px 100px 200px;
   margin: 0 auto;
+  font-weight: 300;
+  font-size: 14px;
 }
 
 .signin__container h1 {
@@ -1118,6 +1119,31 @@ select {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin: 100px auto;
+  padding: 20px 0;
+  width: 400px;
+  border: 1px solid rgba(0, 255, 85, 0.15);
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.signin__form label {
+  padding: 0 0 2px 16px;
+  font-size: 16px;
+}
+
+.signin__form input {
+  all: unset;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  padding: 8px 16px;
+  width: 300px;
+}
+
+.signin__form ::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0.3);
+  font-size: 14px;
 }
 
 .signin__form .signin__form__group {
@@ -1128,6 +1154,22 @@ select {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  margin-top: 8px;
+}
+
+.signin__form button {
+  all: unset;
+  padding: 6px 26px;
+  margin-top: 22px;
+  background-color: rgba(165, 254, 183, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 6px;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+.signin__form button:hover {
+  background-color: #46ff6b;
 }
 
 .signin__form__create-account {
@@ -1142,6 +1184,24 @@ select {
       -ms-flex-align: center;
           align-items: center;
   margin-top: 40px;
+}
+
+.signin__form__create-account button {
+  all: unset;
+  padding: 6px 26px;
+  margin-top: 22px;
+  background-color: rgba(165, 250, 254, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 6px;
+}
+
+.checkout__container {
+  background-color: rgba(255, 255, 255, 0.85);
+  color: #3a3939;
+  padding: 180px 100px 200px;
+  margin: 0 auto;
+  font-weight: 300;
+  font-size: 14px;
 }
 
 .navbar {
@@ -1321,6 +1381,22 @@ select {
           filter: invert(100%);
 }
 
+.navbar__shop__userinfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-left: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  font-weight: 300;
+}
+
 .navbar__shop__icons {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1331,6 +1407,9 @@ select {
           flex-direction: row;
   margin-left: auto;
   gap: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .navbar__shop__icons img {

@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import { Store } from '../contexts/Store';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 //assets
@@ -48,7 +49,7 @@ const Cart = () => {
     return image[0]?.imageMedium;
   };
 
-  console.log('cart contents: ' + state.cart.cartItems)
+  console.log('cart contents: ' + state.cart.cartItems);
   return (
     <>
       <div className="cart__container">
@@ -61,7 +62,7 @@ const Cart = () => {
         <div className="cart__sections">
           <ul className="cart__images">
             <li className="cart__image">
-              <img src={''} alt=""/>
+              <img src={''} alt="" />
               <div className="cart__image__tools cart__image__tools--header">
                 <span>Wydarzenie</span>
                 <span>Cena</span>
@@ -71,13 +72,11 @@ const Cart = () => {
             {state.cart.cartItems.map((image) => {
               return (
                 <li className="cart__image">
-                  <img src={getImageSrc(image)} alt=""/>
+                  <img src={getImageSrc(image)} alt="" />
                   <div className="cart__image__tools">
                     <span>{getEventName(image)}</span>
                     <span>{getPrice(image)}PLN</span>
-                    <button onClick={() => cartRemoveItem(image)}>
-                      Usuń
-                    </button>
+                    <button onClick={() => cartRemoveItem(image)}>Usuń</button>
                   </div>
                 </li>
               );
@@ -89,7 +88,9 @@ const Cart = () => {
               <span>int</span>
             </div>
             <br />
-            <button className="btn--primary">Kupuję</button>
+            <Link to="/logowanie">
+              <button className="btn--primary">Kupuję</button>
+            </Link>
             <button className="btn--secondary">Wracam do sklepu</button>
           </div>
         </div>

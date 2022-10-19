@@ -12,6 +12,7 @@ import Shop from './pages/Shop';
 import Album from './pages/Album';
 import Cart from './pages/Cart';
 import SignIn from './pages/SignIn';
+import Checkout from './pages/Checkout';
 
 //components
 import Navbar from './components/Navbar';
@@ -48,6 +49,7 @@ function App() {
           <Route path="/experiments" element={<Experiments />} />
           <Route path="/koszyk" element={<Cart />} />
           <Route path="/logowanie" element={<SignIn />} />
+          <Route path="/podsumowanie" element={<Checkout />} />
         </Routes>
       </div>
     </>

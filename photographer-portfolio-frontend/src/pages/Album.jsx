@@ -3,6 +3,8 @@ import { useContext, useState, useReducer, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
+import Footer from '../components/Footer';
+
 // import { v4 as uuidv4 } from 'uuid';
 
 //assets
@@ -113,11 +115,12 @@ const Album = () => {
           />
           {showPreviewImage && ( //image preview overlay
             <>
-              <div
-                className="album__preview"
-                onClick={handleImagePreview}
-              >
-                <img className="album__preview-image" src={previewImageUrl} alt="" />
+              <div className="album__preview" onClick={handleImagePreview}>
+                <img
+                  className="album__preview-image"
+                  src={previewImageUrl}
+                  alt=""
+                />
               </div>
               <div className="album__preview-image__tools">
                 <button onClick={handleImagePreviewPrev}>
@@ -128,7 +131,7 @@ const Album = () => {
                     title="poprzednie zdjęcie"
                   />
                 </button>
-                <button onClick={()=>addToCart(image._id)}>
+                <button onClick={() => addToCart(image._id)}>
                   <img
                     src={IconCartAdd}
                     alt="dodaj do koszyka"
@@ -190,6 +193,7 @@ const Album = () => {
           <div className="album__cards">{albumImage}</div>
         </div>
       </main>
+      <Footer />
     </>
   );
 };
