@@ -11,12 +11,6 @@
   width: 100%;
   color: $--c-white;
   z-index: 10;
-  // filter: invert(100%);
-
-  // mix-blend-mode: hard-light;
-  // mix-blend-mode: difference;
-
-  // background: rgb(255,255,255);
   background: linear-gradient(
     0deg,
     rgba(0, 0, 0, 0) 20%,
@@ -97,13 +91,11 @@
 .navbar__menu__button {
   all: unset; //unset all styles
   display: none; //do not render in desktop mode
-  // border: 1px solid rgba(255, 255, 255, 0.5);
   justify-content: center;
   position: fixed;
   left: 12vw;
   top: 4vh;
   filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.7));
-  // border: 1px solid rgba(255, 255, 255, 0.7);
   z-index: 5;
 }
 
@@ -130,7 +122,7 @@
 }
 
 .navbar--invert {
-  //nverted color palette for 'about me' and shop pages
+  //inverted color palette for 'about me' and shop pages
   filter: invert(100%);
 }
 
@@ -145,7 +137,6 @@
   flex-direction: row;
   width: 100%;
   padding: 20px 100px;
-  // border: 2px solid red;
   z-index: 10;
 }
 
@@ -161,6 +152,49 @@
   align-items: center;
   gap: 10px;
   font-weight: 300;
+
+  span {
+    text-transform: capitalize;
+  }
+
+  .navbar__shop__userinfo__usermenu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+
+    gap: 6px;
+    button {
+      all: unset;
+    }
+
+    img {
+      width: 20px;
+    }
+
+    .navbar__shop__userinfo__usermenu__content {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.6);
+      width: 180px;
+      height: auto;
+      top: 20px;
+      left: 0;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      padding: 6px 12px;
+      box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+
+      li {
+        line-height: 200%;
+      }
+
+      .navbar__shop__userinfo__usermenu__content__logout {
+        padding: 4px 0;
+        margin: 8px 0 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
 }
 
 .navbar__shop__icons {
@@ -173,7 +207,6 @@
   img {
     width: 36px;
     cursor: pointer;
-
   }
 
   .navbar__shop__icon__cart {
@@ -273,7 +306,6 @@
   }
 
   .navbar--invert {
-    //nverted color palette for 'about me' page
     filter: invert(5%);
     background-color: black;
   }

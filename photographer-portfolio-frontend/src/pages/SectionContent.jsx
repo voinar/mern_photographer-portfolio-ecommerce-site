@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import photographyData from '../data/staticData.json';
 import Footer from '../components/Footer';
-import chevronUp from '../img/icons/chevron-up.svg';
+import iconChevronUp from '../img/icons/icon-chevron-up.svg';
 
 const SectionContent = () => {
   let { category } = useParams();
@@ -106,7 +106,7 @@ const SectionContent = () => {
               className="section__photos__see-more__icon"
               onClick={scrollToContent}
             >
-              <img src={chevronUp} alt="facebook" />
+              <img src={iconChevronUp} alt="facebook" />
             </div>
           </div>
         </div>

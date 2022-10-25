@@ -5,6 +5,12 @@ import { useState, useContext } from 'react';
 import { Store } from '../contexts/Store';
 import Footer from '../components/Footer';
 
+// import User from './models/userModel.js';
+// import bcrypt from 'bcryptjs';
+
+//assets
+import IconChevron from '../img/icons/icon-chevron.svg';
+
 const SignIn = () => {
   const navigate = useNavigate();
   const { search } = useLocation();
@@ -13,10 +19,12 @@ const SignIn = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [signinForm, setSigninForm] = useState(true);
 
   const { state, dispatch: contextDispatch } = useContext(Store);
 
-  const handleSubmit = async (e) => {
+  const handleSignin = async (e) => {
     e.preventDefault();
     try {
       const { data } = await axios.post('/api/users/signin', {
@@ -24,56 +32,130 @@ const SignIn = () => {
         password,
       });
       contextDispatch({ type: 'USER_SIGNIN', payload: data });
-        console.log('data received: ' + JSON.stringify(data));
+      console.log('data received: ' + JSON.stringify(data));
+
       localStorage.setItem('userInfo', JSON.stringify(data));
-      navigate(redirect || '/koszyk')
+      navigate(redirect || '/koszyk');
     } catch (err) {
+      setErrorMessage('Niepoprawny adres email lub hasło');
+      // setErrorMessage(err.message);
       console.log('error: ' + err);
     }
   };
 
-  const handleLogin = () => {
-    console.log('login');
+  const handleCreateAccount = async (e) => {
+    e.preventDefault();
+    try {
+      const { newUser } = await axios.post('/api/users/createuser', {
+        email,
+        password,
+      });
+    } catch (err) {
+      setErrorMessage(err.message);
+      // setErrorMessage(err.message);
+      console.log('error while creating new user: ' + err.message);
+    } finally {
+      console.log('success')
+    }
+    // console.log('createAccount');
+    handleSignin(e)
   };
+
+  const toggleForm = () => {
+    setSigninForm((prevState) => !prevState);
+    console.log('toggle form');
+  };
+
+  const goBack = () => navigate(-1);
 
   return (
     <>
       <Helmet>
         <title>Logowanie</title>
       </Helmet>
-      <div className="signin__container">
-        <h1>Logowanie</h1>
-        <form className="signin__form" onSubmit={handleSubmit}>
-          <div className="signin__form__group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              name="email"
-              required
-              placeholder="Wpisz swój adres email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
+
+      {signinForm ? (
+        //log into an existing account
+        <div className="signin__container signin__container--signin">
+          <div className="album__toolbar">
+            <div className="album__title">
+              <button onClick={goBack}>
+                <img src={IconChevron} alt="zobacz" />
+              </button>
+              <h1>Logowanie</h1>
+            </div>
           </div>
-          <div className="signin__form__group">
-            <label htmlFor="password">Hasło</label>
-            <input
-              type="password"
-              name="password"
-              required
-              placeholder="Wpisz hasło"
-              onChange={(e) => setPassword(e.target.value)}
-            />
+          <form className="signin__form" onSubmit={handleSignin}>
+            <div className="signin__form__group">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder="Wpisz swój adres email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="signin__form__group">
+              <label htmlFor="password">Hasło</label>
+              <input
+                type="password"
+                name="password"
+                required
+                placeholder="Wpisz hasło"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <button type="submit">Zaloguj</button>
+            <span>{errorMessage}</span>
+          </form>
+          <div className="signin__form__create-account">
+            <span>Nie posiadasz jeszcze konta?</span>
+            <button onClick={toggleForm}>Stwórz nowe konto</button>
           </div>
-          <span>wrong email or pwd</span>
-          <button type="submit" onClick={() => handleLogin}>
-            Zaloguj
-          </button>
-        </form>
-        <div className="signin__form__create-account">
-          <span>Nie posiadasz jeszcze konta?</span>
-          <button>Stwórz nowe konto</button>
         </div>
-      </div>
+      ) : (
+        //create a new account with data specified in the form
+        <div className="signin__container signin__container--create-account">
+          <div className="album__toolbar">
+            <div className="album__title">
+              <button onClick={goBack}>
+                <img src={IconChevron} alt="zobacz" />
+              </button>
+              <h1>Nowe konto</h1>
+            </div>
+          </div>
+          <form className="signin__form" onSubmit={handleCreateAccount}>
+            <div className="signin__form__group">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder="Wpisz swój adres email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="signin__form__group">
+              <label htmlFor="password">Hasło</label>
+              <input
+                type="password"
+                name="password"
+                required
+                placeholder="Wpisz hasło"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <button type="submit">Zaloguj</button>
+            <span>{errorMessage}</span>
+          </form>
+          <div className="signin__form__create-account">
+            <span>Posiadasz już konto?</span>
+            <button onClick={toggleForm}>Logowanie</button>
+          </div>
+        </div>
+      )}
+
       <Footer />
     </>
   );

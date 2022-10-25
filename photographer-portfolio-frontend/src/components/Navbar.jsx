@@ -9,23 +9,24 @@ import iconShare from '../img/icons/icon-share.svg';
 import iconMenu from '../img/icons/icon-menu.svg';
 import iconClose from '../img/icons/icon-close.svg';
 import iconLogin from '../img/icons/icon-login.svg';
+import iconChevron from '../img/icons/icon-chevron.svg';
 
 const Navbar = () => {
-  const { state } = useContext(Store);
-
-  // console.log('path ' + window.location.pathname);
-
+  const { state, dispatch: contextDispatch } = useContext(Store);
   const location = useLocation();
 
   //navbar behavior on scroll in desktop view. menu shrinks height and gains a solid background.
   const [scroll, setScroll] = useState(false);
   const navRef = useRef(); //used to apply solid background class on scroll
 
+  const [userMenuVisibility, setUserMenuVisibility] = useState('false');
+  const [cartVisibility, setCartVisibility] = useState('false');
+
   useEffect(() => {
     window.addEventListener('scroll', () => {
       setScroll(window.scrollY > 100);
     });
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     location.pathname === '/o%20mnie'
@@ -38,6 +39,12 @@ const Navbar = () => {
     navRef.current.classList.toggle('navbar--show');
     // document.body.style.overflow = 'scroll';
   };
+
+  const handleSignout =() => {
+    contextDispatch({type: 'USER_SIGNOUT'})
+    localStorage.removeItem('userInfo')
+    console.log('logout')
+  }
 
   const renderNavbar = () => {
     if (
@@ -132,15 +139,39 @@ const Navbar = () => {
             <div className="navbar__shop__userinfo">
               {state?.userInfo?.name?.length > 0 ? (
                 <>
-                  <Link to="/Logowanie">
+                  <div className="navbar__shop__userinfo__usermenu">
+                    <span>{'Witaj, ' + state?.userInfo?.name + '!'}</span>
+                    <button
+                      onClick={() => setUserMenuVisibility(!userMenuVisibility)}
+                    >
+                      <img
+                        src={iconChevron}
+                        alt="Konto użytkownika"
+                        title="Konto użytkownika"
+                      />
+                    </button>
+                    {/* <Link to="/Logowanie">
                     <img
                       src={iconLogin}
                       className="navbar__shop__icon"
                       alt="zobacz koszyk"
                       title="zobacz koszyk"
                     />
-                  </Link>
-                  <span>{'Witaj ' + state?.userInfo?.name + '!'}</span>
+                  </Link> */}
+                    <ul
+                      className={
+                        userMenuVisibility
+                          ? 'navbar__shop__userinfo__usermenu__content hidden'
+                          : 'navbar__shop__userinfo__usermenu__content'
+                      }
+                    >
+                      <li>Moje zdjęcia</li>
+                      <li>Konto użytkownika</li>
+                      <li className="navbar__shop__userinfo__usermenu__content__logout">
+                        <button onClick={handleSignout}>Wyloguj</button>
+                      </li>
+                    </ul>
+                  </div>
                 </>
               ) : (
                 <>

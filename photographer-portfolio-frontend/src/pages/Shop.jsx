@@ -95,8 +95,15 @@ const Shop = () => {
     .filter((value, index, self) => self.indexOf(value) === index);
 
   const mapAlbums = albumsData.map((image) => {
+    if (filterName === '' && image.imageMedium.slice(-5) === '0.jpg')
+      return (
+        <li key={image._id}>
+          <AlbumCard image={image} />
+          <span>{image.eventName}</span>
+        </li>
+      );
+
     if (image.album === filterName) {
-      console.log(image._id);
       return (
         <li key={image._id}>
           <AlbumCard image={image} />

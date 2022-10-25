@@ -4,28 +4,34 @@ export const Store = createContext();
 
 const initialState = {
   cart: {
-    // cartItems: [],
-    cartItems: ['634e65e100c931d92937dc66', '634e65e100c931d92937dc65']
+    cartItems: localStorage.getItem('cartItems')
+      ? JSON.parse(localStorage.getItem('cartItems'))
+      : [],
   },
+  userInfo: localStorage.getItem('userInfo')
+    ? JSON.parse(localStorage.getItem('userInfo'))
+    : [],
 };
 
 function reducer(state, action) {
   switch (action.type) {
-
     case 'CART_ADD_ITEM': {
-      //check if item is already in cart //add item to cart
-      // console.log('img id: ' + JSON.stringify(image.id))
-      // console.log('a p id: ' + JSON.stringify(action.payload.id))
+      //check if item is already in cart
       const newItem = action.payload.id;
-      const existingItem = state.cart.cartItems.find((image) => {
-        return image.id === action.payload.id;
+      const isInCart = state.cart.cartItems.find((id) => {
+        return id === action.payload.id;
       });
-      console.log('existingItem' + existingItem);
-      console.log('newItem: ' + newItem)
 
-      if (existingItem === undefined) {
-        return { ...state, cart: { ...state.cart, cartItems: [...state.cart.cartItems, newItem]} };
-      } else {
+      //if not in cart then create new item
+      if (isInCart === undefined) {
+        return {
+          ...state,
+          cart: {
+            ...state.cart,
+            cartItems: [...state.cart.cartItems, newItem],
+          },
+        };
+      } else { //else do nothing
         console.log('item already in cart');
         return state;
       }
@@ -40,7 +46,11 @@ function reducer(state, action) {
     }
 
     case 'USER_SIGNIN': {
-      return {...state, userInfo: action.payload}
+      return { ...state, userInfo: action.payload };
+    }
+
+    case 'USER_SIGNOUT': {
+      return { ...state, userInfo: null };
     }
 
     default:

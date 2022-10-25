@@ -1,7 +1,7 @@
 import footerLogo from '../img/logo-full.png';
 import iconFacebook from '../img/icons/icon-facebook.svg';
 import iconInstagram from '../img/icons/icon-instagram.svg';
-import chevronUp from '../img/icons/chevron-up.svg';
+import iconChevronUp from '../img/icons/icon-chevron-up.svg';
 
 const Footer = () => {
   const returnToTop = () => {
@@ -46,7 +46,7 @@ const Footer = () => {
         </div>
 
         <div className="footer__column footer__return" onClick={returnToTop}>
-          <img src={chevronUp} alt="wróć do początku" />
+          <img src={iconChevronUp} alt="wróć do początku" />
         </div>
       </div>
       <div className="footer__slogan">Zobacz emocje</div>

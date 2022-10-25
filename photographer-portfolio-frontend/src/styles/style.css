@@ -693,14 +693,27 @@ select {
           justify-content: left;
 }
 
+.shop__cards ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 100px 0px;
+}
+
 .shop__card {
-  width: 240px;
-  height: 180px;
+  width: 380px;
+  height: 280px;
   opacity: 0.9;
 }
 
 .shop__card img {
-  width: 220px;
+  width: 360px;
   height: inherit;
   -o-object-fit: cover;
      object-fit: cover;
@@ -762,7 +775,6 @@ select {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background-color: #f2f2f2;
   width: 100vw;
   z-index: 3;
 }
@@ -1108,6 +1120,10 @@ select {
   margin: 8px 0 26px;
 }
 
+.signin__container--create-account .signin__form {
+  background-color: rgba(253, 255, 230, 0.85);
+}
+
 .signin__form {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1164,8 +1180,8 @@ select {
   background-color: rgba(165, 254, 183, 0.5);
   border: 1px solid rgba(0, 0, 0, 0.07);
   border-radius: 6px;
-  -webkit-transition: .2s;
-  transition: .2s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
 }
 
 .signin__form button:hover {
@@ -1395,6 +1411,57 @@ select {
           align-items: center;
   gap: 10px;
   font-weight: 300;
+}
+
+.navbar__shop__userinfo span {
+  text-transform: capitalize;
+}
+
+.navbar__shop__userinfo .navbar__shop__userinfo__usermenu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  gap: 6px;
+}
+
+.navbar__shop__userinfo .navbar__shop__userinfo__usermenu button {
+  all: unset;
+}
+
+.navbar__shop__userinfo .navbar__shop__userinfo__usermenu img {
+  width: 20px;
+}
+
+.navbar__shop__userinfo .navbar__shop__userinfo__usermenu .navbar__shop__userinfo__usermenu__content {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.6);
+  width: 180px;
+  height: auto;
+  top: 20px;
+  left: 0;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 6px 12px;
+  -webkit-box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+          box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.navbar__shop__userinfo .navbar__shop__userinfo__usermenu .navbar__shop__userinfo__usermenu__content li {
+  line-height: 200%;
+}
+
+.navbar__shop__userinfo .navbar__shop__userinfo__usermenu .navbar__shop__userinfo__usermenu__content .navbar__shop__userinfo__usermenu__content__logout {
+  padding: 4px 0;
+  margin: 8px 0 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .navbar__shop__icons {
@@ -1873,6 +1940,10 @@ ul {
 
 img {
   pointer-events: none;
+}
+
+.hidden {
+  display: none;
 }
 
 /* ===== Scrollbar CSS ===== */

@@ -94,12 +94,15 @@ const Album = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
 
   const addToCart = () => {
-    contextDispatch({
-      type: 'CART_ADD_ITEM',
-      payload: { id: previewImageId },
-    });
-    console.log('local state: ' + JSON.stringify(state));
-    console.log('previewImageId: ' + previewImageId);
+    try {
+      contextDispatch({
+        type: 'CART_ADD_ITEM',
+        payload: { id: previewImageId },
+      });
+      localStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const albumImage = currentAlbumData.map((image) => {

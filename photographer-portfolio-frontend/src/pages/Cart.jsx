@@ -20,6 +20,7 @@ const Cart = () => {
       type: 'CART_REMOVE_ITEM',
       payload: { id: id },
     });
+    localStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
   };
 
   useEffect(() => {

@@ -101,15 +101,22 @@
   margin-left: 10px;
   margin-top: 140px;
   justify-content: left;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 100px 0px;
+  }
 }
 
 .shop__card {
-  width: 240px;
-  height: 180px;
+  width: 380px;
+  height: 280px;
   opacity: 0.9;
 
   img {
-    width: 220px;
+    width: 360px;
     height: inherit;
     object-fit: cover;
 
