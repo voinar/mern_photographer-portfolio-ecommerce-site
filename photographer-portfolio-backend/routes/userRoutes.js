@@ -30,30 +30,23 @@ userRouter.post(
 userRouter.post(
   '/createuser',
   expressAsyncHandler(async (req, res) => {
-    await User.create({
-      name: req.body.email,
-      email: req.body.email,
-      password: req.body.password,
-      isAdmin: false,
-    });
-    return;
+    const user = await User.findOne({ email: req.body.email });
 
+    console.log('submitted data: ' + user);
 
-    // if (user) {
-    //   if (bcrypt.compareSync(req.body.password, user.password)) {
-    //     res.send({
-    //       _id: user._id,
-    //       name: user.name,
-    //       email: user.email,
-    //       isAdmin: user.isAdmin,
-    //       token: generateToken(user),
-    //     });
-    //     return;
-    //   }
-    // }
+    if (!user) {
+      await User.create({
+        name: req.body.email,
+        email: req.body.email,
+        password: req.body.password,
+        isAdmin: false,
+      });
+      return;
+    }
+
     // res.status(401).send({message: 'Invalid email or password'});
     console.log('res: ' + JSON.stringify(res));
-  })
+})
 );
 
 export default userRouter;

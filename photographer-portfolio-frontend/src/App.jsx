@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
-import { useContext } from 'react';
+// import { useContext } from 'react';
 // import Context from './contexts/Context';
 import { Helmet } from 'react-helmet-async';
-import { Store } from './contexts/Store';
+// import { Store } from './contexts/Store';
 
 //pages
 import SectionWelcome from './pages/SectionWelcome';

@@ -20,7 +20,7 @@ const Navbar = () => {
   const navRef = useRef(); //used to apply solid background class on scroll
 
   const [userMenuVisibility, setUserMenuVisibility] = useState('false');
-  const [cartVisibility, setCartVisibility] = useState('false');
+  // const [cartVisibility, setCartVisibility] = useState('false');
 
   useEffect(() => {
     window.addEventListener('scroll', () => {

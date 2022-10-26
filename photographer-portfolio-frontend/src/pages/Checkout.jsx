@@ -1,11 +1,11 @@
 import { Helmet } from 'react-helmet-async';
 import Footer from '../components/Footer';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { Store } from '../contexts/Store';
 
 const Checkout = () => {
 
-  const { state, dispatch: contextDispatch } = useContext(Store);
+  const { state } = useContext(Store);
 
 
     return (

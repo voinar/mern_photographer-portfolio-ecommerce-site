@@ -28,6 +28,9 @@
 
   .section__about__content--right {
     // width: 1600px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
   }
 }
 

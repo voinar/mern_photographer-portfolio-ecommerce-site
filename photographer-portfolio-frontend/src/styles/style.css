@@ -214,6 +214,8 @@ select {
       -ms-flex-pack: center;
           justify-content: center;
   height: 100%;
+  width: 70vw;
+  margin: 0 auto;
   bottom: 120px;
   text-align: center;
   font-weight: 300;
@@ -338,6 +340,18 @@ select {
   font-weight: 300;
   text-align: justify;
   margin-top: 16px;
+}
+
+.section__about__main .section__about__content--right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-item-align: center;
+      align-self: center;
 }
 
 .section__about__image--main {

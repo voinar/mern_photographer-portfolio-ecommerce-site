@@ -72,29 +72,28 @@ const About = () => {
             <h1>O mnie</h1>
             <p>
               Świetnie odnajduję się tam gdzie są emocje. Specjalizuję się w
-              fotografii sportowej, a najbliższe mojemu sercu są takie
-              dyscypliny jak: bieganie oraz triathlon. Sam prężnie rozwijam się
-              jako biegacz górski, zdobywając wysokie lokaty na zawodach, co
-              pozwala mi bardzo dobrze rozumieć temat, poczuć atmosferę
-              wydarzenia i utożsamić z jego bohaterami.
+              fotografii sportowej. Sam prężnie rozwijam się jako biegacz
+              górski, zdobywając wysokie lokaty na zawodach, co pozwala mi
+              bardzo dobrze rozumieć temat, poczuć atmosferę wydarzenia i
+              utożsamić z jego bohaterami.
             </p>
             <p>
-              Moją ulubioną dziedzina fotografii jest <i>reportaż</i>, czyli w
-              miejsca gdzie akcja dzieje się cały czas, a ja mogę wykorzystać
-              inne patrzenie na świat oraz duże zaangażowanie.
+              Moją ulubioną dziedzina fotografii jest reportaż, czyli w miejsca
+              gdzie akcja dzieje się cały czas, a ja mogę wykorzystać inne
+              patrzenie na świat oraz duże zaangażowanie.
             </p>
             <p>
               Fotografia sprawia mi ogromną satysfakcję, co można poczuć podczas
-              współpracy ze mną, cechuję się niezwykłym entuzjazmem oraz
-              optymizmem, uwielbiam kontakt z ludźmi i ogromną radość sprawia
-              mi, towarzyszenie Wam, w tak ważnych dla Was momentach,
-              wydarzeniach, chwilach.
+              współpracy ze mną - cechuję się niezwykłym entuzjazmem oraz
+              optymizmem. Uwielbiam kontakt z ludźmi, a towarzyszenie Wam w tych
+              ważnych momentach sprawia mi wielką radość.
             </p>
             <p>
-              Ciągle się rozwijam oraz poszerzam swoje umiejętności i
-              kompetencje, zbieram doświadczenie, oraz próbuję nowych wyzwań
-              podczas wszelkiego rodzaju zleceń. Działam głównie na Podkarpaciu,
-              okolice miasta Rzeszów, oraz Południu Polski.
+              Moje wykształcenie, doświadczenie i profesjonalizm dopełniam
+              sprzętem z nawyższej półki. Staramy się jak najmocniej
+              usatysfakcjonować każdego klienta, podchodząc do zlecenia bardzo
+              indywidualnie. Działam głównie na Podkarpaciu, w okolicach
+              Rzeszowa, oraz Południu Polski.
             </p>
           </div>
         </div>

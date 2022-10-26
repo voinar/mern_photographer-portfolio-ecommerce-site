@@ -33,6 +33,7 @@ const SignIn = () => {
       });
       contextDispatch({ type: 'USER_SIGNIN', payload: data });
       console.log('data received: ' + JSON.stringify(data));
+      console.log('state: ' + state.toString());
 
       localStorage.setItem('userInfo', JSON.stringify(data));
       navigate(redirect || '/koszyk');
@@ -50,15 +51,15 @@ const SignIn = () => {
         email,
         password,
       });
+      console.log('newUser:' + newUser);
     } catch (err) {
-      setErrorMessage(err.message);
+      setErrorMessage(
+        'Konto z podanym adresem email już istnieje. Przypomnienie hasła.'
+      );
       // setErrorMessage(err.message);
       console.log('error while creating new user: ' + err.message);
-    } finally {
-      console.log('success')
     }
-    // console.log('createAccount');
-    handleSignin(e)
+    console.log('createAccount');
   };
 
   const toggleForm = () => {
