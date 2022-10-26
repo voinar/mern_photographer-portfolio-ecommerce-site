@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import { Store } from '../contexts/Store';
 import Footer from '../components/Footer';
