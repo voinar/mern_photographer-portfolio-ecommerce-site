@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { storage } from '../firebase/config';
 import { getStorage, ref, listAll } from 'firebase/storage';
 
-import { v4 } from 'uuid'
+import { v4 } from 'uuid';
 
 function Collection() {
   // Create a reference under which you want to list
@@ -42,7 +42,7 @@ function Collection() {
   }, []);
 
   //   const albumRef = ref(storage, `albums/${selectedAlbum}/duze`);
-  const albumRef = ref(storage, `albums/Biegam_i_wspieram/male/`);
+  const albumRef = ref(storage, `albums/${selectedAlbum}/male/`);
 
   useEffect(() => {
     listAll(albumRef)
@@ -53,35 +53,29 @@ function Collection() {
             'https://firebasestorage.googleapis.com/v0/b/kacper-foto.appspot.com/o/' +
             image._location.path_.replaceAll('/', '%2F') +
             '?alt=media&token=a9586b20-d423-4ef6-807e-2ca64610af45';
-          // console.log(image._location.path_)
-          // console.log('imageUrl: ', 'https://firebasestorage.googleapis.com/v0/b/kacper-foto.appspot.com/o/' + image._location.path_.replaceAll('/', '%2F') + '?alt=media&token=a9586b20-d423-4ef6-807e-2ca64610af45')
+
           setImagesList((prevImagesList) => [...prevImagesList, currentImage]);
-          //   console.log(folderRef._location.path.slice(7));
-          //   let albumFolder = folderRef._location.path
-          //     .slice(7)
-          //     .replaceAll('_', ' ');
-          //   setImagesList((prevImagesList) => [
-          //     ...prevImagesList,
-          //     albumFolder,
-          //   ]);
         });
-        // res.items.forEach((itemRef) => {
-        //   console.log(res);
-        // });
-        // console.log(foldersList);
       })
       .catch((error) => {
         // Uh-oh, an error occurred!
       });
-  }, []);
+  }, [selectedAlbum]);
+
+  const handleAlbumSelect = (e) => {
+    console.log('click', e.target.textContent);
+    setSelectedAlbum(e.target.textContent.replaceAll(' ', '_'));
+  };
+
+  console.log('SelectedAlbum ', selectedAlbum);
 
   return (
     <div className="shop__container">
       {foldersList.map((folder) => {
-        return <li>{folder}</li>;
+        return <li onClick={handleAlbumSelect}>{folder}</li>;
       })}
       {imagesList.map((image) => {
-        return <img key={v4()} src={image}/>;
+        return <img key={v4()} src={image} />;
       })}
     </div>
   );
