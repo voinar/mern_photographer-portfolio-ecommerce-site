@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 import photographyData from '../data/staticData.json';
 import Footer from '../components/Footer';
@@ -32,30 +33,27 @@ const SectionContent = () => {
 
   return (
     <>
-      {/* <span>{photographyData.images[0].url}</span> */}
+      <Helmet>
+        <title>{category.toUpperCase() + ' Kacper Porada Fotografia'}</title>
+      </Helmet>
       <main>
         <ul className="section__photos">
           {console.log(window.innerWidth < 768)}
           {window.innerWidth < 768
-            ? photographyData.images
-                .map((image) => {
-                  if (image.isMobile !== undefined) {
-                    if (image.category === category) {
-                      return (
-                        <li className="section">
-                          <div className="section__photos__images__image--mobile">
-                            <img
-                            src={image.url}
-                            alt={image.description}
-                            />
-                          </div>
-                        </li>
-                      );
-                    }
+            ? photographyData.images.map((image) => {
+                if (image.isMobile !== undefined) {
+                  if (image.category === category) {
+                    return (
+                      <li className="section">
+                        <div className="section__photos__images__image--mobile">
+                          <img src={image.url} alt={image.description} />
+                        </div>
+                      </li>
+                    );
                   }
-
-                  return null;
-                })
+                }
+                return null;
+              })
             : null}
 
           {photographyData.images.map((image) => {

@@ -60,7 +60,7 @@ const SectionWelcome = () => {
               <img src={iconFacebook} alt="facebook" />
             </a>
             <a
-              href="https://www.instagram.com/kapsel19/"
+              href="https://www.instagram.com/kacper_porada_fotografia/"
               target="_blank"
               rel="noreferrer"
             >
@@ -68,8 +68,6 @@ const SectionWelcome = () => {
             </a>
             <a
               href="/o%20mnie"
-              // target="_blank"
-              // rel="noreferrer"
             >
               <img src={iconMail} alt="kontakt" />
             </a>

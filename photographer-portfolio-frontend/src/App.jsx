@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 // import Context from './contexts/Context';
 import { Helmet } from 'react-helmet-async';
 // import { Store } from './contexts/Store';
+import { useEffect } from 'react';
 
 //pages
 import SectionWelcome from './pages/SectionWelcome';
@@ -26,10 +27,20 @@ import Experiments from './pages/Experiments';
 // {document.cookie='user=new'}
 // {document.cookie='myCookie=init; expires=' + new  Date(2022, 7, 28, 11, 52, 30)}
 
+//google analytics
+import ReactGA from 'react-ga4';
+const TRACKING_ID = 'G-5EQQ443LWM'; // OUR_TRACKING_ID
+ReactGA.initialize(TRACKING_ID);
+
 function App() {
   // const { state } = useContext(Store);
   // const { cart } = state;
   // console.log('cart ' + JSON.stringify(cart));
+  console.log(ReactGA);
+
+  useEffect(() => {
+    ReactGA.send("pageview");
+  }, []);
 
   return (
     <>

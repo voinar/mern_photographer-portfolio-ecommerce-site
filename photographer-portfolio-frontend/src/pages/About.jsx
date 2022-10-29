@@ -55,7 +55,7 @@ const About = () => {
                     </div>
                     <div className="about__icon__social">
                       <a
-                        href="https://www.instagram.com/kapsel19/"
+                        href="https://www.instagram.com/kacper_porada_fotografia/"
                         target="_blank"
                         rel="noreferrer"
                       >
