@@ -931,12 +931,10 @@ select {
 }
 
 .album__preview-image {
-  width: 70vw;
-  max-height: 70vh;
-  -o-object-fit: scale-down;
-     object-fit: scale-down;
-  opacity: 0.95;
+  width: 60vw;
+  opacity: 0.9;
   cursor: pointer;
+  border: 1px solid red;
 }
 
 .album__preview-image__tools {
