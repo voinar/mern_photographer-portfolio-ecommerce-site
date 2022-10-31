@@ -1,182 +1,84 @@
-// import albumsData from '../data/albums.json';
-// import products from '../data/products'
-import { useEffect, useReducer, useState } from 'react';
-import axios from 'axios';
-// import logger from 'use-reducer-logger';
-import IconChevron from '../img/icons/icon-chevron.svg';
+import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { storage } from '../firebase/config';
+import { getStorage, ref, listAll } from 'firebase/storage';
+
+import { v4 } from 'uuid';
+
+//components
+import AlbumCard from '../components/AlbumCard';
 import Footer from '../components/Footer';
 
-import { v4 as uuidv4 } from 'uuid';
+function Collection() {
+  // Create a reference under which you want to list
+  const listRef = ref(storage, 'albums/');
+  const [foldersList, setFoldersList] = useState([]);
+  const [selectedAlbum, setSelectedAlbum] = useState('');
+  const [imagesList, setImagesList] = useState([]);
 
-import AlbumCard from '../components/AlbumCard';
-import LoadingSpinner from '../components/LoadingSpinner';
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'FETCH_REQUEST':
-      return { ...state, loading: true };
-    case 'FETCH_SUCCESS':
-      return { ...state, albumsData: action.payload, loading: false };
-    case 'FETCH_FAIL':
-      return { ...state, loading: false, error: action.payload };
-    default:
-      return state;
-  }
-};
-
-const Shop = () => {
-  // const [albumsData, setAlbumsData] = useState([]);
-  const [{ loading, albumsData, error }, dispatch] = useReducer(
-    // logger(reducer),
-    reducer,
-    {
-      loading: true,
-      albumsData: [],
-      error: '',
-    }
-  );
-  // console.log('albums state: ' + JSON.stringify(albumsData));
-
+  // Find all the prefixes and items.
   useEffect(() => {
-    const fetchData = async () => {
-      dispatch({ type: 'FETCH_REQUEST' });
-      try {
-        const result = await axios.get('/api/products');
-        dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
-        // console.log(result);
-      } catch (err) {
-        dispatch({ type: 'FETCH_FAIL', payload: err.message });
-      }
-    };
-    fetchData();
+    listAll(listRef)
+      .then((res) => {
+        res.prefixes.forEach((folderRef) => {
+          // All the prefixes under listRef.
+          // You may call listAll() recursively on them.
+          //   console.log(folderRef._location.path.slice(7));
+          console.log('folderRef', folderRef._location.path);
+          let albumName = folderRef._location.path
+            .slice(7)
+            .replaceAll('_', ' ');
+
+          // console.log('cover image',`https://firebasestorage.googleapis.com/v0/b/kacper-foto.appspot.com/o/albums%2F${folderRef._location.path
+          // .slice(7)}%2Fmale%2Fcover.jpg?alt=media&amp;token=a9586b20-d423-4ef6-807e-2ca64610af45`)
+          setFoldersList((prevFoldersList) => [
+            ...prevFoldersList,
+            // albumFolder,
+            {
+              albumName,
+              coverImage: `https://firebasestorage.googleapis.com/v0/b/kacper-foto.appspot.com/o/albums%2F${folderRef._location.path.slice(
+                7
+              )}%2Fmale%2Fcover.jpg?alt=media&amp;token=a9586b20-d423-4ef6-807e-2ca64610af45`,
+            },
+          ]);
+        });
+        res.items.forEach((itemRef) => {
+          // All the items under listRef.
+          console.log('res', itemRef);
+        });
+      })
+      .catch((error) => {
+        console.log('error', error);
+      });
   }, []);
-
-  const [filterName, setFilterName] = useState('');
-  const [filterDate, setFilterDate] = useState('');
-
-  const selectFilter = (e) => {
-    // console.log(e.target.textContent);
-    setFilterName(e.target.textContent);
-    setFilterDate(e.target.textContent);
-  };
-
-  const selectAlbumByName = [
-    ...new Map(albumsData.map((item) => [item['album'], item])).values(),
-  ]
-    .map((eventName) => {
-      return (
-        <li key={uuidv4()} onClick={selectFilter}>
-          {eventName.album}
-        </li>
-      );
-    })
-    .filter((value, index, self) => self.indexOf(value) === index);
-
-  // const selectAlbumByLocation = [
-  //   ...new Map(
-  //     albumsData.albums.map((item) => [item['location'], item])
-  //   ).values(),
-  // ]
-  //   .map((eventName) => {
-  //     return <li onClick={selectFilter}>{eventName.location}</li>;
-  //   })
-  //   .filter((value, index, self) => self.indexOf(value) === index);
-
-  const selectAlbumByDate = [
-    ...new Map(albumsData.map((item) => [item['eventDate'], item])).values(),
-  ]
-    .map((event) => {
-      return (
-        <li key={uuidv4()} onClick={selectFilter}>
-          {event.eventDate}
-        </li>
-      );
-    })
-    .filter((value, index, self) => self.indexOf(value) === index);
-
-  const mapAlbums = albumsData.map((image) => {
-    if (filterName === '' && image.imageMedium.slice(-5) === '0.jpg')
-      return (
-        <li key={image._id}>
-          <AlbumCard image={image} />
-          <span>{image.eventName}</span>
-        </li>
-      );
-
-    if (image.album === filterName) {
-      return (
-        <li key={image._id}>
-          <AlbumCard image={image} />
-        </li>
-      );
-    }
-
-    if (image.eventDate === filterDate) {
-      return (
-        <li key={image._id}>
-          <AlbumCard image={image} />
-        </li>
-      );
-    }
-    return null;
-  });
 
   return (
     <>
-      {/* {loading === true ? "loading" : "loaded"} */}
+      <Helmet>
+        <title>Sklep</title>
+      </Helmet>
       <div className="shop__container">
-        <div className="shop__toolbar">
-          <div className="shop__toolbar__title">
-            <h1>
-              Przeglądaj albumy: <span>{filterName}</span>
-            </h1>
-          </div>
-
-          <div className="shop__toolbar__elements">
-            <ul className="shop__toolbar__element">
-              <button>
-                <span>Nazwa</span>
-                <img src={IconChevron} alt="zobacz" />
-              </button>
-              <div className="shop__toolbar__element__list-items">
-                <li
-                  key={uuidv4()}
-                  onClick={() => {
-                    setFilterName('');
-                  }}
-                >
-                  wszystkie
-                </li>
-                {selectAlbumByName}
-              </div>
-            </ul>
-
-            <ul className="shop__toolbar__element">
-              <button>
-                <span>Data</span>
-                <img src={IconChevron} alt="zobacz" />
-              </button>
-              <div className="shop__toolbar__element__list-items">
-                {selectAlbumByDate}
-              </div>
-            </ul>
-          </div>
-        </div>
+        <h1>Przeglądaj wydarzenia:</h1>
         <div className="shop__cards">
-          {loading ? (
-            <LoadingSpinner />
-          ) : error ? (
-            <div className="alert__container alert__container--red alert__container--standard">
-              {error}
-            </div>
-          ) : (
-            <ul>{mapAlbums}</ul>
-          )}
+          {foldersList.map((folder) => {
+            return (
+              <li key={v4()}>
+                <AlbumCard
+                  image={folder.coverImage}
+                  collection={folder.albumName}
+                />
+                {folder.albumName}
+              </li>
+            );
+          })}
         </div>
+        {/* {imagesList.map((image) => {
+        return <img key={v4()} src={image} />;
+      })} */}
       </div>
       <Footer />
     </>
   );
-};
+}
 
-export default Shop;
+export default Collection;

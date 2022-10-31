@@ -6,7 +6,6 @@ import axios from 'axios';
 
 //assets
 import IconChevron from '../img/icons/icon-chevron.svg';
-import Footer from '../components/Footer';
 
 const Cart = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
@@ -35,20 +34,20 @@ const Cart = () => {
     getImagesData();
   }, [state]);
 
-  const getEventName = (id) => {
-    const image = localState.filter((image) => image._id === id);
-    return image[0]?.eventName;
-  };
+  // const getEventName = (id) => {
+  //   const image = localState.filter((image) => image._id === id);
+  //   return image[0]?.eventName;
+  // };
 
   const getPrice = (id) => {
     const image = localState.filter((image) => image._id === id);
     return image[0]?.price;
   };
 
-  const getImageSrc = (id) => {
-    const image = localState.filter((image) => image._id === id);
-    return image[0]?.imageMedium;
-  };
+  // const getImageSrc = (id) => {
+  //   const image = localState.filter((image) => image === id);
+  //   return image[0];
+  // };
 
   console.log('cart contents: ' + state.cart.cartItems);
   return (
@@ -61,42 +60,50 @@ const Cart = () => {
           <h1>Koszyk</h1>
         </div>
         <div className="cart__sections">
-          <ul className="cart__images">
-            <li className="cart__image">
-              <img src={''} alt="" />
-              <div className="cart__image__tools cart__image__tools--header">
-                <span>Wydarzenie</span>
-                <span>Cena</span>
-                <span>Opcje</span>
-              </div>
-            </li>
-            {state.cart.cartItems.map((image) => {
-              return (
-                <li className="cart__image">
-                  <img src={getImageSrc(image)} alt="" />
-                  <div className="cart__image__tools">
-                    <span>{getEventName(image)}</span>
-                    <span>{getPrice(image)}PLN</span>
-                    <button onClick={() => cartRemoveItem(image)}>Usuń</button>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
+          {state.cart.cartItems.length === 0 ? (
+            <div className="cart__images">
+              <h3>Koszyk jest pusty.</h3>
+              <span onClick={goBack}>Wracam do sklepu.</span>
+            </div>
+          ) : (
+            <ul className="cart__images">
+              <li className="cart__image">
+                <img src={''} alt="" />
+                <div className="cart__image__tools cart__image__tools--header">
+                  {/* <span>Wydarzenie</span> */}
+                  <span>Cena</span>
+                  <span>Opcje</span>
+                </div>
+              </li>
+              {state.cart.cartItems.map((image) => {
+                return (
+                  <li className="cart__image">
+                    <img src={image} alt="" />
+                    <div className="cart__image__tools">
+                      {/* <span>{getEventName(image)}</span> */}
+                      <span>{getPrice(image)}PLN</span>
+                      <button onClick={() => cartRemoveItem(image)}>
+                        Usuń
+                      </button>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
           <div className="cart__summary">
             <div>
               <h2>Podsumowanie:</h2>
               <span>int</span>
             </div>
             <br />
-            <Link to="/logowanie">
-              <button className="btn--primary">Kupuję</button>
+            <Link to="/podsumowanie">
+              <button className="btn--primary">Przejdź do zamówienia</button>
             </Link>
             <button className="btn--secondary">Wracam do sklepu</button>
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

@@ -1,5 +1,3 @@
-import Footer from '../components/Footer';
-// import bioPic from '../img/about.jpg';
 import iconEmail from '../img/icons/icon-email.svg';
 import iconPhone from '../img/icons/icon-phone.svg';
 import img0 from '../img/about/about-1.jpg';
@@ -131,7 +129,6 @@ const About = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

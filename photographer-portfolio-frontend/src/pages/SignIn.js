@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import { Store } from '../contexts/Store';
-import Footer from '../components/Footer';
 
 // import User from './models/userModel.js';
 // import bcrypt from 'bcryptjs';
@@ -156,8 +155,6 @@ const SignIn = () => {
           </div>
         </div>
       )}
-
-      <Footer />
     </>
   );
 };

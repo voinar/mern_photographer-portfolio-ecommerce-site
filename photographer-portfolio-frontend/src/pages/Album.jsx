@@ -1,8 +1,7 @@
 import { Helmet } from 'react-helmet-async';
-import Footer from '../components/Footer';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { Store } from '../contexts/Store';
 import { useParams, useNavigate } from 'react-router-dom';
-
 import { getStorage, ref, listAll } from 'firebase/storage';
 import { storage } from '../firebase/config';
 
@@ -15,6 +14,7 @@ import AlbumImage from '../components/AlbumImage';
 
 const Album = () => {
   const { album } = useParams(); //used to fetch current album data from firebase storage
+  const { state, dispatch: contextDispatch } = useContext(Store);
 
   const navigate = useNavigate(); //used to return to previous page
   const goBack = () => navigate(-1);
@@ -58,33 +58,40 @@ const Album = () => {
   };
 
   const handleImagePreviewPrev = () => {
-    setPreviewImageUrl(
-      previewImageUrl.toString().slice(0, -5) +
-        (Number(previewImageUrl.toString().slice(-5, -4)) - 1) +
-        previewImageUrl.toString().slice(-4)
-    );
+    console.log(albumImagesList.indexOf(previewImageUrl));
+    if (albumImagesList.indexOf(previewImageUrl) === 0) {
+      setPreviewImageUrl(albumImagesList[albumImagesList.length - 1]);
+    } else {
+      setPreviewImageUrl(
+        albumImagesList[albumImagesList.indexOf(previewImageUrl) - 1]
+      ); //find item in images list and decrement by 1
+    }
   };
 
   const handleImagePreviewNext = () => {
-    setPreviewImageUrl(
-      previewImageUrl.toString().slice(0, -5) +
-        (Number(previewImageUrl.toString().slice(-5, -4)) + 1) +
-        previewImageUrl.toString().slice(-4)
-    );
+    console.log(albumImagesList.indexOf(previewImageUrl));
+    // console.log(previewImageUrl)
+    if (albumImagesList.indexOf(previewImageUrl) === albumImagesList.length-1) {
+      setPreviewImageUrl(albumImagesList[0]);
+    } else {
+      setPreviewImageUrl(
+        albumImagesList[albumImagesList.indexOf(previewImageUrl) + 1]
+      ); //find item in images list and increment by 1
+    }
   };
 
   // const { state, dispatch: contextDispatch } = useContext(Store);
 
   const addToCart = () => {
-    // try {
-    //   contextDispatch({
-    //     type: 'CART_ADD_ITEM',
-    //     payload: { id: image },
-    //   });
-    //   localStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
-    // } catch (err) {
-    //   console.log(err);
-    // }
+    try {
+      contextDispatch({
+        type: 'CART_ADD_ITEM',
+        payload: { id: previewImageUrl },
+      });
+      localStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -163,7 +170,6 @@ const Album = () => {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   );
 };

@@ -3,7 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 // import Context from './contexts/Context';
 import { Helmet } from 'react-helmet-async';
 // import { Store } from './contexts/Store';
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
+import { Store } from './contexts/Store';
 
 //pages
 import SectionWelcome from './pages/SectionWelcome';
@@ -14,13 +15,17 @@ import Album from './pages/Album';
 import Cart from './pages/Cart';
 import SignIn from './pages/SignIn';
 import Checkout from './pages/Checkout';
-import Collection from './pages/Collection';
+import Cookies from './pages/Cookies';
 
 //components
 import Navbar from './components/Navbar';
 import Alert from './components/Alert';
 import ScrollToTop from './components/ScrollToTop';
 import Experiments from './pages/Experiments';
+import Footer from './components/Footer';
+import TermsConditions from './pages/TermsConditions';
+import OrderForm from './components/OrderForm';
+import CookiesPopup from './components/CookiesPopup';
 
 // {localStorage.setItem('user', 'name')}
 // {sessionStorage.setItem('status', 'unread')}
@@ -36,11 +41,20 @@ function App() {
   // const { state } = useContext(Store);
   // const { cart } = state;
   // console.log('cart ' + JSON.stringify(cart));
-  console.log(ReactGA);
+  // console.log(ReactGA);
 
+  //google analytics log page currently displayed
   useEffect(() => {
-    ReactGA.send("pageview");
+    ReactGA.send('pageview');
   }, []);
+
+  const { state, dispatch: contextDispatch } = useContext(Store);
+
+  //action on every state update
+  useEffect(() => {
+    console.log('store updated');
+    localStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
+  }, [state]);
 
   return (
     <>
@@ -62,8 +76,12 @@ function App() {
           <Route path="/koszyk" element={<Cart />} />
           <Route path="/logowanie" element={<SignIn />} />
           <Route path="/podsumowanie" element={<Checkout />} />
-          <Route path="/wydarzenie" element={<Collection />} />
+          <Route path="/zamawiam" element={<OrderForm />} />
+          <Route path="/regulamin" element={<TermsConditions />} />
+          <Route path="/cookies" element={<Cookies />} />
         </Routes>
+        <Footer />
+        <CookiesPopup />
       </div>
     </>
   );

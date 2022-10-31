@@ -12,10 +12,16 @@
 @import '../pages/styles/_Cart';
 @import '../pages/styles/_SignIn';
 @import '../pages/styles/_Checkout';
+@import '../pages/styles/_TermsConditions';
+@import '../pages/styles/_Cookies';
 
 // components
 @import '../components/styles/_Navbar';
 @import '../components/styles/_Footer';
+@import '../components/styles/_OrderForm';
+@import '../components/styles/_CookiesPopup';
+
+//atoms
 @import '../components/styles/_LoadingSpinner';
 @import '../components/styles/_Alert';
 

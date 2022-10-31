@@ -579,7 +579,7 @@ select {
 .shop__container {
   background-color: #f2f2f2;
   color: #3a3939;
-  height: auto;
+  min-height: 100vh;
   padding: 180px 100px 200px;
 }
 
@@ -814,8 +814,8 @@ select {
   cursor: pointer;
 }
 
-.album__toolbar .album__title h1 {
-  text-transform: capitalize;
+.album__toolbar .album__title h1:first-letter {
+  text-transform: uppercase;
 }
 
 .album__toolbar .album__title button {
@@ -926,7 +926,7 @@ select {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.1);
   z-index: 3;
 }
 
@@ -934,7 +934,7 @@ select {
   width: 60vw;
   opacity: 0.9;
   cursor: pointer;
-  border: 1px solid red;
+  border-radius: 6px;
 }
 
 .album__preview-image__tools {
@@ -967,7 +967,7 @@ select {
 .album__preview-image__tools button img {
   background-color: #ffffffb1;
   padding: 6px;
-  outline: 1px solid rgba(128, 128, 128, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   height: 44px;
   border-radius: 4px;
 }
@@ -1226,10 +1226,50 @@ select {
 .checkout__container {
   background-color: rgba(255, 255, 255, 0.85);
   color: #3a3939;
+  min-height: 70vh;
   padding: 180px 100px 200px;
   margin: 0 auto;
   font-weight: 300;
   font-size: 14px;
+}
+
+.checkout__items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 10px;
+}
+
+.checkout__items .checkout__items__image {
+  max-width: 200px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.checkout__items .checkout__items__image img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  max-height: 200px;
+  border-radius: 4px;
+}
+
+.terms__container {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 180px 100px 200px;
+  height: auto;
+}
+
+.cookies__container {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 180px 100px 200px;
+  height: auto;
 }
 
 .navbar {
@@ -1721,6 +1761,109 @@ select {
     position: absolute;
     right: 30px;
   }
+}
+
+.order-form__container {
+  background-color: rgba(255, 255, 255, 0.7);
+  margin: 70px 0;
+  padding: 20px;
+  max-width: 460px;
+}
+
+.order-form__content form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.order-form__content label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 6px 0;
+}
+
+.order-form__content input {
+  width: 200px;
+}
+
+.order-form__content .order-form__content__group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 20px;
+}
+
+.order-form__content .order-form__content__checkbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 6px;
+}
+
+.order-form__content .order-form__content__checkbox input {
+  width: auto;
+}
+
+.cookies-popup__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: fixed;
+  left: 10px;
+  bottom: 40px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  height: auto;
+  width: 200px;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: 100;
+  gap: 22px;
+}
+
+.cookies-popup__container span {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.cookies-popup__text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.cookies-popup__text a {
+  color: red;
+}
+
+.cookies-popup__close {
+  font-weight: 500;
+  cursor: pointer;
 }
 
 .loading-spinner__container {

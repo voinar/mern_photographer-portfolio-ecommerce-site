@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 const AlbumCard = (props) => {
   // console.log('id is: ' + JSON.stringify(props.image._id));
   const { image } = props;
-  console.log('img props', props.collection)
 
   return (
       <Link key={props.image} to={`/album/${props.collection}`}>

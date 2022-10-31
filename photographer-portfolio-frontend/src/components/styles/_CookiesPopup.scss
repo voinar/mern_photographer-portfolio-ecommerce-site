@@ -1,0 +1,37 @@
+.cookies-popup__container {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  left: 10px;
+  bottom: 40px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  height: auto;
+  width: 200px;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: 100;
+  gap: 22px;
+
+  span {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+}
+
+.cookies-popup__text {
+    display: flex;
+    flex-direction: column;
+
+    a {
+    color: red;
+    }
+}
+
+.cookies-popup__close {
+  //   position: relative;
+  //   right: 6px;
+  //   bottom: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}

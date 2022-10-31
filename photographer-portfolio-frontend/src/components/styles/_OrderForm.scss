@@ -1,0 +1,46 @@
+.order-form__container {
+  background-color: rgba(255, 255, 255, 0.7);
+  margin: 70px 0;
+  padding: 20px;
+  max-width: 460px;
+}
+
+.order-form__content {
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    margin: 6px 0;
+  }
+
+  input {
+    // margin: 10px 0px;
+    width: 200px;
+  }
+
+  .order-form__content__group {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .order-form__content__checkbox {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    // align-items: center;
+
+    label {
+    //   align-items: center;
+
+    }
+
+    input {
+      width: auto;
+    }
+  }
+}
