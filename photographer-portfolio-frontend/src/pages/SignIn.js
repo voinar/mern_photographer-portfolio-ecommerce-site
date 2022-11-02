@@ -1,11 +1,11 @@
 import { Helmet } from 'react-helmet-async';
-import axios from 'axios';
+// import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import { Store } from '../contexts/Store';
 
-import { query, collection, where, getDocs, addDoc } from 'firebase/firestore';
-import { db, usersColRef } from '../firebase/config';
+import { query, where, getDocs, addDoc } from 'firebase/firestore';
+import { usersColRef } from '../firebase/config';
 // import { addUser } from '../firebase/config.js';
 
 // import User from './models/userModel.js';

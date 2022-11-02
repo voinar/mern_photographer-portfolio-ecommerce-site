@@ -5,22 +5,17 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import {
-  query,
-  collection,
-  where,
-  getDocs,
-  addDoc,
   doc,
   getDoc,
 } from 'firebase/firestore';
-import { db, settingsColRef } from '../firebase/config';
+import { db } from '../firebase/config';
 
 //assets
 import IconChevron from '../img/icons/icon-chevron.svg';
 
 const Cart = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
-  const [localState, setLocalState] = useState([]);
+  // const [localState, setLocalState] = useState([]);
   const [itemPrice, setItemPrice] = useState(null);
 
   const navigate = useNavigate(); //used to return to previous page
@@ -35,15 +30,15 @@ const Cart = () => {
   };
 
   useEffect(() => {
-    const getImagesData = async () => {
-      try {
-        const response = await axios.get(`/api/products/`);
-        setLocalState(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getImagesData();
+    // const getImagesData = async () => {
+    //   try {
+    //     const response = await axios.get(`/api/products/`);
+    //     setLocalState(response.data);
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // };
+    // getImagesData();
 
     const getPrice = async () => {
       try {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { storage } from '../firebase/config';
-import { getStorage, ref, listAll } from 'firebase/storage';
+import { ref, listAll } from 'firebase/storage';
 
 import { v4 } from 'uuid';
 
@@ -12,8 +12,8 @@ function Collection() {
   // Create a reference under which you want to list
   const listRef = ref(storage, 'albums/');
   const [foldersList, setFoldersList] = useState([]);
-  const [selectedAlbum, setSelectedAlbum] = useState('');
-  const [imagesList, setImagesList] = useState([]);
+  // const [selectedAlbum, setSelectedAlbum] = useState('');
+  // const [imagesList, setImagesList] = useState([]);
 
   // Find all the prefixes and items.
   useEffect(() => {

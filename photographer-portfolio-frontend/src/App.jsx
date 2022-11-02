@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 // import Context from './contexts/Context';
 import { Helmet } from 'react-helmet-async';
 // import { Store } from './contexts/Store';
-import { useEffect, useContext, useLocation } from 'react';
+import { useEffect, useContext} from 'react';
 import { Store } from './contexts/Store';
 
 //pages
@@ -29,7 +29,6 @@ import CookiesPopup from './components/CookiesPopup';
 
 //analytics
 import ReactGA from 'react-ga4';
-import ReactPixel from 'react-facebook-pixel';
 
 // {localStorage.setItem('user', 'name')}
 // {sessionStorage.setItem('status', 'unread')}
@@ -77,7 +76,7 @@ function App() {
     ReactGA.send('pageview');
   }, []);
 
-  const { state, dispatch: contextDispatch } = useContext(Store);
+  const { state } = useContext(Store);
 
   //action on every state update
   useEffect(() => {
@@ -91,8 +90,8 @@ function App() {
       <Helmet>
         <title>Kacper Porada Fotografia</title>
       </Helmet>
-      <FacebookPixel />
       <div className="App">
+        <FacebookPixel />
         <Alert alertContent={'alert'} />
         <Navbar />
         <Routes>
