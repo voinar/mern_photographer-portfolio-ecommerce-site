@@ -40,11 +40,11 @@ const Navbar = () => {
     // document.body.style.overflow = 'scroll';
   };
 
-  const handleSignout =() => {
-    contextDispatch({type: 'USER_SIGNOUT'})
-    localStorage.removeItem('userInfo')
-    console.log('logout')
-  }
+  const handleSignout = () => {
+    contextDispatch({ type: 'USER_SIGNOUT' });
+    localStorage.removeItem('userInfo');
+    console.log('logout');
+  };
 
   const renderNavbar = () => {
     if (
@@ -81,7 +81,11 @@ const Navbar = () => {
                 if (category === 'sklep') {
                   //apply different styling for 'shop' link
                   return (
-                    <li key={category} className="navbar__section-link">
+                    <li
+                      key={category}
+                      className="navbar__section-link"
+                      style={{ display: 'none' }}
+                    >
                       <Link
                         className="navbar__section-link navbar__section-link__shop"
                         to={category}
@@ -140,7 +144,9 @@ const Navbar = () => {
               {state?.userInfo !== null ? (
                 <>
                   <div className="navbar__shop__userinfo__usermenu">
-                    <span>{'Witaj, ' + state?.userInfo?.email?.split('@')[0] + '!'}</span>
+                    <span>
+                      {'Witaj, ' + state?.userInfo?.email?.split('@')[0] + '!'}
+                    </span>
                     <button
                       onClick={() => setUserMenuVisibility(!userMenuVisibility)}
                     >
