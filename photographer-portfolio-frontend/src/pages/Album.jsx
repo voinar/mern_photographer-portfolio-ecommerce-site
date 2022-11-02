@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { useEffect, useState, useContext } from 'react';
 import { Store } from '../contexts/Store';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getStorage, ref, listAll } from 'firebase/storage';
+import { ref, listAll } from 'firebase/storage';
 import { storage } from '../firebase/config';
 
 //assets

@@ -12,6 +12,7 @@ function Collection() {
   // Create a reference under which you want to list
   const listRef = ref(storage, 'albums/');
   const [foldersList, setFoldersList] = useState([]);
+  const loadAlbums = []
   // const [selectedAlbum, setSelectedAlbum] = useState('');
   // const [imagesList, setImagesList] = useState([]);
 

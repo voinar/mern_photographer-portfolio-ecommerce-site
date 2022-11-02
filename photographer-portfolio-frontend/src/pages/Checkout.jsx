@@ -1,16 +1,18 @@
 import { Helmet } from 'react-helmet-async';
 import { useContext, useState } from 'react';
 import { Store } from '../contexts/Store';
-import { Link } from 'react-router-dom';
 
 import OrderForm from '../components/OrderForm';
 
 const Checkout = () => {
-  const { state, dispatch: contextDispatch } = useContext(Store);
+  const {
+    state,
+    // , dispatch: contextDispatch
+  } = useContext(Store);
   const [showOrderForm, setShowOrderForm] = useState(true);
 
   const toggleOrderForm = () => {
-    setShowOrderForm(prevState => !prevState);
+    setShowOrderForm((prevState) => !prevState);
   };
 
   return (
@@ -20,7 +22,7 @@ const Checkout = () => {
         <title>Podsumowanie</title>
       </Helmet>
       <main className="checkout__container">
-        <h1>Hej, {state?.userInfo?.email.split('@')[0] }, oto Twój koszyk:</h1>
+        <h1>Hej, {state?.userInfo?.email.split('@')[0]}, oto Twój koszyk:</h1>
         <h2>Twoje zdjęcia:</h2>
 
         <div className="checkout__items">
@@ -43,9 +45,8 @@ const Checkout = () => {
           </button>
           <button className="btn--secondary">Wracam do sklepu</button>
         </div>
-        {showOrderForm ? (<OrderForm />) : (null)}
+        {showOrderForm ? <OrderForm /> : null}
       </main>
-
     </>
   );
 };
