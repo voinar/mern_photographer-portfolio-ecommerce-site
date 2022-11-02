@@ -47,7 +47,7 @@ const Album = () => {
       .catch((error) => {
         console.log('error: ', error);
       });
-  }, []);
+  }, [album]);
 
   //   // preview images in album page
   const handleImagePreview = (image) => {
