@@ -140,7 +140,7 @@ const Navbar = () => {
               {state?.userInfo !== null ? (
                 <>
                   <div className="navbar__shop__userinfo__usermenu">
-                    <span>{'Witaj, ' + state?.userInfo?.email.split('@')[0] + '!'}</span>
+                    <span>{'Witaj, ' + state?.userInfo?.email?.split('@')[0] + '!'}</span>
                     <button
                       onClick={() => setUserMenuVisibility(!userMenuVisibility)}
                     >
