@@ -4,6 +4,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import { Store } from '../contexts/Store';
 
+import { query, collection, where, getDocs, addDoc } from 'firebase/firestore';
+import { db, usersColRef } from '../firebase/config';
+// import { addUser } from '../firebase/config.js';
+
 // import User from './models/userModel.js';
 // import bcrypt from 'bcryptjs';
 
@@ -24,12 +28,14 @@ const SignIn = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
 
   const handleSignin = async (e) => {
-    e.preventDefault();
     try {
-      const { data } = await axios.post('/api/users/signin', {
-        email,
-        password,
-      });
+      // const { data } = await axios.post('/api/users/signin', {
+      //   email,
+      //   password,
+      // });
+
+      const data = { email, password };
+      console.log('data', data);
       contextDispatch({ type: 'USER_SIGNIN', payload: data });
       console.log('data received: ' + JSON.stringify(data));
       console.log('state: ' + state.toString());
@@ -43,26 +49,62 @@ const SignIn = () => {
     }
   };
 
-  const handleCreateAccount = async (e) => {
+  const handleCreateAccount = async (e, email, password) => {
     e.preventDefault();
     try {
-      const { newUser } = await axios.post('/api/users/createuser', {
-        email,
-        password,
-      });
-      console.log('newUser:' + newUser);
+      console.log('add');
+      const isDuplicateUser = async (email, password) => {
+        const q = query(usersColRef, where('email', '==', email));
+        const querySnapshot = await getDocs(q);
+
+        const data = { email, password };
+
+        //add user to db
+        if (querySnapshot.docChanges().length === 0) {
+          addDoc(usersColRef, {
+            email: email,
+            password: password,
+            name: null,
+            isAdmin: false,
+          });
+          contextDispatch({
+            type: 'USER_SIGNIN',
+            payload: { email, password },
+          });
+          localStorage.setItem('userInfo', JSON.stringify(data));
+
+          navigate(redirect || '/koszyk');
+        } else {
+          setErrorMessage(
+            'Konto z tym adresem email już istnieje. Przypomnij hasło.'
+          );
+        }
+      };
+      isDuplicateUser(email, password);
     } catch (err) {
-      setErrorMessage(
-        'Konto z podanym adresem email już istnieje. Przypomnienie hasła.'
-      );
       // setErrorMessage(err.message);
-      console.log('error while creating new user: ' + err.message);
+      console.log('error: ' + err);
     }
-    console.log('createAccount');
+
+    // try {
+    //   const { newUser } = await axios.post('/api/users/createuser', {
+    //     email,
+    //     password,
+    //   });
+    //   console.log('newUser:' + newUser);
+    // } catch (err) {
+    //   setErrorMessage(
+    //     'Konto z podanym adresem email już istnieje. Przypomnienie hasła.'
+    //   );
+    //   // setErrorMessage(err.message);
+    //   console.log('error while creating new user: ' + err.message);
+    // }
+    // console.log('createAccount');
   };
 
   const toggleForm = () => {
     setSigninForm((prevState) => !prevState);
+    setErrorMessage('');
     console.log('toggle form');
   };
 
@@ -85,7 +127,10 @@ const SignIn = () => {
               <h1>Logowanie</h1>
             </div>
           </div>
-          <form className="signin__form" onSubmit={handleSignin}>
+          <form
+            className="signin__form"
+            onSubmit={(e) => handleSignin(e, email, password)}
+          >
             <div className="signin__form__group">
               <label htmlFor="email">Email</label>
               <input
@@ -125,7 +170,10 @@ const SignIn = () => {
               <h1>Nowe konto</h1>
             </div>
           </div>
-          <form className="signin__form" onSubmit={handleCreateAccount}>
+          <form
+            className="signin__form"
+            onSubmit={(e) => handleCreateAccount(e, email, password)}
+          >
             <div className="signin__form__group">
               <label htmlFor="email">Email</label>
               <input

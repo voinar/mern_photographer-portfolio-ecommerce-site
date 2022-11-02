@@ -1,8 +1,15 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getStorage } from "firebase/storage";
-
-// import firebase from 'firebase';
+import { getStorage } from 'firebase/storage';
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc,
+  query,
+  where,
+  get,
+} from 'firebase/firestore';
 import 'firebase/storage';
 import 'firebase/firestore';
 
@@ -20,10 +27,35 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // firebase.initializeApp(firebaseConfig);
 
+//initiate storage
 const storage = getStorage(app);
-// const projectStorage = firebase.storage();
-// const projectFirestore = firebase.firestore();
 
-export { storage
-  // , projectFirestore
-};
+//initiate database
+const db = getFirestore();
+
+//refs
+const usersColRef = collection(db, 'users');
+const settingsColRef = collection(db, 'settings');
+
+//get collection data
+// const getUsers = () => {
+//   getDocs(usersColRef)
+//     .then((snapshot) => {
+//       let users = [];
+//       snapshot.forEach((user) => {
+//         users.push(user._document.data.value.mapValue.fields);
+//         // console.log('user', user._document.data.value.mapValue.fields);
+//       });
+//       console.log('user', users);
+//     })
+//     .catch((err) => {
+//       console.log('error', err);
+//     });
+// };
+// getUsers();
+
+//add user to database
+// getDocs(usersColRef)
+
+
+export { storage, db, usersColRef, settingsColRef };

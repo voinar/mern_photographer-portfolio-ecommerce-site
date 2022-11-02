@@ -11,6 +11,11 @@ const initialState = {
   userInfo: localStorage.getItem('userInfo')
     ? JSON.parse(localStorage.getItem('userInfo'))
     : [],
+  cookiesConsentPopupAccepted: localStorage.getItem(
+    'cookiesConsentPopupAccepted'
+  )
+    ? JSON.parse(localStorage.getItem('cookiesConsentPopupAccepted'))
+    : false,
 };
 
 function reducer(state, action) {
@@ -31,7 +36,8 @@ function reducer(state, action) {
             cartItems: [...state.cart.cartItems, newItem],
           },
         };
-      } else { //else do nothing
+      } else {
+        //else do nothing
         console.log('item already in cart');
         return state;
       }
@@ -50,7 +56,13 @@ function reducer(state, action) {
     }
 
     case 'USER_SIGNOUT': {
+      localStorage.setItem('userInfo', null);
       return { ...state, userInfo: null };
+    }
+
+    case 'ACCEPT_COOKIES': {
+      localStorage.setItem('cookiesConsentPopupAccepted', true);
+      return { ...state, cookiesConsentPopupAccepted: true };
     }
 
     default:

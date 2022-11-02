@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 import photographyData from '../data/staticData.json';
-import Footer from '../components/Footer';
 import iconChevronUp from '../img/icons/icon-chevron-up.svg';
 
 const SectionContent = () => {
@@ -123,7 +122,6 @@ const SectionContent = () => {
           </>
         ) : null}
       </main>
-      <Footer />
     </>
   );
 };

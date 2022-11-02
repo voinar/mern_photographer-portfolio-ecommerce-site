@@ -7,7 +7,6 @@ import { v4 } from 'uuid';
 
 //components
 import AlbumCard from '../components/AlbumCard';
-import Footer from '../components/Footer';
 
 function Collection() {
   // Create a reference under which you want to list
@@ -76,7 +75,6 @@ function Collection() {
         return <img key={v4()} src={image} />;
       })} */}
       </div>
-      <Footer />
     </>
   );
 }

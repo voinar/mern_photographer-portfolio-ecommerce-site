@@ -20,7 +20,7 @@ const Checkout = () => {
         <title>Podsumowanie</title>
       </Helmet>
       <main className="checkout__container">
-        <h1>Witaj, {state.userInfo.name}!</h1>
+        <h1>Hej, {state?.userInfo?.email.split('@')[0] }, oto Twój koszyk:</h1>
         <h2>Twoje zdjęcia:</h2>
 
         <div className="checkout__items">

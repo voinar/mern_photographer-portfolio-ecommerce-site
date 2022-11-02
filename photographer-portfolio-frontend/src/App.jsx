@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 // import Context from './contexts/Context';
 import { Helmet } from 'react-helmet-async';
 // import { Store } from './contexts/Store';
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useLocation } from 'react';
 import { Store } from './contexts/Store';
 
 //pages
@@ -27,15 +27,44 @@ import TermsConditions from './pages/TermsConditions';
 import OrderForm from './components/OrderForm';
 import CookiesPopup from './components/CookiesPopup';
 
+//analytics
+import ReactGA from 'react-ga4';
+import ReactPixel from 'react-facebook-pixel';
+
 // {localStorage.setItem('user', 'name')}
 // {sessionStorage.setItem('status', 'unread')}
 // {document.cookie='user=new'}
 // {document.cookie='myCookie=init; expires=' + new  Date(2022, 7, 28, 11, 52, 30)}
 
 //google analytics
-import ReactGA from 'react-ga4';
 const TRACKING_ID = 'G-5EQQ443LWM'; // OUR_TRACKING_ID
 ReactGA.initialize(TRACKING_ID);
+
+//facebook pixel
+const facebookPixelId = '5969461459733693';
+
+function FacebookPixel() {
+  // let location = useLocation();
+
+  useEffect(() => {
+    import('react-facebook-pixel')
+      .then((x) => x.default)
+      .then((ReactPixel) => {
+        ReactPixel.init(facebookPixelId);
+        ReactPixel.pageView();
+
+        // Routes.events.on('routeChangeComplete', () => {
+        // ReactPixel.pageView();
+        // });
+      });
+  });
+
+  // useEffect(() => {
+  //   ReactPixel.pageView();
+  // }, [location]);
+
+  return null;
+}
 
 function App() {
   // const { state } = useContext(Store);
@@ -62,6 +91,7 @@ function App() {
       <Helmet>
         <title>Kacper Porada Fotografia</title>
       </Helmet>
+      <FacebookPixel />
       <div className="App">
         <Alert alertContent={'alert'} />
         <Navbar />

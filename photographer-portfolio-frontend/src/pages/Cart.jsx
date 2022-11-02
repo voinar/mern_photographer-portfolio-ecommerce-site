@@ -4,12 +4,24 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+import {
+  query,
+  collection,
+  where,
+  getDocs,
+  addDoc,
+  doc,
+  getDoc,
+} from 'firebase/firestore';
+import { db, settingsColRef } from '../firebase/config';
+
 //assets
 import IconChevron from '../img/icons/icon-chevron.svg';
 
 const Cart = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
   const [localState, setLocalState] = useState([]);
+  const [itemPrice, setItemPrice] = useState(null);
 
   const navigate = useNavigate(); //used to return to previous page
   const goBack = () => navigate(-1);
@@ -32,22 +44,22 @@ const Cart = () => {
       }
     };
     getImagesData();
+
+    const getPrice = async () => {
+      try {
+        const docRef = doc(db, 'settings', '5cJniz1wK9Sri7EmlSzD');
+        const docSnap = await getDoc(docRef);
+        setItemPrice(
+          Number(
+            docSnap._document.data.value.mapValue.fields.imagePrice.integerValue
+          )
+        );
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getPrice();
   }, [state]);
-
-  // const getEventName = (id) => {
-  //   const image = localState.filter((image) => image._id === id);
-  //   return image[0]?.eventName;
-  // };
-
-  const getPrice = (id) => {
-    const image = localState.filter((image) => image._id === id);
-    return image[0]?.price;
-  };
-
-  // const getImageSrc = (id) => {
-  //   const image = localState.filter((image) => image === id);
-  //   return image[0];
-  // };
 
   console.log('cart contents: ' + state.cart.cartItems);
   return (
@@ -70,7 +82,6 @@ const Cart = () => {
               <li className="cart__image">
                 <img src={''} alt="" />
                 <div className="cart__image__tools cart__image__tools--header">
-                  {/* <span>Wydarzenie</span> */}
                   <span>Cena</span>
                   <span>Opcje</span>
                 </div>
@@ -80,8 +91,7 @@ const Cart = () => {
                   <li className="cart__image">
                     <img src={image} alt="" />
                     <div className="cart__image__tools">
-                      {/* <span>{getEventName(image)}</span> */}
-                      <span>{getPrice(image)}PLN</span>
+                      <span>{itemPrice} PLN</span>
                       <button onClick={() => cartRemoveItem(image)}>
                         Usuń
                       </button>
@@ -94,7 +104,7 @@ const Cart = () => {
           <div className="cart__summary">
             <div>
               <h2>Podsumowanie:</h2>
-              <span>int</span>
+              <span>{state.cart.cartItems.length * itemPrice} PLN brutto</span>
             </div>
             <br />
             <Link to="/podsumowanie">

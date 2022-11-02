@@ -765,7 +765,7 @@ select {
   background-color: #f2f2f2;
   color: #3a3939;
   height: auto;
-  padding: 180px 100px 200px;
+  padding: 140px 100px 200px;
 }
 
 .album__container h1 {
@@ -781,7 +781,7 @@ select {
 .album__toolbar {
   position: fixed;
   top: 0px;
-  padding: 120px 0 0;
+  padding: 160px 0 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1830,10 +1830,12 @@ select {
       -ms-flex-direction: row;
           flex-direction: row;
   position: fixed;
-  left: 10px;
+  left: 80px;
   bottom: 40px;
   color: white;
   background-color: rgba(0, 0, 0, 0.7);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
   height: auto;
   width: 200px;
   padding: 10px;
@@ -1858,7 +1860,7 @@ select {
 }
 
 .cookies-popup__text a {
-  color: red;
+  color: pink;
 }
 
 .cookies-popup__close {

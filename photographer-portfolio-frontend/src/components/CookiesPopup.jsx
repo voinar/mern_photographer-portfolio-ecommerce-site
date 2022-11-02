@@ -1,16 +1,22 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+import { Store } from '../contexts/Store';
 import { Link } from 'react-router-dom';
 
 const CookiesPopup = () => {
-  const [cookiePopupVisibility, setCookiePopupVisibility] = useState(true);
+  const { state, dispatch: contextDispatch } = useContext(Store);
+
+  // const [cookiePopupVisibility, setCookiePopupVisibility] = useState(true);
 
   const toggleCookiePopup = () => {
-    setCookiePopupVisibility(false);
+    contextDispatch({
+      type: 'ACCEPT_COOKIES',
+      payload: { cookiesConsentPopupAccepted: true },
+    });
   };
 
   return (
     <>
-      {cookiePopupVisibility ? (
+      {state.cookiesConsentPopupAccepted ? null : (
         <div className="cookies-popup__container">
           <div className="cookies-popup__text">
             <span>
@@ -26,7 +32,7 @@ const CookiesPopup = () => {
             x
           </div>
         </div>
-      ) : null}
+      )}
     </>
   );
 };
