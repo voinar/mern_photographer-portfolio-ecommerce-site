@@ -19,7 +19,6 @@ const Album = () => {
   const navigate = useNavigate(); //used to return to previous page
   const goBack = () => navigate(-1);
 
-  const albumRef = ref(storage, `albums/${album.replaceAll(' ', '_')}/male/`);
   const token = 'a9586b20-d423-4ef6-807e-2ca64610af45';
 
   //local component state
@@ -29,6 +28,7 @@ const Album = () => {
   //   const [previewImageId, setPreviewImageId] = useState(undefined);
 
   useEffect(() => {
+    const albumRef = ref(storage, `albums/${album.replaceAll(' ', '_')}/male/`);
     listAll(albumRef)
       .then((res) => {
         console.log('result', res);
@@ -71,7 +71,10 @@ const Album = () => {
   const handleImagePreviewNext = () => {
     console.log(albumImagesList.indexOf(previewImageUrl));
     // console.log(previewImageUrl)
-    if (albumImagesList.indexOf(previewImageUrl) === albumImagesList.length-1) {
+    if (
+      albumImagesList.indexOf(previewImageUrl) ===
+      albumImagesList.length - 1
+    ) {
       setPreviewImageUrl(albumImagesList[0]);
     } else {
       setPreviewImageUrl(
