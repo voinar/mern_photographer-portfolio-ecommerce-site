@@ -26,7 +26,7 @@
 @import '../components/styles/_Alert';
 
 html * {
-    // outline: 1px solid brown;
+  // outline: 1px solid brown;
 }
 
 html {
@@ -42,12 +42,25 @@ body {
   scroll-behavior: smooth;
 }
 
-h1,h2,h3,h4,h5,h6,p,a {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
   // font-family: $--font-main;
+  font-weight: 200;
 }
 
 h1 {
-  font-weight: thin;
+  font-weight: 200;
+}
+
+h2 {
+  font-size: $--font-xl;
+  font-weight: 200;
 }
 
 a {
@@ -64,8 +77,33 @@ img {
   pointer-events: none;
 }
 
+button {
+  all: unset;
+  text-align: center !important;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+.btn--primary {
+  background-color: rgba(0, 255, 0, 0.5) !important;
+}
+
+.btn--secondary {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+}
+
+.btn--back {
+  all: unset !important;
+}
+
 .hidden {
   display: none;
+}
+
+.form__error-message {
+  color: red;
 }
 
 /* ===== Scrollbar CSS ===== */

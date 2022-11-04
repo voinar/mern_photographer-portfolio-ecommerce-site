@@ -6,13 +6,7 @@
 
 
   h1 {
-    font-weight: 400;
-  }
-
-  h2 {
-    font-size: $--font-md;
-    font-weight: 500;
-    margin: 8px 0 26px;
+    // font-weight: 400;
   }
 }
 
@@ -123,7 +117,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.9);
   z-index: 3;
 }
 
@@ -131,7 +125,7 @@
   width: 60vw;
   // max-height: 60vh;
   // object-fit: scale-down;
-  opacity: 0.9;
+  // opacity: 0.9;
   cursor: pointer;
   border-radius: 6px;
 }

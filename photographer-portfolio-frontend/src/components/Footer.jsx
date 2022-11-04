@@ -51,7 +51,14 @@ const Footer = () => {
               <span>Zdjęcia imprez sportowych</span>
               <span>Rzeszów fotografia</span>
             </div>
-
+            <div className="footer__column footer__tags">
+              <Link to="/regulamin">
+                <span>Regulamin</span>
+              </Link>
+            </div>
+            <div className="footer__column footer__tags">
+              <span>Pomoc</span>
+            </div>
             <div
               className="footer__column footer__return"
               onClick={returnToTop}

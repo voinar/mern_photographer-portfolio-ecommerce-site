@@ -141,8 +141,11 @@
 }
 
 .navbar__shop__logo {
+  display: flex;
   width: 140px;
   filter: invert(100%);
+  align-items: center;
+  justify-content: center;
 }
 
 .navbar__shop__userinfo {
@@ -231,6 +234,19 @@
 }
 
 .navbar__shop--shrink {
+  padding: 10px 60px;
+  background-color: rgba(255, 255, 255, 0.97);
+  transition: 0.7s ease-in-out;
+
+  .navbar__shop__logo {
+    width: 100px;
+    transition: 0.5s ease-in-out;
+  }
+
+  .navbar__content {
+    font-size: 16px;
+    transition: ease-in 0.3s;
+  }
 }
 
 /* Media Query for small monitors */

@@ -1,9 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-// import { useContext } from 'react';
-// import Context from './contexts/Context';
 import { Helmet } from 'react-helmet-async';
-// import { Store } from './contexts/Store';
-import { useEffect, useContext} from 'react';
+import { useEffect, useContext } from 'react';
 import { Store } from './contexts/Store';
 
 //pages
@@ -66,23 +63,18 @@ function FacebookPixel() {
 }
 
 function App() {
-  // const { state } = useContext(Store);
-  // const { cart } = state;
-  // console.log('cart ' + JSON.stringify(cart));
-  // console.log(ReactGA);
+  const { state } = useContext(Store);
+
+  //run actions on every state update
+  useEffect(() => {
+    console.log('store updated');
+    localStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
+  }, [state]);
 
   //google analytics log page currently displayed
   useEffect(() => {
     ReactGA.send('pageview');
   }, []);
-
-  const { state } = useContext(Store);
-
-  //action on every state update
-  useEffect(() => {
-    console.log('store updated');
-    localStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
-  }, [state]);
 
   return (
     <>
@@ -91,7 +83,7 @@ function App() {
         <title>Kacper Porada Fotografia</title>
       </Helmet>
       <div className="App">
-        <FacebookPixel />
+        {/* <FacebookPixel /> */}
         <Alert alertContent={'alert'} />
         <Navbar />
         <Routes>

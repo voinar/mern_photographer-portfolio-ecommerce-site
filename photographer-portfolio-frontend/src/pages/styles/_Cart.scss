@@ -1,13 +1,10 @@
 .cart__container {
   padding: 180px 100px 200px;
   background-color: $--c-white;
-  border: 1px solid black;
   font-weight: 300;
 
-   button {
-    all: unset;
-    display: flex;
-    justify-content: center;
+  button {
+    // all: unset;
   }
 }
 
@@ -15,50 +12,80 @@
   display: flex;
   flex-direction: row;
   gap: 6px;
+  margin-bottom: 12px;
 
   img {
     height: 26px;
     align-self: center;
     transform: rotate(90deg);
     cursor: pointer;
+    border: 0px;
   }
 
   h1 {
     // font-size: $--font-md;
-    font-weight: 500;
+    // font-weight: 500;
+  }
+
+  button {
+    border: 0px;
+    padding: 0;
+    cursor: pointer;
   }
 }
 
 .cart__sections {
   display: flex;
   gap: 40px;
-  padding: 20px;
+  // padding: 20px;
 
   button {
     padding: 8px;
-    border: 1px solid rgb(200, 200, 200);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     background-color: rgb(255, 255, 255);
     border-radius: 4px;
     cursor: pointer;
   }
-
 }
 
 .cart__images {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  padding: 20px;
+  padding: 30px;
   gap: 20px;
   width: 70%;
+  margin: 0;
   background-color: white;
+
+  .cart__image__labels {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    padding: 0 0 20px;
+    text-align: center;
+
+    .cart__image__labels--photo {
+      width: 200px;
+    }
+
+    .cart__image__labels--price {
+      flex: 3;
+    }
+
+    .cart__image__labels--options {
+      flex: 1;
+    }
+  }
 
   .cart__image {
     display: flex;
+  }
 
-    img {
-      width: 40%;
-    }
+  .cart__image__tools--image {
+    width: 200px;
+    border-radius: 4px;
   }
 
   .cart__image__tools {
@@ -68,16 +95,25 @@
     margin: 0 auto;
     justify-content: space-around;
     align-items: center;
-    // border: 1px solid red;
-    width: 500px;
+    width: 100%;
 
-    button {
-      border: 1px solid rgb(222, 222, 222);
+    .cart__image__tools--price {
+      flex: 3;
+      text-align: center;
+    }
+
+    .cart__image__tools--button {
+      flex: 1;
+      text-align: center;
+
+      button {
+        margin: 0 auto;
+      }
     }
   }
 
   .cart__image__tools--header {
-    opacity: .8;
+    opacity: 0.8;
     font-weight: 200;
   }
 }
@@ -91,8 +127,11 @@
   width: 30%;
   height: 300px;
 
+  .cart__summary__price {
+    font-size: $--font-md;
+  }
 
-  .btn--primary {
-    background-color: rgba(0, 255, 0, 0.5);
+  .cart__summary__button {
+    width: 200px;
   }
 }

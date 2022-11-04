@@ -135,13 +135,13 @@ const Navbar = () => {
           ref={navRef}
         >
           <div className="navbar__shop__logo">
-            <Link to="/">
+            <Link to="/sklep">
               <img src={navLogo} alt="logo" />
             </Link>
           </div>
           <div className="navbar__shop__icons">
             <div className="navbar__shop__userinfo">
-              {state?.userInfo !== null ? (
+              {state?.userInfo?.email !== undefined ? (
                 <>
                   <div className="navbar__shop__userinfo__usermenu">
                     <span>
@@ -193,21 +193,21 @@ const Navbar = () => {
                 </>
               )}
             </div>
-            <div className="navbar__shop__icon__cart">
-              {state.cart.cartItems.length > 0 && (
-                <div className="navbar__shop__icon__cart__count">
-                  {state.cart.cartItems.length}
-                </div>
-              )}
-              <Link to="/Koszyk">
+            <Link to="/Koszyk">
+              <div className="navbar__shop__icon__cart">
+                {state.cart.cartItems.length > 0 && (
+                  <div className="navbar__shop__icon__cart__count">
+                    {state.cart.cartItems.length}
+                  </div>
+                )}
                 <img
                   src={iconCart}
                   className="navbar__shop__icon"
                   alt="zobacz koszyk"
                   title="zobacz koszyk"
                 />
-              </Link>
-            </div>
+              </div>
+            </Link>
             <div className="navbar__shop__icon__share">
               <img
                 src={iconShare}

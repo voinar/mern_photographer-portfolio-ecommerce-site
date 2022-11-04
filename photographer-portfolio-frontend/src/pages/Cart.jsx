@@ -3,10 +3,7 @@ import { Store } from '../contexts/Store';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-import {
-  doc,
-  getDoc,
-} from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 
 //assets
@@ -14,8 +11,11 @@ import IconChevron from '../img/icons/icon-chevron.svg';
 
 const Cart = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
-  // const [localState, setLocalState] = useState([]);
+
+  //local component state
   const [itemPrice, setItemPrice] = useState(null);
+  const [showPreviewImage, setShowPreviewImage] = useState(false);
+  const [previewImageUrl, setPreviewImageUrl] = useState(undefined);
 
   const navigate = useNavigate(); //used to return to previous page
   const goBack = () => navigate(-1);
@@ -29,16 +29,6 @@ const Cart = () => {
   };
 
   useEffect(() => {
-    // const getImagesData = async () => {
-    //   try {
-    //     const response = await axios.get(`/api/products/`);
-    //     setLocalState(response.data);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
-    // getImagesData();
-
     const getPrice = async () => {
       try {
         const docRef = doc(db, 'settings', '5cJniz1wK9Sri7EmlSzD');
@@ -55,7 +45,37 @@ const Cart = () => {
     getPrice();
   }, [state]);
 
-  console.log('cart contents: ' + state.cart.cartItems);
+  //   // preview images in album page
+  const handleImagePreview = (image) => {
+    console.log(image);
+    setPreviewImageUrl(image);
+    setShowPreviewImage((prevState) => !prevState);
+    console.log(image);
+  };
+
+  const handleImagePreviewPrev = () => {
+    if (state.cart.cartItems.indexOf(previewImageUrl) === 0) {
+      setPreviewImageUrl(state.cart.cartItems[state.cart.cartItems.length - 1]);
+    } else {
+      setPreviewImageUrl(
+        state.cart.cartItems[state.cart.cartItems.indexOf(previewImageUrl) - 1]
+      ); //find item in images list and decrement by 1
+    }
+  };
+
+  const handleImagePreviewNext = () => {
+    if (
+      state.cart.cartItems.indexOf(previewImageUrl) ===
+      state.cart.cartItems.length - 1
+    ) {
+      setPreviewImageUrl(state.cart.cartItems[0]);
+    } else {
+      setPreviewImageUrl(
+        state.cart.cartItems[state.cart.cartItems.indexOf(previewImageUrl) + 1]
+      ); //find item in images list and increment by 1
+    }
+  };
+
   return (
     <>
       <div className="cart__container">
@@ -68,44 +88,102 @@ const Cart = () => {
         <div className="cart__sections">
           {state.cart.cartItems.length === 0 ? (
             <div className="cart__images">
-              <h3>Koszyk jest pusty.</h3>
-              <span onClick={goBack}>Wracam do sklepu.</span>
+              <h3>Twój koszyk jest pusty.</h3>
+              <Link to="/sklep">
+                <button className="btn--primary">Wracam do sklepu.</button>
+              </Link>
             </div>
           ) : (
-            <ul className="cart__images">
-              <li className="cart__image">
-                <img src={''} alt="" />
-                <div className="cart__image__tools cart__image__tools--header">
-                  <span>Cena</span>
-                  <span>Opcje</span>
+            <>
+              <ul className="cart__images">
+                <div className="cart__image__labels">
+                  <span className="cart__image__labels--photo">Zdjęcie</span>
+                  <span className="cart__image__labels--price">Cena</span>
+                  <span className="cart__image__labels--options">Opcje</span>
                 </div>
-              </li>
-              {state.cart.cartItems.map((image) => {
-                return (
-                  <li className="cart__image">
-                    <img src={image} alt="" />
-                    <div className="cart__image__tools">
-                      <span>{itemPrice} PLN</span>
-                      <button onClick={() => cartRemoveItem(image)}>
-                        Usuń
+                {state.cart.cartItems.map((image) => {
+                  return (
+                    <li
+                      key={image}
+                      className="cart__image"
+                      onClick={() => handleImagePreview(image)}
+                    >
+                      <img
+                        className="cart__image__tools--image"
+                        src={image}
+                        alt=""
+                      />
+                      <div className="cart__image__tools">
+                        <span className="cart__image__tools--price">
+                          {itemPrice}zł
+                        </span>
+                        <div className="cart__image__tools--button">
+                          <button onClick={() => cartRemoveItem(image)}>
+                            Usuń
+                          </button>
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+              {showPreviewImage && ( //image preview overlay
+                <>
+                  <div className="album__preview" onClick={handleImagePreview}>
+                    <img
+                      className="album__preview-image"
+                      src={previewImageUrl}
+                      alt=""
+                    />
+                  </div>
+                  {state.cart.cartItems.length > 1 ? (
+                    <div className="album__preview-image__tools">
+                      <button onClick={handleImagePreviewPrev}>
+                        <img
+                          className="album__preview-image__tools__arrow album__preview-image__tools__arrow--prev"
+                          src={IconChevron}
+                          alt="poprzednie zdjęcie"
+                          title="poprzednie zdjęcie"
+                        />
+                      </button>
+
+                      <button onClick={handleImagePreviewNext}>
+                        <img
+                          className="album__preview-image__tools__arrow album__preview-image__tools__arrow--next"
+                          src={IconChevron}
+                          alt="następne zdjęcie"
+                          title="następne zdjęcie"
+                        />
                       </button>
                     </div>
-                  </li>
-                );
-              })}
-            </ul>
+                  ) : null}
+                </>
+              )}
+            </>
           )}
-          <div className="cart__summary">
-            <div>
-              <h2>Podsumowanie:</h2>
-              <span>{state.cart.cartItems.length * itemPrice} PLN brutto</span>
+          {state.cart.cartItems.length !== 0 ? (
+            <div className="cart__summary">
+              <div>
+                <h2>Podsumowanie:</h2>
+                <span className="cart__summary__price">
+                  {state.cart.cartItems.length * itemPrice}
+                  zł brutto
+                </span>
+              </div>
+              <br />
+              <Link to="/podsumowanie">
+                <button className="btn--primary cart__summary__button">
+                  Przejdź do zamówienia
+                </button>
+              </Link>
+              <button
+                onClick={goBack}
+                className="btn--secondary cart__summary__button"
+              >
+                Wracam do sklepu
+              </button>
             </div>
-            <br />
-            <Link to="/podsumowanie">
-              <button className="btn--primary">Przejdź do zamówienia</button>
-            </Link>
-            <button className="btn--secondary">Wracam do sklepu</button>
-          </div>
+          ) : null}
         </div>
       </div>
     </>

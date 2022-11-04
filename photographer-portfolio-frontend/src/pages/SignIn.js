@@ -1,14 +1,11 @@
 import { Helmet } from 'react-helmet-async';
-// import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import { Store } from '../contexts/Store';
 
 import { query, where, getDocs, addDoc } from 'firebase/firestore';
 import { usersColRef } from '../firebase/config';
-// import { addUser } from '../firebase/config.js';
 
-// import User from './models/userModel.js';
 // import bcrypt from 'bcryptjs';
 
 //assets
@@ -152,7 +149,9 @@ const SignIn = () => {
               />
             </div>
             <button type="submit">Zaloguj</button>
-            <span>{errorMessage}</span>
+            <div className="form__error-message">
+              <span>{errorMessage}</span>
+            </div>
           </form>
           <div className="signin__form__create-account">
             <span>Nie posiadasz jeszcze konta?</span>
