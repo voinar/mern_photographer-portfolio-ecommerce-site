@@ -12,6 +12,7 @@ import Album from './pages/Album';
 import Cart from './pages/Cart';
 import SignIn from './pages/SignIn';
 import Checkout from './pages/Checkout';
+import Success from './pages/Success';
 import Cookies from './pages/Cookies';
 
 //components
@@ -98,6 +99,7 @@ function App() {
           <Route path="/logowanie" element={<SignIn />} />
           <Route path="/podsumowanie" element={<Checkout />} />
           <Route path="/zamawiam" element={<OrderForm />} />
+          <Route path="/zakupione" element={<Success />} />
           <Route path="/regulamin" element={<TermsConditions />} />
           <Route path="/cookies" element={<Cookies />} />
         </Routes>

@@ -28,6 +28,7 @@ const db = getFirestore();
 //refs
 const usersColRef = collection(db, 'users');
 const settingsColRef = collection(db, 'settings');
+const ordersColRef = collection(db, 'orders');
 
 //get collection data
 // const getUsers = () => {
@@ -49,4 +50,4 @@ const settingsColRef = collection(db, 'settings');
 //add user to database
 // getDocs(usersColRef)
 
-export { storage, db, usersColRef, settingsColRef };
+export { storage, db, usersColRef, settingsColRef, ordersColRef };

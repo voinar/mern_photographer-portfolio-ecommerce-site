@@ -21,7 +21,6 @@ const Checkout = () => {
   // const [showOrderForm, setShowOrderForm] = useState(true);
   const [itemPrice, setItemPrice] = useState(null);
 
-
   // const toggleOrderForm = () => {
   //   setShowOrderForm((prevState) => !prevState);
   // };
@@ -80,10 +79,13 @@ const Checkout = () => {
             <div className="checkout__summary">
               <div className="checkout__summary__cart">
                 {state.userInfo !== null ? (
-                  <h2>
-                    Hej {state?.userInfo?.email.split('@')[0]}, oto Twój
-                    koszyk:
-                  </h2>
+                  <>
+                    <h2>
+                      {/* Hej {state?.userInfo?.email.split('@')[0]}, oto Twój
+                    koszyk: */}
+                    </h2>
+                    <h1>Hej, oto Twój koszyk:</h1>
+                  </>
                 ) : (
                   <h1>Hej, oto Twój koszyk:</h1>
                 )}

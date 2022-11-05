@@ -1,12 +1,34 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { Store } from '../contexts/Store';
+
+import { query, where, getDocs, addDoc } from 'firebase/firestore';
+import { ordersColRef } from '../firebase/config';
+import { v4 } from 'uuid';
+// import json_encode from 'json_encode';
+import jsSHA from 'jssha';
+import { decode as base64_decode, encode as base64_encode } from 'base-64';
+
+import axios from 'axios';
+
+// import {
+//   P24,
+//   Order,
+//   Currency,
+//   Country,
+//   Language,
+//   NotificationRequest,
+//   Verification
+// } from "@ingameltd/node-przelewy24";
 
 const OrderForm = () => {
-  const [formEmail, setFormEmail] = useState('');
-  const [formName, setFormName] = useState('');
-  const [formSurname, setFormSurname] = useState('');
-  const [formPhone, setFormPhone] = useState('+48');
-  const [formInvoiceField, setFormInvoiceField] = useState(false);
+  const { state, dispatch: contextDispatch } = useContext(Store);
+
+  const [formEmail, setFormEmail] = useState('testtest@test.test');
+  const [formName, setFormName] = useState('test');
+  const [formSurname, setFormSurname] = useState('veve');
+  const [formPhone, setFormPhone] = useState('');
+  const [formInvoiceRequested, setFormInvoiceRequested] = useState(false);
   const [formInvoiceNumber, setFormInvoiceNumber] = useState('');
   // const [formNewsletterConsent, setFormNewsletterConsent] = useState(false)
   const [formTermsConditionsAccept, setFormTermsConditionsAccept] =
@@ -33,7 +55,7 @@ const OrderForm = () => {
   };
 
   const toggleInputInvoice = () => {
-    setFormInvoiceField((prevState) => !prevState);
+    setFormInvoiceRequested((prevState) => !prevState);
     setFormInvoiceNumber('');
     setErrorMessage('');
   };
@@ -81,7 +103,7 @@ const OrderForm = () => {
 
     const phoneValidation = () => {
       const regEx = /^[+0-9 ]{9,16}$/g;
-      if (regEx.test(formPhone) === true) {
+      if (formPhone === '' || regEx.test(formPhone) === true) {
         setErrorMessage('');
         return true;
       } else {
@@ -93,7 +115,7 @@ const OrderForm = () => {
     phoneValidation();
 
     const formInvoiceNumberValidation = () => {
-      if (formInvoiceField === true) {
+      if (formInvoiceRequested === true) {
         if (formInvoiceNumber.length > 7 && formInvoiceNumber.length < 11) {
           setErrorMessage('');
           return true;
@@ -107,12 +129,12 @@ const OrderForm = () => {
     const termsConditionsAcceptValidation = () => {
       if (formTermsConditionsAccept === true) {
         setErrorMessage('');
-        return true
+        return true;
       } else {
         setErrorMessage('Aby kontynuować zaakceptuj warunki regulaminu');
       }
-    }
-    termsConditionsAcceptValidation()
+    };
+    termsConditionsAcceptValidation();
 
     if (
       emailValidation() === true &&
@@ -127,7 +149,6 @@ const OrderForm = () => {
   };
 
   //data submission function
-
   const dispatchFormDataToContext = (e) => {
     e.preventDefault();
 
@@ -137,15 +158,237 @@ const OrderForm = () => {
       console.log('form invalid');
     }
 
-    const formData = {
-      formEmail,
-      formName,
-      formSurname,
-      formPhone,
-      formInvoiceNumber,
-      formTermsConditionsAccept,
-    };
-    console.log(formData);
+    // const formData = {
+    //   email: formEmail,
+    //   name: formName,
+    //   surname: formSurname,
+    //   phone: formPhone,
+    //   invoiceRequested: formInvoiceRequested,
+    //   invoiceTaxId: formInvoiceNumber,
+    //   termsConditionsAccepted: formTermsConditionsAccept,
+    //   isPaid: false,
+    //   cartItems: state.cart.cartItems,
+    //   dateCreated: new Date(),
+    // };
+    // console.log(formData);
+    // console.log(formData.dateCreated);
+
+    handleFormSubmission();
+  };
+
+  const uniqueId = v4();
+
+  const handleFormSubmission = async () => {
+    console.log(uniqueId);
+
+    if (formValidation() === true) {
+      // e.preventDefault();
+      // const formData = {
+      //   email: formEmail,
+      //   name: formName,
+      //   surname: formSurname,
+      //   phone: formPhone,
+      //   invoiceRequested: formInvoiceRequested,
+      //   invoiceTaxId: formInvoiceNumber,
+      //   termsConditionsAccepted: formTermsConditionsAccept,
+      //   isPaid: false,
+      //   cartItems: state.cart.cartItems,
+      //   dateCreated: new Date(),
+      // };
+
+      try {
+        console.log('add');
+
+        //add order to db
+
+        await addDoc(ordersColRef, {
+          email: formEmail,
+          name: formName,
+          surname: formSurname,
+          phone: formPhone,
+          invoiceRequested: formInvoiceRequested,
+          invoiceTaxId: formInvoiceNumber,
+          termsConditionsAccepted: formTermsConditionsAccept,
+          isPaid: false,
+          cartItems: state.cart.cartItems,
+          dateCreated: new Date(),
+          orderId: uniqueId,
+        });
+        // contextDispatch({
+        //   type: 'USER_SIGNIN',
+        //   payload: { email, password },
+        // });
+        // localStorage.setItem('userInfo', JSON.stringify(data));
+
+        // navigate(redirect || '/koszyk');
+
+        // isDuplicateUser(email, password)
+      } catch (err) {
+        // setErrorMessage(err.message);
+        console.log('error: ' + err);
+      }
+    } else {
+      console.log('form data doesnt meet criteria');
+    }
+  };
+
+  const paymentRegister = (e) => {
+    e.preventDefault();
+    console.log('uniqueId', uniqueId);
+
+    let basicAuthUsrPwd = '200527:e9c589f13cb5129b684a7b72821b9b73';
+    let encoded = base64_encode(basicAuthUsrPwd);
+    let decoded = base64_decode(encoded);
+
+    console.log('base64 encoded', encoded);
+    console.log('base64 decoded', decoded);
+
+    // const shaObj = new jsSHA('SHA-384', 'TEXT', { encoding: 'UTF8' });
+    // shaObj
+    //   .update(uniqueId)
+    //   .update(200527)
+    //   .update(3)
+    //   .update('PLN')
+    //   .update('fc433f3b7b4dea10');
+
+    const shaObj = new jsSHA('SHA-384', 'TEXT', {
+      hmacKey: {
+        value: String({
+          sessionId: uniqueId,
+          merchantId: 200527,
+          amount: 2,
+          currency: 'PLN',
+          crc: 'fc433f3b7b4dea10',
+        }),
+        format: 'TEXT',
+      },
+    });
+    // shaObj
+    //   .update(uniqueId)
+    //   .update(200527)
+    //   .update(3)
+    //   .update('PLN')
+    //   .update('fc433f3b7b4dea10');
+
+    const sign = shaObj.getHash('HEX');
+    // String({
+    //   sessionId: uniqueId,
+    //   merchantId: 200527,
+    //   amount: 3,
+    //   currency: 'PLN',
+    //   crc: 'fc433f3b7b4dea10',
+    // });
+
+    console.log('sign sha', sign);
+    console.log('paymentRegister');
+
+    // axios({
+    //   method: 'post',
+    //   url: 'https://httpbin.org/post',
+    //   auth: {
+    //     username: 'wilma',
+    //     password: 'flintstone'
+    //   },
+    //   data: {
+    //     firstName: 'Fred',
+    //     lastName: 'Flintstone',
+    //   },
+    // })
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((err) => {
+    //     console.log('err', err);
+    //   });
+
+    axios({
+      method: 'post',
+      url: 'https://sandbox.przelewy24.pl/api/v1/transaction/register',
+      // auth: base64_encode("200527:e9c589f13cb5129b684a7b72821b9b73"),
+      auth: base64_encode('200527:e9c589f13cb5129b684a7b72821b9b73')
+      //   data: {
+      //       merchantId: 200527,
+      //       posId: 200527,
+      //       sessionId: uniqueId,
+      //       amount: 2,
+      //       currency: 'PLN',
+      // //       description: 'zakup zdjęć',
+      // //       email: formEmail,
+      //   },
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log('err', err);
+        console.log('err', err.response.data.error);
+      });
+
+    //   axios
+    //     // .post('https://sandbox.przelewy24.pl/api/v1', {
+    //     .post('https://sandbox.przelewy24.pl/api/v1/transaction/register', {
+    //       merchantId: 200527,
+    //       posId: 200527,
+    //       sessionId: uniqueId,
+    //       amount: 2,
+    //       currency: 'PLN',
+    //       description: 'zakup zdjęć',
+    //       email: formEmail,
+    //       // client: formName+'_'+formSurname,
+    //       // address: 'string',
+    //       // zip: 'string',
+    //       // city: 'string',
+    //       country: 'PL',
+    //       // phone: formPhone,
+    //       language: 'pl',
+    //       // method: 0,
+    //       urlReturn: 'localhost:3000/zakupione',
+    //       urlStatus: 'string', //!!!!!!!
+    //       timeLimit: 0,
+    //       channel: 1,
+    //       waitForResult: true,
+    //       // regulationAccept: false,
+    //       // shipping: 0,
+    //       // transferLabel: 'string',
+    //       // mobileLib: 1,
+    //       // sdkVersion: 'string',
+    //       // sign: 'string',
+    //       sign: sign,
+    //       // encoding: 'string',
+    //       // methodRefId: 'string',
+    //       // cart: [
+    //       //   {
+    //       //     sellerId: 'string',
+    //       //     sellerCategory: 'string',
+    //       //     name: 'string',
+    //       //     description: 'string',
+    //       //     quantity: 0,
+    //       //     price: 0,
+    //       //     number: 'string',
+    //       //   },
+    //       // ],
+    //       // additional: {
+    //       //   shipping: {
+    //       //     type: 0,
+    //       //     address: 'string',
+    //       //     zip: 'string',
+    //       //     city: 'string',
+    //       //     country: 'string',
+    //       //   },
+    //       // },
+    //     })
+    //     .then(function (response) {
+    //       console.log('res:', response);
+    //     })
+    //     .catch(function (error) {
+    //       console.log('err', error.message);
+    //     });
+  };
+
+  const paymentVerify = (e) => {
+    e.preventDefault();
+
+    console.log('paymentVerify');
   };
 
   return (
@@ -209,7 +452,7 @@ const OrderForm = () => {
             </label>
           </div>
 
-          {formInvoiceField ? (
+          {formInvoiceRequested ? (
             <>
               <div className="order-form__content__checkbox">
                 <label>
@@ -274,6 +517,8 @@ const OrderForm = () => {
           >
             Przejdź do płatności
           </button>
+          <button onClick={paymentRegister}>register transaction POST</button>
+          <button onClick={paymentVerify}>verify transaction PUT</button>
           <br />
           <span>*pole wymagane</span>
         </form>

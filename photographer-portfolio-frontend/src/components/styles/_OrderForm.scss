@@ -1,12 +1,14 @@
 .order-form__container {
   background-color: rgba(255, 255, 255, 0.7);
   padding: 20px;
-  max-height: 500px;
+  max-height: auto;
   border-radius: 6px;
   border: 1px solid rgba(0, 0, 0, 0.16);
 }
 
 .order-form__content {
+  margin: 10px 0 0;
+
   form {
     display: flex;
     flex-direction: column;
@@ -47,4 +49,9 @@
       width: auto;
     }
   }
+}
+
+.order-form__content--error {
+  background-color: pink;
+  border: 1px solid grey;
 }

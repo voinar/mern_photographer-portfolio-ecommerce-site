@@ -12,6 +12,8 @@ import { usersColRef } from '../firebase/config';
 import IconChevron from '../img/icons/icon-chevron.svg';
 
 const SignIn = () => {
+  const { state, dispatch: contextDispatch } = useContext(Store);
+
   const navigate = useNavigate();
   const { search } = useLocation();
   const redirectInUrl = new URLSearchParams(search).get('redirect');
@@ -22,7 +24,6 @@ const SignIn = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [signinForm, setSigninForm] = useState(true);
 
-  const { state, dispatch: contextDispatch } = useContext(Store);
 
   const handleSignin = async (e) => {
     try {

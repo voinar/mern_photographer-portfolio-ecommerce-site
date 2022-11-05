@@ -1324,6 +1324,16 @@ select {
   font-size: 18px;
 }
 
+.success__container {
+  background-color: rgba(255, 255, 255, 0.85);
+  color: #3a3939;
+  min-height: 70vh;
+  padding: 180px 100px 200px;
+  margin: 0 auto;
+  font-weight: 300;
+  font-size: 14px;
+}
+
 .terms__container {
   background-color: rgba(255, 255, 255, 0.85);
   padding: 180px 100px 200px;
@@ -1862,9 +1872,13 @@ select {
 .order-form__container {
   background-color: rgba(255, 255, 255, 0.7);
   padding: 20px;
-  max-height: 500px;
+  max-height: auto;
   border-radius: 6px;
   border: 1px solid rgba(0, 0, 0, 0.16);
+}
+
+.order-form__content {
+  margin: 10px 0 0;
 }
 
 .order-form__content form {
@@ -1924,6 +1938,11 @@ select {
 
 .order-form__content .order-form__content__checkbox input {
   width: auto;
+}
+
+.order-form__content--error {
+  background-color: pink;
+  border: 1px solid grey;
 }
 
 .cookies-popup__container {
