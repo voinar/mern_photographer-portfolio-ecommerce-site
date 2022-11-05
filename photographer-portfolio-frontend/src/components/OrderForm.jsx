@@ -177,25 +177,15 @@ const OrderForm = () => {
   };
 
   const uniqueId = v4();
+  // const uniqueId = 'e7278a1c-0792-bd38-5e667152aa09';
+
+  const [token, setToken] = useState(null)
+  let tokenLink = `https://sandbox.przelewy24.pl/trnRequest/${String(token)}`
 
   const handleFormSubmission = async () => {
     console.log(uniqueId);
 
     if (formValidation() === true) {
-      // e.preventDefault();
-      // const formData = {
-      //   email: formEmail,
-      //   name: formName,
-      //   surname: formSurname,
-      //   phone: formPhone,
-      //   invoiceRequested: formInvoiceRequested,
-      //   invoiceTaxId: formInvoiceNumber,
-      //   termsConditionsAccepted: formTermsConditionsAccept,
-      //   isPaid: false,
-      //   cartItems: state.cart.cartItems,
-      //   dateCreated: new Date(),
-      // };
-
       try {
         console.log('add');
 
@@ -233,156 +223,56 @@ const OrderForm = () => {
   };
 
   const paymentRegister = (e) => {
+    //funkcja dla pierwszego etapu transkacji /v1/transaction/register
     e.preventDefault();
-    console.log('uniqueId', uniqueId);
+    const crcValue = '45839de45c0c7935'; //CRC pobrane z danych konta
 
-    let basicAuthUsrPwd = '200527:e9c589f13cb5129b684a7b72821b9b73';
-    let encoded = base64_encode(basicAuthUsrPwd);
-    let decoded = base64_decode(encoded);
-
-    console.log('base64 encoded', encoded);
-    console.log('base64 decoded', decoded);
-
-    // const shaObj = new jsSHA('SHA-384', 'TEXT', { encoding: 'UTF8' });
-    // shaObj
-    //   .update(uniqueId)
-    //   .update(200527)
-    //   .update(3)
-    //   .update('PLN')
-    //   .update('fc433f3b7b4dea10');
-
-    const shaObj = new jsSHA('SHA-384', 'TEXT', {
-      hmacKey: {
-        value: String({
-          sessionId: uniqueId,
-          merchantId: 200527,
-          amount: 2,
-          currency: 'PLN',
-          crc: 'fc433f3b7b4dea10',
-        }),
-        format: 'TEXT',
-      },
-    });
-    // shaObj
-    //   .update(uniqueId)
-    //   .update(200527)
-    //   .update(3)
-    //   .update('PLN')
-    //   .update('fc433f3b7b4dea10');
-
-    const sign = shaObj.getHash('HEX');
-    // String({
-    //   sessionId: uniqueId,
-    //   merchantId: 200527,
-    //   amount: 3,
-    //   currency: 'PLN',
-    //   crc: 'fc433f3b7b4dea10',
-    // });
-
-    console.log('sign sha', sign);
-    console.log('paymentRegister');
-
-    // axios({
-    //   method: 'post',
-    //   url: 'https://httpbin.org/post',
-    //   auth: {
-    //     username: 'wilma',
-    //     password: 'flintstone'
-    //   },
-    //   data: {
-    //     firstName: 'Fred',
-    //     lastName: 'Flintstone',
-    //   },
-    // })
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((err) => {
-    //     console.log('err', err);
-    //   });
+    // templatka sign: {"sessionId":"str","merchantId":int,"amount":int,"currency":"str","crc":"str"}
+    //{"sessionId":"e7278a1c-0792-bd38-5e667152aa09", "merchantId":200527, "amount":2, "currency":"PLN", "crc":"45839de45c0c7935"}
+    const signTemplate =
+      `{"sessionId":"${uniqueId}","merchantId":200527,"amount":2,"currency":"PLN","crc":"${crcValue}"}`;
+      console.log('signtemp',signTemplate);
+      console.log('id type',typeof(uniqueId))
+    // const signTemplate = `{"sessionId":${uniqueId},"merchantId":200527,"amount":2,"currency":"PLN","crc":${crcValue}}`; //template string do obliczenia sumy kontrolnej
+    const shaObj = new jsSHA('SHA-384', 'TEXT', { encoding: 'UTF8' }); //nowy obiekt sha-384 generowany przez jsSHA
+    shaObj.update(signTemplate); //wprowadzenie ciągu signCryptoInput do hashowania przez shaObj
+    const signSha = shaObj.getHash('HEX'); //konwersja shaObj do hex
 
     axios({
-      method: 'post',
-      url: 'https://sandbox.przelewy24.pl/api/v1/transaction/register',
-      // auth: base64_encode("200527:e9c589f13cb5129b684a7b72821b9b73"),
-      auth: base64_encode('200527:e9c589f13cb5129b684a7b72821b9b73')
-      //   data: {
-      //       merchantId: 200527,
-      //       posId: 200527,
-      //       sessionId: uniqueId,
-      //       amount: 2,
-      //       currency: 'PLN',
-      // //       description: 'zakup zdjęć',
-      // //       email: formEmail,
-      //   },
+      //zapytanie http przez axios
+      method: 'post', //metoda
+      url: 'https://sandbox.przelewy24.pl/api/v1/transaction/register', //sandbox url
+      auth: { username: 200527, password: 'e9c589f13cb5129b684a7b72821b9b73' }, //dane z konta sandbox
+      data: {
+        merchantId: 200527,
+        posId: 200527,
+        sessionId: uniqueId, //id generowane przy tworzeniu zamówienia, np: '6b795d5e-394f-4ae3-b313-bb70ccd99d5c'
+        amount: 2,
+        currency: 'PLN',
+        orderId: uniqueId,
+        description: 'zakup test',
+        email: 'test@test.pl',
+        urlReturn: 'https://google.pl',
+        country: 'PL',
+        sign: signSha, //wygenerowany wyżej hash
+      },
     })
       .then((response) => {
+        //blok uruchamiany dla odpowiedzi z kodem 200
         console.log(response);
+        console.log('token', response.data.data.token)
+        setToken(String(response.data.data.token))
+        console.log(typeof(token))
       })
       .catch((err) => {
+        //blok dla odpowiedzi z błędem 400/401
         console.log('err', err);
         console.log('err', err.response.data.error);
       });
 
-    //   axios
-    //     // .post('https://sandbox.przelewy24.pl/api/v1', {
-    //     .post('https://sandbox.przelewy24.pl/api/v1/transaction/register', {
-    //       merchantId: 200527,
-    //       posId: 200527,
-    //       sessionId: uniqueId,
-    //       amount: 2,
-    //       currency: 'PLN',
-    //       description: 'zakup zdjęć',
-    //       email: formEmail,
-    //       // client: formName+'_'+formSurname,
-    //       // address: 'string',
-    //       // zip: 'string',
-    //       // city: 'string',
-    //       country: 'PL',
-    //       // phone: formPhone,
-    //       language: 'pl',
-    //       // method: 0,
-    //       urlReturn: 'localhost:3000/zakupione',
-    //       urlStatus: 'string', //!!!!!!!
-    //       timeLimit: 0,
-    //       channel: 1,
-    //       waitForResult: true,
-    //       // regulationAccept: false,
-    //       // shipping: 0,
-    //       // transferLabel: 'string',
-    //       // mobileLib: 1,
-    //       // sdkVersion: 'string',
-    //       // sign: 'string',
-    //       sign: sign,
-    //       // encoding: 'string',
-    //       // methodRefId: 'string',
-    //       // cart: [
-    //       //   {
-    //       //     sellerId: 'string',
-    //       //     sellerCategory: 'string',
-    //       //     name: 'string',
-    //       //     description: 'string',
-    //       //     quantity: 0,
-    //       //     price: 0,
-    //       //     number: 'string',
-    //       //   },
-    //       // ],
-    //       // additional: {
-    //       //   shipping: {
-    //       //     type: 0,
-    //       //     address: 'string',
-    //       //     zip: 'string',
-    //       //     city: 'string',
-    //       //     country: 'string',
-    //       //   },
-    //       // },
-    //     })
-    //     .then(function (response) {
-    //       console.log('res:', response);
-    //     })
-    //     .catch(function (error) {
-    //       console.log('err', error.message);
-    //     });
+    console.log('paymentRegister start');
+    console.log('uniqueId', uniqueId);
+    console.log('sign sha hex', shaObj.getHash('HEX'));
   };
 
   const paymentVerify = (e) => {
@@ -518,6 +408,7 @@ const OrderForm = () => {
             Przejdź do płatności
           </button>
           <button onClick={paymentRegister}>register transaction POST</button>
+          <button onClick={()=>{window.open(tokenLink, '_blank', 'noopener,noreferrer')}}>token link {token}</button>
           <button onClick={paymentVerify}>verify transaction PUT</button>
           <br />
           <span>*pole wymagane</span>
