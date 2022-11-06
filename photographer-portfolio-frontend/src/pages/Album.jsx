@@ -8,6 +8,9 @@ import { storage } from '../firebase/config';
 //assets
 import IconChevron from '../img/icons/icon-chevron.svg';
 import IconCartAdd from '../img/icons/icon-cart-add.svg';
+import IconGridSmall from '../img/icons/icon-grid-small.svg';
+import IconGridMedium from '../img/icons/icon-grid-medium.svg';
+import IconGridLarge from '../img/icons/icon-grid-large.svg';
 
 //components
 import AlbumImage from '../components/AlbumImage';
@@ -26,6 +29,8 @@ const Album = () => {
   const [showPreviewImage, setShowPreviewImage] = useState(false);
   const [previewImageUrl, setPreviewImageUrl] = useState(undefined);
   //   const [previewImageId, setPreviewImageId] = useState(undefined);
+
+  const [imageThumbnailSize, setImageThumbnailSize] = useState('album__card--small');
 
   useEffect(() => {
     const albumRef = ref(storage, `albums/${album.replaceAll(' ', '_')}/male/`);
@@ -110,10 +115,18 @@ const Album = () => {
                 <img src={IconChevron} alt="zobacz" />
               </button>
               <h1>{album}</h1>
+              <div className="album__toolbar__thumbnail-controls">
+                <button onClick={() => setImageThumbnailSize('album__card--small')}>
+                  <img src={IconGridSmall} alt="mały rozmiar podglądów" />
+                </button>
+                <button onClick={() => setImageThumbnailSize('album__card--medium')}>
+                  <img src={IconGridMedium} alt="średni rozmiar podglądów" />
+                </button>
+                <button onClick={() => setImageThumbnailSize('album__card--large')}>
+                  <img src={IconGridLarge} alt="duży rozmiar podglądów" />
+                </button>
+              </div>
             </div>
-            <h2>
-              {/* {currentAlbumData[0]?.location} {currentAlbumData[0]?.date} */}
-            </h2>
           </div>
           <div className="album__cards">
             {albumImagesList.map((image) => {
@@ -122,6 +135,7 @@ const Album = () => {
                   <AlbumImage
                     id={image}
                     url={image}
+                    albumCardSize={`album__card ${imageThumbnailSize}`}
                     // price={image.price}
                     // uuid={uuidv4()}
                     handleImagePreview={() => handleImagePreview(image)}

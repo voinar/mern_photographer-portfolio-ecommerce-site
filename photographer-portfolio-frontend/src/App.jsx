@@ -99,7 +99,7 @@ function App() {
           <Route path="/logowanie" element={<SignIn />} />
           <Route path="/podsumowanie" element={<Checkout />} />
           <Route path="/zamawiam" element={<OrderForm />} />
-          <Route path="/zakupione" element={<Success />} />
+          <Route path="/twojezakupy" element={<Success />} />
           <Route path="/regulamin" element={<TermsConditions />} />
           <Route path="/cookies" element={<Cookies />} />
         </Routes>

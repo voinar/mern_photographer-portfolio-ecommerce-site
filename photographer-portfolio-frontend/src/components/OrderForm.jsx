@@ -179,8 +179,8 @@ const OrderForm = () => {
   const uniqueId = v4();
   // const uniqueId = 'e7278a1c-0792-bd38-5e667152aa09';
 
-  const [token, setToken] = useState(null)
-  let tokenLink = `https://sandbox.przelewy24.pl/trnRequest/${String(token)}`
+  const [token, setToken] = useState(null);
+  let tokenLink = `https://sandbox.przelewy24.pl/trnRequest/${String(token)}`;
 
   const handleFormSubmission = async () => {
     console.log(uniqueId);
@@ -229,10 +229,9 @@ const OrderForm = () => {
 
     // templatka sign: {"sessionId":"str","merchantId":int,"amount":int,"currency":"str","crc":"str"}
     //{"sessionId":"e7278a1c-0792-bd38-5e667152aa09", "merchantId":200527, "amount":2, "currency":"PLN", "crc":"45839de45c0c7935"}
-    const signTemplate =
-      `{"sessionId":"${uniqueId}","merchantId":200527,"amount":2,"currency":"PLN","crc":"${crcValue}"}`;
-      console.log('signtemp',signTemplate);
-      console.log('id type',typeof(uniqueId))
+    const signTemplate = `{"sessionId":"${uniqueId}","merchantId":200527,"amount":2,"currency":"PLN","crc":"${crcValue}"}`;
+    console.log('signtemp', signTemplate);
+    console.log('id type', typeof uniqueId);
     // const signTemplate = `{"sessionId":${uniqueId},"merchantId":200527,"amount":2,"currency":"PLN","crc":${crcValue}}`; //template string do obliczenia sumy kontrolnej
     const shaObj = new jsSHA('SHA-384', 'TEXT', { encoding: 'UTF8' }); //nowy obiekt sha-384 generowany przez jsSHA
     shaObj.update(signTemplate); //wprowadzenie ciągu signCryptoInput do hashowania przez shaObj
@@ -252,7 +251,8 @@ const OrderForm = () => {
         orderId: uniqueId,
         description: 'zakup test',
         email: 'test@test.pl',
-        urlReturn: 'https://google.pl',
+        urlReturn: 'https://kacperporada.pl/twojezakupy', //adres do przekierowania po wykonanej płatności
+        urlStatus: 'https://kacperporada.pl/api', //adres do otrzymania informacji zwrotnej o transakcji z systemu przelewy24
         country: 'PL',
         sign: signSha, //wygenerowany wyżej hash
       },
@@ -260,9 +260,9 @@ const OrderForm = () => {
       .then((response) => {
         //blok uruchamiany dla odpowiedzi z kodem 200
         console.log(response);
-        console.log('token', response.data.data.token)
-        setToken(String(response.data.data.token))
-        console.log(typeof(token))
+        console.log('token', response.data.data.token);
+        setToken(String(response.data.data.token));
+        console.log(typeof token);
       })
       .catch((err) => {
         //blok dla odpowiedzi z błędem 400/401
@@ -408,7 +408,13 @@ const OrderForm = () => {
             Przejdź do płatności
           </button>
           <button onClick={paymentRegister}>register transaction POST</button>
-          <button onClick={()=>{window.open(tokenLink, '_blank', 'noopener,noreferrer')}}>token link {token}</button>
+          <button
+            onClick={() => {
+              window.open(tokenLink, '_blank', 'noopener,noreferrer');
+            }}
+          >
+            token link {token}
+          </button>
           <button onClick={paymentVerify}>verify transaction PUT</button>
           <br />
           <span>*pole wymagane</span>

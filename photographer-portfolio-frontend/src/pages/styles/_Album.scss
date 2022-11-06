@@ -4,26 +4,28 @@
   height: auto;
   padding: 140px 100px 200px;
 
-
   h1 {
     // font-weight: 400;
   }
 }
 
 .album__toolbar {
+  display: flex;
+  flex-direction: row;
   position: fixed;
   top: 0px;
-  padding: 160px 0 0;
+  padding: 140px 0px 20px 0px;
   display: flex;
   flex-direction: column;
-  // background-color: $--c-white;
-  width: 100vw;
+  background-color: $--c-white;
+  min-width: 90vw;
   z-index: 3;
 
   .album__title {
     display: flex;
     flex-direction: row;
     gap: 2px;
+    // width: 50%;
 
     img {
       height: 26px;
@@ -42,26 +44,30 @@
     }
   }
 
-  .album__toolbar__elements {
+  .album__toolbar__thumbnail-controls {
     display: flex;
     flex-direction: row;
-    gap: 30px;
-    margin-bottom: 10px;
-  }
-
-  .album__toolbar__element {
-    display: flex;
-    flex-direction: row;
-
-    span {
-      font-size: $--font-md;
-      font-weight: 200;
-    }
+    gap: 10px;
+    // align-items: flex-end;
+    margin: 0 200px 0 auto;
 
     img {
-      height: 16px;
-      align-self: center;
-      margin-left: 4px;
+      transform: rotate(0deg);
+    }
+
+    button {
+      display: flex;
+      padding: 12px;
+      width: 32px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      background-color: rgba(255, 255, 255, 0.64);
+      border: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+    button:hover {
+      background-color: white;
     }
   }
 }
@@ -74,12 +80,13 @@
   margin-left: 6px;
   margin-top: 140px;
   justify-content: left;
+  transition: 0.2s;
 }
 
 .album__card {
-  width: 20vw;
-  height: 220px;
-  opacity: 0.9;
+  // width: 20vw;
+  // height: 220px;
+  opacity: 0.92;
 
   img {
     width: inherit;
@@ -95,16 +102,28 @@
 }
 
 .album__card:hover {
+  opacity: 1;
+  transition: all 0.3s;
   img {
-    transform: scale(1.025);
+    transform: scale(1.016);
     // z-index: 20;
     transition: all 0.3s;
   }
 }
 
-.album__card:hover {
-  opacity: 1;
-  transition: all 0.3s;
+.album__card--small {
+  height: 200px;
+  width: 280px;
+}
+
+.album__card--medium {
+  height: 340px;
+  width: 400px;
+}
+
+.album__card--large {
+  height: auto;
+  width: 80vw;
 }
 
 .album__preview {

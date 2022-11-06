@@ -765,17 +765,21 @@ select {
 }
 
 .album__toolbar {
-  position: fixed;
-  top: 0px;
-  padding: 160px 0 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  width: 100vw;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: fixed;
+  top: 0px;
+  padding: 140px 0px 20px 0px;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  background-color: #f2f2f2;
+  min-width: 90vw;
   z-index: 3;
 }
 
@@ -809,7 +813,7 @@ select {
   cursor: pointer;
 }
 
-.album__toolbar .album__toolbar__elements {
+.album__toolbar .album__toolbar__thumbnail-controls {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -817,31 +821,34 @@ select {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  gap: 30px;
-  margin-bottom: 10px;
+  gap: 10px;
+  margin: 0 200px 0 auto;
 }
 
-.album__toolbar .album__toolbar__element {
+.album__toolbar .album__toolbar__thumbnail-controls img {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+
+.album__toolbar .album__toolbar__thumbnail-controls button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  padding: 12px;
+  width: 32px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.64);
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.album__toolbar .album__toolbar__element span {
-  font-size: 18px;
-  font-weight: 200;
-}
-
-.album__toolbar .album__toolbar__element img {
-  height: 16px;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  margin-left: 4px;
+.album__toolbar .album__toolbar__thumbnail-controls button:hover {
+  background-color: white;
 }
 
 .album__cards {
@@ -860,12 +867,12 @@ select {
   -webkit-box-pack: left;
       -ms-flex-pack: left;
           justify-content: left;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
 }
 
 .album__card {
-  width: 20vw;
-  height: 220px;
-  opacity: 0.9;
+  opacity: 0.92;
 }
 
 .album__card img {
@@ -880,17 +887,32 @@ select {
   cursor: pointer;
 }
 
-.album__card:hover img {
-  -webkit-transform: scale(1.025);
-          transform: scale(1.025);
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-}
-
 .album__card:hover {
   opacity: 1;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
+}
+
+.album__card:hover img {
+  -webkit-transform: scale(1.016);
+          transform: scale(1.016);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.album__card--small {
+  height: 200px;
+  width: 280px;
+}
+
+.album__card--medium {
+  height: 340px;
+  width: 400px;
+}
+
+.album__card--large {
+  height: auto;
+  width: 80vw;
 }
 
 .album__preview {
