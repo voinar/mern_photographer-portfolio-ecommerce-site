@@ -166,10 +166,9 @@
 }
 
 .album__preview-image {
-  width: 60vw;
-  // max-height: 60vh;
-  // object-fit: scale-down;
-  // opacity: 0.9;
+  width: 80vw;
+  height: 50vh;
+  object-fit: contain;
   cursor: pointer;
   border-radius: 6px;
 }
@@ -181,7 +180,7 @@
   cursor: pointer;
   width: auto;
   gap: 10vw;
-  top: 75vh;
+  // top: 75vh;
   left: 0;
   width: 100%;
   justify-content: center;

@@ -967,7 +967,10 @@ select {
 }
 
 .album__preview-image {
-  width: 60vw;
+  width: 80vw;
+  height: 50vh;
+  -o-object-fit: contain;
+     object-fit: contain;
   cursor: pointer;
   border-radius: 6px;
 }
@@ -984,7 +987,6 @@ select {
   cursor: pointer;
   width: auto;
   gap: 10vw;
-  top: 75vh;
   left: 0;
   width: 100%;
   -webkit-box-pack: center;
@@ -1104,10 +1106,16 @@ select {
   width: 200px;
 }
 
+.cart__images .cart__image__labels .cart__image__labels--preview {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
 .cart__images .cart__image__labels .cart__image__labels--price {
-  -webkit-box-flex: 3;
-      -ms-flex: 3;
-          flex: 3;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 .cart__images .cart__image__labels .cart__image__labels--options {
@@ -1125,6 +1133,13 @@ select {
 .cart__images .cart__image__tools--image {
   width: 200px;
   border-radius: 4px;
+}
+
+.cart__images .cart__image__tools--preview {
+  width: 24px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .cart__images .cart__image__tools {
@@ -1147,16 +1162,10 @@ select {
 }
 
 .cart__images .cart__image__tools .cart__image__tools--price {
-  -webkit-box-flex: 3;
-      -ms-flex: 3;
-          flex: 3;
   text-align: center;
 }
 
 .cart__images .cart__image__tools .cart__image__tools--button {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
   text-align: center;
 }
 

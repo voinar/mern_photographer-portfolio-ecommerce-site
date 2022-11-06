@@ -70,6 +70,14 @@ const Album = () => {
       : 'album__toolbar album__toolbar--compact';
   };
 
+  //lock page scroll when preview overlay is displayed
+  useEffect(() => {
+    const html = document.querySelector('html');
+    if (html) {
+      html.style.overflow = showPreviewImage ? 'hidden' : 'auto';
+    }
+  }, [showPreviewImage]);
+
   //   // preview images in album page
   const handleImagePreview = (image) => {
     // setPreviewImageId(image._id);
@@ -195,6 +203,7 @@ const Album = () => {
                     <>
                       <div
                         className="album__preview"
+                        style={{ top: window.scrollY }}
                         onClick={handleImagePreview}
                       >
                         <img
@@ -203,7 +212,10 @@ const Album = () => {
                           alt=""
                         />
                       </div>
-                      <div className="album__preview-image__tools">
+                      <div
+                        className="album__preview-image__tools"
+                        style={{ top: (window.scrollY + window.innerHeight - window.innerHeight/4) }}
+                      >
                         <button onClick={handleImagePreviewPrev}>
                           <img
                             className="album__preview-image__tools__arrow album__preview-image__tools__arrow--prev"

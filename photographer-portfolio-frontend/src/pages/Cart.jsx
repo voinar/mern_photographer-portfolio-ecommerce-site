@@ -2,12 +2,12 @@ import { useContext, useState, useEffect } from 'react';
 import { Store } from '../contexts/Store';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 
 //assets
 import IconChevron from '../img/icons/icon-chevron.svg';
+import IconMagnifyingGlass from '../img/icons/icon-magnifying-glass.svg';
 
 const Cart = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
@@ -35,7 +35,8 @@ const Cart = () => {
         const docSnap = await getDoc(docRef);
         setItemPrice(
           Number(
-            docSnap._document.data.value.mapValue.fields.imagePrice.integerValue / 100
+            docSnap._document.data.value.mapValue.fields.imagePrice
+              .integerValue / 100
           )
         );
       } catch (err) {
@@ -53,28 +54,36 @@ const Cart = () => {
     console.log(image);
   };
 
-  const handleImagePreviewPrev = () => {
-    if (state.cart.cartItems.indexOf(previewImageUrl) === 0) {
-      setPreviewImageUrl(state.cart.cartItems[state.cart.cartItems.length - 1]);
-    } else {
-      setPreviewImageUrl(
-        state.cart.cartItems[state.cart.cartItems.indexOf(previewImageUrl) - 1]
-      ); //find item in images list and decrement by 1
+  //lock page scroll when preview overlay is displayed
+  useEffect(() => {
+    const html = document.querySelector('html');
+    if (html) {
+      html.style.overflow = showPreviewImage ? 'hidden' : 'auto';
     }
-  };
+  }, [showPreviewImage]);
 
-  const handleImagePreviewNext = () => {
-    if (
-      state.cart.cartItems.indexOf(previewImageUrl) ===
-      state.cart.cartItems.length - 1
-    ) {
-      setPreviewImageUrl(state.cart.cartItems[0]);
-    } else {
-      setPreviewImageUrl(
-        state.cart.cartItems[state.cart.cartItems.indexOf(previewImageUrl) + 1]
-      ); //find item in images list and increment by 1
-    }
-  };
+  // const handleImagePreviewPrev = () => {
+  //   if (state.cart.cartItems.indexOf(previewImageUrl) === 0) {
+  //     setPreviewImageUrl(state.cart.cartItems[state.cart.cartItems.length - 1]);
+  //   } else {
+  //     setPreviewImageUrl(
+  //       state.cart.cartItems[state.cart.cartItems.indexOf(previewImageUrl) - 1]
+  //     ); //find item in images list and decrement by 1
+  //   }
+  // };
+
+  // const handleImagePreviewNext = () => {
+  //   if (
+  //     state.cart.cartItems.indexOf(previewImageUrl) ===
+  //     state.cart.cartItems.length - 1
+  //   ) {
+  //     setPreviewImageUrl(state.cart.cartItems[0]);
+  //   } else {
+  //     setPreviewImageUrl(
+  //       state.cart.cartItems[state.cart.cartItems.indexOf(previewImageUrl) + 1]
+  //     ); //find item in images list and increment by 1
+  //   }
+  // };
 
   return (
     <>
@@ -98,22 +107,25 @@ const Cart = () => {
               <ul className="cart__images">
                 <div className="cart__image__labels">
                   <span className="cart__image__labels--photo">Zdjęcie</span>
+                  <span className="cart__image__labels--preview">Podgląd</span>
                   <span className="cart__image__labels--price">Cena</span>
                   <span className="cart__image__labels--options">Opcje</span>
                 </div>
                 {state.cart.cartItems.map((image) => {
                   return (
-                    <li
-                      key={image}
-                      className="cart__image"
-                      onClick={() => handleImagePreview(image)}
-                    >
+                    <li key={image} className="cart__image">
                       <img
                         className="cart__image__tools--image"
                         src={image}
                         alt=""
                       />
                       <div className="cart__image__tools">
+                        <button
+                          className="cart__image__tools--preview"
+                          onClick={() => handleImagePreview(image)}
+                        >
+                          <img src={IconMagnifyingGlass} alt="zobacz podgląd" />
+                        </button>
                         <span className="cart__image__tools--price">
                           {itemPrice}zł
                         </span>
@@ -129,34 +141,18 @@ const Cart = () => {
               </ul>
               {showPreviewImage && ( //image preview overlay
                 <>
-                  <div className="album__preview" onClick={handleImagePreview}>
+                  <div
+                    className="album__preview"
+                    style={{ top: window.scrollY }}
+                    onClick={handleImagePreview}
+                  >
                     <img
                       className="album__preview-image"
                       src={previewImageUrl}
                       alt=""
                     />
                   </div>
-                  {state.cart.cartItems.length > 1 ? (
-                    <div className="album__preview-image__tools">
-                      <button onClick={handleImagePreviewPrev}>
-                        <img
-                          className="album__preview-image__tools__arrow album__preview-image__tools__arrow--prev"
-                          src={IconChevron}
-                          alt="poprzednie zdjęcie"
-                          title="poprzednie zdjęcie"
-                        />
-                      </button>
-
-                      <button onClick={handleImagePreviewNext}>
-                        <img
-                          className="album__preview-image__tools__arrow album__preview-image__tools__arrow--next"
-                          src={IconChevron}
-                          alt="następne zdjęcie"
-                          title="następne zdjęcie"
-                        />
-                      </button>
-                    </div>
-                  ) : null}
+                  {state.cart.cartItems.length > 1 ? null : null}
                 </>
               )}
             </>
@@ -166,7 +162,10 @@ const Cart = () => {
               <div>
                 <h2>Podsumowanie:</h2>
                 <span className="cart__summary__price">
-                {new Intl.NumberFormat('pl-PL', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(state.cart.cartItems.length * itemPrice)}
+                  {new Intl.NumberFormat('pl-PL', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  }).format(state.cart.cartItems.length * itemPrice)}
                   zł brutto
                 </span>
               </div>
