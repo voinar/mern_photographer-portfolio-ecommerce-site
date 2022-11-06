@@ -1084,6 +1084,10 @@ select {
   width: 70%;
   margin: 0;
   background-color: white;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .cart__images .cart__image__labels {
@@ -1191,6 +1195,10 @@ select {
   gap: 20px;
   width: 30%;
   height: 300px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 .cart__summary .cart__summary__price {
@@ -1199,6 +1207,11 @@ select {
 
 .cart__summary .cart__summary__button {
   width: 200px;
+}
+
+.cart__images:hover,
+.cart__summary:hover {
+  border: 1px solid rgba(0, 0, 0, 0.4);
 }
 
 .signin__container {

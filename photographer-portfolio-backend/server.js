@@ -29,6 +29,11 @@ app.use('/api/seed', seedRouter);
 app.use('/api/products', productRouter);
 app.use('/api/users', userRouter);
 
+app.get('/api/payment', (req, res) => {
+  res.send('payment endpoint running');
+});
+
+
 // app.get('/api/seed', (req, res) => {
 //   res.send(data);
 // });

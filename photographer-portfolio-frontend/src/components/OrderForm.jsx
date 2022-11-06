@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Store } from '../contexts/Store';
-import { query, where, getDocs, addDoc, doc, getDoc } from 'firebase/firestore';
+import { addDoc, doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import { ordersColRef } from '../firebase/config';
 import { v4 } from 'uuid';
@@ -9,7 +9,9 @@ import jsSHA from 'jssha';
 import axios from 'axios';
 
 const OrderForm = () => {
-  const { state, dispatch: contextDispatch } = useContext(Store);
+  const { state,
+    //  dispatch: contextDispatch
+    } = useContext(Store);
 
   const [formEmail, setFormEmail] = useState('test@test.test');
   const [formName, setFormName] = useState('siema');

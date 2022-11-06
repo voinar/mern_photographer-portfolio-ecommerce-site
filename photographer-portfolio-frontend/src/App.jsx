@@ -84,7 +84,7 @@ function App() {
         <title>Kacper Porada Fotografia</title>
       </Helmet>
       <div className="App">
-        {/* <FacebookPixel /> */}
+        <FacebookPixel />
         <Alert alertContent={'alert'} />
         <Navbar />
         <Routes>

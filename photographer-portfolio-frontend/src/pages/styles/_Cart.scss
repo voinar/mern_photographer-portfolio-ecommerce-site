@@ -57,6 +57,9 @@
   width: 70%;
   margin: 0;
   background-color: white;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  transition: all 0.3s;
 
   .cart__image__labels {
     display: flex;
@@ -133,6 +136,9 @@
   gap: 20px;
   width: 30%;
   height: 300px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  transition: all 0.2s;
 
   .cart__summary__price {
     font-size: $--font-md;
@@ -141,4 +147,9 @@
   .cart__summary__button {
     width: 200px;
   }
+}
+
+.cart__images:hover,
+.cart__summary:hover {
+  border: 1px solid rgba(0, 0, 0, 0.4);
 }
