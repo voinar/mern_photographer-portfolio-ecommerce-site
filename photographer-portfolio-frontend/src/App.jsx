@@ -7,7 +7,7 @@ import { Store } from './contexts/Store';
 import SectionWelcome from './pages/SectionWelcome';
 import SectionContent from './pages/SectionContent';
 import About from './pages/About';
-import Shop from './pages/Shop';
+// import Shop from './pages/Shop';
 import Album from './pages/Album';
 import Cart from './pages/Cart';
 import SignIn from './pages/SignIn';
@@ -92,7 +92,7 @@ function App() {
           <Route path="/witaj" element={<SectionWelcome />} />
           <Route path="/:category" element={<SectionContent />} />
           <Route path="/o%20mnie" element={<About />} />
-          <Route path="/sklep" element={<Shop />} />
+          {/* <Route path="/sklep" element={<Shop />} /> */}
           <Route path="/album/:album" element={<Album />} />
           <Route path="/experiments" element={<Experiments />} />
           <Route path="/koszyk" element={<Cart />} />

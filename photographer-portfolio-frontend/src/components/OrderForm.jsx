@@ -13,9 +13,9 @@ const OrderForm = () => {
     //  dispatch: contextDispatch
     } = useContext(Store);
 
-  const [formEmail, setFormEmail] = useState('test@test.test');
-  const [formName, setFormName] = useState('siema');
-  const [formSurname, setFormSurname] = useState('nara');
+  const [formEmail, setFormEmail] = useState('');
+  const [formName, setFormName] = useState('');
+  const [formSurname, setFormSurname] = useState('');
   const [formPhone, setFormPhone] = useState('');
   const [formInvoiceRequested, setFormInvoiceRequested] = useState(false);
   const [formInvoiceNumber, setFormInvoiceNumber] = useState('');
