@@ -761,7 +761,7 @@ select {
   background-color: #f2f2f2;
   color: #3a3939;
   height: auto;
-  padding: 140px 100px 200px;
+  padding: 80px 100px 200px;
 }
 
 .album__toolbar {
@@ -774,13 +774,15 @@ select {
           flex-direction: row;
   position: fixed;
   top: 0px;
-  padding: 140px 0px 20px 0px;
+  padding: 120px 0px 20px 0px;
   display: flex;
   -ms-flex-direction: column;
       flex-direction: column;
   background-color: #f2f2f2;
   min-width: 90vw;
   z-index: 3;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .album__toolbar .album__title {
@@ -822,7 +824,7 @@ select {
       -ms-flex-direction: row;
           flex-direction: row;
   gap: 10px;
-  margin: 0 200px 0 auto;
+  margin: 0 70px 0 auto;
 }
 
 .album__toolbar .album__toolbar__thumbnail-controls img {
@@ -851,6 +853,10 @@ select {
   background-color: white;
 }
 
+.album__toolbar--compact {
+  padding: 80px 0px 20px 0px;
+}
+
 .album__cards {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -864,15 +870,16 @@ select {
   gap: 6px;
   margin-left: 6px;
   margin-top: 140px;
-  -webkit-box-pack: left;
-      -ms-flex-pack: left;
-          justify-content: left;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .album__card {
   opacity: 0.92;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  --webkit-transition: -webkit-filter 500ms linear;
 }
 
 .album__card img {
@@ -912,7 +919,27 @@ select {
 
 .album__card--large {
   height: auto;
-  width: 80vw;
+  width: 70vw;
+  padding-bottom: 100px;
+}
+
+.album__card--large img {
+  border-radius: 6px;
+}
+
+.album__card__add-btn {
+  position: relative;
+  height: 0;
+}
+
+.album__card__add-btn button {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.2);
+  -webkit-filter: invert(100%);
+          filter: invert(100%);
+  bottom: 120px;
+  right: 12px;
+  opacity: .8;
 }
 
 .album__preview {
@@ -1468,8 +1495,6 @@ select {
 .navbar--solid {
   padding: 16px 60px;
   background-color: rgba(20, 20, 20, 0.9);
-  -webkit-transition: 0.7s ease-in-out;
-  transition: 0.7s ease-in-out;
 }
 
 .navbar--solid .navbar__logo {
@@ -1670,8 +1695,8 @@ select {
 .navbar__shop--shrink {
   padding: 10px 60px;
   background-color: rgba(255, 255, 255, 0.97);
-  -webkit-transition: 0.7s ease-in-out;
-  transition: 0.7s ease-in-out;
+  -webkit-transition: all 0.7s ease-in-out;
+  transition: all 0.7s ease-in-out;
 }
 
 .navbar__shop--shrink .navbar__shop__logo {

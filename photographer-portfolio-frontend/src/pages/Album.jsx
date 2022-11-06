@@ -26,11 +26,13 @@ const Album = () => {
 
   //local component state
   const [albumImagesList, setAlbumImagesList] = useState([]);
+  const [scroll, setScroll] = useState(false);
   const [showPreviewImage, setShowPreviewImage] = useState(false);
   const [previewImageUrl, setPreviewImageUrl] = useState(undefined);
   //   const [previewImageId, setPreviewImageId] = useState(undefined);
 
-  const [imageThumbnailSize, setImageThumbnailSize] = useState('album__card--small');
+  const [imageThumbnailSize, setImageThumbnailSize] =
+    useState('album__card--small');
 
   useEffect(() => {
     const albumRef = ref(storage, `albums/${album.replaceAll(' ', '_')}/male/`);
@@ -53,6 +55,20 @@ const Album = () => {
         console.log('error: ', error);
       });
   }, [album]);
+
+  //retract title/toolbar on scroll
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      window.scrollY > 110 ? setScroll(true) : setScroll(false);
+    });
+  }, []);
+
+  const toggleToolbarClassOnScroll = () => {
+    console.log('scroll test', window.scrollY > 100);
+    return scroll === false
+      ? 'album__toolbar'
+      : 'album__toolbar album__toolbar--compact';
+  };
 
   //   // preview images in album page
   const handleImagePreview = (image) => {
@@ -102,6 +118,19 @@ const Album = () => {
     }
   };
 
+  const addToCartFromImageThumbnail = (image) => {
+    console.log('addimg');
+    try {
+      contextDispatch({
+        type: 'CART_ADD_ITEM',
+        payload: { id: image },
+      });
+      localStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <main>
@@ -109,20 +138,26 @@ const Album = () => {
           <title>{album}: Kacper Porada Fotografia</title>
         </Helmet>
         <div className="album__container">
-          <div className="album__toolbar">
+          <div className={toggleToolbarClassOnScroll()}>
             <div className="album__title">
               <button onClick={goBack}>
                 <img src={IconChevron} alt="zobacz" />
               </button>
               <h1>{album}</h1>
               <div className="album__toolbar__thumbnail-controls">
-                <button onClick={() => setImageThumbnailSize('album__card--small')}>
+                <button
+                  onClick={() => setImageThumbnailSize('album__card--small')}
+                >
                   <img src={IconGridSmall} alt="mały rozmiar podglądów" />
                 </button>
-                <button onClick={() => setImageThumbnailSize('album__card--medium')}>
+                <button
+                  onClick={() => setImageThumbnailSize('album__card--medium')}
+                >
                   <img src={IconGridMedium} alt="średni rozmiar podglądów" />
                 </button>
-                <button onClick={() => setImageThumbnailSize('album__card--large')}>
+                <button
+                  onClick={() => setImageThumbnailSize('album__card--large')}
+                >
                   <img src={IconGridLarge} alt="duży rozmiar podglądów" />
                 </button>
               </div>
@@ -140,6 +175,21 @@ const Album = () => {
                     // uuid={uuidv4()}
                     handleImagePreview={() => handleImagePreview(image)}
                   />
+
+                  {imageThumbnailSize === 'album__card--large' ? (
+                    <div className="album__card__add-btn">
+                      <button
+                        onClick={() => addToCartFromImageThumbnail(image)}
+                      >
+                        {/* <button onClick={() => console.log(image)}> */}
+                        <img
+                          src={IconCartAdd}
+                          alt="dodaj do koszyka"
+                          title="dodaj do koszyka"
+                        />
+                      </button>
+                    </div>
+                  ) : null}
 
                   {showPreviewImage && ( //image preview overlay
                     <>
