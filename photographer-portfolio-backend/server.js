@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import seedRouter from './routes/seedRoutes.js';
 import productRouter from './routes/productRoutes.js';
 import userRouter from './routes/userRoutes.js';
-import Product from './models/productModel.js';
+// import Product from './models/productModel.js';
 
 dotenv.config(); //load config from env file
 
