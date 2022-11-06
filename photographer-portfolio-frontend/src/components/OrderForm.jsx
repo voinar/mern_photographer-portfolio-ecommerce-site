@@ -1,40 +1,44 @@
 import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Store } from '../contexts/Store';
-
-import { query, where, getDocs, addDoc } from 'firebase/firestore';
+import { query, where, getDocs, addDoc, doc, getDoc } from 'firebase/firestore';
+import { db } from '../firebase/config';
 import { ordersColRef } from '../firebase/config';
 import { v4 } from 'uuid';
-// import json_encode from 'json_encode';
 import jsSHA from 'jssha';
-import { decode as base64_decode, encode as base64_encode } from 'base-64';
-
 import axios from 'axios';
-
-// import {
-//   P24,
-//   Order,
-//   Currency,
-//   Country,
-//   Language,
-//   NotificationRequest,
-//   Verification
-// } from "@ingameltd/node-przelewy24";
 
 const OrderForm = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
 
-  const [formEmail, setFormEmail] = useState('testtest@test.test');
-  const [formName, setFormName] = useState('test');
-  const [formSurname, setFormSurname] = useState('veve');
+  const [formEmail, setFormEmail] = useState('test@test.test');
+  const [formName, setFormName] = useState('siema');
+  const [formSurname, setFormSurname] = useState('nara');
   const [formPhone, setFormPhone] = useState('');
   const [formInvoiceRequested, setFormInvoiceRequested] = useState(false);
   const [formInvoiceNumber, setFormInvoiceNumber] = useState('');
-  // const [formNewsletterConsent, setFormNewsletterConsent] = useState(false)
   const [formTermsConditionsAccept, setFormTermsConditionsAccept] =
     useState(false);
+  // const [formNewsletterConsent, setFormNewsletterConsent] = useState(false)
   // const [formInvoiceEmailCopyConsent, setFormInvoiceEmailCopyConsent] =
   //   useState(false);
+
+  const [itemPrice, setItemPrice] = useState(null);
+
+  const getPrice = async () => {
+    try {
+      const docRef = doc(db, 'settings', '5cJniz1wK9Sri7EmlSzD');
+      const docSnap = await getDoc(docRef);
+      setItemPrice(
+        Number(
+          docSnap._document.data.value.mapValue.fields.imagePrice.integerValue
+        )
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  getPrice();
 
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -177,20 +181,18 @@ const OrderForm = () => {
   };
 
   const uniqueId = v4();
-  // const uniqueId = 'e7278a1c-0792-bd38-5e667152aa09';
-
-  const [token, setToken] = useState(null);
-  let tokenLink = `https://sandbox.przelewy24.pl/trnRequest/${String(token)}`;
+  const calculatedAmount = state.cart.cartItems.length * itemPrice;
 
   const handleFormSubmission = async () => {
-    console.log(uniqueId);
+    // e.preventDefault();
+
+    console.log('uniqueId:', uniqueId);
 
     if (formValidation() === true) {
       try {
         console.log('add');
 
         //add order to db
-
         await addDoc(ordersColRef, {
           email: formEmail,
           name: formName,
@@ -203,16 +205,24 @@ const OrderForm = () => {
           cartItems: state.cart.cartItems,
           dateCreated: new Date(),
           orderId: uniqueId,
+          amount: calculatedAmount,
         });
-        // contextDispatch({
-        //   type: 'USER_SIGNIN',
-        //   payload: { email, password },
-        // });
-        // localStorage.setItem('userInfo', JSON.stringify(data));
 
-        // navigate(redirect || '/koszyk');
+        // merchantId: 200527,
+        // posId: 200527,
+        // sessionId: uniqueId, //id generowane przy tworzeniu zamówienia, np: '6b795d5e-394f-4ae3-b313-bb70ccd99d5c'
+        // amount: 5,
+        // currency: 'PLN',
+        // orderId: uniqueId,
+        // description: 'zakup test',
+        // email: 'test@test.pl',
+        // urlReturn: 'https://kacperporada.pl/twojezakupy', //adres do przekierowania po wykonanej płatności
+        // urlStatus: 'https://kacperporada.pl/api', //adres do otrzymania informacji zwrotnej o transakcji z systemu przelewy24
+        // country: 'PL',
+        // sign: signSha, //wygenerowany wyżej hash
 
-        // isDuplicateUser(email, password)
+        //initiate payment process: register payment in p24
+        paymentRegister();
       } catch (err) {
         // setErrorMessage(err.message);
         console.log('error: ' + err);
@@ -222,14 +232,16 @@ const OrderForm = () => {
     }
   };
 
-  const paymentRegister = (e) => {
+  const paymentRegister = () => {
     //funkcja dla pierwszego etapu transkacji /v1/transaction/register
-    e.preventDefault();
+    // e.preventDefault();
     const crcValue = '45839de45c0c7935'; //CRC pobrane z danych konta
+    console.log(calculatedAmount)
+    console.log(typeof(calculatedAmount))
 
     // templatka sign: {"sessionId":"str","merchantId":int,"amount":int,"currency":"str","crc":"str"}
     //{"sessionId":"e7278a1c-0792-bd38-5e667152aa09", "merchantId":200527, "amount":2, "currency":"PLN", "crc":"45839de45c0c7935"}
-    const signTemplate = `{"sessionId":"${uniqueId}","merchantId":200527,"amount":2,"currency":"PLN","crc":"${crcValue}"}`;
+    const signTemplate = `{"sessionId":"${uniqueId}","merchantId":200527,"amount":${calculatedAmount},"currency":"PLN","crc":"${crcValue}"}`;
     console.log('signtemp', signTemplate);
     console.log('id type', typeof uniqueId);
     // const signTemplate = `{"sessionId":${uniqueId},"merchantId":200527,"amount":2,"currency":"PLN","crc":${crcValue}}`; //template string do obliczenia sumy kontrolnej
@@ -246,11 +258,11 @@ const OrderForm = () => {
         merchantId: 200527,
         posId: 200527,
         sessionId: uniqueId, //id generowane przy tworzeniu zamówienia, np: '6b795d5e-394f-4ae3-b313-bb70ccd99d5c'
-        amount: 2,
+        amount: calculatedAmount,
         currency: 'PLN',
         orderId: uniqueId,
         description: 'zakup test',
-        email: 'test@test.pl',
+        email: formEmail,
         urlReturn: 'https://kacperporada.pl/twojezakupy', //adres do przekierowania po wykonanej płatności
         urlStatus: 'https://kacperporada.pl/api', //adres do otrzymania informacji zwrotnej o transakcji z systemu przelewy24
         country: 'PL',
@@ -259,10 +271,13 @@ const OrderForm = () => {
     })
       .then((response) => {
         //blok uruchamiany dla odpowiedzi z kodem 200
-        console.log(response);
+        // console.log(response);
         console.log('token', response.data.data.token);
-        setToken(String(response.data.data.token));
-        console.log(typeof token);
+        // setToken(String(response.data.data.token));
+        const tokenLink = `https://sandbox.przelewy24.pl/trnRequest/${String(
+          response.data.data.token
+        )}`;
+        window.open(tokenLink, '_blank', 'noopener,noreferrer'); //open payment window in sepaarte tab
       })
       .catch((err) => {
         //blok dla odpowiedzi z błędem 400/401
@@ -270,9 +285,9 @@ const OrderForm = () => {
         console.log('err', err.response.data.error);
       });
 
-    console.log('paymentRegister start');
-    console.log('uniqueId', uniqueId);
-    console.log('sign sha hex', shaObj.getHash('HEX'));
+    // console.log('paymentRegister start');
+    // console.log('uniqueId', uniqueId);
+    // console.log('sign sha hex', shaObj.getHash('HEX'));
   };
 
   const paymentVerify = (e) => {
@@ -407,14 +422,16 @@ const OrderForm = () => {
           >
             Przejdź do płatności
           </button>
-          <button onClick={paymentRegister}>register transaction POST</button>
-          <button
+          <button onClick={handleFormSubmission}>
+            register transaction POST
+          </button>
+          {/* <button
             onClick={() => {
               window.open(tokenLink, '_blank', 'noopener,noreferrer');
             }}
           >
             token link {token}
-          </button>
+          </button> */}
           <button onClick={paymentVerify}>verify transaction PUT</button>
           <br />
           <span>*pole wymagane</span>

@@ -12,10 +12,7 @@ import OrderForm from '../components/OrderForm';
 import iconChevron from '../img/icons/icon-chevron.svg';
 
 const Checkout = () => {
-  const {
-    state,
-    // , dispatch: contextDispatch
-  } = useContext(Store);
+  const { state, dispatch: contextDispatch } = useContext(Store);
 
   //local component state
   // const [showOrderForm, setShowOrderForm] = useState(true);
@@ -32,7 +29,7 @@ const Checkout = () => {
         const docSnap = await getDoc(docRef);
         setItemPrice(
           Number(
-            docSnap._document.data.value.mapValue.fields.imagePrice.integerValue
+            docSnap._document.data.value.mapValue.fields.imagePrice.integerValue / 100
           )
         );
       } catch (err) {
@@ -102,8 +99,10 @@ const Checkout = () => {
                 <div className="checkout__total">
                   <h2>Cena:</h2>
                   <span>
-                    {state.cart.cartItems.length * itemPrice}zł brutto
+                    {new Intl.NumberFormat('pl-PL', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(state.cart.cartItems.length * itemPrice)}zł brutto
                   </span>
+                  {/* //*/}
+
                   {/* <div>
               <button
               // onClick={toggleOrderForm}

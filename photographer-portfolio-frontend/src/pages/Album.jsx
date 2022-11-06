@@ -61,7 +61,7 @@ const Album = () => {
     window.addEventListener('scroll', () => {
       window.scrollY > 110 ? setScroll(true) : setScroll(false);
     });
-  }, []);
+  }, [album]);
 
   const toggleToolbarClassOnScroll = () => {
     console.log('scroll test', window.scrollY > 100);

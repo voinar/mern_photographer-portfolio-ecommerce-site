@@ -35,7 +35,7 @@ const Cart = () => {
         const docSnap = await getDoc(docRef);
         setItemPrice(
           Number(
-            docSnap._document.data.value.mapValue.fields.imagePrice.integerValue
+            docSnap._document.data.value.mapValue.fields.imagePrice.integerValue / 100
           )
         );
       } catch (err) {
@@ -166,7 +166,7 @@ const Cart = () => {
               <div>
                 <h2>Podsumowanie:</h2>
                 <span className="cart__summary__price">
-                  {state.cart.cartItems.length * itemPrice}
+                {new Intl.NumberFormat('pl-PL', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(state.cart.cartItems.length * itemPrice)}
                   zł brutto
                 </span>
               </div>
