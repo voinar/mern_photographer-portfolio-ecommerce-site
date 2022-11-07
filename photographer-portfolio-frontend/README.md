@@ -21,7 +21,7 @@
 * Locomotive scroll (tba)
 
 ### Backend: 
-* Node+Next.js
+* Node+Express.js
 * Firebase (Cloud Storage, Firestore DB)
 
 
