@@ -27,5 +27,5 @@
 
 ### See live
 
-Portfolio site: www.kacperporada.pl
-Shop: www.kacperporada.pl/sklep
+* Portfolio site: www.kacperporada.pl
+* Shop: www.kacperporada.pl/sklep
