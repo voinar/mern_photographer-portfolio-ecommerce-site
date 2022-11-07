@@ -1,5 +1,5 @@
-import { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useState, useContext } from '../imports';
+
 import { Store } from '../contexts/Store';
 import { addDoc, doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';

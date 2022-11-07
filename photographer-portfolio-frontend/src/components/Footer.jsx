@@ -1,10 +1,11 @@
-import { useLocation, Link } from 'react-router-dom';
-
-//assets
-import footerLogo from '../img/logo-full.png';
-import iconFacebook from '../img/icons/icon-facebook.svg';
-import iconInstagram from '../img/icons/icon-instagram.svg';
-import iconChevronUp from '../img/icons/icon-chevron-up.svg';
+import {
+  useLocation,
+  Link,
+  FooterLogo,
+  IconFacebook,
+  IconInstagram,
+  IconChevronUp,
+} from '../imports';
 
 const Footer = () => {
   const location = useLocation();
@@ -20,7 +21,7 @@ const Footer = () => {
           <div className="footer__content">
             <div className="footer__column">
               <div className="footer__logo">
-                <img src={footerLogo} alt="logo" />
+                <img src={FooterLogo} alt="logo" />
               </div>
               <div className="footer__social">
                 <span>Znajdź mnie na</span>
@@ -30,7 +31,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <img src={iconFacebook} alt="facebook" />
+                    <img src={IconFacebook} alt="facebook" />
                   </a>
                 </div>
                 <div className="footer__icon">
@@ -39,7 +40,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <img src={iconInstagram} alt="instagram" />
+                    <img src={IconInstagram} alt="instagram" />
                   </a>
                 </div>
               </div>
@@ -63,7 +64,7 @@ const Footer = () => {
               className="footer__column footer__return"
               onClick={returnToTop}
             >
-              <img src={iconChevronUp} alt="wróć do początku" />
+              <img src={IconChevronUp} alt="wróć do początku" />
             </div>
           </div>
           <div className="footer__slogan">Zobacz emocje</div>

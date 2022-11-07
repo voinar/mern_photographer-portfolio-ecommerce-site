@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from '../imports'
 
 const AlbumCard = (props) => {
   // console.log('id is: ' + JSON.stringify(props.image._id));

@@ -1,5 +1,4 @@
-import { useNavigate } from 'react-router-dom';
-import iconChevron from '../img/icons/icon-chevron.svg';
+import { useNavigate, IconChevron } from '../imports';
 
 const TermsConditions = () => {
   const navigate = useNavigate(); //used to return to previous page
@@ -9,7 +8,7 @@ const TermsConditions = () => {
     <div className="terms__container">
       <div className="cart__return">
         <button onClick={goBack}>
-          <img src={iconChevron} alt="zobacz" />
+          <img src={IconChevron} alt="zobacz" />
         </button>
         <h1>Regulamin sklepu</h1>
       </div>

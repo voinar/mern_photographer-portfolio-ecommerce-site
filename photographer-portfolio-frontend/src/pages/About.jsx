@@ -1,12 +1,9 @@
-import iconEmail from '../img/icons/icon-email.svg';
-import iconPhone from '../img/icons/icon-phone.svg';
+import { IconEmail, IconPhone, IconFacebook, IconInstagram } from '../imports';
+
 import img0 from '../img/about/about-1.jpg';
 import img1 from '../img/about/about-2.jpg';
 import img2 from '../img/about/about-3.jpg';
 import img3 from '../img/about/about-4.jpg';
-
-import iconFacebook from '../img/icons/icon-facebook.svg';
-import iconInstagram from '../img/icons/icon-instagram.svg';
 
 const About = () => {
   return (
@@ -26,7 +23,7 @@ const About = () => {
             <div className="section__about__contact">
               <h2>Kontakt</h2>
               <div className="section__about__contact__row">
-                <img src={iconEmail} alt="napisz email" />
+                <img src={IconEmail} alt="napisz email" />
                 <h3>
                   <a href="mailto:kporadafoto@gmail.com">
                     kporadafoto@gmail.com
@@ -34,7 +31,7 @@ const About = () => {
                 </h3>
               </div>
               <div className="section__about__contact__row">
-                <img src={iconPhone} alt="zadzwoń" />
+                <img src={IconPhone} alt="zadzwoń" />
                 <h3>+48 537 256 492</h3>
               </div>
 
@@ -48,7 +45,7 @@ const About = () => {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        <img src={iconFacebook} alt="facebook" />
+                        <img src={IconFacebook} alt="facebook" />
                       </a>
                     </div>
                     <div className="about__icon__social">
@@ -57,7 +54,7 @@ const About = () => {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        <img src={iconInstagram} alt="instagram" />
+                        <img src={IconInstagram} alt="instagram" />
                       </a>
                     </div>
                   </div>

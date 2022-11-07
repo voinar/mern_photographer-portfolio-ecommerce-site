@@ -1,15 +1,25 @@
-import navLogo from '../img/logo-nav.png';
-import categoryData from '../data/staticData.json';
-import { Link, useLocation } from 'react-router-dom';
-import { useEffect, useState, useRef, useContext } from 'react';
+import {
+  useEffect,
+  useState,
+  useRef,
+  useContext,
+  Link,
+  useLocation,
+} from '../imports';
+
 import { Store } from '../contexts/Store';
 
-import iconCart from '../img/icons/icon-cart.svg';
-import iconShare from '../img/icons/icon-share.svg';
-import iconMenu from '../img/icons/icon-menu.svg';
-import iconClose from '../img/icons/icon-close.svg';
-import iconLogin from '../img/icons/icon-login.svg';
-import iconChevron from '../img/icons/icon-chevron.svg';
+import categoryData from '../data/staticData.json';
+
+import {
+  NavLogo,
+  IconCart,
+  IconShare,
+  IconMenu,
+  IconClose,
+  IconLogin,
+  IconChevron,
+} from '../imports';
 
 const Navbar = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
@@ -65,12 +75,12 @@ const Navbar = () => {
               className="navbar__menu__button navbar__menu__button--close"
               onClick={showNavbar}
             >
-              <img src={iconClose} alt="zamknij menu"></img>
+              <img src={IconClose} alt="zamknij menu"></img>
             </button>
 
             <div className="navbar__logo">
               <Link to="/">
-                <img src={navLogo} alt="logo" />
+                <img src={NavLogo} alt="logo" />
               </Link>
             </div>
 
@@ -115,12 +125,12 @@ const Navbar = () => {
             className="navbar__menu__button navbar__menu__button--open"
             onClick={showNavbar}
           >
-            <img src={iconMenu} alt="rozwiń menu"></img>
+            <img src={IconMenu} alt="rozwiń menu"></img>
           </button>
 
           <div className="mobile__logo">
             <Link to="/">
-              <img src={navLogo} alt="logo" />
+              <img src={NavLogo} alt="logo" />
             </Link>
           </div>
         </nav>
@@ -135,7 +145,7 @@ const Navbar = () => {
         >
           <div className="navbar__shop__logo">
             <Link to="/sklep">
-              <img src={navLogo} alt="logo" />
+              <img src={NavLogo} alt="logo" />
             </Link>
           </div>
           <div className="navbar__shop__icons">
@@ -150,7 +160,7 @@ const Navbar = () => {
                       onClick={() => setUserMenuVisibility(!userMenuVisibility)}
                     >
                       <img
-                        src={iconChevron}
+                        src={IconChevron}
                         alt="Konto użytkownika"
                         title="Konto użytkownika"
                       />
@@ -183,7 +193,7 @@ const Navbar = () => {
                   <span>Zaloguj</span>
                   <Link to="/Logowanie">
                     <img
-                      src={iconLogin}
+                      src={IconLogin}
                       className="navbar__shop__icon"
                       alt="zobacz koszyk"
                       title="zobacz koszyk"
@@ -200,7 +210,7 @@ const Navbar = () => {
                   </div>
                 )}
                 <img
-                  src={iconCart}
+                  src={IconCart}
                   className="navbar__shop__icon"
                   alt="zobacz koszyk"
                   title="zobacz koszyk"
@@ -209,7 +219,7 @@ const Navbar = () => {
             </Link>
             <div className="navbar__shop__icon__share">
               <img
-                src={iconShare}
+                src={IconShare}
                 className="navbar__shop__icon"
                 alt="udostępnij"
                 title="udostępnij"

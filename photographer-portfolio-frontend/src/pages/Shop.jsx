@@ -1,12 +1,8 @@
-import { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import { useEffect, useState, Helmet, AlbumCard } from '../imports';
+
 import { storage } from '../firebase/config';
 import { ref, listAll } from 'firebase/storage';
-
 import { v4 } from 'uuid';
-
-//components
-import AlbumCard from '../components/AlbumCard';
 
 function Collection() {
   // Create a reference under which you want to list

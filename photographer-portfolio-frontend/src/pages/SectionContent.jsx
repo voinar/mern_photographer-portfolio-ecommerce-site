@@ -1,9 +1,12 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import {
+  useState,
+  useEffect,
+  useParams,
+  Helmet,
+  IconChevronUp,
+} from '../imports';
 
 import photographyData from '../data/staticData.json';
-import iconChevronUp from '../img/icons/icon-chevron-up.svg';
 
 const SectionContent = () => {
   let { category } = useParams();
@@ -103,7 +106,7 @@ const SectionContent = () => {
               className="section__photos__see-more__icon"
               onClick={scrollToContent}
             >
-              <img src={iconChevronUp} alt="facebook" />
+              <img src={IconChevronUp} alt="facebook" />
             </div>
           </div>
         </div>

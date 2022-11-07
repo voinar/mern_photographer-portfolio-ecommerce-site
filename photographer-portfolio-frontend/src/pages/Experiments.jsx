@@ -2,7 +2,7 @@
 // use reducer counter
 //-----------
 
-import React, { useState, useReducer } from 'react';
+import React, { useState, useReducer } from '../imports';
 
 const Experiments = () => {
   const [name, setName] = useState('');

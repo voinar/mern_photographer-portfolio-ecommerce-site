@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Store } from '../contexts/Store';
-import { Link } from 'react-router-dom';
+
+import { Link } from '../imports'
 
 const CookiesPopup = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);

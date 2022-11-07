@@ -1,13 +1,9 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, useNavigate, Link,IconChevron,IconMagnifyingGlass } from '../imports';
 import { Store } from '../contexts/Store';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 
-//assets
-import IconChevron from '../img/icons/icon-chevron.svg';
-import IconMagnifyingGlass from '../img/icons/icon-magnifying-glass.svg';
 
 const Cart = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
@@ -25,7 +21,6 @@ const Cart = () => {
       type: 'CART_REMOVE_ITEM',
       payload: { id: id },
     });
-    localStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
   };
 
   useEffect(() => {
@@ -44,7 +39,7 @@ const Cart = () => {
       }
     };
     getPrice();
-  }, [state]);
+  }, [state.cart.cartItems]);
 
   //   // preview images in album page
   const handleImagePreview = (image) => {
@@ -61,6 +56,11 @@ const Cart = () => {
       html.style.overflow = showPreviewImage ? 'hidden' : 'auto';
     }
   }, [showPreviewImage]);
+
+  // //update localStorage items array
+  // useEffect(() => {
+  //   localStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
+  // }, [state]);
 
   // const handleImagePreviewPrev = () => {
   //   if (state.cart.cartItems.indexOf(previewImageUrl) === 0) {

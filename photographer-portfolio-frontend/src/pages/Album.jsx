@@ -1,7 +1,6 @@
-import { Helmet } from 'react-helmet-async';
-import { useEffect, useState, useContext } from 'react';
+import { Helmet, useEffect, useState, useContext, useParams, useNavigate  } from '../imports';
 import { Store } from '../contexts/Store';
-import { useParams, useNavigate } from 'react-router-dom';
+
 import { ref, listAll } from 'firebase/storage';
 import { storage } from '../firebase/config';
 
@@ -138,6 +137,12 @@ const Album = () => {
       console.log(err);
     }
   };
+
+  //update localStorage items array
+  // useEffect(() => {
+  //   localStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
+  // }, [state]);
+
 
   return (
     <>
