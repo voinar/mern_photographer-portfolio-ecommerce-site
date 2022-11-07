@@ -10,19 +10,13 @@ import {
   CookiesPopup,
 } from './imports';
 
-import RoutesContainer from './routes/RoutesContainer';
+import RoutesContainer from './routes/RoutesContainer'; //react router v6
 
-//context api
-import { Store } from './contexts/Store';
+import { Store } from './contexts/Store'; //context api
 
 //analytics
 import ReactGA from 'react-ga4';
 import ReactPixel from 'react-facebook-pixel';
-
-// {localStorage.setItem('user', 'name')}
-// {sessionStorage.setItem('status', 'unread')}
-// {document.cookie='user=new'}
-// {document.cookie='myCookie=init; expires=' + new  Date(2022, 7, 28, 11, 52, 30)}
 
 //google analytics
 const TRACKING_ID = 'G-5EQQ443LWM'; // OUR_TRACKING_ID
@@ -42,9 +36,9 @@ function FacebookPixel() {
 
 function App() {
   const { state } = useContext(Store);
-  const location = useLocation();
 
   //google analytics log page currently displayed
+  const location = useLocation();
   useEffect(() => {
     ReactGA.send('pageview');
   }, [location]);
@@ -74,3 +68,8 @@ function App() {
 }
 
 export default App;
+
+// {localStorage.setItem('user', 'name')}
+// {sessionStorage.setItem('status', 'unread')}
+// {document.cookie='user=new'}
+// {document.cookie='myCookie=init; expires=' + new  Date(2022, 7, 28, 11, 52, 30)}

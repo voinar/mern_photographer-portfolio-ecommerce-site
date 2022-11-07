@@ -165,14 +165,6 @@ const Navbar = () => {
                         title="Konto użytkownika"
                       />
                     </button>
-                    {/* <Link to="/Logowanie">
-                    <img
-                      src={iconLogin}
-                      className="navbar__shop__icon"
-                      alt="zobacz koszyk"
-                      title="zobacz koszyk"
-                    />
-                  </Link> */}
                     <ul
                       className={
                         userMenuVisibility

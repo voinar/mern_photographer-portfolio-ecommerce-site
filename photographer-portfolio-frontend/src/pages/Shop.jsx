@@ -1,14 +1,12 @@
 import { useEffect, useState, Helmet, AlbumCard } from '../imports';
+import { v4 } from 'uuid';
 
 import { storage } from '../firebase/config';
 import { ref, listAll } from 'firebase/storage';
-import { v4 } from 'uuid';
 
 function Collection() {
   // Create a reference under which you want to list
   const [foldersList, setFoldersList] = useState([]);
-  // const [selectedAlbum, setSelectedAlbum] = useState('');
-  // const [imagesList, setImagesList] = useState([]);
 
   // Find all the prefixes and items.
   useEffect(() => {
@@ -17,7 +15,6 @@ function Collection() {
       listAll(listRef)
         .then((res) => {
           res.prefixes.forEach((folderRef) => {
-            // console.log('folderRef', folderRef._location.path);
             let albumName = folderRef._location.path
               .slice(7)
               .replaceAll('_', ' ');
@@ -32,10 +29,6 @@ function Collection() {
               },
             ]);
           });
-          // res.items.forEach((itemRef) => {
-          //   // All the items under listRef.
-          //   console.log('res', itemRef);
-          // });
         })
         .catch((error) => {
           console.log('error', error);
@@ -64,9 +57,6 @@ function Collection() {
             );
           })}
         </div>
-        {/* {imagesList.map((image) => {
-        return <img key={v4()} src={image} />;
-      })} */}
       </div>
     </>
   );

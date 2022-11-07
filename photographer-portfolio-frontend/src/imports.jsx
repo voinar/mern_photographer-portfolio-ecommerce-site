@@ -27,6 +27,7 @@ import Experiments from './pages/Experiments';
 import Navbar from './components/Navbar';
 import Alert from './components/Alert';
 import AlbumCard from './components/AlbumCard';
+import AlbumImage from './components/AlbumImage';
 import ScrollToTop from './components/ScrollToTop';
 import Footer from './components/Footer';
 import OrderForm from './components/OrderForm';
@@ -47,6 +48,10 @@ import IconClose from './img/icons/icon-close.svg';
 import IconLogin from './img/icons/icon-login.svg';
 import IconChevron from './img/icons/icon-chevron.svg';
 import IconMagnifyingGlass from './img/icons/icon-magnifying-glass.svg';
+import IconCartAdd from './img/icons/icon-cart-add.svg';
+import IconGridSmall from './img/icons/icon-grid-small.svg';
+import IconGridMedium from './img/icons/icon-grid-medium.svg';
+import IconGridLarge from './img/icons/icon-grid-large.svg';
 
 export {
   Routes,
@@ -76,6 +81,7 @@ export {
   Navbar,
   Alert,
   AlbumCard,
+  AlbumImage,
   ScrollToTop,
   Footer,
   OrderForm,
@@ -96,4 +102,8 @@ export {
   IconLogin,
   IconChevron,
   IconMagnifyingGlass,
+  IconCartAdd,
+  IconGridSmall,
+  IconGridMedium,
+  IconGridLarge,
 };
