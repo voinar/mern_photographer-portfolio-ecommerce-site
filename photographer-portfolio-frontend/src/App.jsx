@@ -9,7 +9,9 @@ import {
   Footer,
   CookiesPopup,
 } from './imports';
+
 import RoutesContainer from './routes/RoutesContainer';
+
 //context api
 import { Store } from './contexts/Store';
 
@@ -28,8 +30,8 @@ ReactGA.initialize(TRACKING_ID);
 
 //facebook pixel
 function FacebookPixel() {
-  const facebookPixelId = '5969461459733693';
   const location = useLocation();
+  const facebookPixelId = '5969461459733693';
   useEffect(() => {
     ReactPixel.init(facebookPixelId);
     ReactPixel.pageView();
@@ -40,17 +42,18 @@ function FacebookPixel() {
 
 function App() {
   const { state } = useContext(Store);
+  const location = useLocation();
+
+  //google analytics log page currently displayed
+  useEffect(() => {
+    ReactGA.send('pageview');
+  }, [location]);
 
   //run actions on every state update
   useEffect(() => {
     console.log('store updated');
     localStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
   }, [state.cart.cartItems]);
-
-  //google analytics log page currently displayed
-  useEffect(() => {
-    ReactGA.send('pageview');
-  }, []);
 
   return (
     <>
