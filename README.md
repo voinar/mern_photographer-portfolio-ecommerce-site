@@ -16,7 +16,7 @@
   
 ## Tech
 ### Frontend: 
-* React w/hooks, React Router v6, Helmet
+* React w/hooks, React Router v6, Helmet, Context API
 * SCSS
 * Locomotive scroll (tba)
 
