@@ -16,14 +16,14 @@
   
 ## Tech
 ### Frontend: 
-* React w/hooks, React Router v6, Helmet
+* React w/hooks, React Router v6, Helmet, Context API
 * SCSS
 * Locomotive scroll (tba)
 
 ### Backend: 
 * Node+Express.js
 * Firebase (Cloud Storage, Firestore DB)
-
+* Netlify
 
 ### See live
 
