@@ -1,4 +1,5 @@
 import {
+  Store,
   useEffect,
   useState,
   useRef,
@@ -6,8 +7,6 @@ import {
   Link,
   useLocation,
 } from '../imports';
-
-import { Store } from '../contexts/Store';
 
 import categoryData from '../data/staticData.json';
 

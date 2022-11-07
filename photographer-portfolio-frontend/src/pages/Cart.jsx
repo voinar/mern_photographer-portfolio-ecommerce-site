@@ -57,34 +57,6 @@ const Cart = () => {
     }
   }, [showPreviewImage]);
 
-  // //update localStorage items array
-  // useEffect(() => {
-  //   localStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
-  // }, [state]);
-
-  // const handleImagePreviewPrev = () => {
-  //   if (state.cart.cartItems.indexOf(previewImageUrl) === 0) {
-  //     setPreviewImageUrl(state.cart.cartItems[state.cart.cartItems.length - 1]);
-  //   } else {
-  //     setPreviewImageUrl(
-  //       state.cart.cartItems[state.cart.cartItems.indexOf(previewImageUrl) - 1]
-  //     ); //find item in images list and decrement by 1
-  //   }
-  // };
-
-  // const handleImagePreviewNext = () => {
-  //   if (
-  //     state.cart.cartItems.indexOf(previewImageUrl) ===
-  //     state.cart.cartItems.length - 1
-  //   ) {
-  //     setPreviewImageUrl(state.cart.cartItems[0]);
-  //   } else {
-  //     setPreviewImageUrl(
-  //       state.cart.cartItems[state.cart.cartItems.indexOf(previewImageUrl) + 1]
-  //     ); //find item in images list and increment by 1
-  //   }
-  // };
-
   return (
     <>
       <div className="cart__container">

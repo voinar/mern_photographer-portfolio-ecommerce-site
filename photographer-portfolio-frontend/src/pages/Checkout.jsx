@@ -1,4 +1,5 @@
 import {
+  Store,
   useContext,
   useState,
   useEffect,
@@ -7,7 +8,6 @@ import {
   Link,
   OrderForm,
 } from '../imports';
-import { Store } from '../contexts/Store';
 
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';

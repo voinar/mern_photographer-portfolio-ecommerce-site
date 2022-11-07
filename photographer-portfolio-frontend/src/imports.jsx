@@ -1,4 +1,9 @@
+//hooks
 import { useEffect, useState, useContext, useReducer, useRef } from 'react';
+
+//contexts
+import { Store } from './contexts/Store';
+
 import {
   Routes,
   Route,
@@ -37,6 +42,7 @@ import CookiesPopup from './components/CookiesPopup';
 import NavLogo from './img/logo-nav.png';
 import FooterLogo from './img/logo-full.png';
 import IconEmail from './img/icons/icon-email.svg';
+import IconMail from './img/icons/icon-mail.svg';
 import IconPhone from './img/icons/icon-phone.svg';
 import IconFacebook from './img/icons/icon-facebook.svg';
 import IconInstagram from './img/icons/icon-instagram.svg';
@@ -53,6 +59,9 @@ import IconGridSmall from './img/icons/icon-grid-small.svg';
 import IconGridMedium from './img/icons/icon-grid-medium.svg';
 import IconGridLarge from './img/icons/icon-grid-large.svg';
 
+//tools
+import { v4 } from 'uuid';
+
 export {
   Routes,
   Route,
@@ -61,6 +70,7 @@ export {
   useParams,
   useReducer,
   useRef,
+  Store,
   Link,
   Helmet,
   useState,
@@ -91,6 +101,7 @@ export {
   NavLogo,
   FooterLogo,
   IconEmail,
+  IconMail,
   IconPhone,
   IconFacebook,
   IconInstagram,
@@ -106,4 +117,7 @@ export {
   IconGridSmall,
   IconGridMedium,
   IconGridLarge,
+
+  //tools
+  v4
 };

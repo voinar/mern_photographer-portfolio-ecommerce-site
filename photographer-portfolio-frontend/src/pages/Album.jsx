@@ -1,4 +1,5 @@
 import {
+  Store,
   Helmet,
   useEffect,
   useState,
@@ -12,7 +13,6 @@ import {
   IconGridMedium,
   IconGridLarge,
 } from '../imports';
-import { Store } from '../contexts/Store';
 
 import { ref, listAll } from 'firebase/storage';
 import { storage } from '../firebase/config';

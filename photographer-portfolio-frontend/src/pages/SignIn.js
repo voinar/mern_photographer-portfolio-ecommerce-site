@@ -1,5 +1,11 @@
-import { Helmet, useLocation, useNavigate, useState, useContext } from '../imports';
-import { Store } from '../contexts/Store';
+import {
+  Store,
+  Helmet,
+  useLocation,
+  useNavigate,
+  useState,
+  useContext,
+} from '../imports';
 
 import { query, where, getDocs, addDoc } from 'firebase/firestore';
 import { usersColRef } from '../firebase/config';
@@ -21,7 +27,6 @@ const SignIn = () => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [signinForm, setSigninForm] = useState(true);
-
 
   const handleSignin = async (e) => {
     try {

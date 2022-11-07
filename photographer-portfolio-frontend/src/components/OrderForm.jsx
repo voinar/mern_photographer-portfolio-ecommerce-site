@@ -1,10 +1,8 @@
-import { Link, useState, useContext } from '../imports';
+import { Store, Link, useState, useContext, v4 } from '../imports';
 
-import { Store } from '../contexts/Store';
 import { addDoc, doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import { ordersColRef } from '../firebase/config';
-import { v4 } from 'uuid';
 import jsSHA from 'jssha';
 import axios from 'axios';
 

@@ -1,7 +1,4 @@
-import { useContext } from 'react';
-import { Store } from '../contexts/Store';
-
-import { Link } from '../imports'
+import { Store, useContext, Link } from '../imports'
 
 const CookiesPopup = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
