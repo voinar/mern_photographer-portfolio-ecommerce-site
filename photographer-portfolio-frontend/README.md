@@ -8,4 +8,4 @@
   
 #### frontend: React, SCSS
 
-#### backend: Node.js, tba
+#### backend: Node.js, Firebase, Next.js
