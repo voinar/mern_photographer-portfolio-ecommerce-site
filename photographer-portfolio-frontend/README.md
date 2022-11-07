@@ -1,4 +1,4 @@
-## Photographer portfolio site
+## Photographer portfolio site & content shop
 
 ### Portfolio section
 * Intro section
