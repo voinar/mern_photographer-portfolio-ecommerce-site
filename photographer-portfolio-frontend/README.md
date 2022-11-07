@@ -28,4 +28,4 @@
 ### See live
 
 * Portfolio site: www.kacperporada.pl
-* Shop: www.kacperporada.pl/sklep
+* Shop: www.kacperporada.pl/sklep (wip)
