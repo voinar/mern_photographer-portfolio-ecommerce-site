@@ -1,6 +1,6 @@
 import { Store, Link, useState, useContext, v4 } from '../imports';
 
-import { addDoc, doc, getDoc } from 'firebase/firestore';
+import { addDoc, doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import { ordersColRef } from '../firebase/config';
 import jsSHA from 'jssha';
@@ -184,8 +184,6 @@ const OrderForm = () => {
   const calculatedAmount = state.cart.cartItems.length * itemPrice;
 
   const handleFormSubmission = async () => {
-    // e.preventDefault();
-
     console.log('uniqueId:', uniqueId);
 
     if (formValidation() === true) {
@@ -193,7 +191,9 @@ const OrderForm = () => {
         console.log('add');
 
         //add order to db
-        await addDoc(ordersColRef, {
+        const orderRef = doc(db, 'orders', uniqueId)
+
+        await setDoc(orderRef, {
           email: formEmail,
           name: formName,
           surname: formSurname,
@@ -261,10 +261,11 @@ const OrderForm = () => {
         amount: calculatedAmount,
         currency: 'PLN',
         orderId: uniqueId,
-        description: 'zakup test',
+        description: 'Zakup zdjęć',
+        transferLabel: 'Zakup zdjęć',
         email: formEmail,
         urlReturn: 'https://kacperporada.pl/twojezakupy', //adres do przekierowania po wykonanej płatności
-        urlStatus: 'https://kacperporada.pl/api', //adres do otrzymania informacji zwrotnej o transakcji z systemu przelewy24
+        urlStatus: 'https://kacperporada.pl/api/payment', //adres do otrzymania informacji zwrotnej o transakcji z systemu przelewy24
         country: 'PL',
         sign: signSha, //wygenerowany wyżej hash
       },

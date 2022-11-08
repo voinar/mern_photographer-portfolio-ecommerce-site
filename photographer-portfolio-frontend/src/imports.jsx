@@ -1,9 +1,14 @@
+//----------------------------------------------------------------
+//container for imported modules and assets
+//----------------------------------------------------------------
+
 //hooks
-import { useEffect, useState, useContext, useReducer, useRef } from 'react';
+import { useState, useEffect, useContext, useReducer, useRef } from 'react';
 
 //contexts
 import { Store } from './contexts/Store';
 
+//react router
 import {
   Routes,
   Route,
@@ -12,6 +17,9 @@ import {
   useParams,
   Link,
 } from 'react-router-dom';
+
+//tools
+import { v4 } from 'uuid';
 import { Helmet } from 'react-helmet-async';
 
 //pages
@@ -59,23 +67,30 @@ import IconGridSmall from './img/icons/icon-grid-small.svg';
 import IconGridMedium from './img/icons/icon-grid-medium.svg';
 import IconGridLarge from './img/icons/icon-grid-large.svg';
 
-//tools
-import { v4 } from 'uuid';
-
 export {
+  //hooks
+  useState,
+  useEffect,
+  useContext,
+  useReducer,
+  useRef,
+
+  //context store
+  Store,
+
+  //react router
   Routes,
   Route,
   useLocation,
   useNavigate,
   useParams,
-  useReducer,
-  useRef,
-  Store,
   Link,
+
+  //tools
   Helmet,
-  useState,
-  useEffect,
-  useContext,
+  v4,
+
+  //pages
   SectionWelcome,
   SectionContent,
   About,
@@ -88,6 +103,8 @@ export {
   Cookies,
   TermsConditions,
   Experiments,
+
+  //components
   Navbar,
   Alert,
   AlbumCard,
@@ -117,7 +134,4 @@ export {
   IconGridSmall,
   IconGridMedium,
   IconGridLarge,
-
-  //tools
-  v4
 };
