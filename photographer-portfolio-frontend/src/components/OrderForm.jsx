@@ -300,16 +300,17 @@ const OrderForm = () => {
 
     axios({
       method: 'post',
-      url: 'http://localhost:5000/api/payment',
+      url: 'http://localhost:8888/.netlify/functions/api/payment',
       // url: 'https://gentle-bublanina-19c578.netlify.app/api/payment',
-      data: { hi: 'okay' },
+      data: { id: 'someid' },
     })
       .then((response) => {
-        console.log('response', response.data);
+        console.log('response', response.config.data);
         setPaymentConfirmation([JSON.stringify(response.data.requestBody)])
       })
       .catch((err) => {
         console.log('err', err);
+        setPaymentConfirmation([JSON.stringify(err)])
       });
   };
 
