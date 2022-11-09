@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npx netlify-cli dev",
+    "build": "npx netlify-cli build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

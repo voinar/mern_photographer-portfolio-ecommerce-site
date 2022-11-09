@@ -300,8 +300,8 @@ const OrderForm = () => {
 
     axios({
       method: 'post',
-      url: 'http://localhost:8888/.netlify/functions/api/payment',
-      // url: 'https://gentle-bublanina-19c578.netlify.app/api/payment',
+      // url: 'http://localhost:8888/.netlify/functions/api/payment',
+      url: 'https://gentle-bublanina-19c578.netlify.app/.netlify/functions/api/payment',
       data: { id: 'someid' },
     })
       .then((response) => {
