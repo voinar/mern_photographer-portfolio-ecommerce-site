@@ -1,15 +1,16 @@
 import { Store, Link, useState, useContext, v4 } from '../imports';
 
-import { addDoc, doc, getDoc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
-import { ordersColRef } from '../firebase/config';
+// import { ordersColRef } from '../firebase/config';
 import jsSHA from 'jssha';
 import axios from 'axios';
 
 const OrderForm = () => {
-  const { state,
+  const {
+    state,
     //  dispatch: contextDispatch
-    } = useContext(Store);
+  } = useContext(Store);
 
   const [formEmail, setFormEmail] = useState('');
   const [formName, setFormName] = useState('');
@@ -180,7 +181,7 @@ const OrderForm = () => {
     handleFormSubmission();
   };
 
-  const uniqueId = v4();
+  const uniqueId = v4(); //used as order id, payment id
   const calculatedAmount = state.cart.cartItems.length * itemPrice;
 
   const handleFormSubmission = async () => {
@@ -191,7 +192,7 @@ const OrderForm = () => {
         console.log('add');
 
         //add order to db
-        const orderRef = doc(db, 'orders', uniqueId)
+        const orderRef = doc(db, 'orders', uniqueId);
 
         await setDoc(orderRef, {
           email: formEmail,
@@ -236,8 +237,8 @@ const OrderForm = () => {
     //funkcja dla pierwszego etapu transkacji /v1/transaction/register
     // e.preventDefault();
     const crcValue = '45839de45c0c7935'; //CRC pobrane z danych konta
-    console.log(calculatedAmount)
-    console.log(typeof(calculatedAmount))
+    console.log(calculatedAmount);
+    console.log(typeof calculatedAmount);
 
     // templatka sign: {"sessionId":"str","merchantId":int,"amount":int,"currency":"str","crc":"str"}
     //{"sessionId":"e7278a1c-0792-bd38-5e667152aa09", "merchantId":200527, "amount":2, "currency":"PLN", "crc":"45839de45c0c7935"}
@@ -293,8 +294,17 @@ const OrderForm = () => {
 
   const paymentVerify = (e) => {
     e.preventDefault();
-
     console.log('paymentVerify');
+
+    axios({
+      method: 'post',
+      url: 'http://localhost:5000/api/payment',
+      data: { hi: 'okay' },
+    }).then(response => {
+      console.log('response',response)
+    }).catch(err => {
+      console.log('err', err);
+    });
   };
 
   return (
@@ -350,7 +360,6 @@ const OrderForm = () => {
             <input
               name="consentInvoice"
               type="checkbox"
-              // checked={this.state.isGoing}
               onChange={toggleInputInvoice}
             />
             <label>
@@ -433,7 +442,7 @@ const OrderForm = () => {
           >
             token link {token}
           </button> */}
-          <button onClick={paymentVerify}>verify transaction PUT</button>
+          <button onClick={paymentVerify}>verify transaction</button>
           <br />
           <span>*pole wymagane</span>
         </form>

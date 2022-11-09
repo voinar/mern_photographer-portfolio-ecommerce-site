@@ -1,13 +1,40 @@
 import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+
 import mongoose from 'mongoose';
 import data from './data/data.js';
 import dotenv from 'dotenv';
 import seedRouter from './routes/seedRoutes.js';
 import productRouter from './routes/productRoutes.js';
 import userRouter from './routes/userRoutes.js';
+import paymentRoutes from './routes/paymentRoutes.js';
 // import Product from './models/productModel.js';
 
 dotenv.config(); //load config from env file
+
+const app = express();
+app.use(
+  cors({
+    origin: '*',
+  })
+);
+
+//convert form data in post request to json object inside req.body
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+const router = express.Router();
+
+router.post('/', function requestHandler(req, res) {
+  res.end('Hello, World!',res.data);
+});
+
+// add router in the Express app.
+app.use('/api/payment', router);
+
+
+
 
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -18,20 +45,24 @@ mongoose
     console.log(err.message);
   });
 
-const app = express();
-
-//convert form data in post request to json object inside req.body
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 //seed routes
 app.use('/api/seed', seedRouter);
 app.use('/api/products', productRouter);
 app.use('/api/users', userRouter);
 
-app.get('/api/payment', (req, res) => {
-  res.send('payment endpoint running');
-});
+//enable body parser for POST request handling
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+//payment api routes
+// app.use('/api/payment', paymentRoutes);
+
+// app.get('/api/payment', (req, res) => {
+//   // res.send('payment endpoint running', res, req);
+//   console.log('payment endpoint running')
+//   res.send(data);
+// });
 
 
 // app.get('/api/seed', (req, res) => {
