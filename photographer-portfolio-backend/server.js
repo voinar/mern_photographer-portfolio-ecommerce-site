@@ -26,15 +26,21 @@ app.use(express.urlencoded({ extended: true }));
 
 const router = express.Router();
 
-router.post('/', function requestHandler(req, res) {
-  res.end('Hello, World!',res.data);
+router.post('/', function (req, res) {
+  const paymentConfirmation = req.body;
+  res.json({ requestBody: paymentConfirmation });
+  // res.end('Hello, World!');
 });
 
+router.get('/', function (req, res) {
+  const readKey = req.res;
+  const request = Object.keys(req.res).map((key) => `<li>${key}</li>`);
+  res.send(`<h1>hello</h1>
+  <h2>${readKey}</h2>
+  <p>${request}</p>`);
+});
 // add router in the Express app.
 app.use('/api/payment', router);
-
-
-
 
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -44,7 +50,6 @@ mongoose
   .catch((err) => {
     console.log(err.message);
   });
-
 
 //seed routes
 app.use('/api/seed', seedRouter);
@@ -63,7 +68,6 @@ app.use(bodyParser.json());
 //   console.log('payment endpoint running')
 //   res.send(data);
 // });
-
 
 // app.get('/api/seed', (req, res) => {
 //   res.send(data);

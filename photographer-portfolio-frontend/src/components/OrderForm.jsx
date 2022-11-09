@@ -24,6 +24,8 @@ const OrderForm = () => {
   // const [formInvoiceEmailCopyConsent, setFormInvoiceEmailCopyConsent] =
   //   useState(false);
 
+  const [paymentConfirmation, setPaymentConfirmation] = useState('');
+
   const [itemPrice, setItemPrice] = useState(null);
 
   const getPrice = async () => {
@@ -299,12 +301,16 @@ const OrderForm = () => {
     axios({
       method: 'post',
       url: 'http://localhost:5000/api/payment',
+      // url: 'https://gentle-bublanina-19c578.netlify.app/api/payment',
       data: { hi: 'okay' },
-    }).then(response => {
-      console.log('response',response)
-    }).catch(err => {
-      console.log('err', err);
-    });
+    })
+      .then((response) => {
+        console.log('response', response.data);
+        setPaymentConfirmation([JSON.stringify(response.data.requestBody)])
+      })
+      .catch((err) => {
+        console.log('err', err);
+      });
   };
 
   return (
@@ -442,7 +448,8 @@ const OrderForm = () => {
           >
             token link {token}
           </button> */}
-          <button onClick={paymentVerify}>verify transaction</button>
+          <button onClick={paymentVerify}>verify transaction:</button>
+          <p>{paymentConfirmation}</p>
           <br />
           <span>*pole wymagane</span>
         </form>
