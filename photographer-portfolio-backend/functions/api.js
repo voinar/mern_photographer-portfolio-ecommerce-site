@@ -8,8 +8,7 @@ app.use(cors({ origin: '*' }));
 
 router.get('/', (req, res) => {
   res.json({
-    path: 'home',
-    greet: 'hi',
+    greeting: 'welcome',
   });
 });
 
