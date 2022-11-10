@@ -311,7 +311,7 @@ const OrderForm = () => {
       method: 'post',
       // url: 'http://localhost:9000/.netlify/functions/api/payment',
       url: 'https://gentle-bublanina-19c578.netlify.app/.netlify/functions/api/payment',
-      // data: { id: uniqueId },
+      data: { id: uniqueId },
     })
       .then((response) => {
         console.log('response', response.config.data);
