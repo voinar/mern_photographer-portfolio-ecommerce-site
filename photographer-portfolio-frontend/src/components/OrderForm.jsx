@@ -43,7 +43,8 @@ const OrderForm = () => {
       const docSnap = await getDoc(docRef);
       setItemPrice(
         Number(
-          docSnap._document.data.value.mapValue.fields.imagePrice.integerValue
+          docSnap?._document?.data?.value?.mapValue?.fields?.imagePrice
+            ?.integerValue
         )
       );
     } catch (err) {
@@ -245,13 +246,12 @@ const OrderForm = () => {
   const paymentRegister = () => {
     //funkcja dla pierwszego etapu transkacji /v1/transaction/register
     // e.preventDefault();
-    const crcValue = '45839de45c0c7935'; //CRC pobrane z danych konta
-    console.log(calculatedAmount);
-    console.log(typeof calculatedAmount);
+    const crcValue = process.env.REACT_APP_PAYMENT_GATEWAY_CRC_VALUE; //CRC pobrane z danych konta
+    const username = process.env.REACT_APP_PAYMENT_GATEWAY_USERNAME;
+    const password = process.env.REACT_APP_PAYMENT_GATEWAY_PASSWORD;
 
     // templatka sign: {"sessionId":"str","merchantId":int,"amount":int,"currency":"str","crc":"str"}
-    //{"sessionId":"e7278a1c-0792-bd38-5e667152aa09", "merchantId":200527, "amount":2, "currency":"PLN", "crc":"45839de45c0c7935"}
-    const signTemplate = `{"sessionId":"${uniqueId}","merchantId":200527,"amount":${calculatedAmount},"currency":"PLN","crc":"${crcValue}"}`;
+    const signTemplate = `{"sessionId":"${uniqueId}","merchantId":${username},"amount":${calculatedAmount},"currency":"PLN","crc":"${crcValue}"}`;
     console.log('signtemp', signTemplate);
     console.log('id type', typeof uniqueId);
     // const signTemplate = `{"sessionId":${uniqueId},"merchantId":200527,"amount":2,"currency":"PLN","crc":${crcValue}}`; //template string do obliczenia sumy kontrolnej
@@ -262,21 +262,23 @@ const OrderForm = () => {
     axios({
       //zapytanie http przez axios
       method: 'post', //metoda
-      url: 'https://sandbox.przelewy24.pl/api/v1/transaction/register', //sandbox url
-      auth: { username: 200527, password: 'e9c589f13cb5129b684a7b72821b9b73' }, //dane z konta sandbox
+      url: process.env.REACT_APP_PAYMENT_GATEWAY_URLREGISTER, //sandbox url
+      auth: {
+        username: username,
+        password: password,
+      }, //dane z konta sandbox
       data: {
-        merchantId: 200527,
-        posId: 200527,
+        merchantId: username,
+        posId: username,
         sessionId: uniqueId, //id generowane przy tworzeniu zamówienia, np: '6b795d5e-394f-4ae3-b313-bb70ccd99d5c'
         amount: calculatedAmount,
         currency: 'PLN',
         orderId: uniqueId,
-        description: 'Zakup zdjęć',
-        transferLabel: 'Zakup zdjęć',
+        description: 'Zakup zdjec',
+        transferLabel: 'Zakup zdjec',
         email: formEmail,
-        urlReturn: 'https://kacperporada.pl/twojezakupy', //adres do przekierowania po wykonanej płatności
-        urlStatus:
-          'https://gentle-bublanina-19c578.netlify.app/.netlify/functions/api/payment', //adres do otrzymania informacji zwrotnej o transakcji z systemu przelewy24
+        urlReturn: process.env.REACT_APP_PAYMENT_GATEWAY_URLRETURN, //adres do przekierowania po wykonanej płatności
+        urlStatus: process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS, //adres do otrzymania informacji zwrotnej o transakcji z systemu przelewy24
         country: 'PL',
         sign: signSha, //wygenerowany wyżej hash
       },
@@ -309,8 +311,7 @@ const OrderForm = () => {
 
     axios({
       method: 'post',
-      // url: 'http://localhost:9000/.netlify/functions/api/payment',
-      url: 'https://gentle-bublanina-19c578.netlify.app/.netlify/functions/api/payment',
+      url: process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS,
       data: { id: uniqueId, date: new Date() },
     })
       .then((response) => {
