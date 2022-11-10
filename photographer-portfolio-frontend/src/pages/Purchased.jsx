@@ -13,7 +13,7 @@ const Success = () => {
   const [purchasedImages] = useState(state.cart.cartItems);
 
   useEffect(() => {
-    //clear cart on load
+    //clear cart on load–-_
     // const clearCart = () => {
     //   try {
     //     contextDispatch({
