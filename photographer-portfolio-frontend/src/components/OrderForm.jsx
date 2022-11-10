@@ -1,4 +1,4 @@
-import { Store, Link, useState, useContext, v4 } from '../imports';
+import { Store, Link, useState, useContext, useEffect, v4 } from '../imports';
 
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
@@ -25,8 +25,17 @@ const OrderForm = () => {
   //   useState(false);
 
   const [paymentConfirmation, setPaymentConfirmation] = useState('');
-
   const [itemPrice, setItemPrice] = useState(null);
+
+  //used as order id, payment id
+  const [uniqueId, setUniqueId] = useState(undefined);
+
+  useEffect(() => {
+    if (uniqueId === undefined){
+      setUniqueId(v4());
+    }
+      console.log('generateUniqueId: ' + uniqueId);
+  },[uniqueId]);
 
   const getPrice = async () => {
     try {
@@ -160,11 +169,9 @@ const OrderForm = () => {
     e.preventDefault();
 
     if (formValidation() === true) {
-      console.log('form valid');
     } else {
       console.log('form invalid');
     }
-
     // const formData = {
     //   email: formEmail,
     //   name: formName,
@@ -183,13 +190,13 @@ const OrderForm = () => {
     handleFormSubmission();
   };
 
-  const uniqueId = v4(); //used as order id, payment id
   const calculatedAmount = state.cart.cartItems.length * itemPrice;
 
   const handleFormSubmission = async () => {
-    console.log('uniqueId:', uniqueId);
-
     if (formValidation() === true) {
+      // generateUniqueId();
+      // console.log('uniqueId@handleFormSubmission:', uniqueId);
+
       try {
         console.log('add');
 
@@ -268,7 +275,8 @@ const OrderForm = () => {
         transferLabel: 'Zakup zdjęć',
         email: formEmail,
         urlReturn: 'https://kacperporada.pl/twojezakupy', //adres do przekierowania po wykonanej płatności
-        urlStatus: 'https://kacperporada.pl/api/payment', //adres do otrzymania informacji zwrotnej o transakcji z systemu przelewy24
+        urlStatus:
+          'https://gentle-bublanina-19c578.netlify.app/.netlify/functions/api/payment', //adres do otrzymania informacji zwrotnej o transakcji z systemu przelewy24
         country: 'PL',
         sign: signSha, //wygenerowany wyżej hash
       },
@@ -297,20 +305,21 @@ const OrderForm = () => {
   const paymentVerify = (e) => {
     e.preventDefault();
     console.log('paymentVerify');
+    console.log('uniqueId@paymentVerify:', uniqueId);
 
     axios({
       method: 'post',
-      // url: 'http://localhost:8888/.netlify/functions/api/payment',
+      // url: 'http://localhost:9000/.netlify/functions/api/payment',
       url: 'https://gentle-bublanina-19c578.netlify.app/.netlify/functions/api/payment',
-      data: { id: 'someid' },
+      // data: { id: uniqueId },
     })
       .then((response) => {
         console.log('response', response.config.data);
-        setPaymentConfirmation([JSON.stringify(response.data.requestBody)])
+        setPaymentConfirmation(JSON.stringify(response.config.data));
       })
       .catch((err) => {
         console.log('err', err);
-        setPaymentConfirmation([JSON.stringify(err)])
+        setPaymentConfirmation(JSON.stringify(err));
       });
   };
 

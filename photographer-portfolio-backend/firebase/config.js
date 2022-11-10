@@ -17,7 +17,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// firebase.initializeApp(firebaseConfig);
 
 //initiate storage
 const storage = getStorage(app);
@@ -26,8 +25,6 @@ const storage = getStorage(app);
 const db = getFirestore();
 
 //refs
-const usersColRef = collection(db, 'users');
-const settingsColRef = collection(db, 'settings');
 const ordersColRef = collection(db, 'orders');
 
 export { storage, db, usersColRef, settingsColRef, ordersColRef };
