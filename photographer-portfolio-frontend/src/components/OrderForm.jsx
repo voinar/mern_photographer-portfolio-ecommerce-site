@@ -31,11 +31,11 @@ const OrderForm = () => {
   const [uniqueId, setUniqueId] = useState(undefined);
 
   useEffect(() => {
-    if (uniqueId === undefined){
+    if (uniqueId === undefined) {
       setUniqueId(v4());
     }
-      console.log('generateUniqueId: ' + uniqueId);
-  },[uniqueId]);
+    console.log('generateUniqueId: ' + uniqueId);
+  }, [uniqueId]);
 
   const getPrice = async () => {
     try {
@@ -311,7 +311,7 @@ const OrderForm = () => {
       method: 'post',
       // url: 'http://localhost:9000/.netlify/functions/api/payment',
       url: 'https://gentle-bublanina-19c578.netlify.app/.netlify/functions/api/payment',
-      data: { id: uniqueId },
+      data: { id: uniqueId, date: new Date() },
     })
       .then((response) => {
         console.log('response', response.config.data);
