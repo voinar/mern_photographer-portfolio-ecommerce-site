@@ -3,14 +3,14 @@
 // // import { ordersColRef } from '../firebase/config';
 // import jsSHA from 'jssha';
 // import axios from 'axios';
-import { state, Store, useState, useContext } from '../imports';
+import { Store, useState, useContext } from '../imports';
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 import { useEffect } from 'react';
 
 const Success = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
   const [largeImages, setLargeImages] = useState([]);
-  const [purchasedImages, setPurchasedImages] = useState(state.cart.cartItems);
+  const [purchasedImages] = useState(state.cart.cartItems);
 
   useEffect(() => {
     //clear cart on load
@@ -24,7 +24,7 @@ const Success = () => {
         console.log(err);
       }
     };
-    clearCart();
+    // clearCart();
 
     //get full versions of images
     purchasedImages.map((image) => {
@@ -48,7 +48,7 @@ const Success = () => {
         });
       return null;
     });
-  }, [state]);
+  }, [purchasedImages, contextDispatch]);
 
   return (
     <>
