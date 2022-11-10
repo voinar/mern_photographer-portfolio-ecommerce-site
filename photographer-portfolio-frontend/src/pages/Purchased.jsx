@@ -14,16 +14,16 @@ const Success = () => {
 
   useEffect(() => {
     //clear cart on load
-    const clearCart = () => {
-      try {
-        contextDispatch({
-          type: 'CLEAR_CART',
-        });
-        // localStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
-      } catch (err) {
-        console.log(err);
-      }
-    };
+    // const clearCart = () => {
+    //   try {
+    //     contextDispatch({
+    //       type: 'CLEAR_CART',
+    //     });
+    //     // localStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // };
     // clearCart();
 
     //get full versions of images
