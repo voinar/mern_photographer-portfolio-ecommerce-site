@@ -2265,10 +2265,6 @@ select {
   }
 }
 
-html * {
-  outline: 1px solid brown;
-}
-
 html {
   overflow-x: hidden;
 }
