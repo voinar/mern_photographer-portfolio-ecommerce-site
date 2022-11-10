@@ -1396,7 +1396,7 @@ select {
   font-size: 18px;
 }
 
-.success__container {
+.purchased__container {
   background-color: rgba(255, 255, 255, 0.85);
   color: #3a3939;
   min-height: 70vh;
@@ -2263,6 +2263,10 @@ select {
     height: 0;
     visibility: hidden;
   }
+}
+
+html * {
+  outline: 1px solid brown;
 }
 
 html {
