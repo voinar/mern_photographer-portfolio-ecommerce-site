@@ -5,13 +5,11 @@
 // import axios from 'axios';
 
 const Success = () => {
-
-
-  return <>
-    <div className="success__container">
-        zakupione rzeczy
-    </div>
-  </>;
+  return (
+    <>
+      <div className="success__container">zakupione przedmioty</div>
+    </>
+  );
 };
 
 export default Success;
