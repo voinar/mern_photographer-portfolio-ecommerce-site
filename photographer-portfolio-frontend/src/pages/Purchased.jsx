@@ -20,62 +20,65 @@ const Success = () => {
   const [purchasedImages] = useState(state.cart.cartItems);
 
   //payment verification
-  const paymentVerification = () => {
-    console.log('state.paymentVerification', state.paymentVerification);
-    //funkcja dla pierwszego etapu transkacji /v1/transaction/register
-    // e.preventDefault();
-    const crcValue = process.env.REACT_APP_PAYMENT_GATEWAY_CRC_VALUE; //CRC pobrane z danych konta
-    const username = process.env.REACT_APP_PAYMENT_GATEWAY_USERNAME;
-    const password = process.env.REACT_APP_PAYMENT_GATEWAY_PASSWORD;
+  useEffect(() => {
+    const paymentVerification = () => {
+      console.log('state.paymentVerification', state.paymentVerification);
+      //funkcja dla pierwszego etapu transkacji /v1/transaction/register
+      // e.preventDefault();
+      const crcValue = process.env.REACT_APP_PAYMENT_GATEWAY_CRC_VALUE; //CRC pobrane z danych konta
+      const username = process.env.REACT_APP_PAYMENT_GATEWAY_USERNAME;
+      const password = process.env.REACT_APP_PAYMENT_GATEWAY_PASSWORD;
 
-    // templatka sign: {"sessionId":"str","merchantId":int,"amount":int,"currency":"str","crc":"str"}
-    const signTemplate = `{"sessionId":"${state.cart.uniqueId}","orderId":${state.paymentVerification.orderId},"amount":${state.paymentVerification.amount},"currency":"PLN","crc":"${crcValue}"}`;
-    // console.log('signtemp', signTemplate);
-    // console.log('id type', typeof state.cart.uniqueId);
-    // const signTemplate = `{"sessionId":${uniqueId},"merchantId":200527,"amount":2,"currency":"PLN","crc":${crcValue}}`; //template string do obliczenia sumy kontrolnej
-    const shaObj = new jsSHA('SHA-384', 'TEXT', { encoding: 'UTF8' }); //nowy obiekt sha-384 generowany przez jsSHA
-    shaObj.update(signTemplate); //wprowadzenie ciągu signCryptoInput do hashowania przez shaObj
-    const signSha = shaObj.getHash('HEX'); //konwersja shaObj do hex
+      // templatka sign: {"sessionId":"str","merchantId":int,"amount":int,"currency":"str","crc":"str"}
+      const signTemplate = `{"sessionId":"${state.cart.uniqueId}","orderId":${state.paymentVerification.orderId},"amount":${state.paymentVerification.amount},"currency":"PLN","crc":"${crcValue}"}`;
+      // console.log('signtemp', signTemplate);
+      // console.log('id type', typeof state.cart.uniqueId);
+      // const signTemplate = `{"sessionId":${uniqueId},"merchantId":200527,"amount":2,"currency":"PLN","crc":${crcValue}}`; //template string do obliczenia sumy kontrolnej
+      const shaObj = new jsSHA('SHA-384', 'TEXT', { encoding: 'UTF8' }); //nowy obiekt sha-384 generowany przez jsSHA
+      shaObj.update(signTemplate); //wprowadzenie ciągu signCryptoInput do hashowania przez shaObj
+      const signSha = shaObj.getHash('HEX'); //konwersja shaObj do hex
 
-    console.log(
-      'env register',
-      typeof process.env.REACT_APP_PAYMENT_GATEWAY_URLREGISTER
-    );
-    console.log(
-      'env verify',
-      typeof process.env.REACT_APP_PAYMENT_GATEWAY_URLREGISTER
-    );
-    axios({
-      //zapytanie http przez axios
-      method: 'put', //metoda
-      // url: process.env.REACT_APP_PAYMENT_GATEWAY_URLVERIFY, //sandbox url
-      url: 'https://sandbox.przelewy24.pl/api/v1/transaction/verify', //sandbox url
+      console.log(
+        'env register',
+        typeof process.env.REACT_APP_PAYMENT_GATEWAY_URLREGISTER
+      );
+      console.log(
+        'env verify',
+        typeof process.env.REACT_APP_PAYMENT_GATEWAY_URLREGISTER
+      );
+      axios({
+        //zapytanie http przez axios
+        method: 'put', //metoda
+        // url: process.env.REACT_APP_PAYMENT_GATEWAY_URLVERIFY, //sandbox url
+        url: 'https://sandbox.przelewy24.pl/api/v1/transaction/verify', //sandbox url
 
-      auth: {
-        username: username,
-        password: password,
-      }, //dane z konta sandbox
-      data: {
-        merchantId: state.paymentVerification.merchantId,
-        posId: state.paymentVerification.posId,
-        sessionId: state.cart.uniqueId,
-        amount: state.paymentVerification.amount,
-        currency: 'PLN',
-        orderId: state.paymentVerification.orderId,
-        sign: signSha,
-      },
-    })
-      .then((response) => {
-        //blok uruchamiany dla odpowiedzi z kodem 200
-        // console.log(response);
-        console.log('verification res', response);
+        auth: {
+          username: username,
+          password: password,
+        }, //dane z konta sandbox
+        data: {
+          merchantId: state.paymentVerification.merchantId,
+          posId: state.paymentVerification.posId,
+          sessionId: state.cart.uniqueId,
+          amount: state.paymentVerification.amount,
+          currency: 'PLN',
+          orderId: state.paymentVerification.orderId,
+          sign: signSha,
+        },
       })
-      .catch((err) => {
-        //blok dla odpowiedzi z błędem 400/401
-        console.log('err', err);
-        // console.log('err', err.response.data.error);
-      });
-  };
+        .then((response) => {
+          //blok uruchamiany dla odpowiedzi z kodem 200
+          // console.log(response);
+          console.log('verification res', response);
+        })
+        .catch((err) => {
+          //blok dla odpowiedzi z błędem 400/401
+          console.log('err', err);
+          // console.log('err', err.response.data.error);
+        });
+    };
+    paymentVerification(); //send back payment verification data
+  }, [state.paymentVerification, state.cart.uniqueId]);
 
   //1. find payment confirmation with sessionId === uniqueId in api data array
   useEffect(() => {
@@ -97,7 +100,6 @@ const Success = () => {
               (element) => element.sessionId === state.cart.uniqueId
             ),
           });
-          // paymentVerification(); //send back payment verification data
         });
       } catch (error) {
         console.error(error);
