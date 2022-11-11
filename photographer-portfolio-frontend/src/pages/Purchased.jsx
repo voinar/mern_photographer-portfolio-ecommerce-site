@@ -11,7 +11,7 @@ const Success = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
   const [largeImages, setLargeImages] = useState([]);
   const [purchasedImages] = useState(state.cart.cartItems);
-  const [paymentConfirmation, setPaymentConfirmation] = useState({});
+  // const [paymentConfirmation, setPaymentConfirmation] = useState({});
 
   //payment verification
   //1. find payment confirmation with sessionId === uniqueId in api data array
