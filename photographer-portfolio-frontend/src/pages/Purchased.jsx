@@ -23,8 +23,7 @@ const Success = () => {
         );
         setPaymentConfirmation(
           response.data.find(
-            (element) =>
-              element.sessionId === state?.cart?.uniqueId
+            (element) => element.sessionId === state?.cart?.uniqueId
           )
         );
       } catch (error) {
@@ -40,7 +39,7 @@ const Success = () => {
 
   useEffect(() => {
     async function sendBackPaymentConfirmation() {
-      console.log('sending back payment confirmation')
+      console.log('sending back payment confirmation');
       try {
         await axios({
           method: 'put',
@@ -55,12 +54,20 @@ const Success = () => {
             sign: paymentConfirmation.sign,
           },
         });
+        console.log('payment confirmation sent', {
+          merchantId: paymentConfirmation.merchantId,
+          posId: paymentConfirmation.merchantId,
+          sessionId: paymentConfirmation.sessionId,
+          amount: paymentConfirmation.amount,
+          currency: paymentConfirmation.currency,
+          orderId: paymentConfirmation.orderId,
+          sign: paymentConfirmation.sign,
+        });
       } catch (error) {
         console.error(error);
       }
     }
-    sendBackPaymentConfirmation()
-    console.log('payment confirmation sent')
+    sendBackPaymentConfirmation();
   }, [paymentConfirmation]);
 
   // 2. send the data back to complete confirmation process
