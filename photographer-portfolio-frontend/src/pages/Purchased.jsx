@@ -15,48 +15,55 @@ const Success = () => {
 
   //payment verification
   //1. find payment confirmation with sessionId === uniqueId in api data array
-  async function getPaymentConfirmation() {
-    try {
-      const response = await axios.get(
-        process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS
-      );
-      console.log('res', response.data);
-      console.log(
-        'found',
-        response.data.find(
-          (element) => element.sessionId === state.cart.uniqueId
-        )
-      );
-      // setPaymentConfirmation(findConfirmation)
-      // console.log('payment confirmation',response.data.find(element => element.sessionId === state.cart.uniqueId));
-      setPaymentConfirmation(
-        response.data.find(
-          (element) => element.sessionId === state.cart.uniqueId
-        )
-      );
-    } catch (error) {
-      console.error(error);
+  useEffect(() => {
+    async function getPaymentConfirmation() {
+      try {
+        const response = await axios.get(
+          process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS
+        );
+        setPaymentConfirmation(
+          response.data.find(
+            (element) =>
+              element.sessionId === '4f8f14eb-7f8b-4a79-b375-039efb011f6a'
+          )
+        );
+      } catch (error) {
+        console.error(error);
+      }
     }
-  }
-  getPaymentConfirmation();
+    getPaymentConfirmation();
+  }, [state.cart.uniqueId]);
+  //
+
   console.log('payment confirmation in state', paymentConfirmation);
-  // axios
-  //   .get(process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS)
-  //   .then((response) => {
-  //     // console.log('REACT_APP_PAYMENT_GATEWAY_URLSTATUS res', response.data);
-  //     // console.log('found',response.data.find(element => element.sessionId === state.cart.uniqueId))
-  //     // const confirmationData = response.data.find(element => element.sessionId === state.cart.uniqueId);
-  //     // setPaymentConfirmation(response.data)
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-  // return
-  // }
+  console.log('id', paymentConfirmation.merchantId);
+
+  useEffect(() => {
+    async function sendBackPaymentConfirmation() {
+      console.log('sending back payment confirmation')
+      try {
+        await axios({
+          method: 'put',
+          url: process.env.REACT_APP_PAYMENT_GATEWAY_URLVERIFY,
+          data: {
+            merchantId: paymentConfirmation.merchantId,
+            posId: paymentConfirmation.merchantId,
+            sessionId: paymentConfirmation.sessionId,
+            amount: paymentConfirmation.amount,
+            currency: paymentConfirmation.currency,
+            orderId: paymentConfirmation.orderId,
+            sign: paymentConfirmation.sign,
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    sendBackPaymentConfirmation()
+    console.log('payment confirmation sent')
+  }, [paymentConfirmation]);
 
   // 2. send the data back to complete confirmation process
-  console.log('conf');
-
   useEffect(() => {
     //clear cart on load–-_
     // const clearCart = () => {
