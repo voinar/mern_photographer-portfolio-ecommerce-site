@@ -43,6 +43,10 @@ const Success = () => {
       try {
         await axios({
           method: 'put',
+          auth: {
+            username: process.env.REACT_APP_PAYMENT_GATEWAY_USERNAME,
+            password: process.env.REACT_APP_PAYMENT_GATEWAY_PASSWORD,
+          },
           url: process.env.REACT_APP_PAYMENT_GATEWAY_URLVERIFY,
           data: {
             merchantId: paymentConfirmation.merchantId,
