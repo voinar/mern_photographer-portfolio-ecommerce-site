@@ -15,60 +15,61 @@ const Success = () => {
 
   //payment verification
   //1. find payment confirmation with sessionId === uniqueId in api data array
-    function getPaymentConfirmation() {
+  async function getPaymentConfirmation() {
+    try {
+      const response = await axios.get(
+        process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS
+      );
+      setPaymentConfirmation(
+        response.data.find(
+          (element) => element.sessionId === state?.cart?.uniqueId
+        )
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  console.log('payment confirmation in state:', paymentConfirmation);
+  console.log('id', paymentConfirmation.merchantId);
+  console.log('ready to send back payment confirmation');
+
+  async function sendBackPaymentConfirmation() {
+    getPaymentConfirmation();
+
+    if (paymentConfirmation !== {}) {
+      console.log('sending back payment confirmation', {
+        merchantId: paymentConfirmation.merchantId,
+        posId: paymentConfirmation.merchantId,
+        sessionId: paymentConfirmation.sessionId,
+        amount: paymentConfirmation.amount,
+        currency: paymentConfirmation.currency,
+        orderId: paymentConfirmation.orderId,
+        sign: paymentConfirmation.sign,
+      });
       try {
-        const response = axios.get(
-          process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS
-        );
-        setPaymentConfirmation(
-          response.data.find(
-            (element) => element.sessionId === state?.cart?.uniqueId
-          )
-        );
+        await axios({
+          method: 'put',
+          auth: {
+            username: process.env.REACT_APP_PAYMENT_GATEWAY_USERNAME,
+            password: process.env.REACT_APP_PAYMENT_GATEWAY_PASSWORD,
+          },
+          url: process.env.REACT_APP_PAYMENT_GATEWAY_URLVERIFY,
+          data: {
+            merchantId: paymentConfirmation.merchantId,
+            posId: paymentConfirmation.merchantId,
+            sessionId: paymentConfirmation.sessionId,
+            amount: paymentConfirmation.amount,
+            currency: paymentConfirmation.currency,
+            orderId: paymentConfirmation.orderId,
+            sign: paymentConfirmation.sign,
+          },
+        });
       } catch (error) {
         console.error(error);
       }
     }
-    getPaymentConfirmation();
-    console.log('payment confirmation in state:', paymentConfirmation);
-    console.log('id', paymentConfirmation.merchantId);
-    console.log('ready to send back payment confirmation');
-
-    function sendBackPaymentConfirmation() {
-      if (paymentConfirmation !== {}) {
-        console.log('sending back payment confirmation', {
-          merchantId: paymentConfirmation.merchantId,
-          posId: paymentConfirmation.merchantId,
-          sessionId: paymentConfirmation.sessionId,
-          amount: paymentConfirmation.amount,
-          currency: paymentConfirmation.currency,
-          orderId: paymentConfirmation.orderId,
-          sign: paymentConfirmation.sign,
-        });
-        try {
-          axios({
-            method: 'put',
-            auth: {
-              username: process.env.REACT_APP_PAYMENT_GATEWAY_USERNAME,
-              password: process.env.REACT_APP_PAYMENT_GATEWAY_PASSWORD,
-            },
-            url: process.env.REACT_APP_PAYMENT_GATEWAY_URLVERIFY,
-            data: {
-              merchantId: paymentConfirmation.merchantId,
-              posId: paymentConfirmation.merchantId,
-              sessionId: paymentConfirmation.sessionId,
-              amount: paymentConfirmation.amount,
-              currency: paymentConfirmation.currency,
-              orderId: paymentConfirmation.orderId,
-              sign: paymentConfirmation.sign,
-            },
-          });
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    }
-    sendBackPaymentConfirmation();
+  }
+  sendBackPaymentConfirmation();
   //
 
   // useEffect(() => {
