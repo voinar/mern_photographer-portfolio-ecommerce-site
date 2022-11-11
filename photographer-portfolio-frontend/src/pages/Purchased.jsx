@@ -33,7 +33,7 @@ const Success = () => {
   console.log('id', paymentConfirmation.merchantId);
   console.log('ready to send back payment confirmation');
 
-  async function sendBackPaymentConfirmation() {
+  function sendBackPaymentConfirmation() {
     getPaymentConfirmation();
 
     if (paymentConfirmation !== {}) {
@@ -47,7 +47,7 @@ const Success = () => {
         sign: paymentConfirmation.sign,
       });
       try {
-        await axios({
+        axios({
           method: 'put',
           auth: {
             username: process.env.REACT_APP_PAYMENT_GATEWAY_USERNAME,
