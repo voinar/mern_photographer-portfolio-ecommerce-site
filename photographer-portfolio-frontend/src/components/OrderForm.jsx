@@ -440,9 +440,9 @@ const OrderForm = () => {
           >
             Kupuję i płacę
           </button>
-          <button onClick={handleFormSubmission}>
+          {/* <button onClick={handleFormSubmission}>
             register transaction POST
-          </button>
+          </button> */}
           {/* <button onClick={paymentVerify}>verify transaction:</button> */}
           <br />
           <span>*pole wymagane</span>
