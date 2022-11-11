@@ -27,8 +27,9 @@ const OrderForm = () => {
   // const [uniqueId, setUniqueId] = useState(state.cart.uniqueId || null);
 
   //generate unique id used as order id, payment id & save it to context
+
   useEffect(() => {
-    if (state.cart.uniqueId === null) {
+    // if (state.cart.uniqueId === null) {
       const generateUniqueId = () => {
         try {
           contextDispatch({
@@ -41,8 +42,8 @@ const OrderForm = () => {
         }
       };
       generateUniqueId();
-    }
-  }, [contextDispatch, state.cart.uniqueId]);
+    // }
+  }, []);
 
 
   const getPrice = async () => {
