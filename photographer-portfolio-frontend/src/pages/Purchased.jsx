@@ -129,7 +129,9 @@ const Success = () => {
   //   }
   // };
   // clearCart();
-
+  useEffect(() => {
+    console.log('current state', state);
+  }, [state]);
   //get full versions of images
   useEffect(() => {
     purchasedImages.map((image) => {
