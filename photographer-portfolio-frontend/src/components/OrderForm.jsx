@@ -19,7 +19,7 @@ const OrderForm = () => {
   // const [formInvoiceEmailCopyConsent, setFormInvoiceEmailCopyConsent] =
   //   useState(false);
 
-  const [paymentConfirmation, setPaymentConfirmation] = useState('');
+  // const [paymentConfirmation, setPaymentConfirmation] = useState('');
   const [itemPrice, setItemPrice] = useState(null);
 
   // const [uniqueId, setUniqueId] = useState(state.cart.uniqueId || null);
@@ -295,25 +295,25 @@ const OrderForm = () => {
     // console.log('sign sha hex', shaObj.getHash('HEX'));
   };
 
-  const paymentVerify = (e) => {
-    e.preventDefault();
-    console.log('paymentVerify');
-    console.log('uniqueId@paymentVerify:', state.cart.uniqueId);
+  // const paymentVerify = (e) => {
+  //   e.preventDefault();
+  //   console.log('paymentVerify');
+  //   console.log('uniqueId@paymentVerify:', state.cart.uniqueId);
 
-    axios({
-      method: 'post',
-      url: process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS,
-      data: { id: state.cart.uniqueId, date: new Date() },
-    })
-      .then((response) => {
-        console.log('response', response.config.data);
-        setPaymentConfirmation(JSON.stringify(response.config.data));
-      })
-      .catch((err) => {
-        console.log('err', err);
-        setPaymentConfirmation(JSON.stringify(err));
-      });
-  };
+  //   axios({
+  //     method: 'post',
+  //     url: process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS,
+  //     data: { id: state.cart.uniqueId, date: new Date() },
+  //   })
+  //     .then((response) => {
+  //       console.log('response', response.config.data);
+  //       setPaymentConfirmation(JSON.stringify(response.config.data));
+  //     })
+  //     .catch((err) => {
+  //       console.log('err', err);
+  //       setPaymentConfirmation(JSON.stringify(err));
+  //     });
+  // };
 
   return (
     <div className="order-form__container">
