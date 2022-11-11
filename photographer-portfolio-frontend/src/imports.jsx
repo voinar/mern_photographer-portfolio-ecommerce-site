@@ -3,7 +3,14 @@
 //----------------------------------------------------------------
 
 //hooks
-import { useState, useEffect, useContext, useReducer, useRef } from 'react';
+import {
+  useState,
+  useEffect,
+  useContext,
+  useReducer,
+  useRef,
+  useCallback,
+} from 'react';
 
 //contexts
 import { Store } from './contexts/Store';
@@ -21,6 +28,7 @@ import {
 //tools
 import { v4 } from 'uuid';
 import { Helmet } from 'react-helmet-async';
+import jsSHA from 'jssha';
 import axios from 'axios';
 
 //pages
@@ -75,6 +83,7 @@ export {
   useContext,
   useReducer,
   useRef,
+  useCallback,
 
   //context store
   Store,
@@ -90,6 +99,7 @@ export {
   //tools
   Helmet,
   v4,
+  jsSHA,
   axios,
 
   //pages

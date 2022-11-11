@@ -1,10 +1,8 @@
-import { Store, Link, useState, useContext, useEffect, v4 } from '../imports';
+import { Store, Link, useState, useContext, useEffect, v4, jsSHA, axios } from '../imports';
 
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 // import { ordersColRef } from '../firebase/config';
-import jsSHA from 'jssha';
-import axios from 'axios';
 
 const OrderForm = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);

@@ -19,6 +19,7 @@ const initialState = {
   )
     ? JSON.parse(localStorage.getItem('cookiesConsentPopupAccepted'))
     : false,
+    paymentVerification: null
 };
 
 function reducer(state, action) {
@@ -78,6 +79,10 @@ function reducer(state, action) {
     case 'ACCEPT_COOKIES': {
       localStorage.setItem('cookiesConsentPopupAccepted', true);
       return { ...state, cookiesConsentPopupAccepted: true };
+    }
+
+    case 'PAYMENT_VERIFICATION': {
+      return { ...state, paymentVerification: action.payload };
     }
 
     default:

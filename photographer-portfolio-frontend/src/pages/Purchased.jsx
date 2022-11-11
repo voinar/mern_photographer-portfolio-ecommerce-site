@@ -4,94 +4,168 @@
 // import jsSHA from 'jssha';
 // import axios from 'axios';
 
-import { Store, useState, useContext, useEffect, axios } from '../imports';
+import {
+  Store,
+  useState,
+  useContext,
+  useEffect,
+  axios,
+  jsSHA,
+} from '../imports';
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 
 const Success = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
   const [largeImages, setLargeImages] = useState([]);
   const [purchasedImages] = useState(state.cart.cartItems);
-  const [paymentConfirmation, setPaymentConfirmation] = useState({});
 
   //payment verification
   //1. find payment confirmation with sessionId === uniqueId in api data array
-  async function getPaymentConfirmation() {
-    try {
-      const response = await axios.get(
-        process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS
-      );
-      setPaymentConfirmation(
-        response.data.find(
-          (element) => element.sessionId === state?.cart?.uniqueId
-        )
-      );
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  console.log('payment confirmation in state:', paymentConfirmation);
-  console.log('id', paymentConfirmation.merchantId);
-  console.log('ready to send back payment confirmation');
 
-  function sendBackPaymentConfirmation() {
+  useEffect(() => {
     getPaymentConfirmation();
 
-    if (paymentConfirmation !== {}) {
-      console.log('sending back payment confirmation', {
-        merchantId: paymentConfirmation.merchantId,
-        posId: paymentConfirmation.merchantId,
-        sessionId: paymentConfirmation.sessionId,
-        amount: paymentConfirmation.amount,
-        currency: paymentConfirmation.currency,
-        orderId: paymentConfirmation.orderId,
-        sign: paymentConfirmation.sign,
-      });
+    async function getPaymentConfirmation() {
+      console.log('getPaymentConfirmation start');
       try {
-        axios({
-          method: 'put',
-          auth: {
-            username: process.env.REACT_APP_PAYMENT_GATEWAY_USERNAME,
-            password: process.env.REACT_APP_PAYMENT_GATEWAY_PASSWORD,
-          },
-          url: process.env.REACT_APP_PAYMENT_GATEWAY_URLVERIFY,
-          data: {
-            merchantId: paymentConfirmation.merchantId,
-            posId: paymentConfirmation.merchantId,
-            sessionId: paymentConfirmation.sessionId,
-            amount: paymentConfirmation.amount,
-            currency: paymentConfirmation.currency,
-            orderId: paymentConfirmation.orderId,
-            sign: paymentConfirmation.sign,
-          },
+        await axios({
+          method: 'get',
+          url: process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS,
+          // responseType: 'stream'
+        }).then(function (response) {
+          console.log(response);
+          contextDispatch({
+            type: 'PAYMENT_VERIFICATION',
+            payload: response.data.find(
+                (element) => element.sessionId === state.cart.uniqueId
+              ),
+          });
         });
       } catch (error) {
         console.error(error);
       }
     }
-  }
-  sendBackPaymentConfirmation();
-  //
+    // console.log('c', paymentConfirmation);
+  }, [state.cart.uniqueId, contextDispatch]);
 
   // useEffect(() => {
+  //   sendBackPaymentConfirmation();
+  //   // console.log('c', state.paymentVerification);
+
+  //   async function sendBackPaymentConfirmation() {
+  //     if (state.paymentVerification !== null) {
+  //       console.log('sending back payment confirmation', {
+  //         merchantId: state.paymentVerification.merchantId,
+  //         posId: state.paymentVerification.merchantId,
+  //         sessionId: state.paymentVerification.sessionId,
+  //         amount: state.paymentVerification.amount,
+  //         currency: state.paymentVerification.currency,
+  //         orderId: state.paymentVerification.orderId,
+  //         sign: state.paymentVerification.sign,
+  //       });
+  //       try {
+  //         await axios({
+  //           method: 'put',
+  //           auth: {
+  //             username: 3131,
+  //             password: process.env.REACT_APP_PAYMENT_GATEWAY_PASSWORD,
+  //           },
+  //           url: process.env.REACT_APP_PAYMENT_GATEWAY_URLVERIFY,
+  //           data: {
+  //             merchantId: state.paymentVerification.merchantId,
+  //             posId: state.paymentVerification.merchantId,
+  //             sessionId: state.paymentVerification.sessionId,
+  //             amount: state.paymentVerification.amount,
+  //             currency: state.paymentVerification.currency,
+  //             orderId: state.paymentVerification.orderId,
+  //             sign: state.paymentVerification.sign,
+  //           },
+  //         }).then((response) => {
+  //           console.log('confirmation response', response);
+  //         });
+  //       } catch (error) {
+  //         console.error(error);
+  //       }
+  //     }
+  //   }
+  // }, [state.paymentVerification]);
+
+
+  const paymentVerification = () => {
+    console.log('state.paymentVerification',state.paymentVerification)
+    //funkcja dla pierwszego etapu transkacji /v1/transaction/register
+    // e.preventDefault();
+    const crcValue = process.env.REACT_APP_PAYMENT_GATEWAY_CRC_VALUE; //CRC pobrane z danych konta
+    const username = process.env.REACT_APP_PAYMENT_GATEWAY_USERNAME;
+    const password = process.env.REACT_APP_PAYMENT_GATEWAY_PASSWORD;
+
+    // templatka sign: {"sessionId":"str","merchantId":int,"amount":int,"currency":"str","crc":"str"}
+    const signTemplate = `{"sessionId":"${state.cart.uniqueId}","orderId":${state.paymentVerification.orderId},"amount":${state.paymentVerification.amount},"currency":"PLN","crc":"${crcValue}"}`;
+    // console.log('signtemp', signTemplate);
+    // console.log('id type', typeof state.cart.uniqueId);
+    // const signTemplate = `{"sessionId":${uniqueId},"merchantId":200527,"amount":2,"currency":"PLN","crc":${crcValue}}`; //template string do obliczenia sumy kontrolnej
+    const shaObj = new jsSHA('SHA-384', 'TEXT', { encoding: 'UTF8' }); //nowy obiekt sha-384 generowany przez jsSHA
+    shaObj.update(signTemplate); //wprowadzenie ciągu signCryptoInput do hashowania przez shaObj
+    const signSha = shaObj.getHash('HEX'); //konwersja shaObj do hex
+
+    console.log('env register',typeof process.env.REACT_APP_PAYMENT_GATEWAY_URLREGISTER)
+    console.log('env verify',typeof process.env.REACT_APP_PAYMENT_GATEWAY_URLREGISTER)
+    axios({
+      //zapytanie http przez axios
+      method: 'put', //metoda
+      // url: process.env.REACT_APP_PAYMENT_GATEWAY_URLVERIFY, //sandbox url
+      url: 'https://sandbox.przelewy24.pl/api/v1/transaction/verify', //sandbox url
+
+      auth: {
+        username: username,
+        password: password,
+      }, //dane z konta sandbox
+      data: {
+        "merchantId": state.paymentVerification.merchantId,
+        "posId": state.paymentVerification.posId,
+        "sessionId": state.cart.uniqueId,
+        "amount": state.paymentVerification.amount,
+        "currency": "PLN",
+        "orderId": state.paymentVerification.orderId,
+        "sign": signSha
+        }
+      })
+      .then((response) => {
+        //blok uruchamiany dla odpowiedzi z kodem 200
+        // console.log(response);
+        console.log('verification res', response);
+      })
+      .catch((err) => {
+        //blok dla odpowiedzi z błędem 400/401
+        console.log('err', err);
+        // console.log('err', err.response.data.error);
+      });
+
+    // console.log('paymentRegister start');
+    // console.log('uniqueId', uniqueId);
+    // console.log('sign sha hex', shaObj.getHash('HEX'));
+  };
+  //
 
   // }, [paymentConfirmation]);
 
   // 2. send the data back to complete confirmation process
-  useEffect(() => {
-    //clear cart on load–-_
-    // const clearCart = () => {
-    //   try {
-    //     contextDispatch({
-    //       type: 'CLEAR_CART',
-    //     });
-    //     // localStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // };
-    // clearCart();
+  // useEffect(() => {
+  //clear cart on load–-_
+  // const clearCart = () => {
+  //   try {
+  //     contextDispatch({
+  //       type: 'CLEAR_CART',
+  //     });
+  //     // localStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+  // clearCart();
 
-    //get full versions of images
+  //get full versions of images
+  useEffect(() => {
     purchasedImages.map((image) => {
       const storage = getStorage();
       const imageUrlFormatted = image
@@ -104,8 +178,8 @@ const Success = () => {
 
       getDownloadURL(ref(storage, imageUrlFormatted))
         .then((url) => {
-          console.log('large', imageUrlFormatted);
-          console.log('url', url);
+          // console.log('large', imageUrlFormatted);
+          // console.log('url', url);
           setLargeImages((prevState) => [...prevState, url]);
         })
         .catch((error) => {
@@ -113,11 +187,13 @@ const Success = () => {
         });
       return null;
     });
-  }, [purchasedImages, contextDispatch]);
+  }, [purchasedImages]);
 
   return (
     <>
       <div className="purchased__container">
+        <h3>{JSON.stringify(state.paymentVerification)}</h3>
+        <button onClick={paymentVerification}>verify</button>
         <h1>Twoje zdjęcia</h1>
         {/* <button onClick={clearCart}>clear koszyk</button> */}
         <div className="purchased__images">
