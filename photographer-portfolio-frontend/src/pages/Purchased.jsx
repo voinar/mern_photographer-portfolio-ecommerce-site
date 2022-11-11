@@ -24,7 +24,7 @@ const Success = () => {
         setPaymentConfirmation(
           response.data.find(
             (element) =>
-              element.sessionId === '4f8f14eb-7f8b-4a79-b375-039efb011f6a'
+              element.sessionId === state?.cart?.uniqueId
           )
         );
       } catch (error) {
