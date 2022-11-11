@@ -30,21 +30,20 @@ const OrderForm = () => {
 
   useEffect(() => {
     // if (state.cart.uniqueId === null) {
-      const generateUniqueId = () => {
-        try {
-          contextDispatch({
-            type: 'CACHE_UNIQUE_ID',
-            payload: { uniqueId: v4() },
-          });
-          console.log('generateUniqueId: ' + state.cart.uniqueId);
-        } catch (err) {
-          console.log(err);
-        }
-      };
-      generateUniqueId();
+    const generateUniqueId = () => {
+      try {
+        contextDispatch({
+          type: 'CACHE_UNIQUE_ID',
+          payload: { uniqueId: v4() },
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    generateUniqueId();
     // }
-  }, []);
-
+  }, [contextDispatch]);
+  console.log('generateUniqueId: ' + state.cart.uniqueId);
 
   const getPrice = async () => {
     try {
