@@ -443,15 +443,7 @@ const OrderForm = () => {
           <button onClick={handleFormSubmission}>
             register transaction POST
           </button>
-          {/* <button
-            onClick={() => {
-              window.open(tokenLink, '_blank', 'noopener,noreferrer');
-            }}
-          >
-            token link {token}
-          </button> */}
-          <button onClick={paymentVerify}>verify transaction:</button>
-          <p>{paymentConfirmation}</p>
+          {/* <button onClick={paymentVerify}>verify transaction:</button> */}
           <br />
           <span>*pole wymagane</span>
         </form>

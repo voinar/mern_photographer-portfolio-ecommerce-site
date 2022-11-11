@@ -154,7 +154,8 @@ const Success = () => {
     <>
       <div className="purchased__container">
         <h3>{JSON.stringify(state.paymentVerification)}</h3>
-        <button onClick={paymentVerification}>verify</button>
+        <h3>{JSON.stringify(state.uniqueId)}</h3>
+        {/* <button onClick={paymentVerification}>verify</button> */}
         <h1>Twoje zdjęcia</h1>
         {/* <button onClick={clearCart}>clear koszyk</button> */}
         <div className="purchased__images">
