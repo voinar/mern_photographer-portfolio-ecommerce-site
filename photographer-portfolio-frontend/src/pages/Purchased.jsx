@@ -20,36 +20,8 @@ const Success = () => {
   const [purchasedImages] = useState(state.cart.cartItems);
 
   //payment verification
-  //1. find payment confirmation with sessionId === uniqueId in api data array
-  useEffect(() => {
-    getPaymentConfirmation();
-
-    async function getPaymentConfirmation() {
-      console.log('getPaymentConfirmation start');
-      try {
-        await axios({
-          method: 'get',
-          url: process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS,
-          // responseType: 'stream'
-        }).then(function (response) {
-          console.log(response);
-          contextDispatch({
-            type: 'PAYMENT_VERIFICATION',
-            payload: response.data.find(
-                (element) => element.sessionId === state.cart.uniqueId
-              ),
-          });
-        paymentVerification(); //send back payment verification data
-        });
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    // console.log('c', paymentConfirmation);
-  }, [state.cart.uniqueId, contextDispatch]);
-
   const paymentVerification = () => {
-    console.log('state.paymentVerification',state.paymentVerification)
+    console.log('state.paymentVerification', state.paymentVerification);
     //funkcja dla pierwszego etapu transkacji /v1/transaction/register
     // e.preventDefault();
     const crcValue = process.env.REACT_APP_PAYMENT_GATEWAY_CRC_VALUE; //CRC pobrane z danych konta
@@ -65,8 +37,14 @@ const Success = () => {
     shaObj.update(signTemplate); //wprowadzenie ciągu signCryptoInput do hashowania przez shaObj
     const signSha = shaObj.getHash('HEX'); //konwersja shaObj do hex
 
-    console.log('env register',typeof process.env.REACT_APP_PAYMENT_GATEWAY_URLREGISTER)
-    console.log('env verify',typeof process.env.REACT_APP_PAYMENT_GATEWAY_URLREGISTER)
+    console.log(
+      'env register',
+      typeof process.env.REACT_APP_PAYMENT_GATEWAY_URLREGISTER
+    );
+    console.log(
+      'env verify',
+      typeof process.env.REACT_APP_PAYMENT_GATEWAY_URLREGISTER
+    );
     axios({
       //zapytanie http przez axios
       method: 'put', //metoda
@@ -78,15 +56,15 @@ const Success = () => {
         password: password,
       }, //dane z konta sandbox
       data: {
-        "merchantId": state.paymentVerification.merchantId,
-        "posId": state.paymentVerification.posId,
-        "sessionId": state.cart.uniqueId,
-        "amount": state.paymentVerification.amount,
-        "currency": "PLN",
-        "orderId": state.paymentVerification.orderId,
-        "sign": signSha
-        }
-      })
+        merchantId: state.paymentVerification.merchantId,
+        posId: state.paymentVerification.posId,
+        sessionId: state.cart.uniqueId,
+        amount: state.paymentVerification.amount,
+        currency: 'PLN',
+        orderId: state.paymentVerification.orderId,
+        sign: signSha,
+      },
+    })
       .then((response) => {
         //blok uruchamiany dla odpowiedzi z kodem 200
         // console.log(response);
@@ -98,6 +76,35 @@ const Success = () => {
         // console.log('err', err.response.data.error);
       });
   };
+
+  //1. find payment confirmation with sessionId === uniqueId in api data array
+  useEffect(() => {
+    console.log('start payment confirmation');
+    getPaymentConfirmation();
+
+    async function getPaymentConfirmation() {
+      console.log('getPaymentConfirmation start');
+      try {
+        await axios({
+          method: 'get',
+          url: process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS,
+          // responseType: 'stream'
+        }).then(function (response) {
+          console.log(response);
+          contextDispatch({
+            type: 'PAYMENT_VERIFICATION',
+            payload: response.data.find(
+              (element) => element.sessionId === state.cart.uniqueId
+            ),
+          });
+          // paymentVerification(); //send back payment verification data
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    // console.log('c', paymentConfirmation);
+  }, [contextDispatch, state.cart.uniqueId]);
 
   // }, [paymentConfirmation]);
 
