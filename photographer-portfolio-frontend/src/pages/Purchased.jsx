@@ -38,10 +38,10 @@ const Success = () => {
   console.log('id', paymentConfirmation.merchantId);
 
   useEffect(() => {
-    async function sendBackPaymentConfirmation() {
+    function sendBackPaymentConfirmation() {
       console.log('sending back payment confirmation');
       try {
-        await axios({
+        axios({
           method: 'put',
           auth: {
             username: process.env.REACT_APP_PAYMENT_GATEWAY_USERNAME,
