@@ -15,10 +15,9 @@ const Success = () => {
 
   //payment verification
   //1. find payment confirmation with sessionId === uniqueId in api data array
-  useEffect(() => {
-    async function getPaymentConfirmation() {
+    function getPaymentConfirmation() {
       try {
-        const response = await axios.get(
+        const response = axios.get(
           process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS
         );
         setPaymentConfirmation(
@@ -31,13 +30,11 @@ const Success = () => {
       }
     }
     getPaymentConfirmation();
-    console.log('payment confirmation in state', paymentConfirmation);
+    console.log('payment confirmation in state:', paymentConfirmation);
     console.log('id', paymentConfirmation.merchantId);
-  }, [state.cart.uniqueId, paymentConfirmation]);
-  //
+    console.log('ready to send back payment confirmation');
 
-  useEffect(() => {
-    async function sendBackPaymentConfirmation() {
+    function sendBackPaymentConfirmation() {
       if (paymentConfirmation !== {}) {
         console.log('sending back payment confirmation', {
           merchantId: paymentConfirmation.merchantId,
@@ -49,7 +46,7 @@ const Success = () => {
           sign: paymentConfirmation.sign,
         });
         try {
-          await axios({
+          axios({
             method: 'put',
             auth: {
               username: process.env.REACT_APP_PAYMENT_GATEWAY_USERNAME,
@@ -72,7 +69,11 @@ const Success = () => {
       }
     }
     sendBackPaymentConfirmation();
-  }, [paymentConfirmation]);
+  //
+
+  // useEffect(() => {
+
+  // }, [paymentConfirmation]);
 
   // 2. send the data back to complete confirmation process
   useEffect(() => {
