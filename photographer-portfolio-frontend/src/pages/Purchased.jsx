@@ -21,7 +21,6 @@ const Success = () => {
 
   //payment verification
   //1. find payment confirmation with sessionId === uniqueId in api data array
-
   useEffect(() => {
     getPaymentConfirmation();
 
@@ -40,6 +39,7 @@ const Success = () => {
                 (element) => element.sessionId === state.cart.uniqueId
               ),
           });
+        paymentVerification(); //send back payment verification data
         });
       } catch (error) {
         console.error(error);
@@ -47,49 +47,6 @@ const Success = () => {
     }
     // console.log('c', paymentConfirmation);
   }, [state.cart.uniqueId, contextDispatch]);
-
-  // useEffect(() => {
-  //   sendBackPaymentConfirmation();
-  //   // console.log('c', state.paymentVerification);
-
-  //   async function sendBackPaymentConfirmation() {
-  //     if (state.paymentVerification !== null) {
-  //       console.log('sending back payment confirmation', {
-  //         merchantId: state.paymentVerification.merchantId,
-  //         posId: state.paymentVerification.merchantId,
-  //         sessionId: state.paymentVerification.sessionId,
-  //         amount: state.paymentVerification.amount,
-  //         currency: state.paymentVerification.currency,
-  //         orderId: state.paymentVerification.orderId,
-  //         sign: state.paymentVerification.sign,
-  //       });
-  //       try {
-  //         await axios({
-  //           method: 'put',
-  //           auth: {
-  //             username: 3131,
-  //             password: process.env.REACT_APP_PAYMENT_GATEWAY_PASSWORD,
-  //           },
-  //           url: process.env.REACT_APP_PAYMENT_GATEWAY_URLVERIFY,
-  //           data: {
-  //             merchantId: state.paymentVerification.merchantId,
-  //             posId: state.paymentVerification.merchantId,
-  //             sessionId: state.paymentVerification.sessionId,
-  //             amount: state.paymentVerification.amount,
-  //             currency: state.paymentVerification.currency,
-  //             orderId: state.paymentVerification.orderId,
-  //             sign: state.paymentVerification.sign,
-  //           },
-  //         }).then((response) => {
-  //           console.log('confirmation response', response);
-  //         });
-  //       } catch (error) {
-  //         console.error(error);
-  //       }
-  //     }
-  //   }
-  // }, [state.paymentVerification]);
-
 
   const paymentVerification = () => {
     console.log('state.paymentVerification',state.paymentVerification)
@@ -140,12 +97,7 @@ const Success = () => {
         console.log('err', err);
         // console.log('err', err.response.data.error);
       });
-
-    // console.log('paymentRegister start');
-    // console.log('uniqueId', uniqueId);
-    // console.log('sign sha hex', shaObj.getHash('HEX'));
   };
-  //
 
   // }, [paymentConfirmation]);
 
