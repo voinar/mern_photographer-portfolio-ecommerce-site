@@ -16,9 +16,9 @@ const Success = () => {
   //payment verification
   //1. find payment confirmation with sessionId === uniqueId in api data array
   useEffect(() => {
-    async function getPaymentConfirmation() {
+    function getPaymentConfirmation() {
       try {
-        const response = await axios.get(
+        const response = axios.get(
           process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS
         );
         setPaymentConfirmation(
