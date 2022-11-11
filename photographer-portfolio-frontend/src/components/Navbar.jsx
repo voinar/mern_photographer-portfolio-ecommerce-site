@@ -195,9 +195,9 @@ const Navbar = () => {
             </div>
             <Link to="/Koszyk">
               <div className="navbar__shop__icon__cart">
-                {state.cart.cartItems.length > 0 && (
+                {state?.cart?.cartItems?.length > 0 && (
                   <div className="navbar__shop__icon__cart__count">
-                    {state.cart.cartItems.length}
+                    {state?.cart?.cartItems?.length}
                   </div>
                 )}
                 <img

@@ -7,6 +7,9 @@ const initialState = {
     cartItems: localStorage.getItem('cartItems')
       ? JSON.parse(localStorage.getItem('cartItems'))
       : [],
+    uniqueId: JSON.parse(localStorage.getItem('uniqueId'))
+      ? JSON.parse(localStorage.getItem('uniqueId'))
+      : null,
   },
   userInfo: localStorage.getItem('userInfo')
     ? JSON.parse(localStorage.getItem('userInfo'))
@@ -52,7 +55,15 @@ function reducer(state, action) {
     }
 
     case 'CLEAR_CART': {
-      return { ...state, cart: { ...state.cart, cartItems: [] } };
+      return { ...state, cart: { cartItems: [], uniqueId: null } };
+    }
+
+    case 'CACHE_UNIQUE_ID': {
+      // const uniqueId = action.payload.uniqueId;
+      return {
+        ...state,
+        cart: { ...state.cart, uniqueId: action.payload.uniqueId },
+      };
     }
 
     case 'USER_SIGNIN': {

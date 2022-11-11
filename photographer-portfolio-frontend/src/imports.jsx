@@ -21,6 +21,7 @@ import {
 //tools
 import { v4 } from 'uuid';
 import { Helmet } from 'react-helmet-async';
+import axios from 'axios';
 
 //pages
 import SectionWelcome from './pages/SectionWelcome';
@@ -89,6 +90,7 @@ export {
   //tools
   Helmet,
   v4,
+  axios,
 
   //pages
   SectionWelcome,

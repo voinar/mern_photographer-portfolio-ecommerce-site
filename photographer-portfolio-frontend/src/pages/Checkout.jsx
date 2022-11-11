@@ -55,7 +55,7 @@ const Checkout = () => {
         <title>Podsumowanie</title>
       </Helmet>
 
-      {state.cart.cartItems.length === 0 ? (
+      {state?.cart?.cartItems?.length === 0 ? (
         <main className="checkout__container">
           <div className="cart__return">
             <button onClick={goBack}>
@@ -95,7 +95,7 @@ const Checkout = () => {
                 )}
 
                 <div className="checkout__items">
-                  {state.cart.cartItems.map((image) => {
+                  {state?.cart?.cartItems?.map((image) => {
                     return (
                       <li key={image} className="checkout__items__image">
                         <img src={image} alt="" />
@@ -109,7 +109,7 @@ const Checkout = () => {
                     {new Intl.NumberFormat('pl-PL', {
                       minimumFractionDigits: 2,
                       maximumFractionDigits: 2,
-                    }).format(state.cart.cartItems.length * itemPrice)}
+                    }).format(state?.cart?.cartItems?.length * itemPrice)}
                     zł brutto
                   </span>
                   {/* //*/}

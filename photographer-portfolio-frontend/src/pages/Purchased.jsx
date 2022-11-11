@@ -3,14 +3,49 @@
 // // import { ordersColRef } from '../firebase/config';
 // import jsSHA from 'jssha';
 // import axios from 'axios';
-import { Store, useState, useContext } from '../imports';
+
+import { Store, useState, useContext, useEffect, axios } from '../imports';
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
-import { useEffect } from 'react';
 
 const Success = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
   const [largeImages, setLargeImages] = useState([]);
   const [purchasedImages] = useState(state.cart.cartItems);
+  const [paymentConfirmation, setPaymentConfirmation] = useState({});
+
+  //payment verification
+  //1. find payment confirmation with sessionId === uniqueId in api data array
+  async function getPaymentConfirmation() {
+    try {
+      const response = await axios.get(process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS);
+      console.log('res',response.data);
+      console.log('found', response.data.find(element => element.sessionId === state.cart.uniqueId))
+      // setPaymentConfirmation(findConfirmation)
+      console.log('payment confirmation',response.data.find(element => element.sessionId === state.cart.uniqueId));
+
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  getPaymentConfirmation();
+
+  // axios
+    //   .get(process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS)
+    //   .then((response) => {
+    //     // console.log('REACT_APP_PAYMENT_GATEWAY_URLSTATUS res', response.data);
+    //     // console.log('found',response.data.find(element => element.sessionId === state.cart.uniqueId))
+    //     // const confirmationData = response.data.find(element => element.sessionId === state.cart.uniqueId);
+    //     // setPaymentConfirmation(response.data)
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    // return
+    // }
+
+  // 2. send the data back to complete confirmation process
+  console.log('conf');
 
   useEffect(() => {
     //clear cart on load–-_

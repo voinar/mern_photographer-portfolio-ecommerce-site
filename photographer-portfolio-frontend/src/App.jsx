@@ -47,7 +47,8 @@ function App() {
   useEffect(() => {
     console.log('store updated');
     localStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
-  }, [state.cart.cartItems]);
+    localStorage.setItem('uniqueId', JSON.stringify(state.cart.uniqueId));
+  }, [state.cart]);
 
   return (
     <>

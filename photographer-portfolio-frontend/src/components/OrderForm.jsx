@@ -7,10 +7,7 @@ import jsSHA from 'jssha';
 import axios from 'axios';
 
 const OrderForm = () => {
-  const {
-    state,
-    //  dispatch: contextDispatch
-  } = useContext(Store);
+  const { state, dispatch: contextDispatch } = useContext(Store);
 
   const [formEmail, setFormEmail] = useState('');
   const [formName, setFormName] = useState('');
@@ -27,15 +24,26 @@ const OrderForm = () => {
   const [paymentConfirmation, setPaymentConfirmation] = useState('');
   const [itemPrice, setItemPrice] = useState(null);
 
-  //used as order id, payment id
-  const [uniqueId, setUniqueId] = useState(undefined);
+  // const [uniqueId, setUniqueId] = useState(state.cart.uniqueId || null);
 
+  //generate unique id used as order id, payment id & save it to context
   useEffect(() => {
-    if (uniqueId === undefined) {
-      setUniqueId(v4());
+    if (state.cart.uniqueId === null) {
+      const generateUniqueId = () => {
+        try {
+          contextDispatch({
+            type: 'CACHE_UNIQUE_ID',
+            payload: { uniqueId: v4() },
+          });
+          console.log('generateUniqueId: ' + state.cart.uniqueId);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      generateUniqueId();
     }
-    console.log('generateUniqueId: ' + uniqueId);
-  }, [uniqueId]);
+  }, [contextDispatch, state.cart.uniqueId]);
+
 
   const getPrice = async () => {
     try {
@@ -169,40 +177,25 @@ const OrderForm = () => {
   const dispatchFormDataToContext = (e) => {
     e.preventDefault();
 
+    console.log('generateUniqueId: ' + state.cart.uniqueId);
+
     if (formValidation() === true) {
     } else {
       console.log('form invalid');
     }
-    // const formData = {
-    //   email: formEmail,
-    //   name: formName,
-    //   surname: formSurname,
-    //   phone: formPhone,
-    //   invoiceRequested: formInvoiceRequested,
-    //   invoiceTaxId: formInvoiceNumber,
-    //   termsConditionsAccepted: formTermsConditionsAccept,
-    //   isPaid: false,
-    //   cartItems: state.cart.cartItems,
-    //   dateCreated: new Date(),
-    // };
-    // console.log(formData);
-    // console.log(formData.dateCreated);
 
     handleFormSubmission();
   };
 
-  const calculatedAmount = state.cart.cartItems.length * itemPrice;
+  const calculatedAmount = state?.cart?.cartItems?.length * itemPrice;
 
   const handleFormSubmission = async () => {
     if (formValidation() === true) {
-      // generateUniqueId();
-      // console.log('uniqueId@handleFormSubmission:', uniqueId);
-
       try {
-        console.log('add');
-
         //add order to db
-        const orderRef = doc(db, 'orders', uniqueId);
+        console.log('add order to database');
+
+        const orderRef = doc(db, 'orders', state.cart.uniqueId);
 
         await setDoc(orderRef, {
           email: formEmail,
@@ -215,7 +208,7 @@ const OrderForm = () => {
           isPaid: false,
           cartItems: state.cart.cartItems,
           dateCreated: new Date(),
-          orderId: uniqueId,
+          orderId: state.cart.uniqueId,
           amount: calculatedAmount,
         });
 
@@ -251,9 +244,9 @@ const OrderForm = () => {
     const password = process.env.REACT_APP_PAYMENT_GATEWAY_PASSWORD;
 
     // templatka sign: {"sessionId":"str","merchantId":int,"amount":int,"currency":"str","crc":"str"}
-    const signTemplate = `{"sessionId":"${uniqueId}","merchantId":${username},"amount":${calculatedAmount},"currency":"PLN","crc":"${crcValue}"}`;
+    const signTemplate = `{"sessionId":"${state.cart.uniqueId}","merchantId":${username},"amount":${calculatedAmount},"currency":"PLN","crc":"${crcValue}"}`;
     console.log('signtemp', signTemplate);
-    console.log('id type', typeof uniqueId);
+    console.log('id type', typeof state.cart.uniqueId);
     // const signTemplate = `{"sessionId":${uniqueId},"merchantId":200527,"amount":2,"currency":"PLN","crc":${crcValue}}`; //template string do obliczenia sumy kontrolnej
     const shaObj = new jsSHA('SHA-384', 'TEXT', { encoding: 'UTF8' }); //nowy obiekt sha-384 generowany przez jsSHA
     shaObj.update(signTemplate); //wprowadzenie ciągu signCryptoInput do hashowania przez shaObj
@@ -270,10 +263,10 @@ const OrderForm = () => {
       data: {
         merchantId: username,
         posId: username,
-        sessionId: uniqueId, //id generowane przy tworzeniu zamówienia, np: '6b795d5e-394f-4ae3-b313-bb70ccd99d5c'
+        sessionId: state.cart.uniqueId, //id generowane przy tworzeniu zamówienia, np: '6b795d5e-394f-4ae3-b313-bb70ccd99d5c'
         amount: calculatedAmount,
         currency: 'PLN',
-        orderId: uniqueId,
+        orderId: state.cart.uniqueId,
         description: 'Zakup zdjec',
         transferLabel: 'Zakup zdjec',
         email: formEmail,
@@ -307,12 +300,12 @@ const OrderForm = () => {
   const paymentVerify = (e) => {
     e.preventDefault();
     console.log('paymentVerify');
-    console.log('uniqueId@paymentVerify:', uniqueId);
+    console.log('uniqueId@paymentVerify:', state.cart.uniqueId);
 
     axios({
       method: 'post',
       url: process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS,
-      data: { id: uniqueId, date: new Date() },
+      data: { id: state.cart.uniqueId, date: new Date() },
     })
       .then((response) => {
         console.log('response', response.config.data);
@@ -447,7 +440,7 @@ const OrderForm = () => {
             value="Zapisz"
             className="btn--primary"
           >
-            Przejdź do płatności
+            Kupuję i płacę
           </button>
           <button onClick={handleFormSubmission}>
             register transaction POST
