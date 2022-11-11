@@ -11,7 +11,7 @@ const Success = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
   const [largeImages, setLargeImages] = useState([]);
   const [purchasedImages] = useState(state.cart.cartItems);
-  const [paymentConfirmation, setPaymentConfirmation] = useState(undefined);
+  const [paymentConfirmation, setPaymentConfirmation] = useState({});
 
   //payment verification
   //1. find payment confirmation with sessionId === uniqueId in api data array
@@ -31,15 +31,14 @@ const Success = () => {
       }
     }
     getPaymentConfirmation();
-  }, [state.cart.uniqueId]);
+    console.log('payment confirmation in state', paymentConfirmation);
+    console.log('id', paymentConfirmation.merchantId);
+  }, [state.cart.uniqueId, paymentConfirmation]);
   //
-
-  console.log('payment confirmation in state', paymentConfirmation);
-  console.log('id', paymentConfirmation.merchantId);
 
   useEffect(() => {
     async function sendBackPaymentConfirmation() {
-      if (paymentConfirmation !== undefined) {
+      if (paymentConfirmation !== {}) {
         console.log('sending back payment confirmation', {
           merchantId: paymentConfirmation.merchantId,
           posId: paymentConfirmation.merchantId,
