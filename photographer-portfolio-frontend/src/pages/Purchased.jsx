@@ -16,9 +16,9 @@ const Success = () => {
   //payment verification
   //1. find payment confirmation with sessionId === uniqueId in api data array
   useEffect(() => {
-    function getPaymentConfirmation() {
+    async function getPaymentConfirmation() {
       try {
-        const response = axios.get(
+        const response = await axios.get(
           process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS
         );
         setPaymentConfirmation(
@@ -38,10 +38,10 @@ const Success = () => {
   console.log('id', paymentConfirmation.merchantId);
 
   useEffect(() => {
-    function sendBackPaymentConfirmation() {
+    async function sendBackPaymentConfirmation() {
       console.log('sending back payment confirmation');
       try {
-        axios({
+        await axios({
           method: 'put',
           auth: {
             username: process.env.REACT_APP_PAYMENT_GATEWAY_USERNAME,
