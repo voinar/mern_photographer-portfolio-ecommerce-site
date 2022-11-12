@@ -9,7 +9,7 @@ import {
   useState,
   useContext,
   useEffect,
-  useRef,
+  useParams,
   axios,
   jsSHA,
 } from '../imports';
@@ -17,11 +17,27 @@ import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 
 const Purchased = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
-  const { uniqueId } = useRef();
+  const { uniqueId } = useParams();
   console.log('useParams uniqueId', uniqueId);
 
   const [largeImages, setLargeImages] = useState([]);
-  const [purchasedImages] = useState(state.cart.cartItems);
+  const [purchasedImages, setPurchasedImages] = useState([]);
+
+  //get purchased images list from db
+  useEffect(() => {
+    //1. find payment id db, 2. if isPaid: false, then confirm via payment gateway api query & set status as paid in db; if isPaid: true, then do nothing
+    (async () => {
+      console.log('get images list from db');
+      const docRef = doc(db, 'orders', uniqueId);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        setPurchasedImages(docSnap.data().cartItems);
+      } else {
+        console.log('error: order not found in db. unable to load images.');
+      }
+    })();
+  }, [uniqueId])
 
   //payment verification
   //1. find payment confirmation with sessionId === uniqueId in api data array
@@ -88,14 +104,6 @@ const Purchased = () => {
         shaObj.update(signTemplate); //wprowadzenie ciągu signCryptoInput do hashowania przez shaObj
         const signSha = shaObj.getHash('HEX'); //konwersja shaObj do hex
 
-        console.log(
-          'env register',
-          typeof process.env.REACT_APP_PAYMENT_GATEWAY_URLREGISTER
-        );
-        console.log(
-          'env verify',
-          typeof process.env.REACT_APP_PAYMENT_GATEWAY_URLREGISTER
-        );
         axios({
           method: 'put', //metoda
           url: process.env.REACT_APP_PAYMENT_GATEWAY_URLVERIFY, //sandbox url
