@@ -10,6 +10,7 @@ import {
   useContext,
   useEffect,
   useParams,
+  Link,
   axios,
   jsSHA,
 } from '../imports';
@@ -22,6 +23,7 @@ const Purchased = () => {
 
   const [largeImages, setLargeImages] = useState([]);
   const [purchasedImages, setPurchasedImages] = useState([]);
+  const [errorMessage, setErrorMessage] = useState(true);
 
   //get purchased images list from db
   useEffect(() => {
@@ -33,11 +35,13 @@ const Purchased = () => {
 
       if (docSnap.exists()) {
         setPurchasedImages(docSnap.data().cartItems);
+        setErrorMessage(false)
       } else {
         console.log('error: order not found in db. unable to load images.');
+        setErrorMessage(true);
       }
     })();
-  }, [uniqueId])
+  }, [uniqueId]);
 
   //payment verification
   //1. find payment confirmation with sessionId === uniqueId in api data array
@@ -205,16 +209,60 @@ const Purchased = () => {
   return (
     <>
       <div className="purchased__container">
-        <h1>Twoje zdjęcia</h1>
-        <div className="purchased__images">
-          <ul>
-            {largeImages.map((image) => (
-              <li key={image}>
-                <img src={image} alt="" />
+        {errorMessage ? (
+          <>
+            <h1>Ups...</h1>
+            <p>
+              Nie jesteśmy w stanie znaleźć zdjęć powiązanych z tym zamówieniem.
+              Co dalej?
+              <br />
+            </p>
+            <ul>
+              <li>
+                <p>
+                  Czy płatność została sfinalizowana? <br />
+                  Jeśli <i>tak</i>, to sprawdź swoją skrzynkę email. Po
+                  sfinalizowaniu płatności wysłaliśmy do Ciebie wiadomość, która
+                  zawiera link do zdjęć.
+                </p>
               </li>
-            ))}
-          </ul>
-        </div>
+              <li>
+                <p>
+                  Jeśli <i>nie</i> i pieniądze nie zostały pobrane, to nic się
+                  nie stało - możesz stworzyć <i>nowe zamówienie</i>. Po wykonaniu
+                  płatności otrzymasz automatycznie linki do zdjęć na adres
+                  email podany w zamówieniu.
+                </p>
+              </li>
+              <br />
+              <li>
+                <p>
+                  Nadal nie jesteś w stanie otrzymać zdjęć? <br />
+                  Zapraszamy do kontaktu, wspólnie rozwiążemy wszelkie problemy:{' '}
+                </p>
+              </li>
+              <br />
+              <li>
+                <Link to="/kontakt">
+                  <button>Pomoc</button>
+                </Link>
+              </li>
+            </ul>
+          </>
+        ) : (
+          <>
+            <h1>Twoje zdjęcia</h1>
+            <div className="purchased__images">
+              <ul>
+                {largeImages.map((image) => (
+                  <li key={image}>
+                    <img src={image} alt="" />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </>
+        )}
       </div>
     </>
   );

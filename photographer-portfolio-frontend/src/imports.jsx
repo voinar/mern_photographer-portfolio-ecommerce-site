@@ -41,6 +41,7 @@ import Cart from './pages/Cart';
 import SignIn from './pages/SignIn';
 import Checkout from './pages/Checkout';
 import Purchased from './pages/Purchased';
+import Contact from './pages/Contact';
 import Cookies from './pages/Cookies';
 import TermsConditions from './pages/TermsConditions';
 import Experiments from './pages/Experiments';
@@ -112,6 +113,7 @@ export {
   SignIn,
   Checkout,
   Purchased,
+  Contact,
   Cookies,
   TermsConditions,
   Experiments,
