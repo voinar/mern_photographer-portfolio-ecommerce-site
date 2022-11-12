@@ -9,6 +9,7 @@ import {
   useState,
   useContext,
   useEffect,
+  useRef,
   axios,
   jsSHA,
 } from '../imports';
@@ -16,6 +17,8 @@ import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 
 const Purchased = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
+  const { uniqueId } = useRef();
+  
   const [largeImages, setLargeImages] = useState([]);
   const [purchasedImages] = useState(state.cart.cartItems);
 
@@ -59,11 +62,11 @@ const Purchased = () => {
       if (docSnap.exists()) {
         console.log('Document data:', docSnap.data().isPaid);
         if (docSnap.data().isPaid === false) {
-          console.log('run paymentVerification');
+          console.log('run payment verification');
           paymentVerification();
           setDoc(docRef, { isPaid: true }, { merge: true });
         } else {
-          console.log('payment confirmation: order already paid');
+          console.log('payment confirmation: order paid');
         }
       } else {
         console.log('error: order not found in db');
@@ -82,9 +85,6 @@ const Purchased = () => {
 
         // templatka sign: {"sessionId":"str","merchantId":int,"amount":int,"currency":"str","crc":"str"}
         const signTemplate = `{"sessionId":"${state.cart.uniqueId}","orderId":${state.paymentVerification.orderId},"amount":${state.paymentVerification.amount},"currency":"PLN","crc":"${crcValue}"}`;
-        // console.log('signtemp', signTemplate);
-        // console.log('id type', typeof state.cart.uniqueId);
-        // const signTemplate = `{"sessionId":${uniqueId},"merchantId":200527,"amount":2,"currency":"PLN","crc":${crcValue}}`; //template string do obliczenia sumy kontrolnej
         const shaObj = new jsSHA('SHA-384', 'TEXT', { encoding: 'UTF8' }); //nowy obiekt sha-384 generowany przez jsSHA
         shaObj.update(signTemplate); //wprowadzenie ciągu signCryptoInput do hashowania przez shaObj
         const signSha = shaObj.getHash('HEX'); //konwersja shaObj do hex
@@ -98,9 +98,7 @@ const Purchased = () => {
           typeof process.env.REACT_APP_PAYMENT_GATEWAY_URLREGISTER
         );
         axios({
-          //zapytanie http przez axios
           method: 'put', //metoda
-          // url: process.env.REACT_APP_PAYMENT_GATEWAY_URLVERIFY, //sandbox url
           url: 'https://sandbox.przelewy24.pl/api/v1/transaction/verify', //sandbox url
 
           auth: {
@@ -119,13 +117,11 @@ const Purchased = () => {
         })
           .then((response) => {
             //blok uruchamiany dla odpowiedzi z kodem 200
-            // console.log(response);
             console.log('verification res', response);
           })
           .catch((err) => {
             //blok dla odpowiedzi z błędem 400/401
             console.log('err', err);
-            // console.log('err', err.response.data.error);
           });
       } else {
         console.log('state.paymentVerification is', state.paymentVerification);
@@ -198,34 +194,16 @@ const Purchased = () => {
     setDoc(docRef, { isPaid: true }, { merge: true });
     //update order status in db by marking it as paid
   };
-  // markOrderAsPaid()
 
   return (
     <>
       <div className="purchased__container">
-        <button onClick={markOrderAsPaid}>ispaid</button>
-        <h3>{JSON.stringify(state.paymentVerification)}</h3>
-        {/* <button onClick={paymentVerification}>verify</button> */}
         <h1>Twoje zdjęcia</h1>
-        {/* <button onClick={clearCart}>clear koszyk</button> */}
         <div className="purchased__images">
           <ul>
             {largeImages.map((image) => (
               <li key={image}>
-                {/* console.log(image) */}
-                {/* {console.log('fullsize', getFullSize(image))}
-                <div>
-                  <h3>small</h3>
-                  <img src={image} alt="" />
-                </div>
-                <h3>large</h3> */}
                 <img src={image} alt="" />
-                {/* <p>full size{getFullSize(image) ? 'true' : 'false'}</p> */}
-                {/* <p>full size{largeUrl}</p> */}
-                {/*
-               <a href={getFullSize(image)}>download</a> */}
-
-                {/* <img src={"https://firebasestorage.googleapis.com/v0/b/kacper-foto.appspot.com/o/albums%2FBiegam_i_wspieram%2Fduze%2FBiegamIWspieram_154.JPG?alt=media&token=1760f741-e4e5-4479-b4d9-dce90f26b10f"} alt="" /> */}
               </li>
             ))}
           </ul>
