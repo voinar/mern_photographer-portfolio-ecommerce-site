@@ -2,7 +2,6 @@ import { Store, Link, useState, useContext, useEffect, v4, jsSHA, axios } from '
 
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
-// import { ordersColRef } from '../firebase/config';
 
 const OrderForm = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
@@ -268,7 +267,7 @@ const OrderForm = () => {
         description: 'Zakup zdjec',
         transferLabel: 'Zakup zdjec',
         email: formEmail,
-        urlReturn: 'https://kacperporada.pl/zakupione', //adres do przekierowania po wykonanej płatności
+        urlReturn: process.env.REACT_APP_PAYMENT_GATEWAY_URLRETURN, //adres do przekierowania po wykonanej płatności
         urlStatus: process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS, //adres do otrzymania informacji zwrotnej o transakcji z systemu przelewy24
         country: 'PL',
         sign: signSha, //wygenerowany wyżej hash
