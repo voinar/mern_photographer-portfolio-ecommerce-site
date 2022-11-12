@@ -1,13 +1,8 @@
-import { doc, getDoc, setDoc, getDocs, where } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 // Import the functions you need from the SDKs you need
-import { initializeApp } from 'firebase/app';
-// import { getStorage } from 'firebase/storage';
-import { getFirestore, collection, query } from 'firebase/firestore';
 import 'firebase/storage';
 import 'firebase/firestore';
-
-import { ordersColRef } from '../firebase/config';
 
 import {
   Store,
@@ -54,8 +49,28 @@ const Purchased = () => {
     // console.log('c', paymentConfirmation);
   }, [contextDispatch, state.cart.uniqueId]);
 
-  //2. send back the payment confirmation
   useEffect(() => {
+    //1. find payment id db, 2. if isPaid: false, then confirm via payment gateway api query; if isPaid: true, then do nothing
+    (async () => {
+      console.log('initiate payment verification');
+      const docRef = doc(db, 'orders', state.cart.uniqueId);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        console.log('Document data:', docSnap.data().isPaid);
+        if (docSnap.data().isPaid === false) {
+          console.log('run paymentVerification');
+          paymentVerification();
+          setDoc(docRef, { isPaid: true }, { merge: true });
+        } else {
+          console.log('payment confirmation: order already paid');
+        }
+      } else {
+        console.log('error: order not found in db');
+      }
+    })();
+
+    //send back the payment confirmation to payment gateway api
     const paymentVerification = () => {
       if (state.paymentVerification !== null) {
         console.log('state.paymentVerification', state.paymentVerification);
@@ -116,25 +131,6 @@ const Purchased = () => {
         console.log('state.paymentVerification is', state.paymentVerification);
       }
     };
-
-    //1. find payment id db, 2. if isPaid: false, then confirm via payment gateway api query; if isPaid: true, then do nothing
-    (async () => {
-      const docRef = doc(db, 'orders', state.cart.uniqueId);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        console.log('Document data:', docSnap.data().isPaid);
-        if (docSnap.data().isPaid === false) {
-          console.log('run paymentVerification');
-          paymentVerification();
-          setDoc(docRef, { isPaid: true }, { merge: true });
-        } else {
-          console.log('payment confirmation: order already paid');
-        }
-      } else {
-        console.log('error: order not found in db');
-      }
-    })();
   }, [state.paymentVerification, state.cart.uniqueId]);
 
   // }, [paymentConfirmation]);
