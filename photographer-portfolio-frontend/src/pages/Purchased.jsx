@@ -18,7 +18,8 @@ import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 const Purchased = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
   const { uniqueId } = useRef();
-  
+  console.log('useParams uniqueId', uniqueId);
+
   const [largeImages, setLargeImages] = useState([]);
   const [purchasedImages] = useState(state.cart.cartItems);
 
@@ -49,11 +50,10 @@ const Purchased = () => {
         console.error(error);
       }
     }
-    // console.log('c', paymentConfirmation);
   }, [contextDispatch, state.cart.uniqueId]);
 
   useEffect(() => {
-    //1. find payment id db, 2. if isPaid: false, then confirm via payment gateway api query; if isPaid: true, then do nothing
+    //1. find payment id db, 2. if isPaid: false, then confirm via payment gateway api query & set status as paid in db; if isPaid: true, then do nothing
     (async () => {
       console.log('initiate payment verification');
       const docRef = doc(db, 'orders', state.cart.uniqueId);
@@ -78,7 +78,6 @@ const Purchased = () => {
       if (state.paymentVerification !== null) {
         console.log('state.paymentVerification', state.paymentVerification);
         //funkcja dla pierwszego etapu transkacji /v1/transaction/register
-        // e.preventDefault();
         const crcValue = process.env.REACT_APP_PAYMENT_GATEWAY_CRC_VALUE; //CRC pobrane z danych konta
         const username = process.env.REACT_APP_PAYMENT_GATEWAY_USERNAME;
         const password = process.env.REACT_APP_PAYMENT_GATEWAY_PASSWORD;
@@ -99,7 +98,7 @@ const Purchased = () => {
         );
         axios({
           method: 'put', //metoda
-          url: 'https://sandbox.przelewy24.pl/api/v1/transaction/verify', //sandbox url
+          url: process.env.REACT_APP_PAYMENT_GATEWAY_URLVERIFY, //sandbox url
 
           auth: {
             username: username,
@@ -176,24 +175,24 @@ const Purchased = () => {
   }, [purchasedImages]);
 
   //set order status to 'paid' in db
-  const markOrderAsPaid = async () => {
-    console.log('markOrderAsPaid');
+  // const markOrderAsPaid = async () => {
+  //   console.log('markOrderAsPaid');
 
-    //get document from db
+  //   //get document from db
 
-    const docRef = doc(db, 'orders', state.cart.uniqueId);
-    const docSnap = await getDoc(docRef);
+  //   const docRef = doc(db, 'orders', state.cart.uniqueId);
+  //   const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-      console.log('Document data:', docSnap.data());
-    } else {
-      // doc.data() will be undefined in this case
-      console.log('No such document!');
-    }
+  //   if (docSnap.exists()) {
+  //     console.log('Document data:', docSnap.data());
+  //   } else {
+  //     // doc.data() will be undefined in this case
+  //     console.log('No such document!');
+  //   }
 
-    setDoc(docRef, { isPaid: true }, { merge: true });
-    //update order status in db by marking it as paid
-  };
+  //   setDoc(docRef, { isPaid: true }, { merge: true });
+  //   //update order status in db by marking it as paid
+  // };
 
   return (
     <>
