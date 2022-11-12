@@ -40,7 +40,7 @@ import Album from './pages/Album';
 import Cart from './pages/Cart';
 import SignIn from './pages/SignIn';
 import Checkout from './pages/Checkout';
-import Success from './pages/Purchased';
+import Purchased from './pages/Purchased';
 import Cookies from './pages/Cookies';
 import TermsConditions from './pages/TermsConditions';
 import Experiments from './pages/Experiments';
@@ -111,7 +111,7 @@ export {
   Cart,
   SignIn,
   Checkout,
-  Success,
+  Purchased,
   Cookies,
   TermsConditions,
   Experiments,

@@ -1,8 +1,13 @@
-// import { doc, getDoc, setDoc } from 'firebase/firestore';
-// import { db } from '../firebase/config';
-// // import { ordersColRef } from '../firebase/config';
-// import jsSHA from 'jssha';
-// import axios from 'axios';
+import { doc, getDoc, setDoc, getDocs, where } from 'firebase/firestore';
+import { db } from '../firebase/config';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from 'firebase/app';
+// import { getStorage } from 'firebase/storage';
+import { getFirestore, collection, query } from 'firebase/firestore';
+import 'firebase/storage';
+import 'firebase/firestore';
+
+import { ordersColRef } from '../firebase/config';
 
 import {
   Store,
@@ -14,12 +19,42 @@ import {
 } from '../imports';
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 
-const Success = () => {
+const Purchased = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
   const [largeImages, setLargeImages] = useState([]);
   const [purchasedImages] = useState(state.cart.cartItems);
 
   //payment verification
+  //1. find payment confirmation with sessionId === uniqueId in api data array
+  useEffect(() => {
+    console.log('start payment confirmation');
+    getPaymentConfirmation();
+
+    async function getPaymentConfirmation() {
+      console.log('getPaymentConfirmation start');
+      try {
+        await axios({
+          method: 'get',
+          url: process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS,
+          // responseType: 'stream'
+        }).then(function (response) {
+          console.log(response);
+          contextDispatch({
+            type: 'PAYMENT_VERIFICATION',
+            payload: response.data.find(
+              (element) => element.sessionId === state.cart.uniqueId
+            ),
+          });
+          // paymentVerification(); //send back payment verification data
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    // console.log('c', paymentConfirmation);
+  }, [contextDispatch, state.cart.uniqueId]);
+
+  //2. send back the payment confirmation
   useEffect(() => {
     const paymentVerification = () => {
       if (state.paymentVerification !== null) {
@@ -81,37 +116,26 @@ const Success = () => {
         console.log('state.paymentVerification is', state.paymentVerification);
       }
     };
-    paymentVerification();
-  }, [state.paymentVerification, state.cart.uniqueId]);
 
-  //1. find payment confirmation with sessionId === uniqueId in api data array
-  useEffect(() => {
-    console.log('start payment confirmation');
-    getPaymentConfirmation();
+    //1. find payment id db, 2. if isPaid: false, then confirm via payment gateway api query; if isPaid: true, then do nothing
+    (async () => {
+      const docRef = doc(db, 'orders', state.cart.uniqueId);
+      const docSnap = await getDoc(docRef);
 
-    async function getPaymentConfirmation() {
-      console.log('getPaymentConfirmation start');
-      try {
-        await axios({
-          method: 'get',
-          url: process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS,
-          // responseType: 'stream'
-        }).then(function (response) {
-          console.log(response);
-          contextDispatch({
-            type: 'PAYMENT_VERIFICATION',
-            payload: response.data.find(
-              (element) => element.sessionId === state.cart.uniqueId
-            ),
-          });
-          // paymentVerification(); //send back payment verification data
-        });
-      } catch (error) {
-        console.error(error);
+      if (docSnap.exists()) {
+        console.log('Document data:', docSnap.data().isPaid);
+        if (docSnap.data().isPaid === false) {
+          console.log('run paymentVerification');
+          paymentVerification();
+          setDoc(docRef, { isPaid: true }, { merge: true });
+        } else {
+          console.log('payment confirmation: order already paid');
+        }
+      } else {
+        console.log('error: order not found in db');
       }
-    }
-    // console.log('c', paymentConfirmation);
-  }, [contextDispatch, state.cart.uniqueId]);
+    })();
+  }, [state.paymentVerification, state.cart.uniqueId]);
 
   // }, [paymentConfirmation]);
 
@@ -132,7 +156,9 @@ const Success = () => {
   useEffect(() => {
     console.log('current state', state);
   }, [state]);
+
   //get full versions of images
+
   useEffect(() => {
     purchasedImages.map((image) => {
       const storage = getStorage();
@@ -157,9 +183,31 @@ const Success = () => {
     });
   }, [purchasedImages]);
 
+  //set order status to 'paid' in db
+  const markOrderAsPaid = async () => {
+    console.log('markOrderAsPaid');
+
+    //get document from db
+
+    const docRef = doc(db, 'orders', state.cart.uniqueId);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log('Document data:', docSnap.data());
+    } else {
+      // doc.data() will be undefined in this case
+      console.log('No such document!');
+    }
+
+    setDoc(docRef, { isPaid: true }, { merge: true });
+    //update order status in db by marking it as paid
+  };
+  // markOrderAsPaid()
+
   return (
     <>
       <div className="purchased__container">
+        <button onClick={markOrderAsPaid}>ispaid</button>
         <h3>{JSON.stringify(state.paymentVerification)}</h3>
         {/* <button onClick={paymentVerification}>verify</button> */}
         <h1>Twoje zdjęcia</h1>
@@ -191,4 +239,4 @@ const Success = () => {
   );
 };
 
-export default Success;
+export default Purchased;

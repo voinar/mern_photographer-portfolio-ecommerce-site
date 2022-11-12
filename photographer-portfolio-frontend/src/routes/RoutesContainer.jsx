@@ -11,7 +11,7 @@ import {
   SignIn,
   Checkout,
   OrderForm,
-  Success,
+  Purchased,
   TermsConditions,
   Cookies,
 } from '../imports';
@@ -29,7 +29,7 @@ const RoutesContainer = () => (
     <Route path="/logowanie" element={<SignIn />} />
     <Route path="/podsumowanie" element={<Checkout />} />
     <Route path="/zamawiam" element={<OrderForm />} />
-    <Route path="/twojezakupy" element={<Success />} />
+    <Route path="/zakupione" element={<Purchased />} />
     <Route path="/regulamin" element={<TermsConditions />} />
     <Route path="/cookies" element={<Cookies />} />
   </Routes>
