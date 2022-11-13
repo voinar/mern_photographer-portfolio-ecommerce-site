@@ -7,7 +7,7 @@ const TermsConditions = () => {
   return (
     <div className="terms__container">
       <div className="cart__return">
-        <button onClick={goBack}>
+        <button onClick={goBack} className="btn--back">
           <img src={IconChevron} alt="zobacz" />
         </button>
         <h1>Regulamin sklepu</h1>

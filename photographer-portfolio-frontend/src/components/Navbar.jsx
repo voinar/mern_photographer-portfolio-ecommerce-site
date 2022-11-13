@@ -181,7 +181,7 @@ const Navbar = () => {
                 </>
               ) : (
                 <>
-                  <span>Zaloguj</span>
+                  {/* <span>Zaloguj</span>
                   <Link to="/Logowanie">
                     <img
                       src={IconLogin}
@@ -189,7 +189,7 @@ const Navbar = () => {
                       alt="zobacz koszyk"
                       title="zobacz koszyk"
                     />
-                  </Link>
+                  </Link> */}
                 </>
               )}
             </div>

@@ -122,7 +122,7 @@ const SignIn = () => {
         <div className="signin__container signin__container--signin">
           <div className="album__toolbar">
             <div className="album__title">
-              <button onClick={goBack}>
+              <button onClick={goBack} className="btn--back">
                 <img src={IconChevron} alt="zobacz" />
               </button>
               <h1>Logowanie</h1>
@@ -167,7 +167,7 @@ const SignIn = () => {
         <div className="signin__container signin__container--create-account">
           <div className="album__toolbar">
             <div className="album__title">
-              <button onClick={goBack}>
+              <button onClick={goBack} className="btn--back">
                 <img src={IconChevron} alt="zobacz" />
               </button>
               <h1>Nowe konto</h1>

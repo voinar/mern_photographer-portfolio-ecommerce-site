@@ -1,5 +1,7 @@
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+
 // Import the functions you need from the SDKs you need
 import 'firebase/storage';
 import 'firebase/firestore';
@@ -14,7 +16,6 @@ import {
   axios,
   jsSHA,
 } from '../imports';
-import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 
 const Purchased = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
@@ -23,7 +24,7 @@ const Purchased = () => {
 
   const [largeImages, setLargeImages] = useState([]);
   const [purchasedImages, setPurchasedImages] = useState([]);
-  const [errorMessage, setErrorMessage] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(false);
 
   //get purchased images list from db
   useEffect(() => {
@@ -35,7 +36,7 @@ const Purchased = () => {
 
       if (docSnap.exists()) {
         setPurchasedImages(docSnap.data().cartItems);
-        setErrorMessage(false)
+        setErrorMessage(false);
       } else {
         console.log('error: order not found in db. unable to load images.');
         setErrorMessage(true);
@@ -57,7 +58,7 @@ const Purchased = () => {
           url: process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS,
           // responseType: 'stream'
         }).then(function (response) {
-          console.log(response);
+          console.log('getPaymentConfirmation', response);
           contextDispatch({
             type: 'PAYMENT_VERIFICATION',
             payload: response.data.find(
@@ -186,25 +187,29 @@ const Purchased = () => {
     });
   }, [purchasedImages]);
 
-  //set order status to 'paid' in db
-  // const markOrderAsPaid = async () => {
-  //   console.log('markOrderAsPaid');
+  const toDataURL = async (image) => {
+    return fetch(image)
+      .then((response) => {
+        return response.blob();
+      })
+      .then((blob) => {
+        return URL.createObjectURL(blob);
+      });
+  };
 
-  //   //get document from db
+  const downloadImage = async (url) => {
+    const imageName = url.split(/%2F(.*?)%2F/)[1]
+    const imageNumber = url.split(/(\d+)[^\d]+JPG/)
+    const imageType = 'jpg'
 
-  //   const docRef = doc(db, 'orders', state.cart.uniqueId);
-  //   const docSnap = await getDoc(docRef);
-
-  //   if (docSnap.exists()) {
-  //     console.log('Document data:', docSnap.data());
-  //   } else {
-  //     // doc.data() will be undefined in this case
-  //     console.log('No such document!');
-  //   }
-
-  //   setDoc(docRef, { isPaid: true }, { merge: true });
-  //   //update order status in db by marking it as paid
-  // };
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    a.href = await toDataURL(url);
+    a.download = imageName + '_' + imageNumber + '.' + imageType;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
 
   return (
     <>
@@ -229,9 +234,9 @@ const Purchased = () => {
               <li>
                 <p>
                   Jeśli <i>nie</i> i pieniądze nie zostały pobrane, to nic się
-                  nie stało - możesz stworzyć <i>nowe zamówienie</i>. Po wykonaniu
-                  płatności otrzymasz automatycznie linki do zdjęć na adres
-                  email podany w zamówieniu.
+                  nie stało - możesz stworzyć <i>nowe zamówienie</i>. Po
+                  wykonaniu płatności otrzymasz automatycznie linki do zdjęć na
+                  adres email podany w zamówieniu.
                 </p>
               </li>
               <br />
@@ -255,8 +260,11 @@ const Purchased = () => {
             <div className="purchased__images">
               <ul>
                 {largeImages.map((image) => (
-                  <li key={image}>
-                    <img src={image} alt="" />
+                  <li key={image} className="purchased__image__card">
+                    <img src={image} alt="zdjęcie" className="purchased__image__card__img"/>
+                    <button onClick={() => downloadImage(image)} className="btn--primary">
+                      Pobierz zdjęcie
+                    </button>
                   </li>
                 ))}
               </ul>

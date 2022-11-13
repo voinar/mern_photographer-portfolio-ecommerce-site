@@ -7,3 +7,29 @@
   font-weight: 300;
   font-size: 14px;
 }
+
+.purchased__images {
+  // margin-top: 30px;
+  // background-color: red;
+}
+
+.purchased__image__card {
+  margin: 40px 0 0;
+  display: flex;
+  flex-direction: column;
+
+  .purchased__image__card__img {
+    border-radius: 6px;
+    border: $--border-focus !important;
+  }
+
+  .purchased__image__card__img:hover {
+    border: $--border-standard !important;
+  }
+
+  button {
+    margin-top: 20px;
+    // padding: 20px;
+  }
+
+}

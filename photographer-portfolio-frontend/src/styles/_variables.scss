@@ -18,3 +18,10 @@ $--font-xxl: 28px;
 $--font-light: 100;
 $--font-medium: 300;
 $--font-heavy: 500;
+
+//borders
+$--border-standard: 1px solid rgba(0, 0, 0, 0.2);
+$--border-focus: 1px solid rgba(0, 0, 0, .5);
+
+//transitions
+$--transition-standard: all 0.3s;

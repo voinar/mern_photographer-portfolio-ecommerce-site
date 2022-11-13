@@ -1,9 +1,16 @@
-import { useContext, useState, useEffect, useNavigate, Link,IconChevron,IconMagnifyingGlass } from '../imports';
+import {
+  useContext,
+  useState,
+  useEffect,
+  useNavigate,
+  Link,
+  IconChevron,
+  IconMagnifyingGlass,
+} from '../imports';
 import { Store } from '../contexts/Store';
 
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
-
 
 const Cart = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
@@ -61,7 +68,7 @@ const Cart = () => {
     <>
       <div className="cart__container">
         <div className="cart__return">
-          <button onClick={goBack}>
+          <button onClick={goBack} className="btn--back">
             <img src={IconChevron} alt="zobacz" />
           </button>
           <h1>Koszyk</h1>
@@ -81,6 +88,7 @@ const Cart = () => {
                   <span className="cart__image__labels--photo">Zdjęcie</span>
                   <span className="cart__image__labels--preview">Podgląd</span>
                   <span className="cart__image__labels--price">Cena</span>
+                  <span className="cart__image__labels--price">Info</span>
                   <span className="cart__image__labels--options">Opcje</span>
                 </div>
                 {state.cart.cartItems.map((image) => {
@@ -93,7 +101,7 @@ const Cart = () => {
                       />
                       <div className="cart__image__tools">
                         <button
-                          className="cart__image__tools--preview"
+                          className="cart__image__tools--preview cart__image__tools--preview__button"
                           onClick={() => handleImagePreview(image)}
                         >
                           <img src={IconMagnifyingGlass} alt="zobacz podgląd" />
@@ -102,7 +110,16 @@ const Cart = () => {
                           {itemPrice}zł
                         </span>
                         <div className="cart__image__tools--button">
-                          <button onClick={() => cartRemoveItem(image)}>
+                          <div class="tooltip">
+                            O zdjęciu
+                            <span class="tooltiptext">Zdjęcie cyfrowe wysokiej jakości, które otrzymasz na adres email podany w zamówieniu.</span>
+                          </div>
+                        </div>
+                        <div className="cart__image__tools--button">
+                          <button
+                            onClick={() => cartRemoveItem(image)}
+                            className="btn--tertiary"
+                          >
                             Usuń
                           </button>
                         </div>

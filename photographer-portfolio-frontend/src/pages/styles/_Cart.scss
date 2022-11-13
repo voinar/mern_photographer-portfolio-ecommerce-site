@@ -2,10 +2,7 @@
   padding: 180px 100px 200px;
   background-color: $--c-white;
   font-weight: 300;
-
-  button {
-    // all: unset;
-  }
+  height: 70vh;
 }
 
 .cart__return {
@@ -19,18 +16,7 @@
     align-self: center;
     transform: rotate(90deg);
     cursor: pointer;
-    border: 0px;
-  }
-
-  h1 {
-    // font-size: $--font-md;
-    // font-weight: 500;
-  }
-
-  button {
-    border: 0px;
-    padding: 0;
-    cursor: pointer;
+    border: $--border-standard;
   }
 }
 
@@ -38,14 +24,6 @@
   display: flex;
   gap: 40px;
   // padding: 20px;
-
-  button {
-    padding: 8px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    background-color: rgb(255, 255, 255);
-    border-radius: 4px;
-    cursor: pointer;
-  }
 }
 
 .cart__images {
@@ -98,6 +76,13 @@
   .cart__image__tools--preview {
     width: 24px;
     align-items: center;
+
+    .cart__image__tools--preview__button {
+      padding: 8px;
+      // border: 1px solid rgba(0, 0, 0, 1.07) !important;
+      background-color: rgb(255, 255, 255);
+      border-radius: 4px;
+    }
   }
 
   .cart__image__tools {
@@ -116,9 +101,9 @@
     .cart__image__tools--button {
       text-align: center;
 
-      button {
-        margin: 0 auto;
-      }
+      // button {
+      //   margin: 0 auto;
+      // }
     }
   }
 
@@ -137,7 +122,7 @@
   width: 30%;
   height: 300px;
   border-radius: 6px;
-  border: 1px solid rgba(0, 0, 0, 0.16);
+  border: $--border-standard;
   transition: all 0.2s;
 
   .cart__summary__price {
@@ -145,11 +130,43 @@
   }
 
   .cart__summary__button {
-    width: 200px;
+    width: 220px;
+  }
+  .cart__summary__button:hover {
+    width: 230px;
   }
 }
 
 .cart__images:hover,
 .cart__summary:hover {
-  border: 1px solid rgba(0, 0, 0, 0.4);
+  border: $--border-focus;
+}
+
+//cart info hover text
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  opacity: 0;
+  width: 200px;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  border-radius: 6px;
+  transition: all 0.3s;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  opacity: 1;
 }

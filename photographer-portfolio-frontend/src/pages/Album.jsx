@@ -145,7 +145,7 @@ const Album = () => {
         <div className="album__container">
           <div className={toggleToolbarClassOnScroll()}>
             <div className="album__title">
-              <button onClick={goBack}>
+              <button onClick={goBack} className="btn--back">
                 <img src={IconChevron} alt="zobacz" />
               </button>
               <h1>{album}</h1>

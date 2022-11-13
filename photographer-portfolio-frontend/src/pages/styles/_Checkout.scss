@@ -33,9 +33,14 @@
   gap: 40px;
   padding: 10px;
   margin: 0 0 20px;
-  border: 1px solid rgba(0, 0, 0, 0.16);
+  border: $--border-standard;
   border-radius: 6px;
   background-color: rgba(255, 255, 255, 0.7);
+  transition: $--transition-standard;
+}
+
+.checkout__summary:hover {
+  border: $--border-focus;
 }
 
 .checkout__summary__cart {
@@ -50,7 +55,7 @@
   width: 200px;
   padding: 14px;
   border-radius: 6px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: $--border-standard;
 
   span {
     font-size: $--font-md;

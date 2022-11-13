@@ -86,19 +86,50 @@ button {
   border-radius: 4px;
   margin-right: 8px;
   cursor: pointer;
+  transition: all 0.3s;
 }
 
 .btn--primary {
-  background-color: rgba(0, 255, 0, 0.5) !important;
+  background-color: rgba(0, 222, 0, 0.7) !important;
+  width: 300px;
+
+}
+
+.btn--primary:hover {
+  background-color: rgba(0, 255, 0, 0.9) !important;
+  width: 320px;
+
 }
 
 .btn--secondary {
+  background-color: rgba(0, 0, 0, 0.09) !important;
+  width: 300px;
+
+}
+
+.btn--secondary:hover {
   background-color: rgba(0, 0, 0, 0.03) !important;
+  width: 320px;
+
+}
+
+.btn--tertiary {
+    padding: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: rgb(255, 255, 255);
+    border-radius: 4px;
 }
 
 .btn--back {
   all: unset !important;
+  border: 0px;
+  padding: 0;
+
+  img {
+    border: 0px;
+  }
 }
+
 
 .hidden {
   display: none;
@@ -121,11 +152,11 @@ button {
 }
 
 *::-webkit-scrollbar-track {
-  background: #000000;
+  background: $--c-black;
 }
 
 *::-webkit-scrollbar-thumb {
   background-color: $--c-white;
   border-radius: 10px;
-  border: 2px solid slategray;
+  border: 1px solid slategray;
 }

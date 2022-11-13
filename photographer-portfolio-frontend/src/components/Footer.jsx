@@ -56,9 +56,14 @@ const Footer = () => {
               <Link to="/regulamin">
                 <span>Regulamin</span>
               </Link>
+              <Link to="/Kontakt">
+                <span>Kontakt</span>
+              </Link>
             </div>
             <div className="footer__column footer__tags">
-              <span>Pomoc</span>
+              <Link to="/Kontakt">
+                <span>Pomoc</span>
+              </Link>
             </div>
             <div
               className="footer__column footer__return"
