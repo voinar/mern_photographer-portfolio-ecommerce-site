@@ -66,14 +66,14 @@ const Purchased = () => {
                 response.data.find((element) => element.sessionId === uniqueId)
               ) {
                 console.log('payment found in api endpoint');
-                setPaymentConfirmed(true);
                 setIsLoading(false);
                 contextDispatch({
                   type: 'PAYMENT_VERIFICATION',
                   payload: response.data.find(
                     (element) => element.sessionId === uniqueId
-                  ),
-                });
+                    ),
+                  });
+                  setPaymentConfirmed(true);
               } else {
                 console.log('payment not found in api endpoint');
                 setIsLoading(false);
@@ -192,6 +192,7 @@ const Purchased = () => {
                   setPaymentConfirmed(true);
                 } else {
                   console.log('payment confirmation: order paid');
+                  setPaymentConfirmed(true);
                 }
               } else {
                 console.log('error: order not found in db');
@@ -208,8 +209,6 @@ const Purchased = () => {
     };
     paymentVerification(); //send back the payment confirmation to payment gateway api
   }, [state.paymentVerification, state.cart.uniqueId, paymentConfirmed]);
-
-  // }, [paymentConfirmation]);
 
   // 2. send the data back to complete confirmation process
   // useEffect(() => {
