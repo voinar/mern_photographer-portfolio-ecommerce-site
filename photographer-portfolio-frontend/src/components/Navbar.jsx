@@ -16,7 +16,7 @@ import {
   IconShare,
   IconMenu,
   IconClose,
-  IconLogin,
+  // IconLogin,
   IconChevron,
 } from '../imports';
 
