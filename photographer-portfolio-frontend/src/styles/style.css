@@ -2074,51 +2074,67 @@ select {
   border: 1px solid grey;
 }
 
-.cookies-popup__container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+.alert__container {
   position: fixed;
-  left: 80px;
-  bottom: 40px;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.7);
-  -webkit-backdrop-filter: blur(3px);
-          backdrop-filter: blur(3px);
-  height: auto;
-  width: 200px;
-  padding: 10px;
-  border-radius: 6px;
-  font-weight: 100;
-  gap: 22px;
-}
-
-.cookies-popup__container span {
-  text-align: justify;
-  text-justify: inter-word;
-}
-
-.cookies-popup__text {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  display: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  top: 12vh;
+  right: 10vw;
+  font-size: 14px;
+  width: auto;
+  padding: 20px 50px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #d4d4d4;
+  border-radius: 6px;
+  z-index: 10;
 }
 
-.cookies-popup__text a {
-  color: pink;
+.alert__container--standard {
+  position: absolute;
+  top: 20vh;
+  left: 10vw;
 }
 
-.cookies-popup__close {
-  font-weight: 500;
-  cursor: pointer;
+.alert__container--red {
+  background: rgba(255, 190, 190, 0.8);
+  border: 1px solid #878787;
+}
+
+.alert__container--green {
+  background: rgba(150, 255, 134, 0.8);
+  border: 1px solid #878787;
+}
+
+.alert__autohide {
+  -webkit-animation: cssAnimation 0s ease-in 2s forwards;
+          animation: cssAnimation 0s ease-in 2s forwards;
+}
+
+@keyframes cssAnimation {
+  to {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+    border: 0;
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes cssAnimation {
+  to {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+  }
 }
 
 .loading-spinner__container {
@@ -2131,7 +2147,7 @@ select {
           flex-direction: column;
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 20%;
 }
 
 .loading-spinner {
@@ -2261,67 +2277,51 @@ select {
   }
 }
 
-.alert__container {
-  position: fixed;
+.cookies-popup__container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  display: none;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  top: 12vh;
-  right: 10vw;
-  font-size: 14px;
-  width: auto;
-  padding: 20px 50px;
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid #d4d4d4;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: fixed;
+  left: 80px;
+  bottom: 40px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  height: auto;
+  width: 200px;
+  padding: 10px;
   border-radius: 6px;
-  z-index: 10;
+  font-weight: 100;
+  gap: 22px;
 }
 
-.alert__container--standard {
-  position: absolute;
-  top: 20vh;
-  left: 10vw;
+.cookies-popup__container span {
+  text-align: justify;
+  text-justify: inter-word;
 }
 
-.alert__container--red {
-  background: rgba(255, 190, 190, 0.8);
-  border: 1px solid #878787;
+.cookies-popup__text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-.alert__container--green {
-  background: rgba(150, 255, 134, 0.8);
-  border: 1px solid #878787;
+.cookies-popup__text a {
+  color: pink;
 }
 
-.alert__autohide {
-  -webkit-animation: cssAnimation 0s ease-in 2s forwards;
-          animation: cssAnimation 0s ease-in 2s forwards;
-}
-
-@keyframes cssAnimation {
-  to {
-    width: 0;
-    height: 0;
-    overflow: hidden;
-    padding: 0;
-    border: 0;
-    opacity: 0;
-  }
-}
-
-@-webkit-keyframes cssAnimation {
-  to {
-    width: 0;
-    height: 0;
-    visibility: hidden;
-  }
+.cookies-popup__close {
+  font-weight: 500;
+  cursor: pointer;
 }
 
 html {

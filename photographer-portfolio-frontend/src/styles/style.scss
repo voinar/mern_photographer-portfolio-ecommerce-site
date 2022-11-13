@@ -20,11 +20,11 @@
 @import '../components/styles/_Navbar';
 @import '../components/styles/_Footer';
 @import '../components/styles/_OrderForm';
-@import '../components/styles/_CookiesPopup';
 
 //atoms
-@import '../components/styles/_LoadingSpinner';
-@import '../components/styles/_Alert';
+@import '../atoms/styles/_Alert';
+@import '../atoms/styles/_LoadingSpinner';
+@import '../atoms/styles/_CookiesPopup';
 
 html * {
   // outline: 1px solid brown;
@@ -92,32 +92,28 @@ button {
 .btn--primary {
   background-color: rgba(0, 222, 0, 0.7) !important;
   width: 300px;
-
 }
 
 .btn--primary:hover {
   background-color: rgba(0, 255, 0, 0.9) !important;
   width: 320px;
-
 }
 
 .btn--secondary {
   background-color: rgba(0, 0, 0, 0.09) !important;
   width: 300px;
-
 }
 
 .btn--secondary:hover {
   background-color: rgba(0, 0, 0, 0.03) !important;
   width: 320px;
-
 }
 
 .btn--tertiary {
-    padding: 8px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    background-color: rgb(255, 255, 255);
-    border-radius: 4px;
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
 }
 
 .btn--back {
@@ -129,7 +125,6 @@ button {
     border: 0px;
   }
 }
-
 
 .hidden {
   display: none;

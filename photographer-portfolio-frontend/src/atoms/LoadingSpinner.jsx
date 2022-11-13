@@ -1,5 +1,3 @@
-import React from 'react';
-
 const LoadingSpinner = () => (
   <div className="loading-spinner__container">
     <div className="loading-spinner">

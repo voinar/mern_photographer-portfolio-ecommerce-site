@@ -4,9 +4,9 @@ import {
   useEffect,
   useContext,
   Navbar,
+  Footer,
   Alert,
   ScrollToTop,
-  Footer,
   CookiesPopup,
 } from './imports';
 

@@ -48,13 +48,16 @@ import Experiments from './pages/Experiments';
 
 //components
 import Navbar from './components/Navbar';
-import Alert from './components/Alert';
 import AlbumCard from './components/AlbumCard';
 import AlbumImage from './components/AlbumImage';
 import ScrollToTop from './components/ScrollToTop';
 import Footer from './components/Footer';
 import OrderForm from './components/OrderForm';
-import CookiesPopup from './components/CookiesPopup';
+
+//atoms
+import Alert from './atoms/Alert';
+import CookiesPopup from './atoms/CookiesPopup';
+import LoadingSpinner from './atoms/LoadingSpinner';
 
 //assets
 import NavLogo from './img/logo-nav.png';
@@ -120,13 +123,16 @@ export {
 
   //components
   Navbar,
-  Alert,
   AlbumCard,
   AlbumImage,
   ScrollToTop,
   Footer,
   OrderForm,
+
+  //atoms
+  Alert,
   CookiesPopup,
+  LoadingSpinner,
 
   //assets
   NavLogo,

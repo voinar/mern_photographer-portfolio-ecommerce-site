@@ -15,6 +15,7 @@ import {
   Link,
   axios,
   jsSHA,
+  LoadingSpinner,
 } from '../imports';
 
 const Purchased = () => {
@@ -24,77 +25,121 @@ const Purchased = () => {
 
   const [largeImages, setLargeImages] = useState([]);
   const [purchasedImages, setPurchasedImages] = useState([]);
-  const [errorMessage, setErrorMessage] = useState(false);
+  const [paymentConfirmed, setPaymentConfirmed] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  //1.use uniqueId from url params to find order in db.
+  //found? proceed to 2. no? show error message
+
+  //2.if order is in db then check if order is paid
+  //yes? show images to customer. no? go to 3.
+
+  //3. see if payment is present in payment gateway's api endpoint
+  //yes? show images to customer & send back payment confirmation to api & confirm order as paid in db
+  //no? show error message
 
   //get purchased images list from db
   useEffect(() => {
-    //1. find payment id db, 2. if isPaid: false, then confirm via payment gateway api query & set status as paid in db; if isPaid: true, then do nothing
+    //1. find payment id db, 2. if isPaid: false, then confirm via payment gateway api query & set status as paid in db; if isPaid: true, then show images to customer
     (async () => {
-      console.log('get images list from db');
       const docRef = doc(db, 'orders', uniqueId);
       const docSnap = await getDoc(docRef);
 
-      if (docSnap.exists()) {
+      if (docSnap.exists() && docSnap.data().isPaid === true) {
         setPurchasedImages(docSnap.data().cartItems);
-        setErrorMessage(false);
+        setPaymentConfirmed(true);
+        setIsLoading(false);
+      }
+
+      if (docSnap.exists() && docSnap.data().isPaid === false) {
+        console.log('order seems unpaid');
+        evaluateOrderStatus(); //find payment confirmation in api endpoint; if none found then display error message
+
+        async function evaluateOrderStatus() {
+          console.log('getPaymentConfirmation start');
+          try {
+            await axios({
+              method: 'get',
+              url: process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS,
+            }).then(function (response) {
+              if (
+                response.data.find((element) => element.sessionId === uniqueId)
+              ) {
+                console.log('payment found in api endpoint');
+                setPaymentConfirmed(true);
+                setIsLoading(false);
+                contextDispatch({
+                  type: 'PAYMENT_VERIFICATION',
+                  payload: response.data.find(
+                    (element) => element.sessionId === uniqueId
+                  ),
+                });
+              } else {
+                console.log('payment not found in api endpoint');
+                setIsLoading(false);
+              }
+            });
+          } catch (error) {
+            console.error(error);
+          }
+        }
+        // setPurchasedImages(docSnap.data().cartItems);
       } else {
         console.log('error: order not found in db. unable to load images.');
-        setErrorMessage(true);
+        setIsLoading(false);
       }
     })();
-  }, [uniqueId]);
+  }, [uniqueId, state.cart.uniqueId, contextDispatch]);
 
   //payment verification
   //1. find payment confirmation with sessionId === uniqueId in api data array
-  useEffect(() => {
-    console.log('start payment confirmation');
-    getPaymentConfirmation();
+  // useEffect(() => {
+  //   console.log('start payment confirmation');
+  //   getPaymentConfirmation();
 
-    async function getPaymentConfirmation() {
-      console.log('getPaymentConfirmation start');
-      try {
-        await axios({
-          method: 'get',
-          url: process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS,
-          // responseType: 'stream'
-        }).then(function (response) {
-          console.log('getPaymentConfirmation', response);
-          contextDispatch({
-            type: 'PAYMENT_VERIFICATION',
-            payload: response.data.find(
-              (element) => element.sessionId === state.cart.uniqueId
-            ),
-          });
-          // paymentVerification(); //send back payment verification data
-        });
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  }, [contextDispatch, state.cart.uniqueId]);
+  //   async function getPaymentConfirmation() {
+  //     console.log('getPaymentConfirmation start');
+  //     try {
+  //       await axios({
+  //         method: 'get',
+  //         url: process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS,
+  //         // responseType: 'stream'
+  //       }).then(function (response) {
+  //         console.log('getPaymentConfirmation', response);
+  //         contextDispatch({
+  //           type: 'PAYMENT_VERIFICATION',
+  //           payload: response.data.find(
+  //             (element) => element.sessionId === state.cart.uniqueId
+  //           ),
+  //         });
+  //         // paymentVerification(); //send back payment verification data
+  //       });
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   }
+  // }, [contextDispatch, state.cart.uniqueId]);
 
   useEffect(() => {
     //1. find payment id db, 2. if isPaid: false, then confirm via payment gateway api query & set status as paid in db; if isPaid: true, then do nothing
-    (async () => {
-      console.log('initiate payment verification');
-      const docRef = doc(db, 'orders', state.cart.uniqueId);
-      const docSnap = await getDoc(docRef);
+    // (async () => {
+    //   console.log('initiate payment verification');
+    //   const docRef = doc(db, 'orders', state.cart.uniqueId);
+    //   const docSnap = await getDoc(docRef);
 
-      if (docSnap.exists()) {
-        console.log('Document data:', docSnap.data().isPaid);
-        if (docSnap.data().isPaid === false) {
-          console.log('run payment verification');
-          paymentVerification();
-          setDoc(docRef, { isPaid: true }, { merge: true });
-        } else {
-          console.log('payment confirmation: order paid');
-        }
-      } else {
-        console.log('error: order not found in db');
-      }
-    })();
-
-    //send back the payment confirmation to payment gateway api
+    //   if (docSnap.exists()) {
+    //     console.log('Document data:', docSnap.data().isPaid);
+    //     if (docSnap.data().isPaid === false) {
+    //       console.log('run payment verification');
+    //       paymentVerification(); //send back the payment confirmation to payment gateway api
+    //       setDoc(docRef, { isPaid: true }, { merge: true }); //set order as paid in db
+    //     } else {
+    //       console.log('payment confirmation: order paid');
+    //     }
+    //   } else {
+    //     console.log('error: order not found in db');
+    //   }
+    // })();
     const paymentVerification = () => {
       if (state.paymentVerification !== null) {
         console.log('state.paymentVerification', state.paymentVerification);
@@ -139,6 +184,8 @@ const Purchased = () => {
         console.log('state.paymentVerification is', state.paymentVerification);
       }
     };
+    paymentVerification(); //send back the payment confirmation to payment gateway api
+
   }, [state.paymentVerification, state.cart.uniqueId]);
 
   // }, [paymentConfirmation]);
@@ -161,9 +208,9 @@ const Purchased = () => {
     console.log('current state', state);
   }, [state]);
 
-  //get full versions of images
-
+  //get full versions of images after confirming order status as paid
   useEffect(() => {
+    console.log('purchasedImages available', purchasedImages);
     purchasedImages.map((image) => {
       const storage = getStorage();
       const imageUrlFormatted = image
@@ -187,6 +234,7 @@ const Purchased = () => {
     });
   }, [purchasedImages]);
 
+  //download widget
   const toDataURL = async (image) => {
     return fetch(image)
       .then((response) => {
@@ -198,9 +246,9 @@ const Purchased = () => {
   };
 
   const downloadImage = async (url) => {
-    const imageName = url.split(/%2F(.*?)%2F/)[1]
-    const imageNumber = url.split(/(\d+)[^\d]+JPG/)
-    const imageType = 'jpg'
+    const imageName = url.split(/%2F(.*?)%2F/)[1];
+    const imageNumber = url.split(/(\d+)[^\d]+JPG/)[1];
+    const imageType = 'jpg';
 
     const a = document.createElement('a');
     a.style.display = 'none';
@@ -214,7 +262,32 @@ const Purchased = () => {
   return (
     <>
       <div className="purchased__container">
-        {errorMessage ? (
+        {isLoading ? <LoadingSpinner /> : null}
+
+        {paymentConfirmed ? (
+          <>
+            <h1>Twoje zdjęcia</h1>
+            <div className="purchased__images">
+              <ul>
+                {largeImages.map((image) => (
+                  <li key={image} className="purchased__image__card">
+                    <img
+                      src={image}
+                      alt="zdjęcie"
+                      className="purchased__image__card__img"
+                    />
+                    <button
+                      onClick={() => downloadImage(image)}
+                      className="btn--primary"
+                    >
+                      Pobierz zdjęcie
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </>
+        ) : (
           <>
             <h1>Ups...</h1>
             <p>
@@ -253,22 +326,6 @@ const Purchased = () => {
                 </Link>
               </li>
             </ul>
-          </>
-        ) : (
-          <>
-            <h1>Twoje zdjęcia</h1>
-            <div className="purchased__images">
-              <ul>
-                {largeImages.map((image) => (
-                  <li key={image} className="purchased__image__card">
-                    <img src={image} alt="zdjęcie" className="purchased__image__card__img"/>
-                    <button onClick={() => downloadImage(image)} className="btn--primary">
-                      Pobierz zdjęcie
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </>
         )}
       </div>
