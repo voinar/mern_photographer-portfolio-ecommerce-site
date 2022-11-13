@@ -254,7 +254,7 @@ const Purchased = () => {
         });
       return null;
     });
-  }, [purchasedImages]);
+  }, [purchasedImages, paymentConfirmed]);
 
   //download widget
   const toDataURL = async (image) => {
