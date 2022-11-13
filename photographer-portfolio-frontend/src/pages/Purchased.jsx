@@ -140,6 +140,7 @@ const Purchased = () => {
     //     console.log('error: order not found in db');
     //   }
     // })();
+    
     const paymentVerification = () => {
       if (state.paymentVerification !== null) {
         console.log('state.paymentVerification', state.paymentVerification);
@@ -175,6 +176,25 @@ const Purchased = () => {
           .then((response) => {
             //blok uruchamiany dla odpowiedzi z kodem 200
             console.log('verification res', response);
+
+            (async () => {
+              console.log('initiate payment verification');
+              const docRef = doc(db, 'orders', state.cart.uniqueId);
+              const docSnap = await getDoc(docRef);
+
+              if (docSnap.exists()) {
+                console.log('Document data:', docSnap.data().isPaid);
+                if (docSnap.data().isPaid === false) {
+                  console.log('run payment verification');
+                  // paymentVerification(); //send back the payment confirmation to payment gateway api
+                  setDoc(docRef, { isPaid: true }, { merge: true }); //set order as paid in db
+                } else {
+                  console.log('payment confirmation: order paid');
+                }
+              } else {
+                console.log('error: order not found in db');
+              }
+            })();
           })
           .catch((err) => {
             //blok dla odpowiedzi z błędem 400/401
@@ -185,7 +205,6 @@ const Purchased = () => {
       }
     };
     paymentVerification(); //send back the payment confirmation to payment gateway api
-
   }, [state.paymentVerification, state.cart.uniqueId]);
 
   // }, [paymentConfirmation]);
