@@ -71,9 +71,10 @@ const Purchased = () => {
                   type: 'PAYMENT_VERIFICATION',
                   payload: response.data.find(
                     (element) => element.sessionId === uniqueId
-                    ),
-                  });
-                  setPaymentConfirmed(true);
+                  ),
+                });
+                setPaymentConfirmed(true);
+                setPurchasedImages(docSnap.data().cartItems);
               } else {
                 console.log('payment not found in api endpoint');
                 setIsLoading(false);
@@ -176,7 +177,10 @@ const Purchased = () => {
         })
           .then((response) => {
             //blok uruchamiany dla odpowiedzi z kodem 200
-            console.log('verification res', response);
+            console.log(
+              'payment confirmation sent. verification res',
+              response
+            );
 
             (async () => {
               console.log('initiate payment verification');
@@ -208,7 +212,7 @@ const Purchased = () => {
       }
     };
     paymentVerification(); //send back the payment confirmation to payment gateway api
-  }, [state.paymentVerification, state.cart.uniqueId, paymentConfirmed]);
+  }, [state.paymentVerification, state.cart.uniqueId]);
 
   // 2. send the data back to complete confirmation process
   // useEffect(() => {
@@ -252,7 +256,7 @@ const Purchased = () => {
         });
       return null;
     });
-  }, [purchasedImages, paymentConfirmed]);
+  }, [purchasedImages, paymentConfirmed, isLoading]);
 
   //download widget
   const toDataURL = async (image) => {
