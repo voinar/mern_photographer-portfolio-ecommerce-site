@@ -1,6 +1,7 @@
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
-import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+import { getStorage, ref, getDownloadURL, getMetadata } from 'firebase/storage';
+import reactImageSize from 'react-image-size';
 
 // Import the functions you need from the SDKs you need
 import 'firebase/storage';
@@ -24,6 +25,8 @@ const Purchased = () => {
   console.log('useParams uniqueId', uniqueId);
 
   const [largeImages, setLargeImages] = useState([]);
+  const [largeImageMetadata, setLargeImageMetadata] = useState([]);
+  const [largeImageDimensions, setLargeImageDimensions] = useState([]);
   const [purchasedImages, setPurchasedImages] = useState([]);
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -133,10 +136,9 @@ const Purchased = () => {
         if (docSnap.data().isPaid === false) {
           console.log('run payment verification');
           paymentVerification(); //send back the payment confirmation to payment gateway api
-          setDoc(docRef, { isPaid: true }, { merge: true }); //set order as paid in db
         } else {
-          console.log('payment confirmation: order paid');
-          setPaymentConfirmed(true);
+          console.log('payment confirmation: order unpaid');
+          // setPaymentConfirmed(true);
         }
       } else {
         console.log('error: order not found in db');
@@ -247,13 +249,44 @@ const Purchased = () => {
 
       getDownloadURL(ref(storage, imageUrlFormatted))
         .then((url) => {
-          // console.log('large', imageUrlFormatted);
-          // console.log('url', url);
           setLargeImages((prevState) => [...prevState, url]);
+
+          reactImageSize(url)
+            .then(({ width, height }) =>
+              setLargeImageDimensions((prevState) => [
+                ...prevState,
+                {
+                  url: url,
+                  width: width,
+                  height: height,
+                },
+              ])
+            )
+            .catch((errorMessage) =>
+              console.log('reactImageSize error', errorMessage)
+            );
+
+          // Get metadata properties
+          getMetadata(ref(storage, imageUrlFormatted)).then((metadata) => {
+            // Metadata now contains the metadata for 'images/forest.jpg'
+            const formatBytes = (a, b = 2) => {
+              if (!+a) return '0 Bytes';
+              const c = 0 > b ? 0 : b,
+                d = Math.floor(Math.log(a) / Math.log(1024));
+              return `${parseFloat((a / Math.pow(1024, d)).toFixed(c))}${
+                ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'][d]
+              }`;
+            };
+            setLargeImageMetadata((prevState) => [
+              ...prevState,
+              { url: url, size: formatBytes(metadata.size) },
+            ]);
+          });
         })
         .catch((error) => {
           console.log(error);
         });
+
       return null;
     });
   }, [purchasedImages, paymentConfirmed, isLoading]);
@@ -291,6 +324,34 @@ const Purchased = () => {
         {paymentConfirmed ? (
           <>
             <h1>Twoje zdjęcia</h1>
+            {/* <button
+              onClick={() => {
+                console.log(largeImages);
+              }}
+            >
+              largeImages
+            </button>
+            <button
+              onClick={() => {
+                console.log(largeImageMetadata);
+              }}
+            >
+              largeImageMetadata
+            </button>
+            <button
+              onClick={() => {
+                console.log(largeImageDimensions);
+              }}
+            >
+              largeImageDimensions
+            </button>
+            <button
+              onClick={() => {
+                console.log(purchasedImages);
+              }}
+            >
+              purchasedImages
+            </button> */}
             <div className="purchased__images">
               <ul>
                 {largeImages.map((image) => (
@@ -300,12 +361,63 @@ const Purchased = () => {
                       alt="zdjęcie"
                       className="purchased__image__card__img"
                     />
-                    <button
-                      onClick={() => downloadImage(image)}
-                      className="btn--primary"
-                    >
-                      Pobierz zdjęcie
-                    </button>
+                    <div className="purchased__image__card__tools">
+                      <button
+                        onClick={() => downloadImage(image)}
+                        className="btn--primary"
+                      >
+                        Pobierz zdjęcie
+                      </button>
+                      <h3>
+                        Wymiary obrazu:{' '}
+                        {largeImageDimensions[
+                          largeImageDimensions.findIndex(
+                            (item) => item.url === image
+                          )
+                        ] === undefined ? (
+                          <>
+                            <LoadingSpinner />
+                          </>
+                        ) : (
+                          <>
+                            {
+                              largeImageDimensions[
+                                largeImageDimensions.findIndex(
+                                  (item) => item.url === image
+                                )
+                              ].width
+                            }
+                            x
+                            {
+                              largeImageDimensions[
+                                largeImageDimensions.findIndex(
+                                  (item) => item.url === image
+                                )
+                              ].height
+                            }
+                            px
+                          </>
+                        )}
+                      </h3>
+                      <h3>
+                        Rozmiar pliku:{' '}
+                        {largeImageMetadata[
+                          largeImageMetadata.findIndex(
+                            (item) => item.url === image
+                          )
+                        ] === undefined ? (
+                          <>
+                            <LoadingSpinner />
+                          </>
+                        ) : (
+                          largeImageMetadata[
+                            largeImageMetadata.findIndex(
+                              (item) => item.url === image
+                            )
+                          ].size
+                        )}
+                      </h3>
+                    </div>
                   </li>
                 ))}
               </ul>
