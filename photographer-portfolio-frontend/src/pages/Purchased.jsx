@@ -122,25 +122,25 @@ const Purchased = () => {
 
   useEffect(() => {
     //1. find payment id db, 2. if isPaid: false, then confirm via payment gateway api query & set status as paid in db; if isPaid: true, then do nothing
-    // (async () => {
-    //   console.log('initiate payment verification');
-    //   const docRef = doc(db, 'orders', state.cart.uniqueId);
-    //   const docSnap = await getDoc(docRef);
+    (async () => {
+      console.log('initiate payment verification');
+      const docRef = doc(db, 'orders', state.cart.uniqueId);
+      const docSnap = await getDoc(docRef);
 
-    //   if (docSnap.exists()) {
-    //     console.log('Document data:', docSnap.data().isPaid);
-    //     if (docSnap.data().isPaid === false) {
-    //       console.log('run payment verification');
-    //       paymentVerification(); //send back the payment confirmation to payment gateway api
-    //       setDoc(docRef, { isPaid: true }, { merge: true }); //set order as paid in db
-    //     } else {
-    //       console.log('payment confirmation: order paid');
-    //     }
-    //   } else {
-    //     console.log('error: order not found in db');
-    //   }
-    // })();
-    
+      if (docSnap.exists()) {
+        console.log('Document data:', docSnap.data().isPaid);
+        if (docSnap.data().isPaid === false) {
+          console.log('run payment verification');
+          paymentVerification(); //send back the payment confirmation to payment gateway api
+          setDoc(docRef, { isPaid: true }, { merge: true }); //set order as paid in db
+        } else {
+          console.log('payment confirmation: order paid');
+        }
+      } else {
+        console.log('error: order not found in db');
+      }
+    })();
+
     const paymentVerification = () => {
       if (state.paymentVerification !== null) {
         console.log('state.paymentVerification', state.paymentVerification);
