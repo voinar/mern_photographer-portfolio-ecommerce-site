@@ -74,6 +74,8 @@ const Purchased = () => {
                     (element) => element.sessionId === uniqueId
                   ),
                 });
+
+
               } else {
                 console.log('payment not found in api endpoint');
                 setIsLoading(false);
@@ -135,6 +137,7 @@ const Purchased = () => {
           setDoc(docRef, { isPaid: true }, { merge: true }); //set order as paid in db
         } else {
           console.log('payment confirmation: order paid');
+          setPaymentConfirmed(true)
         }
       } else {
         console.log('error: order not found in db');
@@ -205,7 +208,7 @@ const Purchased = () => {
       }
     };
     paymentVerification(); //send back the payment confirmation to payment gateway api
-  }, [state.paymentVerification, state.cart.uniqueId]);
+  }, [state.paymentVerification, state.cart.uniqueId, paymentConfirmed]);
 
   // }, [paymentConfirmation]);
 
