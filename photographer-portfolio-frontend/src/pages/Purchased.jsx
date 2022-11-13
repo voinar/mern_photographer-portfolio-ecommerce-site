@@ -319,12 +319,14 @@ const Purchased = () => {
   return (
     <>
       <div className="purchased__container">
-        {isLoading ? <LoadingSpinner /> : null}
-
-        {paymentConfirmed ? (
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : (
           <>
-            <h1>Twoje zdjęcia</h1>
-            {/* <button
+            {paymentConfirmed ? (
+              <>
+                <h1>Twoje zdjęcia</h1>
+                {/* <button
               onClick={() => {
                 console.log(largeImages);
               }}
@@ -352,116 +354,119 @@ const Purchased = () => {
             >
               purchasedImages
             </button> */}
-            <div className="purchased__images">
-              <ul>
-                {largeImages.map((image) => (
-                  <li key={image} className="purchased__image__card">
-                    <img
-                      src={image}
-                      alt="zdjęcie"
-                      className="purchased__image__card__img"
-                    />
-                    <div className="purchased__image__card__tools">
-                      <button
-                        onClick={() => downloadImage(image)}
-                        className="btn--primary"
-                      >
-                        Pobierz zdjęcie
-                      </button>
-                      <h3>
-                        Wymiary obrazu:{' '}
-                        {largeImageDimensions[
-                          largeImageDimensions.findIndex(
-                            (item) => item.url === image
-                          )
-                        ] === undefined ? (
-                          <>
-                            <LoadingSpinner />
-                          </>
-                        ) : (
-                          <>
-                            {
-                              largeImageDimensions[
-                                largeImageDimensions.findIndex(
+                <div className="purchased__images">
+                  <ul>
+                    {largeImages.map((image) => (
+                      <li key={image} className="purchased__image__card">
+                        <img
+                          src={image}
+                          alt="zdjęcie"
+                          className="purchased__image__card__img"
+                        />
+                        <div className="purchased__image__card__tools">
+                          <button
+                            onClick={() => downloadImage(image)}
+                            className="btn--primary"
+                          >
+                            Pobierz zdjęcie
+                          </button>
+                          <h3>
+                            Wymiary obrazu:{' '}
+                            {largeImageDimensions[
+                              largeImageDimensions.findIndex(
+                                (item) => item.url === image
+                              )
+                            ] === undefined ? (
+                              <>
+                                <LoadingSpinner />
+                              </>
+                            ) : (
+                              <>
+                                {
+                                  largeImageDimensions[
+                                    largeImageDimensions.findIndex(
+                                      (item) => item.url === image
+                                    )
+                                  ].width
+                                }
+                                x
+                                {
+                                  largeImageDimensions[
+                                    largeImageDimensions.findIndex(
+                                      (item) => item.url === image
+                                    )
+                                  ].height
+                                }
+                                px
+                              </>
+                            )}
+                          </h3>
+                          <h3>
+                            Rozmiar pliku:{' '}
+                            {largeImageMetadata[
+                              largeImageMetadata.findIndex(
+                                (item) => item.url === image
+                              )
+                            ] === undefined ? (
+                              <>
+                                <LoadingSpinner />
+                              </>
+                            ) : (
+                              largeImageMetadata[
+                                largeImageMetadata.findIndex(
                                   (item) => item.url === image
                                 )
-                              ].width
-                            }
-                            x
-                            {
-                              largeImageDimensions[
-                                largeImageDimensions.findIndex(
-                                  (item) => item.url === image
-                                )
-                              ].height
-                            }
-                            px
-                          </>
-                        )}
-                      </h3>
-                      <h3>
-                        Rozmiar pliku:{' '}
-                        {largeImageMetadata[
-                          largeImageMetadata.findIndex(
-                            (item) => item.url === image
-                          )
-                        ] === undefined ? (
-                          <>
-                            <LoadingSpinner />
-                          </>
-                        ) : (
-                          largeImageMetadata[
-                            largeImageMetadata.findIndex(
-                              (item) => item.url === image
-                            )
-                          ].size
-                        )}
-                      </h3>
-                    </div>
+                              ].size
+                            )}
+                          </h3>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </>
+            ) : (
+              <>
+                <h1>Ups...</h1>
+                <p>
+                  Nie jesteśmy w stanie znaleźć zdjęć powiązanych z tym
+                  zamówieniem. Co dalej?
+                  <br />
+                </p>
+                <ul>
+                  <li>
+                    <p>
+                      Czy płatność została sfinalizowana? <br />
+                      Jeśli <i>tak</i>, to sprawdź swoją skrzynkę email. Po
+                      sfinalizowaniu płatności wysłaliśmy do Ciebie wiadomość,
+                      która zawiera link do zdjęć.
+                    </p>
                   </li>
-                ))}
-              </ul>
-            </div>
-          </>
-        ) : (
-          <>
-            <h1>Ups...</h1>
-            <p>
-              Nie jesteśmy w stanie znaleźć zdjęć powiązanych z tym zamówieniem.
-              Co dalej?
-              <br />
-            </p>
-            <ul>
-              <li>
-                <p>
-                  Czy płatność została sfinalizowana? <br />
-                  Jeśli <i>tak</i>, to sprawdź swoją skrzynkę email. Po
-                  sfinalizowaniu płatności wysłaliśmy do Ciebie wiadomość, która
-                  zawiera link do zdjęć.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Jeśli <i>nie</i> i pieniądze nie zostały pobrane, to nic się
-                  nie stało - możesz stworzyć <i>nowe zamówienie</i>. Po
-                  wykonaniu płatności otrzymasz automatycznie linki do zdjęć na
-                  adres email podany w zamówieniu.
-                </p>
-              </li>
-              <br />
-              <li>
-                <p>
-                  Nadal nie jesteś w stanie otrzymać zdjęć? <br />
-                  Zapraszamy do kontaktu, wspólnie rozwiążemy wszelkie problemy:{' '}
-                </p>
-              </li>
-              <br />
-              <li>
-                <Link to="/kontakt">
-                  <button>Pomoc</button>
-                </Link>
-              </li>
-            </ul>
+                  <li>
+                    <p>
+                      Jeśli <i>nie</i> i pieniądze nie zostały pobrane, to nic
+                      się nie stało - możesz stworzyć <i>nowe zamówienie</i>. Po
+                      wykonaniu płatności otrzymasz automatycznie linki do zdjęć
+                      na adres email podany w zamówieniu.
+                    </p>
+                  </li>
+                  <br />
+                  <li>
+                    <p>
+                      Nadal nie jesteś w stanie otrzymać zdjęć? <br />
+                      Zapraszamy do kontaktu, wspólnie rozwiążemy wszelkie
+                      problemy:{' '}
+                    </p>
+                  </li>
+                  <br />
+                  <li>
+                    <Link to="/kontakt">
+                      <button>Pomoc</button>
+                    </Link>
+                  </li>
+                </ul>
+              </>
+            )}
           </>
         )}
       </div>
