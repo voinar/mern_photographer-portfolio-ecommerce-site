@@ -2361,14 +2361,14 @@ select {
       -ms-flex-direction: row;
           flex-direction: row;
   position: fixed;
-  left: 80px;
-  bottom: 40px;
+  right: 0px;
+  bottom: 0px;
   color: white;
   background-color: rgba(0, 0, 0, 0.7);
   -webkit-backdrop-filter: blur(3px);
           backdrop-filter: blur(3px);
   height: auto;
-  width: 200px;
+  width: 100vw;
   padding: 10px;
   border-radius: 6px;
   font-weight: 100;

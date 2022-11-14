@@ -2,13 +2,13 @@
   display: flex;
   flex-direction: row;
   position: fixed;
-  left: 80px;
-  bottom: 40px;
+  right: 0px;
+  bottom: 0px;
   color: white;
   background-color: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(3px);
   height: auto;
-  width: 200px;
+  width: 100vw;
   padding: 10px;
   border-radius: 6px;
   font-weight: 100;
@@ -21,18 +21,16 @@
 }
 
 .cookies-popup__text {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  
 
-    a {
+  a {
     color: pink;
-    }
+  }
 }
 
 .cookies-popup__close {
-  //   position: relative;
-  //   right: 6px;
-  //   bottom: 6px;
   font-weight: 500;
   cursor: pointer;
 }
