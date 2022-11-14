@@ -34,6 +34,31 @@
     justify-content: space-between;
     padding: 10px 0;
   }
+}
 
+.purchased__error__container {
+  h1 {
+    font-size: $--font-xxl;
+  }
+  p {
+    font-size: $--font-md;
+  }
 
+  i {
+    font-weight: 400;
+  }
+}
+
+.purchased__error__header {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+}
+
+.purchased__icon {
+  width: 50px;
+}
+
+.purchased__icon--question {
+  width: 30px;
 }

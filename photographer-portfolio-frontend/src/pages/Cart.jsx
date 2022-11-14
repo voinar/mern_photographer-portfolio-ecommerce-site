@@ -112,7 +112,10 @@ const Cart = () => {
                         <div className="cart__image__tools--button">
                           <div class="tooltip">
                             O zdjęciu
-                            <span class="tooltiptext">Zdjęcie cyfrowe wysokiej jakości, które otrzymasz na adres email podany w zamówieniu.</span>
+                            <span class="tooltiptext">
+                              Zdjęcie cyfrowe wysokiej jakości, które otrzymasz
+                              na adres email podany w zamówieniu.
+                            </span>
                           </div>
                         </div>
                         <div className="cart__image__tools--button">
@@ -131,17 +134,21 @@ const Cart = () => {
               {showPreviewImage && ( //image preview overlay
                 <>
                   <div
+                    className="album__preview__background"
+                    onClick={() => handleImagePreview()}
+                  ></div>
+
+                  <div
                     className="album__preview"
                     style={{ top: window.scrollY }}
                     onClick={handleImagePreview}
                   >
                     <img
-                      className="album__preview-image"
+                      className="album__preview-image album__preview-image__picture"
                       src={previewImageUrl}
                       alt=""
                     />
                   </div>
-                  {state.cart.cartItems.length > 1 ? null : null}
                 </>
               )}
             </>

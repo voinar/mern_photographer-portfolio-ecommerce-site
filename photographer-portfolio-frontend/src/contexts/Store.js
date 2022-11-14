@@ -19,7 +19,7 @@ const initialState = {
   )
     ? JSON.parse(localStorage.getItem('cookiesConsentPopupAccepted'))
     : false,
-    paymentVerification: null
+  paymentVerification: null,
 };
 
 function reducer(state, action) {
@@ -56,7 +56,7 @@ function reducer(state, action) {
     }
 
     case 'CLEAR_CART': {
-      return { ...state, cart: { cartItems: [], uniqueId: null } };
+      return { ...state, cart: { ...state.cart, cartItems: [] } };
     }
 
     case 'CACHE_UNIQUE_ID': {

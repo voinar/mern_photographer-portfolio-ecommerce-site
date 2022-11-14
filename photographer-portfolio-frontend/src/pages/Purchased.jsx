@@ -17,6 +17,8 @@ import {
   axios,
   jsSHA,
   LoadingSpinner,
+  IconError,
+  IconQuestion,
 } from '../imports';
 
 const Purchased = () => {
@@ -70,12 +72,20 @@ const Purchased = () => {
               ) {
                 console.log('payment found in api endpoint');
                 setIsLoading(false);
+
+                //send payment verification data to context
                 contextDispatch({
                   type: 'PAYMENT_VERIFICATION',
                   payload: response.data.find(
                     (element) => element.sessionId === uniqueId
                   ),
                 });
+
+                // 2. clear cart
+                contextDispatch({
+                  type: 'CLEAR_CART',
+                });
+
                 setPaymentConfirmed(true);
                 setPurchasedImages(docSnap.data().cartItems);
               } else {
@@ -93,7 +103,7 @@ const Purchased = () => {
         setIsLoading(false);
       }
     })();
-  }, [uniqueId, state.cart.uniqueId, contextDispatch]);
+  }, [uniqueId, contextDispatch]);
 
   //payment verification
   //1. find payment confirmation with sessionId === uniqueId in api data array
@@ -125,10 +135,10 @@ const Purchased = () => {
   // }, [contextDispatch, state.cart.uniqueId]);
 
   useEffect(() => {
-    //1. find payment id db, 2. if isPaid: false, then confirm via payment gateway api query & set status as paid in db; if isPaid: true, then do nothing
+    //1. find payment id db, 2. if isPaid: false, then confirm via payment gateway api query & set status as paid in db; if isPaid: true, then show images to user
     (async () => {
       console.log('initiate payment verification');
-      const docRef = doc(db, 'orders', state.cart.uniqueId);
+      const docRef = doc(db, 'orders', uniqueId);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
@@ -154,7 +164,7 @@ const Purchased = () => {
         const password = process.env.REACT_APP_PAYMENT_GATEWAY_PASSWORD;
 
         // templatka sign: {"sessionId":"str","merchantId":int,"amount":int,"currency":"str","crc":"str"}
-        const signTemplate = `{"sessionId":"${state.cart.uniqueId}","orderId":${state.paymentVerification.orderId},"amount":${state.paymentVerification.amount},"currency":"PLN","crc":"${crcValue}"}`;
+        const signTemplate = `{"sessionId":"${uniqueId}","orderId":${state.paymentVerification.orderId},"amount":${state.paymentVerification.amount},"currency":"PLN","crc":"${crcValue}"}`;
         const shaObj = new jsSHA('SHA-384', 'TEXT', { encoding: 'UTF8' }); //nowy obiekt sha-384 generowany przez jsSHA
         shaObj.update(signTemplate); //wprowadzenie ciągu signCryptoInput do hashowania przez shaObj
         const signSha = shaObj.getHash('HEX'); //konwersja shaObj do hex
@@ -170,7 +180,7 @@ const Purchased = () => {
           data: {
             merchantId: state.paymentVerification.merchantId,
             posId: state.paymentVerification.posId,
-            sessionId: state.cart.uniqueId,
+            sessionId: uniqueId,
             amount: state.paymentVerification.amount,
             currency: 'PLN',
             orderId: state.paymentVerification.orderId,
@@ -186,7 +196,7 @@ const Purchased = () => {
 
             (async () => {
               console.log('initiate payment verification');
-              const docRef = doc(db, 'orders', state.cart.uniqueId);
+              const docRef = doc(db, 'orders', uniqueId);
               const docSnap = await getDoc(docRef);
 
               if (docSnap.exists()) {
@@ -214,25 +224,7 @@ const Purchased = () => {
       }
     };
     paymentVerification(); //send back the payment confirmation to payment gateway api
-  }, [state.paymentVerification, state.cart.uniqueId]);
-
-  // 2. send the data back to complete confirmation process
-  // useEffect(() => {
-  //clear cart on load–-_
-  // const clearCart = () => {
-  //   try {
-  //     contextDispatch({
-  //       type: 'CLEAR_CART',
-  //     });
-  //     // localStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-  // clearCart();
-  useEffect(() => {
-    console.log('current state', state);
-  }, [state]);
+  }, [state.paymentVerification, uniqueId]);
 
   //get full versions of images after confirming order status as paid
   useEffect(() => {
@@ -427,44 +419,82 @@ const Purchased = () => {
               </>
             ) : (
               <>
-                <h1>Ups...</h1>
-                <p>
-                  Nie jesteśmy w stanie znaleźć zdjęć powiązanych z tym
-                  zamówieniem. Co dalej?
-                  <br />
-                </p>
-                <ul>
-                  <li>
-                    <p>
-                      Czy płatność została sfinalizowana? <br />
-                      Jeśli <i>tak</i>, to sprawdź swoją skrzynkę email. Po
-                      sfinalizowaniu płatności wysłaliśmy do Ciebie wiadomość,
-                      która zawiera link do zdjęć.
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      Jeśli <i>nie</i> i pieniądze nie zostały pobrane, to nic
-                      się nie stało - możesz stworzyć <i>nowe zamówienie</i>. Po
-                      wykonaniu płatności otrzymasz automatycznie linki do zdjęć
-                      na adres email podany w zamówieniu.
-                    </p>
-                  </li>
-                  <br />
-                  <li>
-                    <p>
-                      Nadal nie jesteś w stanie otrzymać zdjęć? <br />
-                      Zapraszamy do kontaktu, wspólnie rozwiążemy wszelkie
-                      problemy:{' '}
-                    </p>
-                  </li>
-                  <br />
-                  <li>
-                    <Link to="/kontakt">
-                      <button>Pomoc</button>
-                    </Link>
-                  </li>
-                </ul>
+                <div className="purchased__error__container">
+                  <div className="purchased__error__header">
+                    <img
+                      src={IconError}
+                      alt="błąd"
+                      className="purchased__icon purchased__icon--error"
+                    />
+                    <h1>Ups...</h1>
+                  </div>
+
+                  <h2>
+                    Nie jesteśmy w stanie znaleźć zdjęć powiązanych z tym
+                    zamówieniem. Co dalej?
+                    <br />
+                  </h2>
+                  <ul>
+                    <li>
+                      <p>
+                        <img
+                          src={IconQuestion}
+                          alt="pytanie"
+                          className="purchased__icon purchased__icon--question"
+                        />
+                        Czy adres został wpisany poprawnie? <br />
+                        Jeśli otrzymałeś/aś link do albumu od znajomego, to
+                        upewnij się, że adres został wpisany w całości
+                        poprawnie. Adres do albumu można również znaleźć we
+                        wiadomości email otrzymanej po zakupie zdjęć.
+                      </p>
+                    </li>
+                    <br />
+                    <li>
+                      <p>
+                        <img
+                          src={IconQuestion}
+                          alt="pytanie"
+                          className="purchased__icon purchased__icon--question"
+                        />
+                        Czy płatność została sfinalizowana? <br />
+                        Jeśli <i>tak</i>, to sprawdź swoją skrzynkę email. Po
+                        sfinalizowaniu płatności wysłaliśmy do Ciebie wiadomość,
+                        która zawiera link do zdjęć.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Jeśli <i>nie</i> i pieniądze nie zostały pobrane, to nic
+                        się nie stało - możesz stworzyć{' '}
+                        <Link to="/sklep">
+                          <i>nowe zamówienie</i>
+                        </Link>
+                        . Po wykonaniu płatności otrzymasz automatycznie linki
+                        do zdjęć na adres email podany w zamówieniu.
+                      </p>
+                    </li>
+                    <br />
+                    <li>
+                      <p>
+                        <img
+                          src={IconQuestion}
+                          alt="pytanie"
+                          className="purchased__icon purchased__icon--question"
+                        />
+                        Nadal nie jesteś w stanie otrzymać zdjęć? <br />
+                        Zapraszamy do kontaktu, wspólnie rozwiążemy wszelkie
+                        problemy:{' '}
+                      </p>
+                    </li>
+                    <br />
+                    <li>
+                      <Link to="/kontakt">
+                        <button>Pomoc</button>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
               </>
             )}
           </>

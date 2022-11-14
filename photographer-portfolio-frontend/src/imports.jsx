@@ -79,6 +79,8 @@ import IconCartAdd from './img/icons/icon-cart-add.svg';
 import IconGridSmall from './img/icons/icon-grid-small.svg';
 import IconGridMedium from './img/icons/icon-grid-medium.svg';
 import IconGridLarge from './img/icons/icon-grid-large.svg';
+import IconError from './img/icons/icon-error.svg';
+import IconQuestion from './img/icons/icon-question.svg';
 
 export {
   //hooks
@@ -154,4 +156,6 @@ export {
   IconGridSmall,
   IconGridMedium,
   IconGridLarge,
+  IconError,
+  IconQuestion
 };
