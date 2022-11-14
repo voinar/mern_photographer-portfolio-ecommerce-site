@@ -201,7 +201,6 @@ const Album = () => {
                       <div
                         className="album__preview"
                         style={{ top: window.scrollY }}
-                        onClick={handleImagePreview}
                       >
                         <img
                           className="album__preview-image"
@@ -211,7 +210,12 @@ const Album = () => {
                       </div>
                       <div
                         className="album__preview-image__tools"
-                        style={{ top: (window.scrollY + window.innerHeight - window.innerHeight/4) }}
+                        style={{
+                          top:
+                            window.scrollY +
+                            window.innerHeight -
+                            window.innerHeight / 4,
+                        }}
                       >
                         <button onClick={handleImagePreviewPrev}>
                           <img
@@ -235,6 +239,12 @@ const Album = () => {
                             alt="następne zdjęcie"
                             title="następne zdjęcie"
                           />
+                        </button>
+                        <button
+                          onClick={handleImagePreview}
+                          className="album__preview__btn-close"
+                        >
+                          X
                         </button>
                       </div>
                     </>

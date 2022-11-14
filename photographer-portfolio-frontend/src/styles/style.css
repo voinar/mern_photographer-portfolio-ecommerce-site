@@ -1019,6 +1019,13 @@ select {
           transform: rotate(270deg) !important;
 }
 
+.album__preview__btn-close {
+  position: relative;
+  width: 24px;
+  font-weight: 200;
+  background-color: #f2f2f2;
+}
+
 .cart__container {
   padding: 180px 100px 200px;
   background-color: #f2f2f2;

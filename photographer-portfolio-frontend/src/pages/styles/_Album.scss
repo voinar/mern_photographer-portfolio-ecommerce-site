@@ -221,3 +221,10 @@
 .album__preview-image__tools__cart-add {
   // width: 10px;
 }
+
+.album__preview__btn-close {
+  position: relative;
+  width: 24px;
+  font-weight: 200;
+  background-color: $--c-white;
+}
