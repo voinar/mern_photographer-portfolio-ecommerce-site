@@ -27,7 +27,7 @@
 @import '../atoms/styles/_CookiesPopup';
 
 html * {
-  // outline: 1px solid brown; 
+  // outline: 1px solid brown;
 }
 
 html {
@@ -37,7 +37,7 @@ html {
 body {
   font-family: $--font-main;
   color: $--c-black;
-  background-color: $--c-black;
+  background-color: $--c-white;
   // min-width: 600px;
   overflow: hidden;
   scroll-behavior: smooth;

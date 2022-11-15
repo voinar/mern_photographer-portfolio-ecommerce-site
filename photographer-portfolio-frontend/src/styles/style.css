@@ -951,8 +951,12 @@ select {
   margin-right: -50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+  padding: 22px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px !important;
   width: 80vw;
   height: auto;
+  background-color: rgba(255, 255, 255, 0.9);
   z-index: 3;
 }
 
@@ -962,7 +966,9 @@ select {
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 0);
+  -webkit-backdrop-filter: blur(1px);
+          backdrop-filter: blur(1px);
   z-index: 3;
   cursor: pointer;
 }
@@ -978,7 +984,7 @@ select {
 }
 
 .album__preview-image__picture {
-  border-radius: 6px !important;
+  border-radius: 4px !important;
   -o-object-fit: contain;
      object-fit: contain;
   height: 60vh;
@@ -1031,7 +1037,6 @@ select {
 }
 
 .album__preview-image__tools button img {
-  background-color: #ffffffb1;
   padding: 8px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   height: 48px;
@@ -2406,7 +2411,7 @@ html {
 body {
   font-family: "Prompt", sans-serif;
   color: #3a3939;
-  background-color: #3a3939;
+  background-color: #f2f2f2;
   overflow: hidden;
   scroll-behavior: smooth;
 }
