@@ -148,6 +148,16 @@
   justify-content: center;
 }
 
+.navbar__shop__header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 26px;
+  font-weight: 400;
+  margin-left: 16px;
+}
+
 .navbar__shop__userinfo {
   display: flex;
   flex-direction: row;

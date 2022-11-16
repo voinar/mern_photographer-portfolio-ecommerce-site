@@ -928,9 +928,10 @@ select {
   margin-right: -50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  padding: 22px 16px;
+  padding: 22px 20px;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  width: 80vw;
+  border-radius: 4px;
+  width: auto;
   height: auto;
   background-color: rgba(255, 255, 255, 0.9);
   z-index: 3;
@@ -1000,6 +1001,7 @@ select {
   gap: 10vw;
   left: 0;
   width: 100%;
+  padding: 10px 0;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -1711,6 +1713,21 @@ select {
           justify-content: center;
 }
 
+.navbar__shop__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 26px;
+  font-weight: 400;
+  margin-left: 16px;
+}
+
 .navbar__shop__userinfo {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2135,7 +2152,6 @@ select {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  display: none;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -2143,14 +2159,17 @@ select {
       -ms-flex-align: center;
           align-items: center;
   top: 12vh;
-  right: 10vw;
-  font-size: 14px;
+  right: 24vw;
+  font-size: 18px;
+  font-weight: 300;
   width: auto;
   padding: 20px 50px;
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid #d4d4d4;
   border-radius: 6px;
   z-index: 10;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .alert__container--standard {
@@ -2165,13 +2184,15 @@ select {
 }
 
 .alert__container--green {
-  background: rgba(150, 255, 134, 0.8);
-  border: 1px solid #878787;
+  background: rgba(150, 255, 134, 0.86);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .alert__autohide {
-  -webkit-animation: cssAnimation 0s ease-in 2s forwards;
-          animation: cssAnimation 0s ease-in 2s forwards;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
 
 @keyframes cssAnimation {

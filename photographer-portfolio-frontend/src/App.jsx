@@ -1,5 +1,6 @@
 import {
   useLocation,
+  useState,
   Helmet,
   useEffect,
   useContext,
@@ -36,6 +37,7 @@ function FacebookPixel() {
 
 function App() {
   const { state } = useContext(Store);
+  const [showAlert, setShowAlert] = useState(false);
 
   //google analytics log page currently displayed
   const location = useLocation();
@@ -50,6 +52,11 @@ function App() {
     localStorage.setItem('uniqueId', JSON.stringify(state.cart.uniqueId));
   }, [state.cart]);
 
+  useEffect(() => {
+    setShowAlert(true);
+    setTimeout(() => setShowAlert(false), 3000);
+  }, [state.alertContent, state.cart]);
+
   return (
     <>
       <ScrollToTop />
@@ -58,7 +65,7 @@ function App() {
       </Helmet>
       <div className="App">
         <FacebookPixel />
-        <Alert alertContent={'alert'} />
+        {showAlert && <Alert />}
         <Navbar />
         <RoutesContainer />
         <Footer />

@@ -3,6 +3,7 @@ import { createContext, useReducer } from 'react';
 export const Store = createContext();
 
 const initialState = {
+  alertContent: null,
   cart: {
     cartItems: localStorage.getItem('cartItems')
       ? JSON.parse(localStorage.getItem('cartItems'))
@@ -35,15 +36,18 @@ function reducer(state, action) {
       if (isInCart === undefined) {
         return {
           ...state,
+          alertContent: 'Dodano do koszyka',
           cart: {
             ...state.cart,
             cartItems: [...state.cart.cartItems, newItem],
           },
         };
       } else {
-        //else do nothing
-        console.log('item already in cart');
-        return state;
+        //else inform the user that the item is already in the cart
+        return {
+          ...state,
+          alertContent: 'Zdjęcie już znajduje się w koszyku',
+        };
       }
     }
 
@@ -52,7 +56,7 @@ function reducer(state, action) {
       const cartItems = state.cart.cartItems.filter(
         (id) => id !== action.payload.id
       );
-      return { ...state, cart: { ...state.cart, cartItems } };
+      return { ...state, cart: { ...state.cart, cartItems }, alertContent: 'Usunięto z koszyka' };
     }
 
     case 'CLEAR_CART': {

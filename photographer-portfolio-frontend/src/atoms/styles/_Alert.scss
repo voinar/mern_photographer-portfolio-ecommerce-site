@@ -1,18 +1,20 @@
 .alert__container {
   position: fixed;
   display: flex;
-  display: none;
+  // display: none;
   justify-content: center;
   align-items: center;
   top: 12vh;
-  right: 10vw;
-  font-size: $--font-sm;
+  right: 24vw;
+  font-size: $--font-md;
+  font-weight: 300;
   width: auto;
   padding: 20px 50px;
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid rgb(212, 212, 212);
   border-radius: 6px;
   z-index: 10;
+  transition: all 0.3s;
 }
 
 .alert__container--standard {
@@ -27,13 +29,14 @@
 }
 
 .alert__container--green {
-  background: rgba(150, 255, 134, 0.8);
-  border: 1px solid rgb(135, 135, 135);
+  background: rgba(150, 255, 134, 0.86);
+  backdrop-filter: blur(3px);
+  border: $--border-standard;
 }
 
 .alert__autohide {
-  animation: cssAnimation 0s ease-in 2s forwards;
-  // animation-fill-mode: forwards;
+  // animation: cssAnimation 0s ease-in 3s forwards;
+  animation-fill-mode: forwards;
 }
 
 @keyframes cssAnimation {

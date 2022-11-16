@@ -61,7 +61,7 @@ function Shop() {
               <span>1.</span>
             </div>
             <div className="shop__steps__explanation">
-              <p>Przeglądaj album i dodaj zdjęcia do koszyka</p>
+              <p>Przeglądaj albumy i dodaj zdjęcia do koszyka</p>
             </div>
             <div className="shop__steps__icon shop__steps__icon--eye">
               <img src={IconStepsEye} alt="pierwszy krok" />
