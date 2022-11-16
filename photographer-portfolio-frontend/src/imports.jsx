@@ -81,6 +81,13 @@ import IconGridMedium from './img/icons/icon-grid-medium.svg';
 import IconGridLarge from './img/icons/icon-grid-large.svg';
 import IconError from './img/icons/icon-error.svg';
 import IconQuestion from './img/icons/icon-question.svg';
+import IconStepsEye from './img/icons/icon-steps-eye.svg';
+import IconStepsCart from './img/icons/icon-steps-cart.svg';
+import IconStepsPhoto from './img/icons/icon-steps-photo.svg';
+import IconSportsGymnast from './img/icons/icon-sports-gymnast.svg';
+import IconSportsRunner from './img/icons/icon-sports-runner.svg';
+import IconSportsHandball from './img/icons/icon-sports-handball.svg';
+import IconSportsLifter from './img/icons/icon-sports-lifter.svg';
 
 export {
   //hooks
@@ -157,5 +164,12 @@ export {
   IconGridMedium,
   IconGridLarge,
   IconError,
-  IconQuestion
+  IconQuestion,
+  IconStepsEye,
+  IconStepsCart,
+  IconStepsPhoto,
+  IconSportsGymnast,
+  IconSportsRunner,
+  // IconSportsHandball,
+  IconSportsLifter,
 };

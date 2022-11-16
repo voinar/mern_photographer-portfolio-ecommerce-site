@@ -145,7 +145,7 @@ const Navbar = () => {
           <div className="navbar__shop__logo">
             <Link to="/sklep">
               <img src={NavLogo} alt="logo" />
-            </Link>
+            </Link> 
           </div>
           <div className="navbar__shop__icons">
             <div className="navbar__shop__userinfo">

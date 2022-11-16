@@ -1,10 +1,22 @@
-import { useEffect, useState, Helmet, AlbumCard, v4 } from '../imports';
-
+import {
+  useEffect,
+  useState,
+  Helmet,
+  AlbumCard,
+  v4,
+  IconStepsEye,
+  IconStepsCart,
+  IconStepsPhoto,
+  IconSportsGymnast,
+  IconSportsRunner,
+  IconSportsHandball,
+  IconSportsLifter,
+} from '../imports';
 
 import { storage } from '../firebase/config';
 import { ref, listAll } from 'firebase/storage';
 
-function Collection() {
+function Shop() {
   // Create a reference under which you want to list
   const [foldersList, setFoldersList] = useState([]);
 
@@ -43,8 +55,46 @@ function Collection() {
         <title>Sklep</title>
       </Helmet>
       <div className="shop__container">
+        <div className="shop__steps__cards">
+          <div className="shop__steps__card">
+            <div className="shop__steps__number">
+              <span>1.</span>
+            </div>
+            <div className="shop__steps__explanation">
+              <p>Przeglądaj album i dodaj zdjęcia do koszyka</p>
+            </div>
+            <div className="shop__steps__icon shop__steps__icon--eye">
+              <img src={IconStepsEye} alt="pierwszy krok" />
+            </div>
+          </div>
+          <div className="shop__steps__card">
+            <div className="shop__steps__number">
+              <span>2.</span>
+            </div>
+            <div className="shop__steps__explanation">
+              <p>Wprowadź swój adres email i dokonaj płatności</p>
+            </div>
+            <div className="shop__steps__icon shop__steps__icon--cart">
+              <img src={IconStepsCart} alt="drugi krok" />
+            </div>
+          </div>
+          <div className="shop__steps__card">
+            <div className="shop__steps__number">
+              <span>3.</span>
+            </div>
+            <div className="shop__steps__explanation">
+              <p>Otrzymaj na email zdjęcia cyfrowe najwyższej jakości</p>
+            </div>
+            <div className="shop__steps__icon shop__steps__icon--photo">
+              <img src={IconStepsPhoto} alt="trzeci krok" />
+            </div>
+          </div>
+        </div>
         <h1>Przeglądaj wydarzenia:</h1>
         <div className="shop__cards">
+          {/* <div className="shop__cards__background-image">
+            <img src={IconSportsRunner} alt="" />
+          </div> */}
           {foldersList.map((folder) => {
             return (
               <li key={v4()}>
@@ -62,4 +112,4 @@ function Collection() {
   );
 }
 
-export default Collection;
+export default Shop;
