@@ -7,10 +7,10 @@ import {
   IconStepsEye,
   IconStepsCart,
   IconStepsPhoto,
-  IconSportsGymnast,
-  IconSportsRunner,
-  IconSportsHandball,
-  IconSportsLifter,
+  // IconSportsGymnast,
+  // IconSportsRunner,
+  // IconSportsHandball,
+  // IconSportsLifter,
 } from '../imports';
 
 import { storage } from '../firebase/config';
