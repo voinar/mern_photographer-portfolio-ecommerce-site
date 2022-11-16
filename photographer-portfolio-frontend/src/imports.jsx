@@ -170,6 +170,6 @@ export {
   IconStepsPhoto,
   IconSportsGymnast,
   IconSportsRunner,
-  // IconSportsHandball,
+  IconSportsHandball,
   IconSportsLifter,
 };
