@@ -741,6 +741,11 @@ select {
   padding: 80px 100px 200px;
 }
 
+.album__container button:hover {
+  -webkit-filter: invert(80%);
+          filter: invert(80%);
+}
+
 .album__toolbar {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -944,8 +949,8 @@ select {
   top: 0;
   left: 0;
   background-color: rgba(255, 255, 255, 0);
-  -webkit-backdrop-filter: blur(1px);
-          backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
   z-index: 3;
   cursor: pointer;
 }
@@ -988,6 +993,10 @@ select {
   background-color: #fcfcfc;
 }
 
+.album__preview-image__container .album__preview__btn-close:hover {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
 .album__preview-image__tools {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1009,16 +1018,19 @@ select {
 }
 
 .album__preview-image__tools button {
-  all: unset;
+  padding: 0;
   background-color: white;
   border-radius: 6px;
 }
 
 .album__preview-image__tools button img {
   padding: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
   height: 48px;
   border-radius: 4px;
+}
+
+.album__preview-image__tools button:hover {
+  outline: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .album__preview-image__tools__arrow--prev {
@@ -1140,15 +1152,6 @@ select {
 
 .cart__images .cart__image__tools--preview {
   width: 24px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.cart__images .cart__image__tools--preview .cart__image__tools--preview__button {
-  padding: 8px;
-  background-color: white;
-  border-radius: 4px;
 }
 
 .cart__images .cart__image__tools {
@@ -1170,17 +1173,9 @@ select {
   width: 100%;
 }
 
-.cart__images .cart__image__tools .cart__image__tools--price {
-  text-align: center;
-}
-
-.cart__images .cart__image__tools .cart__image__tools--button {
-  text-align: center;
-}
-
-.cart__images .cart__image__tools--header {
-  opacity: 0.8;
-  font-weight: 200;
+.cart__images .cart__image__tools button:hover {
+  -webkit-filter: invert(80%);
+          filter: invert(80%);
 }
 
 .cart__summary {

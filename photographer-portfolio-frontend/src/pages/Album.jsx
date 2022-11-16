@@ -195,7 +195,10 @@ const Album = () => {
 
                   {showPreviewImage && ( //image preview overlay
                     <>
-                      <div className="album__preview__background" onClick={() => handleImagePreview(image)}></div>
+                      <div
+                        className="album__preview__background"
+                        onClick={() => handleImagePreview(image)}
+                      ></div>
                       <div
                         className="album__preview"
                         style={{ top: window.scrollY }}

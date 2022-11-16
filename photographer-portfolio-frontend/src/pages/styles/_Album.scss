@@ -7,6 +7,10 @@
   h1 {
     // font-weight: 400;
   }
+
+  button:hover {
+    filter: invert(80%);
+  }
 }
 
 .album__toolbar {
@@ -181,7 +185,7 @@
   top: 0;
   left: 0;
   background-color: rgba(255, 255, 255, 0);
-  backdrop-filter: blur(1px);
+  backdrop-filter: blur(2px);
   z-index: 3;
   cursor: pointer;
 }
@@ -215,6 +219,11 @@
     margin-left: auto;
     background-color: #fcfcfc;
   }
+
+  .album__preview__btn-close:hover {
+    border: $--border-focus;
+  }
+
 }
 
 .album__preview-image__tools {
@@ -232,17 +241,21 @@
   z-index: 14;
 
   button {
-    all: unset;
+    // all: unset;
+    padding: 0;
     background-color: white;
     border-radius: 6px;
 
     img {
-      // background-color: #ffffffb1;
+      // background-color: #ffffffb1
       padding: 8px;
-      border: 1px solid rgba(0, 0, 0, 0.3);
       height: 48px;
       border-radius: 4px;
     }
+  }
+
+  button:hover {
+    outline: $--border-focus;
   }
 }
 
