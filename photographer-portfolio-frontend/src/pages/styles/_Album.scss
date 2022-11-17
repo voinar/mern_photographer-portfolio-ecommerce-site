@@ -47,6 +47,10 @@
       all: unset;
       cursor: pointer;
     }
+
+    button:hover {
+      border: $--border-focus;
+    }
   }
 
   .album__toolbar__thumbnail-controls {
@@ -55,6 +59,7 @@
     gap: 10px;
     // align-items: flex-end;
     margin: 0 70px 0 auto;
+    // transition: all 0.3s;
 
     img {
       transform: rotate(0deg);
@@ -68,11 +73,7 @@
       justify-content: center;
       border-radius: 4px;
       background-color: rgba(255, 255, 255, 0.64);
-      border: 1px solid rgba(0, 0, 0, 0.2);
-    }
-
-    button:hover {
-      background-color: white;
+      border: $--border-standard;
     }
   }
 }
@@ -223,7 +224,6 @@
   .album__preview__btn-close:hover {
     border: $--border-focus;
   }
-
 }
 
 .album__preview-image__tools {

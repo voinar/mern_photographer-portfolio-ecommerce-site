@@ -55,7 +55,7 @@ function App() {
   useEffect(() => {
     setShowAlert(true);
     setTimeout(() => setShowAlert(false), 3000);
-  }, [state.alertContent, state.cart]);
+  }, [state.alertContent, state.cart.cartItems]);
 
   return (
     <>

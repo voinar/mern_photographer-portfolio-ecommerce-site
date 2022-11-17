@@ -18,7 +18,7 @@ const OrderForm = () => {
   const [formEmail, setFormEmail] = useState('');
   const [formName, setFormName] = useState('');
   const [formSurname, setFormSurname] = useState('');
-  const [formPhone, setFormPhone] = useState('');
+  // const [formPhone, setFormPhone] = useState('');
   const [formInvoiceRequested, setFormInvoiceRequested] = useState(false);
   const [formInvoiceNumber, setFormInvoiceNumber] = useState('');
   const [formTermsConditionsAccept, setFormTermsConditionsAccept] =
@@ -81,9 +81,9 @@ const OrderForm = () => {
     setFormSurname(e.target.value);
   };
 
-  const handleFormPhoneUpdate = (e) => {
-    setFormPhone(e.target.value);
-  };
+  // const handleFormPhoneUpdate = (e) => {
+  //   setFormPhone(e.target.value);
+  // };
 
   const toggleInputInvoice = () => {
     setFormInvoiceRequested((prevState) => !prevState);
@@ -132,18 +132,18 @@ const OrderForm = () => {
     };
     surnameValidation();
 
-    const phoneValidation = () => {
-      const regEx = /^[+0-9 ]{9,16}$/g;
-      if (formPhone === '' || regEx.test(formPhone) === true) {
-        setErrorMessage('');
-        return true;
-      } else {
-        setErrorMessage(
-          'Proszę wprowadzić poprawny numer telefonu lub pozostawić pole jako puste'
-        );
-      }
-    };
-    phoneValidation();
+    // const phoneValidation = () => {
+    //   const regEx = /^[+0-9 ]{9,16}$/g;
+    //   if (formPhone === '' || regEx.test(formPhone) === true) {
+    //     setErrorMessage('');
+    //     return true;
+    //   } else {
+    //     setErrorMessage(
+    //       'Proszę wprowadzić poprawny numer telefonu lub pozostawić pole jako puste'
+    //     );
+    //   }
+    // };
+    // phoneValidation();
 
     const formInvoiceNumberValidation = () => {
       if (formInvoiceRequested === true) {
@@ -171,7 +171,7 @@ const OrderForm = () => {
       emailValidation() === true &&
       nameValidation() === true &&
       surnameValidation() === true &&
-      phoneValidation() === true &&
+      // phoneValidation() === true &&
       formInvoiceNumberValidation() === true &&
       termsConditionsAcceptValidation() === true
     ) {
@@ -207,7 +207,7 @@ const OrderForm = () => {
           email: formEmail,
           name: formName,
           surname: formSurname,
-          phone: formPhone,
+          // phone: formPhone,
           invoiceRequested: formInvoiceRequested,
           invoiceTaxId: formInvoiceNumber,
           termsConditionsAccepted: formTermsConditionsAccept,
@@ -362,7 +362,7 @@ const OrderForm = () => {
               />
             </label>
           </div>
-          <label>
+          {/* <label>
             Telefon:
             <input
               value={formPhone}
@@ -370,7 +370,7 @@ const OrderForm = () => {
               type="text"
               name="phone"
             />
-          </label>
+          </label> */}
 
           <div className="order-form__content__checkbox">
             <input

@@ -2,6 +2,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import { getStorage, ref, getDownloadURL, getMetadata } from 'firebase/storage';
 import reactImageSize from 'react-image-size';
+// import nodemailer from 'nodemailer';
 
 // Import the functions you need from the SDKs you need
 import 'firebase/storage';
@@ -308,6 +309,33 @@ const Purchased = () => {
     document.body.removeChild(a);
   };
 
+  // const sendEmailConfirmation = () => {
+  //   console.log('send email');
+
+  //   var transporter = nodemailer.createTransport({
+  //     service: 'gmail',
+  //     auth: {
+  //       user: 'sklep.kacperporada@gmail.com',
+  //       pass: '41236Sklep'
+  //     }
+  //   });
+
+  //   var mailOptions = {
+  //     from: 'sklep.kacperporada@gmail.com',
+  //     to: 'nifeprty@gmail.com',
+  //     subject: 'Sending Email using Node.js',
+  //     text: 'That was easy!'
+  //   };
+
+  //   transporter.sendMail(mailOptions, function(error, info){
+  //     if (error) {
+  //       console.log(error);
+  //     } else {
+  //       console.log('Email sent: ' + info.response);
+  //     }
+  //   });
+  // };
+
   return (
     <>
       <div className="purchased__container">
@@ -317,6 +345,7 @@ const Purchased = () => {
           <>
             {paymentConfirmed ? (
               <>
+                {/* <button onClick={sendEmailConfirmation}>send email</button> */}
                 <h1>Twoje zdjęcia</h1>
                 {/* <button
               onClick={() => {

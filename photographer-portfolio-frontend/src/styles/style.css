@@ -634,8 +634,6 @@ select {
   height: 60px;
   width: 60px;
   opacity: 0.5;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
 }
 
 .shop__steps__card .shop__steps__icon--eye {
@@ -797,6 +795,10 @@ select {
   cursor: pointer;
 }
 
+.album__toolbar .album__title button:hover {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
 .album__toolbar .album__toolbar__thumbnail-controls {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -829,10 +831,6 @@ select {
   border-radius: 4px;
   background-color: rgba(255, 255, 255, 0.64);
   border: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-.album__toolbar .album__toolbar__thumbnail-controls button:hover {
-  background-color: white;
 }
 
 .album__toolbar--compact {

@@ -83,7 +83,6 @@ const Album = () => {
   const handleImagePreview = (image) => {
     setPreviewImageUrl(image);
     setShowPreviewImage((prevState) => !prevState);
-    console.log(image);
   };
 
   const handleImagePreviewPrev = () => {
