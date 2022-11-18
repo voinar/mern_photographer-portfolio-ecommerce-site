@@ -1,4 +1,4 @@
-import { Store, useContext, Link } from '../imports'
+import {  Store, useContext, Link } from '../imports'
 
 const CookiesPopup = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);

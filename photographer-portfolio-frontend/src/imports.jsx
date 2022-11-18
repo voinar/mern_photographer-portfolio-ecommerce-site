@@ -4,6 +4,7 @@
 
 //hooks
 import {
+  React,
   useState,
   useEffect,
   useContext,
@@ -90,6 +91,7 @@ import IconSportsHandball from './img/icons/icon-sports-handball.svg';
 import IconSportsLifter from './img/icons/icon-sports-lifter.svg';
 
 export {
+  React,
   //hooks
   useState,
   useEffect,
@@ -97,10 +99,8 @@ export {
   useReducer,
   useRef,
   useCallback,
-
   //context store
   Store,
-
   //react router
   Routes,
   Route,
@@ -108,13 +108,11 @@ export {
   useNavigate,
   useParams,
   Link,
-
   //tools
   Helmet,
   v4,
   jsSHA,
   axios,
-
   //pages
   SectionWelcome,
   SectionContent,
@@ -129,7 +127,6 @@ export {
   Cookies,
   TermsConditions,
   Experiments,
-
   //components
   Navbar,
   AlbumCard,
@@ -137,12 +134,10 @@ export {
   ScrollToTop,
   Footer,
   OrderForm,
-
   //atoms
   Alert,
   CookiesPopup,
   LoadingSpinner,
-
   //assets
   NavLogo,
   FooterLogo,

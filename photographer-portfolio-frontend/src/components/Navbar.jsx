@@ -1,4 +1,5 @@
 import {
+  React,
   Store,
   useEffect,
   useState,
@@ -151,51 +152,33 @@ const Navbar = () => {
             <span>Sklep</span>
           </Link>
           <div className="navbar__shop__icons">
-            <div className="navbar__shop__userinfo">
-              {state?.userInfo?.email !== undefined ? (
-                <>
-                  <div className="navbar__shop__userinfo__usermenu">
-                    <span>
-                      {'Witaj, ' + state?.userInfo?.email?.split('@')[0] + '!'}
-                    </span>
-                    <button
-                      onClick={() => setUserMenuVisibility(!userMenuVisibility)}
-                    >
-                      <img
-                        src={IconChevron}
-                        alt="Konto użytkownika"
-                        title="Konto użytkownika"
-                      />
-                    </button>
-                    <ul
-                      className={
-                        userMenuVisibility
-                          ? 'navbar__shop__userinfo__usermenu__content hidden'
-                          : 'navbar__shop__userinfo__usermenu__content'
-                      }
-                    >
-                      <li>Moje zdjęcia</li>
-                      <li>Konto użytkownika</li>
-                      <li className="navbar__shop__userinfo__usermenu__content__logout">
-                        <button onClick={handleSignout}>Wyloguj</button>
-                      </li>
-                    </ul>
-                  </div>
-                </>
-              ) : (
-                <>
-                  {/* <span>Zaloguj</span>
-                  <Link to="/Logowanie">
-                    <img
-                      src={IconLogin}
-                      className="navbar__shop__icon"
-                      alt="zobacz koszyk"
-                      title="zobacz koszyk"
-                    />
-                  </Link> */}
-                </>
-              )}
-            </div>
+            {/* <div className="navbar__shop__userinfo">
+              <div className="navbar__shop__userinfo__usermenu">
+                <span>'Witaj!'</span>
+                <button
+                  onClick={() => setUserMenuVisibility(!userMenuVisibility)}
+                >
+                  <img
+                    src={IconChevron}
+                    alt="Konto użytkownika"
+                    title="Konto użytkownika"
+                  />
+                </button>
+                <ul
+                  className={
+                    userMenuVisibility
+                      ? 'navbar__shop__userinfo__usermenu__content hidden'
+                      : 'navbar__shop__userinfo__usermenu__content'
+                  }
+                >
+                  <li>Moje zdjęcia</li>
+                  <li>Konto użytkownika</li>
+                  <li className="navbar__shop__userinfo__usermenu__content__logout">
+                    <button onClick={handleSignout}>Wyloguj</button>
+                  </li>
+                </ul>
+              </div>
+            </div> */}
             <Link to="/Koszyk">
               <div className="navbar__shop__icon__cart">
                 {state?.cart?.cartItems?.length > 0 && (

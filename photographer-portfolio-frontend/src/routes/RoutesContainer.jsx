@@ -1,4 +1,5 @@
 import {
+  React,
   Routes,
   Route,
   SectionWelcome,
@@ -31,7 +32,7 @@ const RoutesContainer = () => (
     <Route path="/podsumowanie" element={<Checkout />} />
     <Route path="/zamawiam" element={<OrderForm />} />
     <Route path="/zakupione/:uniqueId" element={<Purchased />} />
-    <Route path="/kontakt" element={<Contact />} />
+    <Route path="/pomoc" element={<Contact />} />
     <Route path="/regulamin" element={<TermsConditions />} />
     <Route path="/cookies" element={<Cookies />} />
   </Routes>

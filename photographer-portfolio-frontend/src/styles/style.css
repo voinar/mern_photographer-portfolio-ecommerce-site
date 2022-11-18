@@ -599,6 +599,7 @@ select {
       -ms-flex-pack: justify;
           justify-content: space-between;
   border-radius: 4px;
+  cursor: default;
 }
 
 .shop__steps__card {

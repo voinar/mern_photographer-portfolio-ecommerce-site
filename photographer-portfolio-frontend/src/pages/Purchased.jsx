@@ -2,13 +2,13 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import { getStorage, ref, getDownloadURL, getMetadata } from 'firebase/storage';
 import reactImageSize from 'react-image-size';
-// import nodemailer from 'nodemailer';
 
 // Import the functions you need from the SDKs you need
 import 'firebase/storage';
 import 'firebase/firestore';
 
 import {
+  React,
   Store,
   useState,
   useContext,
@@ -27,11 +27,13 @@ const Purchased = () => {
   const { uniqueId } = useParams();
   console.log('useParams uniqueId', uniqueId);
 
+  const [purchasedImages, setPurchasedImages] = useState([]);
   const [largeImages, setLargeImages] = useState([]);
   const [largeImageMetadata, setLargeImageMetadata] = useState([]);
   const [largeImageDimensions, setLargeImageDimensions] = useState([]);
-  const [purchasedImages, setPurchasedImages] = useState([]);
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
+  const [userName, setUserName] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
   //1.use uniqueId from url params to find order in db.
@@ -86,7 +88,8 @@ const Purchased = () => {
                 contextDispatch({
                   type: 'CLEAR_CART',
                 });
-
+                setUserEmail(response.data.email);
+                setUserName(response.data.name);
                 setPaymentConfirmed(true);
                 setPurchasedImages(docSnap.data().cartItems);
               } else {
@@ -309,32 +312,72 @@ const Purchased = () => {
     document.body.removeChild(a);
   };
 
-  // const sendEmailConfirmation = () => {
-  //   console.log('send email');
+  //get dynamic variables for email body contents
+  const emailHTMLContent = () => {
+    // const getName = async () => {
+    //   const docRef = doc(db, 'orders', uniqueId);
+    //   const docSnap = await getDoc(docRef);
+    //   return docSnap.data().name;
+    // };
 
-  //   var transporter = nodemailer.createTransport({
-  //     service: 'gmail',
-  //     auth: {
-  //       user: 'sklep.kacperporada@gmail.com',
-  //       pass: '41236Sklep'
-  //     }
-  //   });
+    // console.log('order name', getName());
+    // console.log('order email',getEmail())
 
-  //   var mailOptions = {
-  //     from: 'sklep.kacperporada@gmail.com',
-  //     to: 'nifeprty@gmail.com',
-  //     subject: 'Sending Email using Node.js',
-  //     text: 'That was easy!'
-  //   };
+    return `<html>
+    <head></head>
+    <body>
+    <p>Hej, ${userName} </p>Dziękuję za zakup. Mam nadzieję, że te zdjęcia sprawią Ci wiele radości i będą wspaniałą pamiątką na przyszłość.</p>
+    <p> ${userEmail}</p>
+    <p>Linki do zakupionych zdjęć znajdziesz na tej stronie:</p>
+      <a href="https://www.kacperporada.pl/zakupione/${uniqueId}">
+        <button
+        style="
+        padding: 10px 26px;
+        background-color: rgba(0, 230, 0, .5);
+        color: black;
+        cursor: pointer;
+        border: 1px solid rgba(0,0,0,0.2);
+        border-radius: 4px">
+          Zobacz zdjęcia</button>
+      </a>
+    <p>Zdjęcia pozostaną dostępne do pobrania przez minimum 60 dni od daty zakupu. W razie jakichkolwiek problemów z pobraniem zdjęć skontaktuj się ze mną przez <a href="http://www.kacperporada.pl/pomoc">stronę pomocy</a>, lub po prostu odpowiedz na tę wiadomość.</p>
+    <p>Do zobaczenia w przyszłych wydarzeniach! :)</p>
+    <p>Kacper Porada Fotografia</p>
+    </body>
+    </html>`;
+  };
 
-  //   transporter.sendMail(mailOptions, function(error, info){
-  //     if (error) {
-  //       console.log(error);
-  //     } else {
-  //       console.log('Email sent: ' + info.response);
-  //     }
-  //   });
-  // };
+  const sendEmailConfirmation = () => {
+    console.log('sending email confirmation');
+    axios({
+      method: 'post',
+      url: 'https://api.sendinblue.com/v3/smtp/email',
+      headers: {
+        accept: 'application/json',
+        'api-key':
+          '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',
+        'content-type': 'application/json',
+      },
+      data: {
+        sender: {
+          name: 'Kacper Porada Fotografia',
+          email: 'sklep.kacperporada@gmail.com',
+        },
+        to: [
+          {
+            email: 'mpwojnar@gmail.com',
+            name: 'John Doe Receiver',
+          },
+        ],
+        subject: 'Twoje zdjęcia. Sklep KacperPorada.pl',
+        htmlContent: emailHTMLContent(),
+      },
+    })
+      .then(console.log('email sent successfully'))
+      .catch((error) => {
+        console.log('error while sending email:', error);
+      });
+  };
 
   return (
     <>
@@ -345,7 +388,7 @@ const Purchased = () => {
           <>
             {paymentConfirmed ? (
               <>
-                {/* <button onClick={sendEmailConfirmation}>send email</button> */}
+                <button onClick={sendEmailConfirmation}>send email</button>
                 <h1>Twoje zdjęcia</h1>
                 {/* <button
               onClick={() => {
