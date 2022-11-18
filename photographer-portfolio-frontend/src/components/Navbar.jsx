@@ -22,7 +22,9 @@ import {
 } from '../imports';
 
 const Navbar = () => {
-  const { state, dispatch: contextDispatch } = useContext(Store);
+  const { state
+    // , dispatch: contextDispatch
+  } = useContext(Store);
   const location = useLocation();
 
   //navbar behavior on scroll in desktop view. menu shrinks height and gains a solid background.
