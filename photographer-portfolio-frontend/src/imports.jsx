@@ -4,7 +4,6 @@
 
 //hooks
 import {
-  React,
   useState,
   useEffect,
   useContext,
@@ -91,7 +90,6 @@ import IconSportsHandball from './img/icons/icon-sports-handball.svg';
 import IconSportsLifter from './img/icons/icon-sports-lifter.svg';
 
 export {
-  React,
   //hooks
   useState,
   useEffect,

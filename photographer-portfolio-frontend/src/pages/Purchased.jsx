@@ -32,8 +32,8 @@ const Purchased = () => {
   const [largeImageMetadata, setLargeImageMetadata] = useState([]);
   const [largeImageDimensions, setLargeImageDimensions] = useState([]);
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
-  const [userEmail, setUserEmail] = useState('');
   const [userName, setUserName] = useState('');
+  const [userEmail, setUserEmail] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
   //1.use uniqueId from url params to find order in db.
@@ -340,7 +340,7 @@ const Purchased = () => {
         border-radius: 4px">
           Zobacz zdjęcia</button>
       </a>
-    <p>Zdjęcia pozostaną dostępne do pobrania przez minimum 60 dni od daty zakupu. W razie jakichkolwiek problemów z pobraniem zdjęć skontaktuj się ze mną przez <a href="http://www.kacperporada.pl/pomoc">stronę pomocy</a>, lub po prostu odpowiedz na tę wiadomość.</p>
+    <p>Zdjęcia pozostaną dostępne do pobrania przez 60 dni od daty zakupu. W razie jakichkolwiek problemów z pobraniem zdjęć skontaktuj się ze mną przez <a href="http://www.kacperporada.pl/pomoc">stronę pomocy</a>, lub po prostu odpowiedz na tę wiadomość.</p>
     <p>Do zobaczenia w przyszłych wydarzeniach! :)</p>
     <p>Kacper Porada Fotografia</p>
     </body>
