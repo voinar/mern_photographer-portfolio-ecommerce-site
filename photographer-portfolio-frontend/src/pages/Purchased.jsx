@@ -55,6 +55,8 @@ const Purchased = () => {
 
       if (docSnap.exists() && docSnap.data().isPaid === true) {
         setPurchasedImages(docSnap.data().cartItems);
+        setUserEmail(docSnap.data().email);
+        setUserName(docSnap.data().name);
         setPaymentConfirmed(true);
         setIsLoading(false);
       }
@@ -62,6 +64,8 @@ const Purchased = () => {
       if (docSnap.exists() && docSnap.data().isPaid === false) {
         console.log('order seems unpaid');
         evaluateOrderStatus(); //find payment confirmation in api endpoint; if none found then display error message
+        setUserEmail(docSnap.data().email);
+        setUserName(docSnap.data().name);
 
         async function evaluateOrderStatus() {
           console.log('getPaymentConfirmation start');
@@ -88,8 +92,6 @@ const Purchased = () => {
                 contextDispatch({
                   type: 'CLEAR_CART',
                 });
-                setUserEmail(response.data.email);
-                setUserName(response.data.name);
                 setPaymentConfirmed(true);
                 setPurchasedImages(docSnap.data().cartItems);
               } else {
