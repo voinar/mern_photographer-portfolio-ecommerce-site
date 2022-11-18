@@ -18,7 +18,7 @@ import {
   IconMenu,
   IconClose,
   // IconLogin,
-  IconChevron,
+  // IconChevron,
 } from '../imports';
 
 const Navbar = () => {
@@ -29,7 +29,7 @@ const Navbar = () => {
   const [scroll, setScroll] = useState(false);
   const navRef = useRef(); //used to apply solid background class on scroll
 
-  const [userMenuVisibility, setUserMenuVisibility] = useState('false');
+  // const [userMenuVisibility, setUserMenuVisibility] = useState('false');
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -49,11 +49,11 @@ const Navbar = () => {
     // document.body.style.overflow = 'scroll';
   };
 
-  const handleSignout = () => {
-    contextDispatch({ type: 'USER_SIGNOUT' });
-    localStorage.removeItem('userInfo');
-    console.log('logout');
-  };
+  // const handleSignout = () => {
+  //   contextDispatch({ type: 'USER_SIGNOUT' });
+  //   localStorage.removeItem('userInfo');
+  //   console.log('logout');
+  // };
 
   const renderNavbar = () => {
     if (
