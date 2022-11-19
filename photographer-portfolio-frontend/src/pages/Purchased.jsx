@@ -339,9 +339,9 @@ const Purchased = () => {
     return `<html>
     <head></head>
     <body>
-    <p>Hej, ${userName} </p>Dziękuję za zakup. Mam nadzieję, że te zdjęcia sprawią Ci wiele radości i będą wspaniałą pamiątką na przyszłość.</p>
-    <p> ${userEmail}</p>
-    <p>Linki do zakupionych zdjęć znajdziesz na tej stronie:</p>
+    <div style="border: 1px solid grey; border-radius: 8px">
+    <p>Hej,</p> <p style="text-transform: capitalize">${userName}</p> Dziękuję za zakup. Mam nadzieję, że te zdjęcia sprawią Ci wiele radości i będą wspaniałą pamiątką na przyszłość.</p>
+    <p>Linki do zakupionych zdjęć oraz ich podgląd znajdziesz na tej stronie:</p>
       <a href="https://www.kacperporada.pl/zakupione/${uniqueId}">
         <button
         style="
@@ -356,6 +356,7 @@ const Purchased = () => {
     <p>Zdjęcia pozostaną dostępne do pobrania przez 60 dni od daty zakupu. W razie jakichkolwiek problemów z pobraniem zdjęć skontaktuj się ze mną przez <a href="http://www.kacperporada.pl/pomoc">stronę pomocy</a>, lub po prostu odpowiedz na tę wiadomość.</p>
     <p>Do zobaczenia w przyszłych wydarzeniach! :)</p>
     <p>Kacper Porada Fotografia</p>
+    </div>
     </body>
     </html>`;
   };
