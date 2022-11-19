@@ -32,6 +32,7 @@ const Purchased = () => {
   const [largeImageMetadata, setLargeImageMetadata] = useState([]);
   const [largeImageDimensions, setLargeImageDimensions] = useState([]);
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -57,15 +58,19 @@ const Purchased = () => {
         setPurchasedImages(docSnap.data().cartItems);
         setUserEmail(docSnap.data().email);
         setUserName(docSnap.data().name);
+        setEmailSent(docSnap.data().emailSent);
         setPaymentConfirmed(true);
         setIsLoading(false);
       }
 
       if (docSnap.exists() && docSnap.data().isPaid === false) {
-        console.log('order seems unpaid');
+        console.log(
+          'order is created but seems unpaid. veryfying order status.'
+        );
         evaluateOrderStatus(); //find payment confirmation in api endpoint; if none found then display error message
         setUserEmail(docSnap.data().email);
         setUserName(docSnap.data().name);
+        setEmailSent(docSnap.data().emailSent);
 
         async function evaluateOrderStatus() {
           console.log('getPaymentConfirmation start');
@@ -103,13 +108,19 @@ const Purchased = () => {
             console.error(error);
           }
         }
-        // setPurchasedImages(docSnap.data().cartItems);
       } else {
         console.log('error: order not found in db. unable to load images.');
         setIsLoading(false);
       }
+
+      //send confirmation email
+      if (emailSent === false) {
+        console.log('confirmation email not sent yet');
+      } else {
+        console.log('confirmation email already sent');
+      }
     })();
-  }, [uniqueId, contextDispatch]);
+  }, [uniqueId, contextDispatch, emailSent]);
 
   //payment verification
   //1. find payment confirmation with sessionId === uniqueId in api data array
@@ -351,6 +362,7 @@ const Purchased = () => {
 
   const sendEmailConfirmation = () => {
     console.log('sending email confirmation');
+
     axios({
       method: 'post',
       url: 'https://api.sendinblue.com/v3/smtp/email',
@@ -367,15 +379,39 @@ const Purchased = () => {
         },
         to: [
           {
-            email: 'mpwojnar@gmail.com',
-            name: 'John Doe Receiver',
+            email: userEmail,
+            name: userName,
           },
         ],
         subject: 'Twoje zdjęcia. Sklep KacperPorada.pl',
         htmlContent: emailHTMLContent(),
       },
     })
-      .then(console.log('email sent successfully'))
+      .then(
+        console.log('email sent successfully')(
+          //update order status in db to emailSent: true
+          async () => {
+            console.log('initiate payment verification');
+            const docRef = doc(db, 'orders', uniqueId);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+              console.log('Document data:', docSnap.data().isPaid);
+              if (docSnap.data().emailSent === false) {
+                console.log('confirming email as sent in db');
+                setDoc(docRef, { emailSent: true }, { merge: true }); //set order as paid in db
+                setEmailSent(true);
+              } else {
+                console.log(
+                  'unable to confirm email status as sent upon accessing db'
+                );
+              }
+            } else {
+              console.log('error: order not found in db');
+            }
+          }
+        )()
+      )
       .catch((error) => {
         console.log('error while sending email:', error);
       });

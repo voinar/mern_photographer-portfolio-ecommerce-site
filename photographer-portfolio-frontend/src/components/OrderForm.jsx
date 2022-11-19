@@ -213,6 +213,7 @@ const OrderForm = () => {
           invoiceTaxId: formInvoiceNumber,
           termsConditionsAccepted: formTermsConditionsAccept,
           isPaid: false,
+          emailSent: false,
           cartItems: state.cart.cartItems,
           dateCreated: new Date(),
           orderId: state.cart.uniqueId,
