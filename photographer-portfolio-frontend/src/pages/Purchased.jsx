@@ -322,7 +322,7 @@ const Purchased = () => {
       }
     };
     paymentVerification(); //send back the payment confirmation to payment gateway api
-  }, [state.paymentVerification, uniqueId, userName, userEmail]);
+  }, [state.paymentVerification, uniqueId, userName, userEmail, emailSent]);
 
   //get full versions of images after confirming order status as paid
   useEffect(() => {
