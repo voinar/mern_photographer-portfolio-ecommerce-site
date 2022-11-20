@@ -32,7 +32,7 @@ const Purchased = () => {
   const [largeImageMetadata, setLargeImageMetadata] = useState([]);
   const [largeImageDimensions, setLargeImageDimensions] = useState([]);
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
-  // const [emailSent, setEmailSent] = useState('');
+  const [emailSent, setEmailSent] = useState(null);
   const [userName, setUserName] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -58,7 +58,7 @@ const Purchased = () => {
         setPurchasedImages(docSnap.data().cartItems);
         setUserEmail(docSnap.data().email);
         setUserName(docSnap.data().name);
-        // setEmailSent(docSnap.data().emailSent);
+        setEmailSent(docSnap.data().emailSent);
         setPaymentConfirmed(true);
         setIsLoading(false);
         // console.log('docSnap.exists() && docSnap.data().isPaid === true emailSent', docSnap.data().emailSent)
@@ -280,14 +280,17 @@ const Purchased = () => {
                           const docRef = doc(db, 'orders', uniqueId);
                           const docSnap = await getDoc(docRef);
 
-                          if (docSnap.data().emailSent === false) {
+                          if (
+                            docSnap.data().emailSent === false &&
+                            emailSent === false
+                          ) {
                             console.log('confirming email as sent in db');
                             setDoc(
                               docRef,
                               { emailSent: true },
                               { merge: true }
                             ); //set order as paid in db
-                            // setEmailSent(true);
+                            setEmailSent(true);
                           } else {
                             console.log(
                               'unable to confirm email status as sent upon accessing db. current emailSent status:',
