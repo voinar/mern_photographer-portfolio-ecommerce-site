@@ -288,8 +288,10 @@ const Purchased = () => {
                           setDoc(docRef, { emailSent: true }, { merge: true });
                           setEmailSent(true);
                           console.log(
-                            'email sending completed. state status:',
-                            emailSent
+                            'email sending completed. emailSent in state:',
+                            emailSent,
+                            ' vs emailSent in db:',
+                            docSnap.data().emailSent
                           );
                         } catch (error) {
                           console.log(
