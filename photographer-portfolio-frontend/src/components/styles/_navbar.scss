@@ -259,17 +259,6 @@
   }
 }
 
-/* Media Query for small monitors */
-@media (max-width: 1440px) {
-  .navbar {
-    // background-color: pink;width:
-  }
-
-  .navbar__content {
-    // padding: 0;
-  }
-}
-
 /* Media Query for Tablets Ipads portrait mode */
 @media (max-width: 1024px) {
   .navbar {
@@ -336,16 +325,27 @@
     background-color: black;
   }
 }
-/* Media Query for low resolution Tablets, Ipads */
-@media (min-width: 481px) and (max-width: 767px) {
-  .navbar {
-    // background-color: yellow;
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  .navbar__shop__header {
+    font-size: 20px;
+    font-weight: 300;
   }
 }
-
-/* Media Query for Mobile Devices */
-@media (max-width: 480px) {
-  .navbar {
-    // background-color: red;
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+  .navbar__shop {
+    padding: 10px 40px 10px 40px;
   }
+
+  .navbar__shop__logo {
+    width: 100px;
+  }
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {
 }

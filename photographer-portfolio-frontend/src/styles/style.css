@@ -671,12 +671,8 @@ select {
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  gap: 100px 60px;
-  margin-left: 10px;
+  gap: 80px;
   margin-top: 50px;
-  -webkit-box-pack: left;
-      -ms-flex-pack: left;
-          justify-content: left;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -696,7 +692,6 @@ select {
 }
 
 .shop__card {
-  width: 400px;
   height: auto;
   opacity: 0.9;
 }
@@ -734,7 +729,7 @@ select {
 /* Small small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .shop__container {
-    padding: 80px 40px !important;
+    padding: 80px 20px !important;
   }
 }
 
@@ -742,6 +737,10 @@ select {
 @media only screen and (max-width: 768px) {
   .shop__steps__cards .shop__steps__icon {
     display: none;
+  }
+  .shop__card {
+    padding: 10px;
+    background-color: red;
   }
 }
 
@@ -790,7 +789,7 @@ select {
   background-color: #f2f2f2;
   color: #3a3939;
   min-height: 70vh;
-  padding: 80px 100px 200px;
+  padding: 80px 100px 80px;
 }
 
 .album__container button:hover {
@@ -808,7 +807,7 @@ select {
           flex-direction: row;
   position: fixed;
   top: 0px;
-  padding: 120px 0px 20px 0px;
+  padding: 120px 0px 0px 0px;
   display: flex;
   -ms-flex-direction: column;
       flex-direction: column;
@@ -828,6 +827,7 @@ select {
       -ms-flex-direction: row;
           flex-direction: row;
   gap: 2px;
+  width: 86%;
 }
 
 .album__toolbar .album__title img {
@@ -862,7 +862,7 @@ select {
       -ms-flex-direction: row;
           flex-direction: row;
   gap: 10px;
-  margin: 0 70px 0 auto;
+  margin-left: auto;
 }
 
 .album__toolbar .album__toolbar__thumbnail-controls img {
@@ -910,9 +910,9 @@ select {
 
 .album__card {
   opacity: 0.92;
-  -webkit-transition: all 1s;
-  transition: all 1s;
-  --webkit-transition: -webkit-filter 500ms linear;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  --webkit-transition: -webkit-filter 1000ms linear;
 }
 
 .album__card img {
@@ -929,8 +929,6 @@ select {
 
 .album__card:hover {
   opacity: 1;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
 }
 
 .album__card:hover img {
@@ -1096,6 +1094,16 @@ select {
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 600px) {
+  .album__container {
+    padding: 10px 10px !important;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  .album__toolbar__thumbnail-controls {
+    display: none !important;
+  }
   .album__cards {
     width: 100%;
   }
@@ -1105,17 +1113,10 @@ select {
   }
 }
 
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (max-width: 768px) {
-  .album__toolbar__thumbnail-controls {
-    display: none !important;
-  }
-}
-
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (max-width: 992px) {
   .album__container {
-    padding: 60px 10px;
+    padding: 60px 40px;
   }
 }
 
@@ -1936,7 +1937,6 @@ select {
   transition: ease-in 0.3s;
 }
 
-/* Media Query for small monitors */
 /* Media Query for Tablets Ipads portrait mode */
 @media (max-width: 1024px) {
   .navbar {
@@ -2008,8 +2008,26 @@ select {
   }
 }
 
-/* Media Query for low resolution Tablets, Ipads */
-/* Media Query for Mobile Devices */
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  .navbar__shop__header {
+    font-size: 20px;
+    font-weight: 300;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+  .navbar__shop {
+    padding: 10px 40px 10px 40px;
+  }
+  .navbar__shop__logo {
+    width: 100px;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
 .footer {
   height: auto;
   width: 100vw;
