@@ -260,45 +260,47 @@ const Purchased = () => {
                       ) {
                         console.log('confirming email as sent in db');
 
-                        try {
-                          axios({
-                            method: 'post',
-                            url: 'https://api.sendinblue.com/v3/smtp/email',
-                            headers: {
-                              accept: 'application/json',
-                              'api-key':
-                                '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',
-                              'content-type': 'application/json',
+                        axios({
+                          method: 'post',
+                          url: 'https://api.sendinblue.com/v3/smtp/email',
+                          headers: {
+                            accept: 'application/json',
+                            'api-key':
+                              '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',
+                            'content-type': 'application/json',
+                          },
+                          data: {
+                            sender: {
+                              name: 'Kacper Porada Fotografia',
+                              email: 'sklep.kacperporada@gmail.com',
                             },
-                            data: {
-                              sender: {
-                                name: 'Kacper Porada Fotografia',
-                                email: 'sklep.kacperporada@gmail.com',
+                            to: [
+                              {
+                                email: userEmail,
+                                name: userName,
                               },
-                              to: [
-                                {
-                                  email: userEmail,
-                                  name: userName,
-                                },
-                              ],
-                              subject: 'Twoje zdjęcia. Sklep KacperPorada.pl',
-                              htmlContent: emailHTMLContent(),
-                            },
-                          });
-                          setDoc(docRef, { emailSent: true }, { merge: true });
-                          setEmailSent(true);
-                          console.log(
-                            'email sending completed. emailSent in state:',
-                            emailSent,
-                            ' vs emailSent in db:',
-                            docSnap.data().emailSent
-                          );
-                        } catch (error) {
-                          console.log(
-                            'error while sending confirmation email:',
-                            error
-                          );
-                        }
+                            ],
+                            subject: 'Twoje zdjęcia. Sklep KacperPorada.pl',
+                            htmlContent: emailHTMLContent(),
+                          },
+                        });
+                        
+                        setDoc(docRef, { emailSent: true }, { merge: true });
+                        setEmailSent(true);
+
+                        console.log(
+                          'email sending completed. emailSent in state:',
+                          emailSent,
+                          ' vs emailSent in db:',
+                          docSnap.data().emailSent
+                        );
+                        // }
+                        // catch (error) {
+                        //   console.log(
+                        //     'error while sending confirmation email:',
+                        //     error
+                        //   );
+                        // }
                       } else {
                         console.log(
                           'unable to confirm email status as sent upon accessing db. current emailSent status:',
