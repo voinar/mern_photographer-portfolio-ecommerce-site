@@ -32,9 +32,9 @@ const Purchased = () => {
   const [largeImageMetadata, setLargeImageMetadata] = useState([]);
   const [largeImageDimensions, setLargeImageDimensions] = useState([]);
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
-  const [emailSent, setEmailSent] = useState('');
-  const [userName, setUserName] = useState('');
-  const [userEmail, setUserEmail] = useState('');
+  // const [emailSent, setEmailSent] = useState('');
+  const [userName, setUserName] = useState(null);
+  const [userEmail, setUserEmail] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   //1.use uniqueId from url params to find order in db.
@@ -58,7 +58,7 @@ const Purchased = () => {
         setPurchasedImages(docSnap.data().cartItems);
         setUserEmail(docSnap.data().email);
         setUserName(docSnap.data().name);
-        setEmailSent(docSnap.data().emailSent);
+        // setEmailSent(docSnap.data().emailSent);
         setPaymentConfirmed(true);
         setIsLoading(false);
         // console.log('docSnap.exists() && docSnap.data().isPaid === true emailSent', docSnap.data().emailSent)
@@ -68,11 +68,11 @@ const Purchased = () => {
         console.log(
           'order is created but seems unpaid. veryfying order status.'
         );
-        evaluateOrderStatus(); //find payment confirmation in api endpoint; if none found then display error message
         setUserEmail(docSnap.data().email);
         setUserName(docSnap.data().name);
-        setEmailSent(docSnap.data().emailSent);
+        // setEmailSent(docSnap.data().emailSent);
 
+        evaluateOrderStatus(); //find payment confirmation in api endpoint; if none found then display error message
         async function evaluateOrderStatus() {
           console.log('getPaymentConfirmation start');
           try {
@@ -100,7 +100,6 @@ const Purchased = () => {
                 });
                 setPaymentConfirmed(true);
                 setPurchasedImages(docSnap.data().cartItems);
-                sendEmailConfirmation(); // send order confirmation to user's email
               } else {
                 console.log('payment not found in api endpoint');
                 setIsLoading(false);
@@ -204,9 +203,8 @@ const Purchased = () => {
               'payment confirmation sent. verification res',
               response
             );
-
             (async () => {
-              console.log('initiate payment verification');
+              console.log('update order status as paid');
               const docRef = doc(db, 'orders', uniqueId);
               const docSnap = await getDoc(docRef);
 
@@ -217,6 +215,7 @@ const Purchased = () => {
                   // paymentVerification(); //send back the payment confirmation to payment gateway api
                   setDoc(docRef, { isPaid: true }, { merge: true }); //set order as paid in db
                   setPaymentConfirmed(true);
+                  sendEmailConfirmation();
                 } else {
                   console.log('payment confirmation: order paid');
                   setPaymentConfirmed(true);
@@ -384,10 +383,11 @@ const Purchased = () => {
           if (docSnap.data().emailSent === false) {
             console.log('confirming email as sent in db');
             setDoc(docRef, { emailSent: true }, { merge: true }); //set order as paid in db
-            setEmailSent(true);
+            // setEmailSent(true);
           } else {
             console.log(
-              'unable to confirm email status as sent upon accessing db'
+              'unable to confirm email status as sent upon accessing db. current emailSent status:',
+              docSnap.data().emailSent
             );
           }
         })()
@@ -396,6 +396,8 @@ const Purchased = () => {
         console.log('error while sending email:', error);
       });
   };
+
+  useEffect(() => {}, []);
 
   return (
     <>
