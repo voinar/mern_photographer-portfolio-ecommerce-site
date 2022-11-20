@@ -32,7 +32,7 @@ const Purchased = () => {
   const [largeImageMetadata, setLargeImageMetadata] = useState([]);
   const [largeImageDimensions, setLargeImageDimensions] = useState([]);
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
-  const [emailSent, setEmailSent] = useState(null);
+  // const [emailSent, setEmailSent] = useState(null);
   const [userName, setUserName] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -58,7 +58,7 @@ const Purchased = () => {
         setPurchasedImages(docSnap.data().cartItems);
         setUserEmail(docSnap.data().email);
         setUserName(docSnap.data().name);
-        setEmailSent(docSnap.data().emailSent);
+        // setEmailSent(docSnap.data().emailSent);
         setPaymentConfirmed(true);
         setIsLoading(false);
         // console.log('docSnap.exists() && docSnap.data().isPaid === true emailSent', docSnap.data().emailSent)
@@ -255,8 +255,7 @@ const Purchased = () => {
                       const docSnap = await getDoc(docRef);
 
                       if (
-                        docSnap.data().emailSent === false &&
-                        emailSent !== true
+                        docSnap.data().emailSent === false
                       ) {
                         console.log('confirming email as sent in db');
 
@@ -284,14 +283,13 @@ const Purchased = () => {
                             htmlContent: emailHTMLContent(),
                           },
                         });
-                        
+
                         setDoc(docRef, { emailSent: true }, { merge: true });
-                        setEmailSent(true);
 
                         console.log(
-                          'email sending completed. emailSent in state:',
-                          emailSent,
-                          ' vs emailSent in db:',
+                          // 'email sending completed. emailSent in state:',
+                          // emailSent,
+                          'emailSent in db:',
                           docSnap.data().emailSent
                         );
                         // }
@@ -328,7 +326,7 @@ const Purchased = () => {
       }
     };
     paymentVerification(); //send back the payment confirmation to payment gateway api
-  }, [state.paymentVerification, uniqueId, userName, userEmail, emailSent]);
+  }, [state.paymentVerification, uniqueId, userName, userEmail]);
 
   //get full versions of images after confirming order status as paid
   useEffect(() => {
