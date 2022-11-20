@@ -203,10 +203,10 @@ const Purchased = () => {
               'payment confirmation sent. verification res',
               response
             );
-            (() => {
+            (async () => {
               console.log('update order status as paid');
               const docRef = doc(db, 'orders', uniqueId);
-              const docSnap = getDoc(docRef);
+              const docSnap = await getDoc(docRef);
 
               if (docSnap.exists()) {
                 console.log('is order paid?', docSnap.data().isPaid);
@@ -247,15 +247,16 @@ const Purchased = () => {
                   const sendEmailConfirmation = () => {
                     console.log('sending email confirmation');
                     //update order status in db to emailSent: true
-                    (() => {
+                    (async () => {
                       console.log(
                         'email sent successfully. updating order status in db...'
                       );
                       const docRef = doc(db, 'orders', uniqueId);
-                      const docSnap = getDoc(docRef);
+                      const docSnap = await getDoc(docRef);
 
                       if (
-                        docSnap.data().emailSent === false
+                        docSnap.data().emailSent === false &&
+                        emailSent !== true
                       ) {
                         console.log('confirming email as sent in db');
 
@@ -286,6 +287,10 @@ const Purchased = () => {
                           });
                           setDoc(docRef, { emailSent: true }, { merge: true });
                           setEmailSent(true);
+                          console.log(
+                            'email sending completed. state status:',
+                            emailSent
+                          );
                         } catch (error) {
                           console.log(
                             'error while sending confirmation email:',
