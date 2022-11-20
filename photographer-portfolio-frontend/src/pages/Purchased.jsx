@@ -203,10 +203,10 @@ const Purchased = () => {
               'payment confirmation sent. verification res',
               response
             );
-            (async () => {
+            (() => {
               console.log('update order status as paid');
               const docRef = doc(db, 'orders', uniqueId);
-              const docSnap = await getDoc(docRef);
+              const docSnap = getDoc(docRef);
 
               if (docSnap.exists()) {
                 console.log('is order paid?', docSnap.data().isPaid);
@@ -247,16 +247,15 @@ const Purchased = () => {
                   const sendEmailConfirmation = () => {
                     console.log('sending email confirmation');
                     //update order status in db to emailSent: true
-                    (async () => {
+                    (() => {
                       console.log(
                         'email sent successfully. updating order status in db...'
                       );
                       const docRef = doc(db, 'orders', uniqueId);
-                      const docSnap = await getDoc(docRef);
+                      const docSnap = getDoc(docRef);
 
                       if (
-                        docSnap.data().emailSent === false &&
-                        emailSent !== true
+                        docSnap.data().emailSent === false
                       ) {
                         console.log('confirming email as sent in db');
 
