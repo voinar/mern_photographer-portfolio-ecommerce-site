@@ -125,9 +125,13 @@ button {
   border: 0px;
   padding: 0;
   cursor: pointer !important;
-
+  
   img {
     border: 0px;
+    min-width: 30px;
+    align-self: center;
+    transform: rotate(90deg);
+    cursor: pointer;
   }
 }
 

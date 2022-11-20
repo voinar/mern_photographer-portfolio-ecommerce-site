@@ -1142,15 +1142,8 @@ select {
   margin-bottom: 12px;
 }
 
-.cart__return img {
-  height: 26px;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
-  cursor: pointer;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+.cart__return h1 {
+  width: auto;
 }
 
 .cart__sections {
@@ -1600,6 +1593,21 @@ select {
   background-color: rgba(255, 255, 255, 0.85);
   padding: 180px 100px 200px;
   height: auto;
+}
+
+.terms__container h3 {
+  font-weight: 400;
+}
+
+.terms__container li {
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  .terms__container {
+    padding: 100px 20px;
+  }
 }
 
 .cookies__container {
@@ -2594,6 +2602,13 @@ button {
 
 .btn--back img {
   border: 0px;
+  min-width: 30px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  cursor: pointer;
 }
 
 .hidden {
