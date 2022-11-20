@@ -212,10 +212,38 @@ const Purchased = () => {
                 console.log('is order paid?', docSnap.data().isPaid);
                 if (docSnap.data().isPaid === false) {
                   console.log('run payment verification');
+
                   // paymentVerification(); //send back the payment confirmation to payment gateway api
                   setDoc(docRef, { isPaid: true }, { merge: true }); //set order as paid in db
                   setPaymentConfirmed(true);
 
+                  //email confirmation. get dynamic variables for email body contents
+                  const emailHTMLContent = () => {
+                    return `<html>
+                      <head></head>
+                      <body>
+                      <p>Hej <span style="text-transform: capitalize">${userName},</span></p>
+                      <p>Dziękuję za zakup. Mam nadzieję, że te zdjęcia sprawią Ci wiele radości i będą wspaniałą pamiątką na przyszłość.</p>
+                      <p>Linki do zakupionych zdjęć oraz ich podgląd znajdziesz na tej stronie:</p>
+                        <a href="https://www.kacperporada.pl/zakupione/${uniqueId}">
+                          <button
+                          style="
+                          padding: 10px 26px;
+                          background-color: rgba(0, 230, 0, .5);
+                          color: black;
+                          cursor: pointer;
+                          border: 1px solid rgba(0,0,0,0.2);
+                          border-radius: 4px">
+                            Zobacz zdjęcia</button>
+                        </a>
+                      <p>Zdjęcia pozostaną dostępne do pobrania przez 60 dni od daty zakupu. W razie jakichkolwiek problemów z pobraniem zdjęć skontaktuj się ze mną przez <a href="http://www.kacperporada.pl/pomoc">stronę pomocy</a>, lub po prostu odpowiedz na tę wiadomość.</p>
+                      <p>Do zobaczenia w przyszłych wydarzeniach! :)</p>
+                      <p>Kacper Porada Fotografia</p>
+                      </body>
+                      </html>`;
+                  };
+
+                  //send email to user
                   const sendEmailConfirmation = () => {
                     console.log('sending email confirmation');
 
@@ -254,7 +282,11 @@ const Purchased = () => {
 
                           if (docSnap.data().emailSent === false) {
                             console.log('confirming email as sent in db');
-                            setDoc(docRef, { emailSent: true }, { merge: true }); //set order as paid in db
+                            setDoc(
+                              docRef,
+                              { emailSent: true },
+                              { merge: true }
+                            ); //set order as paid in db
                             // setEmailSent(true);
                           } else {
                             console.log(
@@ -269,7 +301,6 @@ const Purchased = () => {
                       });
                   };
                   sendEmailConfirmation();
-
                 } else {
                   console.log('payment confirmation: order paid');
                   setPaymentConfirmed(true);
@@ -288,7 +319,7 @@ const Purchased = () => {
       }
     };
     paymentVerification(); //send back the payment confirmation to payment gateway api
-  }, [state.paymentVerification, uniqueId]);
+  }, [state.paymentVerification, uniqueId, userName, userEmail]);
 
   //get full versions of images after confirming order status as paid
   useEffect(() => {
@@ -371,34 +402,6 @@ const Purchased = () => {
     a.click();
     document.body.removeChild(a);
   };
-
-  //get dynamic variables for email body contents
-  const emailHTMLContent = () => {
-    return `<html>
-    <head></head>
-    <body>
-    <p>Hej <span style="text-transform: capitalize">${userName},</span></p>
-    <p>Dziękuję za zakup. Mam nadzieję, że te zdjęcia sprawią Ci wiele radości i będą wspaniałą pamiątką na przyszłość.</p>
-    <p>Linki do zakupionych zdjęć oraz ich podgląd znajdziesz na tej stronie:</p>
-      <a href="https://www.kacperporada.pl/zakupione/${uniqueId}">
-        <button
-        style="
-        padding: 10px 26px;
-        background-color: rgba(0, 230, 0, .5);
-        color: black;
-        cursor: pointer;
-        border: 1px solid rgba(0,0,0,0.2);
-        border-radius: 4px">
-          Zobacz zdjęcia</button>
-      </a>
-    <p>Zdjęcia pozostaną dostępne do pobrania przez 60 dni od daty zakupu. W razie jakichkolwiek problemów z pobraniem zdjęć skontaktuj się ze mną przez <a href="http://www.kacperporada.pl/pomoc">stronę pomocy</a>, lub po prostu odpowiedz na tę wiadomość.</p>
-    <p>Do zobaczenia w przyszłych wydarzeniach! :)</p>
-    <p>Kacper Porada Fotografia</p>
-    </body>
-    </html>`;
-  };
-
-
 
   return (
     <>
