@@ -6,7 +6,7 @@ const AlbumImage = (props) => {
       src={props.url}
     >
       <span style={{ display: 'none' }}>{props.id}</span>
-      <img src={props.url} alt="" />
+      <img src={props.url} alt="zdjęcie" loading="lazy" />
     </div>
   );
 };

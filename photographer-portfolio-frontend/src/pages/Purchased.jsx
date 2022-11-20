@@ -32,7 +32,7 @@ const Purchased = () => {
   const [largeImageMetadata, setLargeImageMetadata] = useState([]);
   const [largeImageDimensions, setLargeImageDimensions] = useState([]);
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
-  const [emailSent, setEmailSent] = useState(false);
+  const [emailSent, setEmailSent] = useState('');
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -61,6 +61,7 @@ const Purchased = () => {
         setEmailSent(docSnap.data().emailSent);
         setPaymentConfirmed(true);
         setIsLoading(false);
+        // console.log('docSnap.exists() && docSnap.data().isPaid === true emailSent', docSnap.data().emailSent)
       }
 
       if (docSnap.exists() && docSnap.data().isPaid === false) {
@@ -99,6 +100,7 @@ const Purchased = () => {
                 });
                 setPaymentConfirmed(true);
                 setPurchasedImages(docSnap.data().cartItems);
+                sendEmailConfirmation(); // send order confirmation to user's email
               } else {
                 console.log('payment not found in api endpoint');
                 setIsLoading(false);
@@ -109,18 +111,11 @@ const Purchased = () => {
           }
         }
       } else {
-        console.log('error: order not found in db. unable to load images.');
+        console.log('error: order not found in api endpoint.');
         setIsLoading(false);
       }
-
-      //send confirmation email
-      if (emailSent === false) {
-        console.log('confirmation email not sent yet');
-      } else {
-        console.log('confirmation email already sent');
-      }
     })();
-  }, [uniqueId, contextDispatch, emailSent]);
+  }, [uniqueId, contextDispatch]);
 
   //payment verification
   //1. find payment confirmation with sessionId === uniqueId in api data array
@@ -187,9 +182,8 @@ const Purchased = () => {
         const signSha = shaObj.getHash('HEX'); //konwersja shaObj do hex
 
         axios({
-          method: 'put', //metoda
-          url: process.env.REACT_APP_PAYMENT_GATEWAY_URLVERIFY, //sandbox url
-
+          method: 'put',
+          url: process.env.REACT_APP_PAYMENT_GATEWAY_URLVERIFY,
           auth: {
             username: username,
             password: password,
@@ -217,7 +211,7 @@ const Purchased = () => {
               const docSnap = await getDoc(docRef);
 
               if (docSnap.exists()) {
-                console.log('Document data:', docSnap.data().isPaid);
+                console.log('is order paid?', docSnap.data().isPaid);
                 if (docSnap.data().isPaid === false) {
                   console.log('run payment verification');
                   // paymentVerification(); //send back the payment confirmation to payment gateway api
@@ -327,20 +321,11 @@ const Purchased = () => {
 
   //get dynamic variables for email body contents
   const emailHTMLContent = () => {
-    // const getName = async () => {
-    //   const docRef = doc(db, 'orders', uniqueId);
-    //   const docSnap = await getDoc(docRef);
-    //   return docSnap.data().name;
-    // };
-
-    // console.log('order name', getName());
-    // console.log('order email',getEmail())
-
     return `<html>
     <head></head>
     <body>
-    <div style="border: 1px solid grey; border-radius: 8px">
-    <p>Hej,</p> <p style="text-transform: capitalize">${userName}</p> Dziękuję za zakup. Mam nadzieję, że te zdjęcia sprawią Ci wiele radości i będą wspaniałą pamiątką na przyszłość.</p>
+    <p>Hej <span style="text-transform: capitalize">${userName},</span></p>
+    <p>Dziękuję za zakup. Mam nadzieję, że te zdjęcia sprawią Ci wiele radości i będą wspaniałą pamiątką na przyszłość.</p>
     <p>Linki do zakupionych zdjęć oraz ich podgląd znajdziesz na tej stronie:</p>
       <a href="https://www.kacperporada.pl/zakupione/${uniqueId}">
         <button
@@ -356,7 +341,6 @@ const Purchased = () => {
     <p>Zdjęcia pozostaną dostępne do pobrania przez 60 dni od daty zakupu. W razie jakichkolwiek problemów z pobraniem zdjęć skontaktuj się ze mną przez <a href="http://www.kacperporada.pl/pomoc">stronę pomocy</a>, lub po prostu odpowiedz na tę wiadomość.</p>
     <p>Do zobaczenia w przyszłych wydarzeniach! :)</p>
     <p>Kacper Porada Fotografia</p>
-    </div>
     </body>
     </html>`;
   };
@@ -389,29 +373,24 @@ const Purchased = () => {
       },
     })
       .then(
-        console.log('email sent successfully')(
-          //update order status in db to emailSent: true
-          async () => {
-            console.log('initiate payment verification');
-            const docRef = doc(db, 'orders', uniqueId);
-            const docSnap = await getDoc(docRef);
+        //update order status in db to emailSent: true
+        (async () => {
+          console.log(
+            'email sent successfully. updating order status in db...'
+          );
+          const docRef = doc(db, 'orders', uniqueId);
+          const docSnap = await getDoc(docRef);
 
-            if (docSnap.exists()) {
-              console.log('Document data:', docSnap.data().isPaid);
-              if (docSnap.data().emailSent === false) {
-                console.log('confirming email as sent in db');
-                setDoc(docRef, { emailSent: true }, { merge: true }); //set order as paid in db
-                setEmailSent(true);
-              } else {
-                console.log(
-                  'unable to confirm email status as sent upon accessing db'
-                );
-              }
-            } else {
-              console.log('error: order not found in db');
-            }
+          if (docSnap.data().emailSent === false) {
+            console.log('confirming email as sent in db');
+            setDoc(docRef, { emailSent: true }, { merge: true }); //set order as paid in db
+            setEmailSent(true);
+          } else {
+            console.log(
+              'unable to confirm email status as sent upon accessing db'
+            );
           }
-        )()
+        })()
       )
       .catch((error) => {
         console.log('error while sending email:', error);
@@ -429,34 +408,7 @@ const Purchased = () => {
               <>
                 <button onClick={sendEmailConfirmation}>send email</button>
                 <h1>Twoje zdjęcia</h1>
-                {/* <button
-              onClick={() => {
-                console.log(largeImages);
-              }}
-            >
-              largeImages
-            </button>
-            <button
-              onClick={() => {
-                console.log(largeImageMetadata);
-              }}
-            >
-              largeImageMetadata
-            </button>
-            <button
-              onClick={() => {
-                console.log(largeImageDimensions);
-              }}
-            >
-              largeImageDimensions
-            </button>
-            <button
-              onClick={() => {
-                console.log(purchasedImages);
-              }}
-            >
-              purchasedImages
-            </button> */}
+
                 <div className="purchased__images">
                   <ul>
                     {largeImages.map((image) => (
@@ -473,6 +425,15 @@ const Purchased = () => {
                           >
                             Pobierz zdjęcie
                           </button>
+                          <a
+                            href={image}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <button className="btn--primary">
+                              Zobacz w nowej karcie
+                            </button>
+                          </a>
                           <h3>
                             Wymiary obrazu:{' '}
                             {largeImageDimensions[
