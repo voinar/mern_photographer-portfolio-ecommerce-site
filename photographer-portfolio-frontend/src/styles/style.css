@@ -740,7 +740,6 @@ select {
   }
   .shop__card {
     padding: 10px;
-    background-color: red;
   }
 }
 
@@ -927,6 +926,10 @@ select {
   cursor: pointer;
 }
 
+.shop__card__title {
+  font-size: 22px;
+}
+
 .album__card:hover {
   opacity: 1;
 }
@@ -997,7 +1000,6 @@ select {
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(255, 255, 255, 0);
   -webkit-backdrop-filter: blur(2px);
           backdrop-filter: blur(2px);
   z-index: 3;
@@ -1972,7 +1974,7 @@ select {
   }
   .navbar .navbar__content .navbar__section-link {
     width: 100vw;
-    font-size: 24px;
+    font-size: 26px;
   }
   .navbar .navbar__content .navbar__section-link a {
     width: 100%;
@@ -2523,7 +2525,7 @@ h1 {
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 300;
 }
 
