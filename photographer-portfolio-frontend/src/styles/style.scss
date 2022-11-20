@@ -61,7 +61,11 @@ h1 {
 
 h2 {
   font-size: $--font-xl;
-  font-weight: 200;
+  font-weight: 300;
+}
+
+p {
+  font-size: $--font-md;
 }
 
 a {

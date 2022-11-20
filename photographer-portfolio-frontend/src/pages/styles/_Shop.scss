@@ -2,11 +2,7 @@
   background-color: rgb(252, 252, 252);
   color: $--c-black;
   min-height: 90vh;
-  padding: 180px 100px 200px;
-
-  h1 {
-    // font-weight: 400;
-  }
+  padding: 140px 100px;
 }
 
 .shop__steps__cards {
@@ -16,10 +12,8 @@
   height: 200px;
   padding: 40px 40px 40px 0;
   margin-bottom: 40px;
-  // background-color: white;
   justify-content: space-between;
   border-radius: 4px;
-  // border: $--border-standard;
   cursor: default;
 }
 
@@ -75,98 +69,15 @@
   opacity: 0.9;
 }
 
-// .shop__toolbar {
-//   // position: fixed;
-//   // top: 0px;
-//   // padding: 140px 0 0;
-//   // display: flex;
-//   // flex-direction: column;
-//   // background-color: $--c-white;
-//   // // width: 100vw;
-//   // z-index: 3;
-
-//   .shop__toolbar__title {
-//     // display: flex;
-//     // flex-direction: row;
-
-//     h1 {
-//       // font-weight: 100;
-//       // margin-top: 20px;
-//     }
-
-//     span {
-//       // font-weight: 400;
-//       // text-transform: capitalize;
-//     }
-//   }
-
-//   .shop__toolbar__elements {
-//     // display: flex;
-//     // flex-direction: row;
-//     // gap: 10px;
-//     // margin-bottom: 20px;
-//     // cursor: pointer;
-//   }
-
-//   .shop__toolbar__element {
-//     // display: flex;
-//     // flex-direction: column;
-//     // position: relative;
-//     // display: inline-block;
-
-//     button {
-//       // display: flex;
-//       // width: 140px;
-//       // background-color: #ffffff77;
-//       // padding: 4px 16px;
-//       // font-size: $--font-md;
-//       // border: 2px solid gray;
-//       // border-radius: 6px;
-//       // justify-content: center;
-//     }
-
-//     span {
-//       font-size: $--font-md;
-//       font-weight: 200;
-//     }
-
-//     img {
-//       height: 16px;
-//       align-self: center;
-//       margin-left: 4px;
-//     }
-
-//     .shop__toolbar__element__list-items {
-//       display: none;
-//       position: absolute;
-//       background-color: #f1f1f1;
-//       min-width: 200px;
-//       box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-//       border-radius: 6px;
-//       padding: 10px 14px;
-//       //   z-index: 1;
-
-//       li {
-//         padding: 8px;
-//         width: 200px;
-//         text-transform: capitalize;
-//       }
-//     }
-//   }
-
-//   .shop__toolbar__element:hover .shop__toolbar__element__list-items {
-//     display: block;
-//   }
-// }
-
 .shop__cards {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 100px 0px;
+  gap: 100px 60px;
   margin-left: 10px;
   margin-top: 50px;
   justify-content: left;
+  justify-content: center;
 
   ul {
     display: flex;
@@ -176,22 +87,13 @@
   }
 }
 
-// .shop__cards__background-image {
-//   position: fixed;
-//   width: 10vw;
-//   bottom: 4vh;
-//   right: 5vw;
-//   opacity: 0.03;
-//   z-index: 1;
-// }
-
 .shop__card {
-  width: 380px;
-  height: 280px;
+  width: 400px;
+  height: auto;
   opacity: 0.9;
 
   img {
-    width: 360px;
+    width: auto;
     height: inherit;
     object-fit: cover;
 
@@ -200,16 +102,13 @@
     border: 1px solid rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 18px rgba(0, 0, 0, 0.2);
   }
+}
 
-  .shop__card__title {
-    font-size: $--font-md;
-    text-transform: capitalize;
-  }
+.shop__card__title {
+  // width: auto;
+  height: auto;
+  word-wrap: break-word;
 
-  .shop__card__date {
-    font-size: $--font-sm;
-    font-weight: 100;
-  }
 }
 
 .shop__card:hover {
@@ -220,4 +119,61 @@
     transform: scale(1.025);
     transition: ease-in-out 0.3s;
   }
+}
+
+/* Small small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .shop__container {
+    padding: 80px 40px !important;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  .shop__steps__cards {
+    .shop__steps__icon {
+      display: none;
+    }
+  }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+  .shop__steps__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: auto;
+  }
+
+  .shop__steps__card {
+    width: 100%;
+    height: auto;
+  }
+
+  .shop__steps__icon {
+    position: relative;
+    height: 60px;
+    width: 60px;
+    opacity: 0.16;
+    // transition: all 0.3s;
+    justify-content: flex-end;
+  }
+
+  .shop__steps__icon--eye {
+    top: 26px !important;
+    right: 30px !important;
+  }
+
+  .shop__steps__icon--cart {
+    top: 26px !important;
+    right: 30px !important;
+  }
+
+  .shop__steps__icon--photo {
+    top: 26px !important;
+    right: 30px !important;
+  }
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {
 }

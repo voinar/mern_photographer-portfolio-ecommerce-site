@@ -96,7 +96,7 @@ const Checkout = () => {
                 </div>
                 <div className="checkout__total">
                   <h2>Cena:</h2>
-                  <span>
+                  <span className="checkout__total__price">
                     {new Intl.NumberFormat('pl-PL', {
                       minimumFractionDigits: 2,
                       maximumFractionDigits: 2,

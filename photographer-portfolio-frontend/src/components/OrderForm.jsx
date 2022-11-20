@@ -19,22 +19,14 @@ const OrderForm = () => {
   const [formEmail, setFormEmail] = useState('');
   const [formName, setFormName] = useState('');
   const [formSurname, setFormSurname] = useState('');
-  // const [formPhone, setFormPhone] = useState('');
   const [formInvoiceRequested, setFormInvoiceRequested] = useState(false);
   const [formInvoiceNumber, setFormInvoiceNumber] = useState('');
   const [formTermsConditionsAccept, setFormTermsConditionsAccept] =
     useState(false);
-  // const [formNewsletterConsent, setFormNewsletterConsent] = useState(false)
-  // const [formInvoiceEmailCopyConsent, setFormInvoiceEmailCopyConsent] =
-  //   useState(false);
-
-  // const [paymentConfirmation, setPaymentConfirmation] = useState('');
   const [itemPrice, setItemPrice] = useState(null);
-
-  // const [uniqueId, setUniqueId] = useState(state.cart.uniqueId || null);
+  const [paymentInitiated, setPaymentInitiated] = useState(false);
 
   //generate unique id used as order id, payment id & save it to context
-
   useEffect(() => {
     // if (state.cart.uniqueId === null) {
     const generateUniqueId = () => {
@@ -184,13 +176,13 @@ const OrderForm = () => {
   const dispatchFormDataToContext = (e) => {
     e.preventDefault();
 
-    console.log('generateUniqueId: ' + state.cart.uniqueId);
+    console.log('generated UniqueId: ' + state.cart.uniqueId);
 
     if (formValidation() === true) {
+      setPaymentInitiated(true); //toggle order form and tell the user to continue to the payment
     } else {
       console.log('form invalid');
     }
-
     handleFormSubmission();
   };
 
@@ -220,21 +212,9 @@ const OrderForm = () => {
           amount: calculatedAmount,
         });
 
-        // merchantId: 200527,
-        // posId: 200527,
-        // sessionId: uniqueId, //id generowane przy tworzeniu zamówienia, np: '6b795d5e-394f-4ae3-b313-bb70ccd99d5c'
-        // amount: 5,
-        // currency: 'PLN',
-        // orderId: uniqueId,
-        // description: 'zakup test',
-        // email: 'test@test.pl',
-        // urlReturn: 'https://kacperporada.pl/twojezakupy', //adres do przekierowania po wykonanej płatności
-        // urlStatus: 'https://kacperporada.pl/api', //adres do otrzymania informacji zwrotnej o transakcji z systemu przelewy24
-        // country: 'PL',
-        // sign: signSha, //wygenerowany wyżej hash
-
         //initiate payment process: register payment in p24
         paymentRegister();
+        setPaymentInitiated(true);
       } catch (err) {
         // setErrorMessage(err.message);
         console.log('error: ' + err);
@@ -286,9 +266,7 @@ const OrderForm = () => {
     })
       .then((response) => {
         //blok uruchamiany dla odpowiedzi z kodem 200
-        // console.log(response);
         console.log('token', response.data.data.token);
-        // setToken(String(response.data.data.token));
         const tokenLink = `https://sandbox.przelewy24.pl/trnRequest/${String(
           response.data.data.token
         )}`;
@@ -299,166 +277,139 @@ const OrderForm = () => {
         console.log('err', err);
         console.log('err', err.response.data.error);
       });
-
-    // console.log('paymentRegister start');
-    // console.log('uniqueId', uniqueId);
-    // console.log('sign sha hex', shaObj.getHash('HEX'));
   };
 
-  // const paymentVerify = (e) => {
-  //   e.preventDefault();
-  //   console.log('paymentVerify');
-  //   console.log('uniqueId@paymentVerify:', state.cart.uniqueId);
-
-  //   axios({
-  //     method: 'post',
-  //     url: process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS,
-  //     data: { id: state.cart.uniqueId, date: new Date() },
-  //   })
-  //     .then((response) => {
-  //       console.log('response', response.config.data);
-  //       setPaymentConfirmation(JSON.stringify(response.config.data));
-  //     })
-  //     .catch((err) => {
-  //       console.log('err', err);
-  //       setPaymentConfirmation(JSON.stringify(err));
-  //     });
-  // };
-
   return (
-    <div className="order-form__container">
-      <span>
-        <h2>Dane zamawiającego:</h2>
-      </span>
-      <div className="order-form__content">
-        <form>
-          <label>
-            Email*:
-            <input
-              value={formEmail}
-              onChange={handleFormEmailUpdate}
-              type="email"
-              name="email"
-              required
-            />
-          </label>
-          <div className="order-form__content__group">
-            <label>
-              Imię*:
-              <input
-                value={formName}
-                onChange={handleFormNameUpdate}
-                type="text"
-                name="name"
-                required
-              />
-            </label>
-            <label>
-              Nazwisko*:
-              <input
-                value={formSurname}
-                onChange={handleFormSurnameUpdate}
-                type="text"
-                name="surname"
-                required
-              />
-            </label>
-          </div>
-          {/* <label>
-            Telefon:
-            <input
-              value={formPhone}
-              onChange={handleFormPhoneUpdate}
-              type="text"
-              name="phone"
-            />
-          </label> */}
-
-          <div className="order-form__content__checkbox">
-            <input
-              name="consentInvoice"
-              type="checkbox"
-              onChange={toggleInputInvoice}
-            />
-            <label>
-              Chcę otrzymać fakturę na adres email podany w zamówieniu
-            </label>
-          </div>
-
-          {formInvoiceRequested ? (
-            <>
-              <div className="order-form__content__checkbox">
+    <>
+      <p>
+        {paymentInitiated === false ? (
+          <div className="order-form__container">
+            <span>
+              <h2>Dane zamawiającego:</h2>
+            </span>
+            <div className="order-form__content">
+              <form>
                 <label>
-                  NIP:{' '}
+                  Email*:
                   <input
-                    value={formInvoiceNumber}
-                    onChange={handleFormInvoiceFieldChange}
-                    type="text"
-                    name="phone"
+                    value={formEmail}
+                    onChange={handleFormEmailUpdate}
+                    type="email"
+                    name="email"
+                    required
                   />
                 </label>
-              </div>
-              {/* <div className="order-form__content__checkbox">
-                <input
-                  name="consentReceipt"
-                  type="checkbox"
-                  // checked={this.state.isGoing}
-                  // onChange={this.handleInputChange}
-                />
-                <label>
-                  Wyrażam zgodę na otrzymanie faktury na adres e-mail podany w
-                  zamówieniu*
-                </label>
-              </div> */}
-            </>
-          ) : null}
+                <div className="order-form__content__group">
+                  <label>
+                    Imię*:
+                    <input
+                      value={formName}
+                      onChange={handleFormNameUpdate}
+                      type="text"
+                      name="name"
+                      required
+                    />
+                  </label>
+                  <label>
+                    Nazwisko*:
+                    <input
+                      value={formSurname}
+                      onChange={handleFormSurnameUpdate}
+                      type="text"
+                      name="surname"
+                      required
+                    />
+                  </label>
+                </div>
+                <div className="order-form__content__checkbox">
+                  <input
+                    name="consentInvoice"
+                    type="checkbox"
+                    onChange={toggleInputInvoice}
+                  />
+                  <label>
+                    Chcę otrzymać fakturę na adres email podany w zamówieniu
+                  </label>
+                </div>
 
-          {/* <div className="order-form__content__checkbox">
-            <input
-              name="consentNewsletter"
-              type="checkbox"
-              // checked={this.state.isGoing}
-              // onChange={this.handleInputChange}
-            />
-            <label>Zapisz mnie do darmowego newslettera</label>
-          </div> */}
+                {formInvoiceRequested ? (
+                  <>
+                    <div className="order-form__content__checkbox">
+                      <label>
+                        NIP:{' '}
+                        <input
+                          value={formInvoiceNumber}
+                          onChange={handleFormInvoiceFieldChange}
+                          type="text"
+                          name="phone"
+                        />
+                      </label>
+                    </div>
+                  </>
+                ) : null}
 
-          <div className="order-form__content__checkbox">
-            <input
-              name="consentTermsConditions"
-              type="checkbox"
-              // checked={this.state.isGoing}
-              onChange={handleFormTermsConditionsAccept}
-            />
-            <label>
-              Oświadczam, że znany mi jest{' '}
-              <Link to="/regulamin">regulamin</Link> i akceptuję jego
-              postanowienia.*
-            </label>
+                <div className="order-form__content__checkbox">
+                  <input
+                    name="consentTermsConditions"
+                    type="checkbox"
+                    onChange={handleFormTermsConditionsAccept}
+                  />
+                  <label>
+                    Oświadczam, że znany mi jest{' '}
+                    <Link to="/regulamin">regulamin</Link> i akceptuję jego
+                    postanowienia.*
+                  </label>
+                </div>
+
+                <br />
+                <div className="form__error-message">
+                  <span>{errorMessage}</span>
+                </div>
+                <br />
+                <button
+                  onClick={dispatchFormDataToContext}
+                  type="submit"
+                  value="Zapisz"
+                  className="btn--primary"
+                >
+                  Kupuję i płacę
+                </button>
+                <br />
+                <span>*pole wymagane</span>
+              </form>
+            </div>
           </div>
-
-          <br />
-          <div className="form__error-message">
-            <span>{errorMessage}</span>
-          </div>
-          <br />
-          <button
-            onClick={dispatchFormDataToContext}
-            type="submit"
-            value="Zapisz"
-            className="btn--primary"
-          >
-            Kupuję i płacę
-          </button>
-          {/* <button onClick={handleFormSubmission}>
-            register transaction POST
-          </button> */}
-          {/* <button onClick={paymentVerify}>verify transaction:</button> */}
-          <br />
-          <span>*pole wymagane</span>
-        </form>
-      </div>
-    </div>
+        ) : (
+          <>
+            <div className="order-form__container">
+              <h2>Zostaniesz teraz przekierowany(a) do płatności.</h2>
+              <br />
+              <p>
+                Jeżeli Twoja przeglądarka nie otworzyła nowego okna, to upewnij
+                się, że Twoje ustawienia pozwalają na otwieranie "wyskakujących
+                okien". Możesz to sprawdzić w pasku adresu.
+              </p>
+              <ul>
+                Jeżeli natomiast już ukończyłeś(aś) płatność, to zakupione
+                zdjęcia znajdziesz:
+                <li>
+                  1. Na stronie, na która wyświetliła się po sfinalizowaniu
+                  płatności, lub...
+                </li>
+                <li>
+                  2. W linku, który znajdziesz w emailu wysłanym na adres podany
+                  w formularzu zamówienia.
+                </li>
+              </ul>
+              <p>
+                W razie problemów ze złożeniem zamówienia zapraszam do kontaktu
+                przez stronę <Link to="/pomoc">pomocy.</Link>
+              </p>
+            </div>
+          </>
+        )}
+      </p>
+    </>
   );
 };
 

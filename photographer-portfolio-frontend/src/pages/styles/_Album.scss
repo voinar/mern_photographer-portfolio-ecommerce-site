@@ -22,7 +22,7 @@
   display: flex;
   flex-direction: column;
   background-color: $--c-white;
-  min-width: 90vw;
+  width: 100%;
   z-index: 3;
   transition: all 0.3s;
 
@@ -87,7 +87,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 6px;
-  margin-left: 6px;
+  // margin-left: 6px;
   margin-top: 140px;
   justify-content: center;
 }
@@ -278,4 +278,31 @@
 
 .album__preview-image__tools__cart-add {
   // width: 10px;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+  .album__cards {
+    // height: 200px;
+    width: 100%;
+  }
+  .album__card--small {
+    height: auto;
+    width: 100%;
+  }
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  .album__toolbar__thumbnail-controls {
+    display: none !important;
+  }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+  .album__container {
+    padding: 60px 10px;
+  }
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {
 }

@@ -14,7 +14,7 @@ import categoryData from '../data/staticData.json';
 import {
   NavLogo,
   IconCart,
-  IconShare,
+  // IconShare,
   IconMenu,
   IconClose,
   // IconLogin,
@@ -196,14 +196,14 @@ const Navbar = () => {
                 />
               </div>
             </Link>
-            <div className="navbar__shop__icon__share">
+            {/* <div className="navbar__shop__icon__share">
               <img
                 src={IconShare}
                 className="navbar__shop__icon"
                 alt="udostępnij"
                 title="udostępnij"
               />
-            </div>
+            </div> */}
           </div>
         </nav>
       );

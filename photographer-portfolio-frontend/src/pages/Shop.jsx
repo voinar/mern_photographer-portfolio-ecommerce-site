@@ -107,9 +107,9 @@ function Shop() {
               <li key={v4()}>
                 <AlbumCard
                   image={folder.coverImage}
+                  albumName={folder.albumName}
                   collection={folder.albumName}
                 />
-                {folder.albumName}
               </li>
             );
           })}
