@@ -246,62 +246,60 @@ const Purchased = () => {
                   //send email to user
                   const sendEmailConfirmation = () => {
                     console.log('sending email confirmation');
+                    //update order status in db to emailSent: true
+                    (async () => {
+                      console.log(
+                        'email sent successfully. updating order status in db...'
+                      );
+                      const docRef = doc(db, 'orders', uniqueId);
+                      const docSnap = await getDoc(docRef);
 
-                    axios({
-                      method: 'post',
-                      url: 'https://api.sendinblue.com/v3/smtp/email',
-                      headers: {
-                        accept: 'application/json',
-                        'api-key':
-                          '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',
-                        'content-type': 'application/json',
-                      },
-                      data: {
-                        sender: {
-                          name: 'Kacper Porada Fotografia',
-                          email: 'sklep.kacperporada@gmail.com',
-                        },
-                        to: [
-                          {
-                            email: userEmail,
-                            name: userName,
-                          },
-                        ],
-                        subject: 'Twoje zdjęcia. Sklep KacperPorada.pl',
-                        htmlContent: emailHTMLContent(),
-                      },
-                    })
-                      .then(
-                        //update order status in db to emailSent: true
-                        (async () => {
+                      if (
+                        docSnap.data().emailSent === false &&
+                        emailSent !== true
+                      ) {
+                        console.log('confirming email as sent in db');
+
+                        try {
+                          axios({
+                            method: 'post',
+                            url: 'https://api.sendinblue.com/v3/smtp/email',
+                            headers: {
+                              accept: 'application/json',
+                              'api-key':
+                                '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',
+                              'content-type': 'application/json',
+                            },
+                            data: {
+                              sender: {
+                                name: 'Kacper Porada Fotografia',
+                                email: 'sklep.kacperporada@gmail.com',
+                              },
+                              to: [
+                                {
+                                  email: userEmail,
+                                  name: userName,
+                                },
+                              ],
+                              subject: 'Twoje zdjęcia. Sklep KacperPorada.pl',
+                              htmlContent: emailHTMLContent(),
+                            },
+                          });
+                          setDoc(docRef, { emailSent: true }, { merge: true });
+                          setEmailSent(true);
+                        } catch (error) {
                           console.log(
-                            'email sent successfully. updating order status in db...'
+                            'error while sending confirmation email:',
+                            error
                           );
-                          const docRef = doc(db, 'orders', uniqueId);
-                          const docSnap = await getDoc(docRef);
-
-                          if (
-                            docSnap.data().emailSent === false &&
-                            emailSent === false
-                          ) {
-                            console.log('confirming email as sent in db');
-                            setDoc(
-                              docRef,
-                              { emailSent: true },
-                              { merge: true }
-                            ); //set order as paid in db
-                            setEmailSent(true);
-                          } else {
-                            console.log(
-                              'unable to confirm email status as sent upon accessing db. current emailSent status:',
-                              docSnap.data().emailSent
-                            );
-                          }
-                        })()
-                      )
-                      .catch((error) => {
-                        console.log('error while sending email:', error);
-                      });
+                        }
+                      } else {
+                        console.log(
+                          'unable to confirm email status as sent upon accessing db. current emailSent status:',
+                          docSnap.data().emailSent
+                        );
+                      }
+                    })();
                   };
                   sendEmailConfirmation();
                 } else {
