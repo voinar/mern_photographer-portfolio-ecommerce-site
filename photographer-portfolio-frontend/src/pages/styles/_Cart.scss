@@ -172,22 +172,40 @@
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (max-width: 600px) {
-  .cart-images {
-    width: auto;
+@media (max-width: 600px) {
+  .cart__container {
+    .cart__image {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart__image__tools {
+      margin-top: 6px;
+      justify-content: space-between;
+    }
+
+    .cart__image__tools--image {
+      width: auto;
+      border-radius: 4px;
+    }
+
+    .cart__image__labels {
+      display: none;
+    }
   }
 }
+
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
-
-
 }
+
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (max-width: 992px) {
   .cart__container {
     padding: 180px 40px 100px;
   }
 }
+
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (max-width: 1200px) {
   .cart__sections {

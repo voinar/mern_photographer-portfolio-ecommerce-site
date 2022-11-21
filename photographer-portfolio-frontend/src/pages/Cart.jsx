@@ -172,12 +172,15 @@ const Cart = () => {
                   Przejdź do zamówienia
                 </button>
               </Link>
+              <Link to="/sklep">
               <button
-                onClick={goBack}
+                // onClick={goBack}
                 className="btn--secondary cart__summary__button"
               >
-                Wracam do sklepu
+                Wróć do sklepu
               </button>
+              </Link>
+
             </div>
           ) : null}
         </div>

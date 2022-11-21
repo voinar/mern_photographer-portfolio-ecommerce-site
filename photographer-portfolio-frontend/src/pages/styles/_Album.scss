@@ -24,9 +24,8 @@
   flex-direction: column;
   background-color: $--c-white;
   width: 100%;
-
   z-index: 3;
-  transition: all 0.3s;
+  // transition: all 0.3s;
 
   .album__title {
     display: flex;
@@ -289,6 +288,18 @@
 @media only screen and (max-width: 600px) {
   .album__container {
     padding: 10px 10px !important;
+
+    h1 {
+      font-size: $--font-lg;
+    }
+  }
+
+  .album__toolbar {
+    padding: 90px 0px 0px 40px;
+  }
+
+  .album__toolbar--compact {
+    padding: 68px 0px 10px 40px;
   }
 }
 /* Medium devices (landscape tablets, 768px and up) */
@@ -324,7 +335,6 @@
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (max-width: 1200px) {
   .shop__container {
-    padding: 100px 10px;
-    background-color: red;
+    padding: 100px 20px;
   }
 }

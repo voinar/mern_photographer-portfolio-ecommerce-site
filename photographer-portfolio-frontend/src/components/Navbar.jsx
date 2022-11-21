@@ -35,7 +35,7 @@ const Navbar = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
-      setScroll(window.scrollY > 100);
+      setScroll(window.scrollY > 50);
     });
   }, [location.pathname]);
 

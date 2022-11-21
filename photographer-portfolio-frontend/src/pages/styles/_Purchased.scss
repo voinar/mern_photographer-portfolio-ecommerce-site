@@ -2,7 +2,7 @@
   background-color: rgba(255, 255, 255, 0.85);
   color: $--c-black;
   min-height: 70vh;
-  padding: 180px 100px 200px;
+  padding: 180px 100px 160px;
   margin: 0 auto;
   font-weight: 300;
   font-size: 14px;
@@ -61,4 +61,34 @@
 
 .purchased__icon--question {
   width: 30px;
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {
+  .purchased__container {
+    padding: 180px 80px 100px;
+
+    .purchased__image__card__tools {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  .purchased__container {
+    // padding: 10px 20px;
+  }
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+  .purchased__container {
+    padding: 100px 20px 60px;
+  }
 }

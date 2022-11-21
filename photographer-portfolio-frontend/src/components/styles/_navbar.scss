@@ -16,6 +16,7 @@
     rgba(0, 0, 0, 0) 20%,
     rgba(0, 0, 0, 0.9) 100%
   );
+  transition: all 0.3s ease-in-out;
 
   .navbar__content {
     display: flex;
@@ -75,16 +76,14 @@
 .navbar--solid {
   padding: 16px 60px;
   background-color: rgba(20, 20, 20, 0.9);
-  // transition: all 0.7s;
 
   .navbar__logo {
     width: 140px;
-    transition: 0.5s ease-in-out;
   }
 
   .navbar__content {
     font-size: 16px;
-    transition: ease-in 0.3s;
+    // transition: ease-in 0.3s;
   }
 }
 
@@ -138,6 +137,7 @@
   width: 100%;
   padding: 20px 50px;
   z-index: 10;
+  transition: 0.3s ease-in-out;
 }
 
 .navbar__shop__logo {
@@ -146,6 +146,11 @@
   filter: invert(100%);
   align-items: center;
   justify-content: center;
+  transition: 0.3s ease-in-out;
+}
+
+.navbar__shop__content {
+  transition: all 0.3s;
 }
 
 .navbar__shop__header {
@@ -244,18 +249,31 @@
 }
 
 .navbar__shop--shrink {
-  padding: 10px 60px;
-  background-color: rgba(255, 255, 255, 0.97);
-  transition: all 0.7s ease-in-out;
+  padding: 10px 40px 10px 20px;
+  background-color: rgba(255, 255, 255, 0.8);
 
   .navbar__shop__logo {
-    width: 100px;
-    transition: 0.5s ease-in-out;
+    img {
+      width: 100px;
+    }
   }
 
   .navbar__content {
     font-size: 16px;
-    transition: ease-in 0.3s;
+    transition: all 0.3s;
+  }
+
+  .navbar__shop__icons {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    gap: 10px;
+    align-items: center;
+
+    img {
+      // width: 30px;
+      cursor: pointer;
+    }
   }
 }
 
@@ -326,16 +344,10 @@
   }
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (max-width: 600px) {
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {
 }
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (max-width: 768px) {
-  .navbar__shop__header {
-    font-size: 20px;
-    font-weight: 300;
-  }
-}
+
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (max-width: 992px) {
   .navbar__shop {
@@ -346,6 +358,33 @@
     width: 100px;
   }
 }
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (max-width: 1200px) {
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  .navbar__shop__header {
+    font-size: 20px;
+    font-weight: 300;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+  .navbar__shop {
+    padding: 12px 20px;
+  }
+
+  .navbar__shop--shrink {
+    padding: 6px 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+
+    .navbar__shop__logo {
+      width: 100px;
+      // transition: 0.5s ease-in-out;
+    }
+
+    .navbar__content {
+      font-size: 16px;
+      // transition: ease-in 0.3s;f
+    }
+  }
 }

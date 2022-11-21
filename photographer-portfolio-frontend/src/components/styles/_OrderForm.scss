@@ -60,3 +60,28 @@
   background-color: pink;
   border: 1px solid grey;
 }
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+  form {
+    .btn--primary {
+      width: auto;
+    }
+  }
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  .order-form__content {
+    .order-form__content__group {
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+    }
+  }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {
+}

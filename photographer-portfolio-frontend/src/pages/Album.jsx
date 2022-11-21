@@ -60,7 +60,7 @@ const Album = () => {
   //retract title/toolbar on scroll
   useEffect(() => {
     window.addEventListener('scroll', () => {
-      window.scrollY > 110 ? setScroll(true) : setScroll(false);
+      window.scrollY > 40 ? setScroll(true) : setScroll(false);
     });
   }, [album]);
 
