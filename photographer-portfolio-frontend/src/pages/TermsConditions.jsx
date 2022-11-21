@@ -10,7 +10,7 @@ const TermsConditions = () => {
         <button onClick={goBack} className="btn--back">
           <img src={IconChevron} alt="zobacz" />
         </button>
-        <h1> REGULAMIN SKLEPU INTERNETOWEGO KACPERPORADA.PL/SKLEP</h1>
+        <h1>REGULAMIN SKLEPU INTERNETOWEGO KACPERPORADA.PL/SKLEP</h1>
       </div>
       <p>
         <br />

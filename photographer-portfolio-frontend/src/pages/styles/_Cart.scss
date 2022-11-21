@@ -3,7 +3,6 @@
   background-color: $--c-white;
   font-weight: 300;
   min-height: 70vh;
-
 }
 
 .cart__return {
@@ -14,29 +13,29 @@
 
   img {
     // height: 26px;
-
   }
 
   h1 {
-    width: auto;
+    // width: auto;
   }
 }
 
 .cart__sections {
   display: flex;
+  flex-direction: row;
   gap: 40px;
-  // padding: 20px;
 }
 
 .cart__images {
   display: flex;
   flex-direction: column;
+  flex: 2;
   flex-wrap: wrap;
   padding: 30px;
   gap: 20px;
-  width: 70%;
+  // width: 70%;
   margin: 0;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.6);
   border-radius: 6px;
   border: 1px solid rgba(0, 0, 0, 0.16);
   transition: all 0.3s;
@@ -77,15 +76,6 @@
 
   .cart__image__tools--preview {
     width: 24px;
-    // align-items: center;
-
-    .cart__image__tools--preview__button {
-      // padding: 8px;
-      // border: 1px solid rgba(0, 0, 0, 1.07) !important;
-      // background-color: rgb(255, 255, 255);
-      // border-radius: 4px;
-    }
-
   }
 
   .cart__image__tools {
@@ -123,10 +113,10 @@
 .cart__summary {
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.6);
   padding: 20px;
   gap: 20px;
-  width: 30%;
+  width: 300px;
   height: 300px;
   border-radius: 6px;
   border: $--border-standard;
@@ -139,6 +129,7 @@
   .cart__summary__button {
     width: 220px;
   }
+
   .cart__summary__button:hover {
     width: 230px;
   }
@@ -178,4 +169,37 @@
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
   opacity: 1;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+  .cart-images {
+    width: auto;
+  }
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+
+
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+  .cart__container {
+    padding: 180px 40px 100px;
+  }
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {
+  .cart__sections {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cart-images {
+    // width: auto;
+  }
+
+  .cart-summary {
+    // width: 400px;
+  }
 }

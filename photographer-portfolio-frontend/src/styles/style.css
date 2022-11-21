@@ -806,7 +806,8 @@ select {
           flex-direction: row;
   position: fixed;
   top: 0px;
-  padding: 120px 0px 0px 0px;
+  left: 0px;
+  padding: 120px 0px 0px 40px;
   display: flex;
   -ms-flex-direction: column;
       flex-direction: column;
@@ -887,7 +888,7 @@ select {
 }
 
 .album__toolbar--compact {
-  padding: 80px 0px 20px 0px;
+  padding: 80px 0px 14px 40px;
 }
 
 .album__cards {
@@ -927,7 +928,7 @@ select {
 }
 
 .shop__card__title {
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .album__card:hover {
@@ -1123,6 +1124,13 @@ select {
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {
+  .shop__container {
+    padding: 100px 10px;
+    background-color: red;
+  }
+}
+
 .cart__container {
   padding: 180px 100px 200px;
   background-color: #f2f2f2;
@@ -1142,14 +1150,14 @@ select {
   margin-bottom: 12px;
 }
 
-.cart__return h1 {
-  width: auto;
-}
-
 .cart__sections {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   gap: 40px;
 }
 
@@ -1161,13 +1169,15 @@ select {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   padding: 30px;
   gap: 20px;
-  width: 70%;
   margin: 0;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.6);
   border-radius: 6px;
   border: 1px solid rgba(0, 0, 0, 0.16);
   -webkit-transition: all 0.3s;
@@ -1259,10 +1269,10 @@ select {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.6);
   padding: 20px;
   gap: 20px;
-  width: 30%;
+  width: 300px;
   height: 300px;
   border-radius: 6px;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -1317,6 +1327,34 @@ select {
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
   opacity: 1;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+  .cart-images {
+    width: auto;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+  .cart__container {
+    padding: 180px 40px 100px;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {
+  .cart__sections {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 
 .signin__container {
@@ -1430,7 +1468,7 @@ select {
 }
 
 .checkout__container {
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: #f2f2f2;
   color: #3a3939;
   min-height: 70vh;
   padding: 180px 100px 200px;
@@ -1511,6 +1549,10 @@ select {
   font-size: 20px;
 }
 
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* Medium devices (landscape tablets, 768px and up) */
+/* Large devices (laptops/desktops, 992px and up) */
+/* Extra large devices (large laptops and desktops, 1200px and up) */
 .purchased__container {
   background-color: rgba(255, 255, 255, 0.85);
   color: #3a3939;
@@ -1781,7 +1823,7 @@ select {
       -ms-flex-direction: row;
           flex-direction: row;
   width: 100%;
-  padding: 20px 100px;
+  padding: 20px 50px;
   z-index: 10;
 }
 
@@ -1982,7 +2024,7 @@ select {
   }
   .navbar .navbar__content .navbar__section-link {
     width: 100vw;
-    font-size: 26px;
+    font-size: 24px;
   }
   .navbar .navbar__content .navbar__section-link a {
     width: 100%;
@@ -2533,7 +2575,7 @@ h1 {
 }
 
 h2 {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 300;
 }
 
@@ -2560,7 +2602,6 @@ button {
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  margin-right: 8px;
   cursor: pointer;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
@@ -2640,4 +2681,29 @@ button {
   border-radius: 10px;
   border: 1px solid slategray;
 }
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  h1 {
+    font-size: 24px;
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: 300;
+  }
+  p {
+    font-size: 16px;
+  }
+  a {
+    text-decoration: none;
+    color: #3a3939;
+  }
+  ul {
+    padding: 0;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+/* Extra large devices (large laptops and desktops, 1200px and up) */
 /*# sourceMappingURL=style.css.map */

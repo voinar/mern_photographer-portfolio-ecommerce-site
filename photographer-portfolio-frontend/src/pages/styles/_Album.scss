@@ -18,7 +18,8 @@
   flex-direction: row;
   position: fixed;
   top: 0px;
-  padding: 120px 0px 0px 0px;
+  left: 0px;
+  padding: 120px 0px 0px 40px;
   display: flex;
   flex-direction: column;
   background-color: $--c-white;
@@ -81,7 +82,7 @@
 }
 
 .album__toolbar--compact {
-  padding: 80px 0px 20px 0px;
+  padding: 80px 0px 14px 40px;
 }
 
 .album__cards {
@@ -322,4 +323,8 @@
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (max-width: 1200px) {
+  .shop__container {
+    padding: 100px 10px;
+    background-color: red;
+  }
 }

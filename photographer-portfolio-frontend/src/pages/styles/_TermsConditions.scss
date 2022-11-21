@@ -1,27 +1,26 @@
 .terms__container {
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 180px 100px 200px;
-    height: auto;
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 180px 100px 200px;
+  height: auto;
+
+  h3 {
+    font-weight: 400;
+  }
+
+  li {
+    font-weight: 300;
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .terms__container {
+    padding: 100px 20px;
 
     h3 {
-font-weight: 400;
     }
 
     li {
-        font-weight: 300;
-        margin-bottom: 10px;
-    }
-}
-
-
-@media only screen and (max-width: 768px) {
-    .terms__container {
-        padding: 100px 20px;
-
-        h3 {
-        }
-
-        li {
-        }
     }
   }
+}

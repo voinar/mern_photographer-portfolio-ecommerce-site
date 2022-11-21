@@ -88,7 +88,7 @@ button {
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  margin-right: 8px;
+  // margin-right: 8px;
   cursor: pointer;
   transition: all 0.3s;
 }
@@ -125,7 +125,7 @@ button {
   border: 0px;
   padding: 0;
   cursor: pointer !important;
-  
+
   img {
     border: 0px;
     min-width: 30px;
@@ -163,4 +163,42 @@ button {
   background-color: $--c-white;
   border-radius: 10px;
   border: 1px solid slategray;
+}
+
+//----------------------------------
+//media queries
+//----------------------------------
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  h1 {
+    font-size: $--font-xl;
+  }
+
+  h2 {
+    font-size: $--font-lg;
+    font-weight: 300;
+  }
+
+  p {
+    font-size: $--font-md;
+  }
+
+  a {
+    text-decoration: none;
+    color: $--c-black;
+  }
+
+  ul {
+    padding: 0;
+  }
+
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {
 }
