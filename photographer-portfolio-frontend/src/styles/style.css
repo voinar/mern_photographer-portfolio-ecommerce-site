@@ -594,7 +594,7 @@ select {
   width: 100%;
   height: 200px;
   padding: 40px 40px 40px 0;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -730,6 +730,15 @@ select {
 @media only screen and (max-width: 600px) {
   .shop__container {
     padding: 80px 20px !important;
+  }
+  .shop__steps__card {
+    padding: 10px 14px;
+  }
+  .shop__steps__card p {
+    font-size: 14px;
+  }
+  .shop__steps__card span {
+    font-size: 30px;
   }
 }
 
@@ -999,8 +1008,8 @@ select {
   height: 100%;
   top: 0;
   left: 0;
-  -webkit-backdrop-filter: blur(2px);
-          backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(1px);
+          backdrop-filter: blur(1px);
   z-index: 3;
   cursor: pointer;
 }
@@ -2637,7 +2646,7 @@ select {
   -webkit-backdrop-filter: blur(3px);
           backdrop-filter: blur(3px);
   height: auto;
-  width: 100vw;
+  margin: 4px;
   padding: 10px;
   border-radius: 6px;
   font-weight: 100;
