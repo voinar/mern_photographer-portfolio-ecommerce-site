@@ -1132,8 +1132,11 @@ select {
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
-  .album__toolbar__thumbnail-controls {
-    display: none !important;
+  .album__title {
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
   }
   .album__cards {
     width: 100%;

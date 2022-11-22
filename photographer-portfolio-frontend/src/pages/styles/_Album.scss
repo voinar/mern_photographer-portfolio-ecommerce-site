@@ -358,8 +358,13 @@
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
   .album__toolbar__thumbnail-controls {
-    display: none !important;
+    // display: none !important;
   }
+
+  .album__title {
+    flex-direction: column !important;
+  }
+
   .album__cards {
     // height: 200px;
     width: 100%;

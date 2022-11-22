@@ -33,7 +33,7 @@ const Album = () => {
   const [previewImageUrl, setPreviewImageUrl] = useState(undefined);
 
   const [imageThumbnailSize, setImageThumbnailSize] =
-    useState('album__card--medium');
+    useState('album__card--small');
 
   useEffect(() => {
     const albumRef = ref(storage, `albums/${album.replaceAll(' ', '_')}/male/`);
@@ -90,13 +90,13 @@ const Album = () => {
   };
 
   const handlePaginationNextPage = () => {
-    setIndexStart(indexStart+numberOfImages);
-    setIndexEnd(indexEnd+numberOfImages);
+    setIndexStart(indexStart + numberOfImages);
+    setIndexEnd(indexEnd + numberOfImages);
   };
 
   const handlePaginationPrevPage = () => {
-    setIndexStart(indexStart-numberOfImages);
-    setIndexEnd(indexEnd-numberOfImages);
+    setIndexStart(indexStart - numberOfImages);
+    setIndexEnd(indexEnd - numberOfImages);
   };
 
   //preview images in album page
@@ -164,12 +164,16 @@ const Album = () => {
         <div className="album__container">
           <div className={toggleToolbarClassOnScroll()}>
             <div className="album__title">
-              <button onClick={goBack} className="btn--back">
-                <img src={IconChevron} alt="zobacz" />
-              </button>
-              <h1>{album}</h1>
+              <div>
+                <button onClick={goBack} className="btn--back">
+                  <img src={IconChevron} alt="zobacz" />
+                </button>
+                <h1>{album}</h1>
+              </div>
               <div className="album__toolbar__thumbnail-controls">
-                <button onClick={handlePaginationPrevPage}>Poprzednia strona</button>
+                <button onClick={handlePaginationPrevPage}>
+                  Poprzednia strona
+                </button>
 
                 <div class="album__toolbar__thumbnail-controls__dropdown">
                   <button class="album__toolbar__thumbnail-controls__dropbtn">
@@ -184,7 +188,9 @@ const Album = () => {
                   </div>
                 </div>
 
-                <button onClick={handlePaginationNextPage}>Następna strona</button>
+                <button onClick={handlePaginationNextPage}>
+                  Następna strona
+                </button>
 
                 <button
                   onClick={() => setImageThumbnailSize('album__card--small')}
