@@ -9,6 +9,7 @@ import 'firebase/firestore';
 
 import {
   React,
+  Helmet,
   Store,
   useState,
   useContext,
@@ -254,9 +255,7 @@ const Purchased = () => {
                       const docRef = doc(db, 'orders', uniqueId);
                       const docSnap = await getDoc(docRef);
 
-                      if (
-                        docSnap.data().emailSent === false
-                      ) {
+                      if (docSnap.data().emailSent === false) {
                         console.log('confirming email as sent in db');
 
                         axios({
@@ -412,6 +411,9 @@ const Purchased = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Twoje zdjęcia: Kacper Porada Fotografia</title>
+      </Helmet>
       <div className="purchased__container">
         {isLoading ? (
           <LoadingSpinner />

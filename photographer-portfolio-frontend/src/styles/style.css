@@ -818,6 +818,13 @@ select {
   background-color: #f2f2f2;
   width: 100%;
   z-index: 3;
+  /* Dropdown Button */
+  /* The container <div> - needed to position the dropdown content */
+  /* Dropdown Content (Hidden by Default) */
+  /* Links inside the dropdown */
+  /* Change color of dropdown links on hover */
+  /* Show the dropdown menu on hover */
+  /* Change the background color of the dropdown button when the dropdown content is shown */
 }
 
 .album__toolbar .album__title {
@@ -851,6 +858,15 @@ select {
   cursor: pointer;
 }
 
+.album__toolbar .dropbtn {
+  background-color: #04aa6d;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  width: 120px !important;
+}
+
 .album__toolbar .album__toolbar__thumbnail-controls {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -873,7 +889,7 @@ select {
   display: -ms-flexbox;
   display: flex;
   padding: 12px;
-  width: 32px;
+  width: auto;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -883,6 +899,42 @@ select {
   border-radius: 4px;
   background-color: rgba(255, 255, 255, 0.64);
   border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.album__toolbar .album__toolbar__thumbnail-controls__dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.album__toolbar .album__toolbar__thumbnail-controls__dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.album__toolbar .album__toolbar__thumbnail-controls__dropdown-content span {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.album__toolbar .album__toolbar__thumbnail-controls__dropdown-content span:hover {
+  background-color: #ddd;
+}
+
+.album__toolbar .album__toolbar__thumbnail-controls__dropdown:hover
+.album__toolbar__thumbnail-controls__dropdown-content {
+  display: block;
+}
+
+.album__toolbar .album__toolbar__thumbnail-controls__dropdown:hover
+.album__toolbar__thumbnail-controls__dropbtn {
+  background-color: #3e8e41;
 }
 
 .album__toolbar--compact {

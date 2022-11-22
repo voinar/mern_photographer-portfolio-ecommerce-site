@@ -65,7 +65,7 @@ const Album = () => {
   }, [album]);
 
   const toggleToolbarClassOnScroll = () => {
-    console.log('scroll test', window.scrollY > 100);
+    // console.log('scroll test', window.scrollY > 100);
     return scroll === false
       ? 'album__toolbar'
       : 'album__toolbar album__toolbar--compact';
@@ -78,6 +78,14 @@ const Album = () => {
       html.style.overflow = showPreviewImage ? 'hidden' : 'auto';
     }
   }, [showPreviewImage]);
+
+  //pagination
+  const [indexStart, setIndexStart] = useState(0);
+  const [indexEnd, setIndexEnd] = useState(20);
+
+  const handlePaginationRange = (endIndex) => {
+    setIndexEnd(endIndex);
+  };
 
   //preview images in album page
   const handleImagePreview = (image) => {
@@ -149,6 +157,18 @@ const Album = () => {
               </button>
               <h1>{album}</h1>
               <div className="album__toolbar__thumbnail-controls">
+                <div class="album__toolbar__thumbnail-controls__dropdown">
+                  <button class="album__toolbar__thumbnail-controls__dropbtn">
+                    Ilość zdjęć
+                  </button>
+                  <div class="album__toolbar__thumbnail-controls__dropdown-content">
+                    <span onClick={() => handlePaginationRange(20)}>20</span>
+                    <span onClick={() => handlePaginationRange(30)}>30</span>
+                    <span onClick={() => handlePaginationRange(50)}>50</span>
+                    <span onClick={() => handlePaginationRange(75)}>75</span>
+                    <span onClick={() => handlePaginationRange(100)}>100</span>
+                  </div>
+                </div>
                 <button
                   onClick={() => setImageThumbnailSize('album__card--small')}
                 >
@@ -168,7 +188,7 @@ const Album = () => {
             </div>
           </div>
           <div className="album__cards">
-            {albumImagesList.map((image) => {
+            {albumImagesList.slice(indexStart, indexEnd).map((image) => {
               return (
                 <li key={image}>
                   <AlbumImage
