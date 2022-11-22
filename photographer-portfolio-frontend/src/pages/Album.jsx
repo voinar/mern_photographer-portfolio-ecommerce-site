@@ -14,7 +14,11 @@ import {
   IconGridLarge,
 } from '../imports';
 
-import { ref, listAll, getDownloadURL } from 'firebase/storage';
+import {
+  ref,
+  listAll,
+  // getDownloadURL
+} from 'firebase/storage';
 import { storage } from '../firebase/config';
 
 const Album = () => {
