@@ -50,7 +50,7 @@
     }
 
     button:hover {
-      border: $--border-focus;
+      // border: $--border-focus;
     }
   }
 
@@ -98,6 +98,7 @@
   opacity: 0.92;
   transition: all 0.3s;
   --webkit-transition: -webkit-filter 1000ms linear;
+  cursor: pointer;
 
   img {
     width: inherit;
@@ -108,7 +109,6 @@
     border-radius: 4px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 18px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
   }
 }
 
@@ -120,8 +120,8 @@
   opacity: 1;
 
   img {
-    transform: scale(1.016);
-    transition: all 0.3s;
+    // transform: scale(1.016);
+    // transition: all 0.3s;
   }
 }
 
@@ -184,15 +184,15 @@
 }
 
 .album__preview__background {
-  // position: fixed;
-  // width: 100%;
-  // height: 100%;
-  // top: 0;
-  // left: 0;
-  // // background-color: $--c-white;
-  // backdrop-filter: blur(1px);
-  // z-index: 6;
-  // cursor: pointer;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  // background-color: $--c-white;
+  backdrop-filter: blur(1px);
+  z-index: 6;
+  cursor: pointer;
 }
 
 .album__preview-image {
@@ -226,7 +226,7 @@
   }
 
   .album__preview__btn-close:hover {
-    border: $--border-focus;
+    // border: $--border-focus;
   }
 }
 
@@ -259,7 +259,7 @@
   }
 
   button:hover {
-    outline: $--border-focus;
+    // outline: $--border-focus;
   }
 }
 
