@@ -858,15 +858,6 @@ select {
   cursor: pointer;
 }
 
-.album__toolbar .dropbtn {
-  background-color: #04aa6d;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  width: 120px !important;
-}
-
 .album__toolbar .album__toolbar__thumbnail-controls {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -921,6 +912,7 @@ select {
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  cursor: pointer;
 }
 
 .album__toolbar .album__toolbar__thumbnail-controls__dropdown-content span:hover {
@@ -934,7 +926,7 @@ select {
 
 .album__toolbar .album__toolbar__thumbnail-controls__dropdown:hover
 .album__toolbar__thumbnail-controls__dropbtn {
-  background-color: #3e8e41;
+  background-color: #74ff78;
 }
 
 .album__toolbar--compact {

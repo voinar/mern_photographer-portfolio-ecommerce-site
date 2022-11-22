@@ -33,7 +33,7 @@ const Album = () => {
   const [previewImageUrl, setPreviewImageUrl] = useState(undefined);
 
   const [imageThumbnailSize, setImageThumbnailSize] =
-    useState('album__card--small');
+    useState('album__card--medium');
 
   useEffect(() => {
     const albumRef = ref(storage, `albums/${album.replaceAll(' ', '_')}/male/`);
@@ -81,10 +81,22 @@ const Album = () => {
 
   //pagination
   const [indexStart, setIndexStart] = useState(0);
+  const [numberOfImages, setNumberOfImages] = useState(20);
   const [indexEnd, setIndexEnd] = useState(20);
 
-  const handlePaginationRange = (endIndex) => {
-    setIndexEnd(endIndex);
+  const handlePaginationRange = (n) => {
+    setIndexEnd(n);
+    setNumberOfImages(n);
+  };
+
+  const handlePaginationNextPage = () => {
+    setIndexStart(indexStart+numberOfImages);
+    setIndexEnd(indexEnd+numberOfImages);
+  };
+
+  const handlePaginationPrevPage = () => {
+    setIndexStart(indexStart-numberOfImages);
+    setIndexEnd(indexEnd-numberOfImages);
   };
 
   //preview images in album page
@@ -157,6 +169,8 @@ const Album = () => {
               </button>
               <h1>{album}</h1>
               <div className="album__toolbar__thumbnail-controls">
+                <button onClick={handlePaginationPrevPage}>Poprzednia strona</button>
+
                 <div class="album__toolbar__thumbnail-controls__dropdown">
                   <button class="album__toolbar__thumbnail-controls__dropbtn">
                     Ilość zdjęć
@@ -169,6 +183,9 @@ const Album = () => {
                     <span onClick={() => handlePaginationRange(100)}>100</span>
                   </div>
                 </div>
+
+                <button onClick={handlePaginationNextPage}>Następna strona</button>
+
                 <button
                   onClick={() => setImageThumbnailSize('album__card--small')}
                 >

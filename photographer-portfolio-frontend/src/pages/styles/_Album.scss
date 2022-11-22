@@ -56,12 +56,12 @@
 
   /* Dropdown Button */
   .dropbtn {
-    background-color: #04aa6d;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    width: 120px !important;
+    // background-color: #60ff92;
+    // color: white;
+    // padding: 16px;
+    // font-size: 16px;
+    // border: none;
+    // width: 120px !important;
   }
 
   .album__toolbar__thumbnail-controls {
@@ -111,6 +111,7 @@
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    cursor: pointer;
   }
 
   /* Change color of dropdown links on hover */
@@ -127,7 +128,7 @@
   /* Change the background color of the dropdown button when the dropdown content is shown */
   .album__toolbar__thumbnail-controls__dropdown:hover
     .album__toolbar__thumbnail-controls__dropbtn {
-    background-color: #3e8e41;
+    background-color: #74ff78;
   }
 }
 
