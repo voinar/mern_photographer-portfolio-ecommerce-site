@@ -44,7 +44,7 @@ function Shop() {
                 albumName,
                 coverImage: `https://firebasestorage.googleapis.com/v0/b/kacper-foto.appspot.com/o/albums%2F${folderRef._location.path.slice(
                   7
-                )}%2Fmale%2Fcover.jpg?alt=media`,
+                )}%2Fmale%2F0.jpg?alt=media`,
               },
             ]);
           });

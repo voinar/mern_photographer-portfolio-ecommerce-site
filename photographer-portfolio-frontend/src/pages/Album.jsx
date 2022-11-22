@@ -14,7 +14,7 @@ import {
   IconGridLarge,
 } from '../imports';
 
-import { ref, listAll } from 'firebase/storage';
+import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import { storage } from '../firebase/config';
 
 const Album = () => {
@@ -24,7 +24,9 @@ const Album = () => {
   const navigate = useNavigate(); //used to return to previous page
   const goBack = () => navigate(-1);
 
+  // const token = 'universalToken';
   const token = 'a9586b20-d423-4ef6-807e-2ca64610af45';
+  // const token = 'adf90091-3085-4adf-b27b-9edad8fd9723';
 
   //local component state
   const [albumImagesList, setAlbumImagesList] = useState([]);
@@ -102,6 +104,18 @@ const Album = () => {
   //preview images in album page
   const handleImagePreview = (image) => {
     setPreviewImageUrl(image);
+    console.log('Image Preview url', image);
+    // const imageUrlFormatted = image
+    //   .replace('https://firebasestorage.googleapis.com/v0/b/', 'gs://')
+    //   .replace('/o', '')
+    //   .replace('male', 'duze')
+    //   .split('?')[0]
+    //   .replace('jpg', 'JPG')
+    //   .replace(/%2F/gi, '/');
+    //   console.log('url:',image)
+    //   console.log('large url:',imageUrlFormatted)
+    // setPreviewImageUrl(getDownloadURL(ref(storage, image)));
+
     setShowPreviewImage((prevState) => !prevState);
   };
 
@@ -164,12 +178,10 @@ const Album = () => {
         <div className="album__container">
           <div className={toggleToolbarClassOnScroll()}>
             <div className="album__title">
-              <div>
-                <button onClick={goBack} className="btn--back">
-                  <img src={IconChevron} alt="zobacz" />
-                </button>
-                <h1>{album}</h1>
-              </div>
+              <button onClick={goBack} className="btn--back">
+                <img src={IconChevron} alt="zobacz" />
+              </button>
+              <h1>{album}</h1>
               <div className="album__toolbar__thumbnail-controls">
                 <button onClick={handlePaginationPrevPage}>
                   Poprzednia strona
@@ -292,6 +304,14 @@ const Album = () => {
                 </li>
               );
             })}
+          </div>
+          <div className="album__page__controls">
+            <div className="album__page__controls__prev">
+              <button onClick={handlePaginationPrevPage}>-</button>
+            </div>
+            <div className="album__page__controls__next">
+              <button onClick={handlePaginationNextPage}>+</button>
+            </div>
           </div>
         </div>
       </main>

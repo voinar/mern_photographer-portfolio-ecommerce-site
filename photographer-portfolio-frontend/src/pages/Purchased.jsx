@@ -329,6 +329,9 @@ const Purchased = () => {
 
   //get full versions of images after confirming order status as paid
   useEffect(() => {
+    // console.log('url:',image)
+    // console.log('large url:',imageUrlFormatted)
+
     console.log('purchasedImages available', purchasedImages);
     purchasedImages.map((image) => {
       const storage = getStorage();
@@ -336,12 +339,16 @@ const Purchased = () => {
         .replace('https://firebasestorage.googleapis.com/v0/b/', 'gs://')
         .replace('/o', '')
         .replace('male', 'duze')
+        // .replace(' ','%20')
         .split('?')[0]
-        .replace('jpg', 'JPG')
+        .replace('JPG', 'jpg')
         .replace(/%2F/gi, '/');
+      console.log('pre', image);
+      console.log('post', imageUrlFormatted);
 
       getDownloadURL(ref(storage, imageUrlFormatted))
         .then((url) => {
+          console.log('downloadURL', url);
           setLargeImages((prevState) => [...prevState, url]);
 
           reactImageSize(url)

@@ -337,6 +337,31 @@
   // width: 10px;
 }
 
+.album__page__controls {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  justify-content: space-between;
+
+  button {
+    padding: 14px 30px;
+    font-size: $--font-xxl;
+    font-weight: 200;
+  }
+
+  .album__page__controls__prev {
+    position: fixed;
+    top: 50%;
+    left: 50px;
+  }
+
+  .album__page__controls__next {
+    position: fixed;
+    top: 50%;
+    right: 50px;
+  }
+}
+
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 600px) {
   .album__container {
