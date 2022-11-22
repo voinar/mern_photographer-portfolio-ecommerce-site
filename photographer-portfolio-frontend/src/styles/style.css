@@ -907,7 +907,6 @@ select {
 }
 
 .album__card {
-  opacity: 0.92;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   --webkit-transition: -webkit-filter 1000ms linear;
@@ -927,10 +926,6 @@ select {
 
 .shop__card__title {
   font-size: 20px;
-}
-
-.album__card:hover {
-  opacity: 1;
 }
 
 .album__card--small {
@@ -964,7 +959,6 @@ select {
   border: 1px solid rgba(0, 0, 0, 0.3);
   bottom: 120px;
   right: 12px;
-  opacity: 0.8;
 }
 
 .album__preview {
