@@ -87,8 +87,12 @@ const Album = () => {
 
   //pagination
   const [indexStart, setIndexStart] = useState(0);
-  const [numberOfImages, setNumberOfImages] = useState(20);
-  const [indexEnd, setIndexEnd] = useState(20);
+  const [numberOfImages, setNumberOfImages] = useState(10);
+  const [indexEnd, setIndexEnd] = useState(10);
+  const [albumControlsPrevInactive, setAlbumControlPrevInactive] =
+    useState(false);
+  const [albumControlsNextInactive, setAlbumControlsNextInactive] =
+    useState(false);
 
   const handlePaginationRange = (n) => {
     setIndexEnd(n);
@@ -96,13 +100,25 @@ const Album = () => {
   };
 
   const handlePaginationNextPage = () => {
-    setIndexStart(indexStart + numberOfImages);
-    setIndexEnd(indexEnd + numberOfImages);
+    if (indexStart + numberOfImages < albumImagesList.length) {
+      setIndexStart(indexStart + numberOfImages);
+      setIndexEnd(indexEnd + numberOfImages);
+      setAlbumControlPrevInactive(false);
+      console.log(indexStart, numberOfImages, indexEnd);
+    } else {
+      setAlbumControlsNextInactive(true);
+    }
   };
 
   const handlePaginationPrevPage = () => {
-    setIndexStart(indexStart - numberOfImages);
-    setIndexEnd(indexEnd - numberOfImages);
+    if (indexStart - numberOfImages < 0) {
+      setAlbumControlPrevInactive(true);
+      console.log(indexStart, numberOfImages, indexEnd);
+    } else {
+      setIndexStart(indexStart - numberOfImages);
+      setIndexEnd(indexEnd - numberOfImages);
+      setAlbumControlsNextInactive(false);
+    }
   };
 
   //preview images in album page
@@ -310,14 +326,26 @@ const Album = () => {
             })}
           </div>
           <div className="album__page__controls">
-            <div className="album__page__controls__prev">
+            <div
+              className={
+                albumControlsPrevInactive
+                  ? 'album__page__controls__prev album__page__controls__prev--inactive'
+                  : 'album__page__controls__prev'
+              }
+            >
               <button onClick={handlePaginationPrevPage}>
-              <img src={IconChevron} alt="poprzednie" />
+                <img src={IconChevron} alt="poprzednie" />
               </button>
             </div>
-            <div className="album__page__controls__next">
+            <div
+              className={
+                albumControlsNextInactive
+                  ? 'album__page__controls__next album__page__controls__next--inactive'
+                  : 'album__page__controls__next'
+              }
+            >
               <button onClick={handlePaginationNextPage}>
-              <img src={IconChevron} alt="następne" />
+                <img src={IconChevron} alt="następne" />
               </button>
             </div>
           </div>

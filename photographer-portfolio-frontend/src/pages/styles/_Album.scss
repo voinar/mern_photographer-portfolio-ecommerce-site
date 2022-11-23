@@ -362,6 +362,16 @@
     right: 50px;
     transform: rotate(-90deg) !important;
   }
+
+  .album__page__controls__prev--inactive {
+    opacity: 0.6;
+    background-color: rgb(220, 220, 220);
+  }
+
+  .album__page__controls__next--inactive {
+    opacity: 0.6;
+    background-color: rgb(220, 220, 220);
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -532,8 +542,6 @@
       // outline: $--border-focus;
     }
   }
-
-
 }
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (max-width: 992px) {
