@@ -341,7 +341,8 @@ const Purchased = () => {
         .replace('male', 'duze')
         // .replace(' ','%20')
         .split('?')[0]
-        .replace('JPG', 'jpg')
+        .replace('JPG'||'jpg', 'jpg')
+        // .replace('jpg', 'JPG')
         .replace(/%2F/gi, '/');
       console.log('pre', image);
       console.log('post', imageUrlFormatted);

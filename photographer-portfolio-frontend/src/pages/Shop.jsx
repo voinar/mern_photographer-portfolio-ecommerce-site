@@ -39,12 +39,13 @@ function Shop() {
               //   coverImage: `https://firebasestorage.googleapis.com/v0/b/kacper-foto.appspot.com/o/albums%2F${folderRef._location.path.slice(
               //     7
               //   )}%2Fmale%2Fcover.jpg?alt=media&amp;token=a9586b20-d423-4ef6-807e-2ca64610af45`,
+              //   )}%2Fmale%2Fcover.jpg?alt=media&amp;token=86c43d72-fd6d-412b-a7e5-0ece13d815b5`,
               // },
               {
                 albumName,
                 coverImage: `https://firebasestorage.googleapis.com/v0/b/kacper-foto.appspot.com/o/albums%2F${folderRef._location.path.slice(
                   7
-                )}%2Fmale%2F0.jpg?alt=media`,
+                )}%2Fmale%2Fcover.jpg?alt=media`,
               },
             ]);
           });

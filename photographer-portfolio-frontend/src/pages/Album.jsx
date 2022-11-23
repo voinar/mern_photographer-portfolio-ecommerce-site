@@ -191,16 +191,16 @@ const Album = () => {
                   Poprzednia strona
                 </button>
 
-                <div class="album__toolbar__thumbnail-controls__dropdown">
-                  <button class="album__toolbar__thumbnail-controls__dropbtn">
+                <div className="album__toolbar__thumbnail-controls__dropdown">
+                  <button className="album__toolbar__thumbnail-controls__dropbtn">
                     Ilość zdjęć
                   </button>
-                  <div class="album__toolbar__thumbnail-controls__dropdown-content">
+                  <div className="album__toolbar__thumbnail-controls__dropdown-content">
                     <span onClick={() => handlePaginationRange(20)}>20</span>
                     <span onClick={() => handlePaginationRange(30)}>30</span>
                     <span onClick={() => handlePaginationRange(50)}>50</span>
-                    <span onClick={() => handlePaginationRange(75)}>75</span>
-                    <span onClick={() => handlePaginationRange(100)}>100</span>
+                    {/* <span onClick={() => handlePaginationRange(75)}>75</span> */}
+                    {/* <span onClick={() => handlePaginationRange(100)}>100</span> */}
                   </div>
                 </div>
 
