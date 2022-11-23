@@ -502,9 +502,11 @@ const Purchased = () => {
                               docSnap.data().name
                             } ${
                               docSnap.data().surname
-                            } poprosił o wystawienie faktury.</p>
-                            <p>Email klienta: ${docSnap.data().email}</p>
-                            <p>NIP klienta: ${docSnap.data().invoiceTaxId}</p>
+                            } poprosił o wystawienie faktury. Dane klienta:</p>
+                            <p>Email: ${docSnap.data().email}</p>
+                            <p>Imię: ${docSnap.data().name}</p>
+                            <p>Nazwisko: ${docSnap.data().surname}</p>
+                            <p>NIP: ${docSnap.data().invoiceTaxId}</p>
                             <p>Identyfikator zamówienia: ${uniqueId}</p>
                             <p>Podgląd zamówienia:</p>
                               <a href="https://www.kacperporada.pl/zakupione/${uniqueId}">
@@ -539,7 +541,6 @@ const Purchased = () => {
                     })();
                   };
                   sendEmailInvoiceRequest();
-
                 } else {
                   console.log('payment confirmation: order paid');
                   setPaymentConfirmed(true);
