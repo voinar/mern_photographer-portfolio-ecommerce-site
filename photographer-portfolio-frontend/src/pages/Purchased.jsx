@@ -341,17 +341,20 @@ const Purchased = () => {
         .replace('male', 'duze')
         // .replace(' ','%20')
         .split('?')[0]
-        .replace('JPG'||'jpg', 'jpg')
-        // .replace('jpg', 'JPG')
+        // .replace(/(jpg)|(JPG)/, 'jpg')
+        // .replace('jpg', 'JPG'
         .replace(/%2F/gi, '/');
-      console.log('pre', image);
-      console.log('post', imageUrlFormatted);
+
+      // console.log('pre', image);
+      // console.log('post', imageUrlFormatted);
+
+      // const regex = /([JPG])/g
+      // console.log('test', imageUrlFormatted.test(regex));
 
       getDownloadURL(ref(storage, imageUrlFormatted))
         .then((url) => {
           console.log('downloadURL', url);
           setLargeImages((prevState) => [...prevState, url]);
-
           reactImageSize(url)
             .then(({ width, height }) =>
               setLargeImageDimensions((prevState) => [
