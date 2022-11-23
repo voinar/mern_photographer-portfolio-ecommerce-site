@@ -212,6 +212,7 @@ const Album = () => {
                     Ilość zdjęć
                   </button>
                   <div className="album__toolbar__thumbnail-controls__dropdown-content">
+                    <span onClick={() => handlePaginationRange(10)}>10</span>
                     <span onClick={() => handlePaginationRange(20)}>20</span>
                     <span onClick={() => handlePaginationRange(30)}>30</span>
                     <span onClick={() => handlePaginationRange(50)}>50</span>
