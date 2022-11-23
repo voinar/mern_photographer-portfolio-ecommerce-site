@@ -356,8 +356,9 @@ const OrderForm = () => {
                   />
                   <label>
                     Oświadczam, że znany mi jest{' '}
-                    <Link to="/regulamin">regulamin</Link> i akceptuję jego
-                    postanowienia.*
+                    <Link to="/regulamin">Regulamin</Link> oraz{' '}
+                    <Link to="/polityka-prywatnosci">Polityka prywatności</Link>{' '} i
+                    akceptuję ich postanowienia.*
                   </label>
                 </div>
 

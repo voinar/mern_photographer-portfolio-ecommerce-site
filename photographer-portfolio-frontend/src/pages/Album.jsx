@@ -210,7 +210,7 @@ const Album = () => {
               <h1>{album}</h1>
               <div className="album__toolbar__thumbnail-controls">
                 <button onClick={handlePaginationPrevPage}>
-                  Poprzednia strona
+                  Poprzednie
                 </button>
 
                 <div className="album__toolbar__thumbnail-controls__dropdown">
@@ -229,7 +229,7 @@ const Album = () => {
                 </div>
 
                 <button onClick={handlePaginationNextPage}>
-                  Następna strona
+                  Następne
                 </button>
 
                 <button
@@ -358,10 +358,7 @@ const Album = () => {
             </div>
           </div>
           <div className="album__page-count">
-            Oglądasz {indexStart}
-            {'-'}
-            {indexEnd} {'z ' + albumImagesList.length}
-            {'zdjęć'}
+            <span>{`Oglądasz ${indexStart}-${indexEnd} z ${albumImagesList.length} zdjęć`}</span>
           </div>
 
           {/* {numberOfImages} */}

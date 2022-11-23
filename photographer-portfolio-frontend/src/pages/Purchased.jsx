@@ -307,6 +307,96 @@ const Purchased = () => {
                     })();
                   };
                   sendEmailConfirmation();
+
+                  //send email to user
+                  const sendEmailInvoiceRequest = () => {
+                    console.log('sending email invoice request');
+                    //update order status in db to emailSent: true
+                    (async () => {
+                      // console.log(
+                      //   'email invoice request sent successfully. updating order status in db...'
+                      // );
+                      const docRef = doc(db, 'orders', uniqueId);
+                      const docSnap = await getDoc(docRef);
+
+                      if (docSnap.data().invoiceRequested === true) {
+                        console.log('confirming email as sent in db');
+
+                        axios({
+                          method: 'post',
+                          url: 'https://api.sendinblue.com/v3/smtp/email',
+                          headers: {
+                            accept: 'application/json',
+                            'api-key':
+                              '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',
+                            'content-type': 'application/json',
+                          },
+                          data: {
+                            sender: {
+                              name: 'Kacper Porada Fotografia',
+                              email: 'sklep.kacperporada@gmail.com',
+                            },
+                            to: [
+                              {
+                                email: 'nifeprty@gmail.com',
+                                name: 'Kacper Porada Fotografia',
+                              },
+                            ],
+                            subject: 'Klient prosi o wystawienie faktury',
+                            htmlContent: `<html>
+                            <head></head>
+                            <body>
+                            <p>Hej <span style="text-transform: capitalize">${userName},</span></p>
+                            <p>Podczas składania zamówienia klient  ${
+                              docSnap.data().name
+                            }  ${
+                              docSnap.data().surname
+                            }poprosił o wystawienie faktury</p>
+                            <p>Email klienta: ${docSnap.data().email}</p>
+                            <p>Identyfikator zamówienia: ${uniqueId}</p>
+                            <p>Podgląd zamówienia:</p>
+                              <a href="https://www.kacperporada.pl/zakupione/${uniqueId}">
+                                <button
+                                style="
+                                padding: 10px 26px;
+                                background-color: rgba(0, 230, 0, .5);
+                                color: black;
+                                cursor: pointer;
+                                border: 1px solid rgba(0,0,0,0.2);
+                                border-radius: 4px">
+                                  Zobacz zdjęcia</button>
+                              </a>
+
+                            <p>Kacper Porada Fotografia</p>
+                            </body>
+                            </html>`,
+                          },
+                        });
+
+                        // setDoc(docRef, { emailSent: true }, { merge: true });
+
+                        console.log(
+                          // 'email sending completed. emailSent in state:',
+                          // emailSent,
+                          'email invooice request sent in db:',
+                          docSnap.data().invoiceRequested
+                        );
+                        // }
+                        // catch (error) {
+                        //   console.log(
+                        //     'error while sending confirmation email:',
+                        //     error
+                        //   );
+                        // }
+                      } else {
+                        console.log(
+                          'unable to confirm email status as sent upon accessing db. current emailSent status:',
+                          docSnap.data().emailSent
+                        );
+                      }
+                    })();
+                  };
+                  sendEmailInvoiceRequest();
                 } else {
                   console.log('payment confirmation: order paid');
                   setPaymentConfirmed(true);
@@ -565,7 +655,7 @@ const Purchased = () => {
                       <p>
                         Jeśli <i>nie</i> i pieniądze nie zostały pobrane, to nic
                         się nie stało - możesz stworzyć{' '}
-                        <Link to="/sklep">
+                        <Link to="/koszyk">
                           <i>nowe zamówienie</i>
                         </Link>
                         . Po wykonaniu płatności otrzymasz automatycznie linki

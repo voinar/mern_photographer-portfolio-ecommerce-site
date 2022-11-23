@@ -44,6 +44,7 @@ import Purchased from './pages/Purchased';
 import Contact from './pages/Contact';
 import Cookies from './pages/Cookies';
 import TermsConditions from './pages/TermsConditions';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import Experiments from './pages/Experiments';
 
 //components
@@ -124,6 +125,7 @@ export {
   Contact,
   Cookies,
   TermsConditions,
+  PrivacyPolicy,
   Experiments,
   //components
   Navbar,

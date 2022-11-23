@@ -57,6 +57,11 @@ const Footer = () => {
               <Link to="/regulamin">
                 <span>Regulamin</span>
               </Link>
+
+              <Link to="/polityka-prywatnosci">
+                <span>Polityka prywatności</span>
+              </Link>
+
               <Link to="/Kontakt">
                 <span>Kontakt</span>
               </Link>

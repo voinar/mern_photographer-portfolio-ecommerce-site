@@ -15,6 +15,7 @@ import {
   Purchased,
   Contact,
   TermsConditions,
+  PrivacyPolicy,
   Cookies,
 } from '../imports';
 
@@ -34,6 +35,7 @@ const RoutesContainer = () => (
     <Route path="/zakupione/:uniqueId" element={<Purchased />} />
     <Route path="/pomoc" element={<Contact />} />
     <Route path="/regulamin" element={<TermsConditions />} />
+    <Route path="/polityka-prywatnosci" element={<PrivacyPolicy />} />
     <Route path="/cookies" element={<Cookies />} />
   </Routes>
 );

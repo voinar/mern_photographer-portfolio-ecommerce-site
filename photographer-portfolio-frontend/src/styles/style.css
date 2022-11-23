@@ -818,6 +818,8 @@ select {
   background-color: #f2f2f2;
   width: 100%;
   z-index: 3;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
   /* Dropdown Button */
   /* The container <div> - needed to position the dropdown content */
   /* Dropdown Content (Hidden by Default) */
@@ -880,7 +882,6 @@ select {
   display: -ms-flexbox;
   display: flex;
   padding: 12px;
-  width: auto;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -892,7 +893,13 @@ select {
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
+.album__toolbar .album__toolbar__thumbnail-controls button:hover {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
 .album__toolbar .album__toolbar__thumbnail-controls__dropdown {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
   position: relative;
   display: inline-block;
 }
@@ -1164,6 +1171,7 @@ select {
   display: flex;
   font-size: 20px;
   font-weight: 200;
+  padding: 30px 0px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -1190,6 +1198,9 @@ select {
     -webkit-filter: invert(80%);
             filter: invert(80%);
     width: 50px;
+  }
+  .album__page-count {
+    font-size: 16px;
   }
 }
 
@@ -1827,11 +1838,34 @@ select {
 
 .terms__container li {
   font-weight: 300;
-  margin-bottom: 10px;
+  margin: 0 0 10px 0;
+  padding: 0 0 0 10px;
 }
 
 @media only screen and (max-width: 768px) {
   .terms__container {
+    padding: 100px 20px;
+  }
+}
+
+.privacy-policy__container {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 180px 100px 200px;
+  height: auto;
+}
+
+.privacy-policy__container h3 {
+  font-weight: 400;
+}
+
+.privacy-policy__container li {
+  font-weight: 300;
+  margin: 0 0 10px 0;
+  padding: 0 0 0 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  .privacy-policy__container {
     padding: 100px 20px;
   }
 }
@@ -2333,6 +2367,7 @@ select {
       -ms-flex-pack: start;
           justify-content: flex-start;
   gap: 6%;
+  z-index: 2;
 }
 
 .footer__logo {
@@ -2386,6 +2421,7 @@ select {
   margin-top: 70px;
   right: 20%;
   font-weight: 100;
+  z-index: 1;
 }
 
 .footer__copyright {
@@ -2790,6 +2826,10 @@ select {
 .cookies-popup__close {
   font-weight: 500;
   cursor: pointer;
+}
+
+html * {
+  outline: 1px solid brown;
 }
 
 html {

@@ -14,6 +14,7 @@
 @import '../pages/styles/_Checkout';
 @import '../pages/styles/_Purchased';
 @import '../pages/styles/_TermsConditions';
+@import '../pages/styles/_PrivacyPolicy';
 @import '../pages/styles/_Cookies';
 
 // components
@@ -27,7 +28,7 @@
 @import '../atoms/styles/_CookiesPopup';
 
 html * {
-  // outline: 1px solid brown;
+  outline: 1px solid brown;
 }
 
 html {

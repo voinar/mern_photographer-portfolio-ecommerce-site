@@ -25,7 +25,7 @@
   background-color: $--c-white;
   width: 100%;
   z-index: 3;
-  // transition: all 0.3s;
+  transition: all 0.3s;
 
   .album__title {
     display: flex;
@@ -71,7 +71,6 @@
     margin-left: auto;
     // align-items: flex-end;
     // margin: 0 70px 0 auto;
-    // transition: all 0.3s;
 
     img {
       transform: rotate(0deg);
@@ -80,17 +79,24 @@
     button {
       display: flex;
       padding: 12px;
-      width: auto;
+      // width: auto;
       align-items: center;
       justify-content: center;
       border-radius: 4px;
       background-color: rgba(255, 255, 255, 0.64);
       border: $--border-standard;
     }
+
+    button:hover {
+      border: $--border-focus;
+
+    }
   }
 
   /* The container <div> - needed to position the dropdown content */
   .album__toolbar__thumbnail-controls__dropdown {
+    transition: all 0.3s;
+
     position: relative;
     display: inline-block;
   }
@@ -383,6 +389,7 @@
   display: flex;
   font-size: $--font-lg;
   font-weight: 200;
+  padding: 30px 0px;
   justify-content: center;
 }
 
@@ -422,6 +429,10 @@
       filter: invert(80%);
       width: 50px;
     }
+  }
+
+  .album__page-count {
+    font-size: $--font-md;
   }
 }
 /* Medium devices (landscape tablets, 768px and up) */
