@@ -38,8 +38,9 @@ const Album = () => {
   const [showPreviewImage, setShowPreviewImage] = useState(false);
   const [previewImageUrl, setPreviewImageUrl] = useState(undefined);
 
-  const [imageThumbnailSize, setImageThumbnailSize] =
-    useState(window.innerWidth <= 768 ? 'album__card--small' : 'album__card--medium');
+  const [imageThumbnailSize, setImageThumbnailSize] = useState(
+    window.innerWidth <= 768 ? 'album__card--small' : 'album__card--medium'
+  );
 
   useEffect(() => {
     const albumRef = ref(storage, `albums/${album.replaceAll(' ', '_')}/male/`);
@@ -213,7 +214,8 @@ const Album = () => {
 
                 <div className="album__toolbar__thumbnail-controls__dropdown">
                   <button className="album__toolbar__thumbnail-controls__dropbtn">
-                    Ilość zdjęć
+                    <span>Ilość zdjęć</span>
+                    <img src={IconChevron} alt="rozwiń"></img>
                   </button>
                   <div className="album__toolbar__thumbnail-controls__dropdown-content">
                     <span onClick={() => handlePaginationRange(10)}>10</span>

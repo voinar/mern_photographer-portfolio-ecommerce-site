@@ -1119,22 +1119,25 @@ select {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  padding: 20px;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
 
 .album__page__controls button {
-  padding: 14px 30px;
   font-size: 36px;
   font-weight: 200;
+  border: none;
+}
+
+.album__page__controls img {
+  width: 70px;
 }
 
 .album__page__controls .album__page__controls__prev {
   position: fixed;
   top: 50%;
-  left: 50px;
+  left: 20px;
   -webkit-transform: rotate(90deg) !important;
           transform: rotate(90deg) !important;
 }
@@ -1142,19 +1145,17 @@ select {
 .album__page__controls .album__page__controls__next {
   position: fixed;
   top: 50%;
-  right: 50px;
+  right: 20px;
   -webkit-transform: rotate(-90deg) !important;
           transform: rotate(-90deg) !important;
 }
 
 .album__page__controls .album__page__controls__prev--inactive {
-  opacity: 0.6;
-  background-color: gainsboro;
+  opacity: 0.2;
 }
 
 .album__page__controls .album__page__controls__next--inactive {
-  opacity: 0.6;
-  background-color: gainsboro;
+  opacity: 0.2;
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -1186,8 +1187,12 @@ select {
     width: 100%;
   }
   .album__page__controls button {
-    padding: 14px 20px;
-    background-color: white;
+    padding: 4px 10px;
+  }
+  .album__page__controls img {
+    -webkit-filter: invert(80%);
+            filter: invert(80%);
+    width: 50px;
   }
   .album__page__controls .album__page__controls__prev {
     position: fixed;
