@@ -238,8 +238,11 @@ const Purchased = () => {
                             Zobacz zdjęcia</button>
                         </a>
                       <p>Zdjęcia pozostaną dostępne do pobrania przez 60 dni od daty zakupu. W razie jakichkolwiek problemów z pobraniem zdjęć skontaktuj się ze mną przez <a href="http://www.kacperporada.pl/pomoc">stronę pomocy</a>, lub po prostu odpowiedz na tę wiadomość.</p>
+                      <br></br>
                       <p>Do zobaczenia w przyszłych wydarzeniach! :)</p>
                       <p>Kacper Porada Fotografia</p>
+                      <br></br>
+                      <p>Jeśli nie jesteś adresatem tej wiadomości, to prawdopodobnie podczas zakupu podany został błędny adres email. Możesz zignorować zarówno tę wiadomość jak i wszelkie pozostałe emaile informujące o dokonaniu płatności. </p>
                       </body>
                       </html>`;
                   };
@@ -263,14 +266,13 @@ const Purchased = () => {
                           url: 'https://api.sendinblue.com/v3/smtp/email',
                           headers: {
                             accept: 'application/json',
-                            'api-key':
-                              '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',
+                            'api-key': process.env.SENDINBLUE_API_KEY,
                             'content-type': 'application/json',
                           },
                           data: {
                             sender: {
-                              name: 'Kacper Porada Fotografia',
-                              email: 'sklep.kacperporada@gmail.com',
+                              name: process.env.REACT_APP_MAILING_SENDER_NAME,
+                              email: process.env.REACT_APP_MAILING_SENDER_EMAIL,
                             },
                             to: [
                               {
@@ -327,26 +329,28 @@ const Purchased = () => {
                           url: 'https://api.sendinblue.com/v3/smtp/email',
                           headers: {
                             accept: 'application/json',
-                            'api-key':
-                              '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',
+                            'api-key': process.env.SENDINBLUE_API_KEY,
+
                             'content-type': 'application/json',
                           },
                           data: {
                             sender: {
-                              name: 'Kacper Porada Fotografia',
-                              email: 'sklep.kacperporada@gmail.com',
+                              name: process.env.REACT_APP_MAILING_SENDER_NAME,
+                              email: process.env.REACT_APP_MAILING_SENDER_EMAIL,
                             },
                             to: [
                               {
-                                email: 'nifeprty@gmail.com',
-                                name: 'Kacper Porada Fotografia',
+                                name: process.env.REACT_APP_MAILING_SENDER_NAME,
+                                email: process.env.REACT_APP_MAILING_CONTACT,
                               },
                             ],
                             subject: 'Klient prosi o wystawienie faktury',
                             htmlContent: `<html>
                             <head></head>
                             <body>
-                            <p>Hej <span style="text-transform: capitalize">${userName},</span></p>
+                            <p>Hej <span style="text-transform: capitalize">${
+                              process.env.REACT_APP_USER_NAME
+                            },</span></p>
                             <p>Podczas składania zamówienia klient  ${
                               docSnap.data().name
                             }  ${
@@ -379,7 +383,6 @@ const Purchased = () => {
                           'email invooice request sent in db:',
                           docSnap.data().invoiceRequested
                         );
-
                       } else {
                         console.log(
                           'unable to confirm email status as sent upon accessing db. current emailSent status:',
@@ -390,6 +393,150 @@ const Purchased = () => {
                   };
                   sendEmailInvoiceRequest();
 
+                  // //send order email to user
+                  // const sendEmailConfirmation = () => {
+                  //   console.log('sending email confirmation');
+                  //   //update order status in db to emailSent: true
+                  //   (async () => {
+                  //     console.log(
+                  //       'email sent successfully. updating order status in db...'
+                  //     );
+                  //     const docRef = doc(db, 'orders', uniqueId);
+                  //     const docSnap = await getDoc(docRef);
+
+                  //     if (docSnap.data().emailSent === false) {
+                  //       console.log('confirming email as sent in db');
+
+                  //       axios({
+                  //         method: 'post',
+                  //         url: 'https://api.sendinblue.com/v3/smtp/email',
+                  //         headers: {
+                  //           accept: 'application/json',
+                  //           'api-key':
+                  //             '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',
+                  //           'content-type': 'application/json',
+                  //         },
+                  //         data: {
+                  //           sender: {
+                  //             name: 'Kacper Porada Fotografia',
+                  //             email: 'sklep.kacperporada@gmail.com',
+                  //           },
+                  //           to: [
+                  //             {
+                  //               email: userEmail,
+                  //               name: userName,
+                  //             },
+                  //           ],
+                  //           subject: 'Twoje zdjęcia. Sklep KacperPorada.pl',
+                  //           htmlContent: emailHTMLContent(),
+                  //         },
+                  //       });
+
+                  //       setDoc(docRef, { emailSent: true }, { merge: true });
+
+                  //       console.log(
+                  //         // 'email sending completed. emailSent in state:',
+                  //         // emailSent,
+                  //         'emailSent in db:',
+                  //         docSnap.data().emailSent
+                  //       );
+                  //       // }
+                  //       // catch (error) {
+                  //       //   console.log(
+                  //       //     'error while sending confirmation email:',
+                  //       //     error
+                  //       //   );
+                  //       // }
+                  //     } else {
+                  //       console.log(
+                  //         'unable to confirm email status as sent upon accessing db. current emailSent status:',
+                  //         docSnap.data().emailSent
+                  //       );
+                  //     }
+                  //   })();
+                  // };
+                  // sendEmailConfirmation();
+
+                  // //send email invoice request to shop admin
+                  // const sendEmailInvoiceRequest = () => {
+                  //   console.log('sending email invoice request');
+                  //   //update order status in db to emailSent: true
+                  //   (async () => {
+                  //     // console.log(
+                  //     //   'email invoice request sent successfully. updating order status in db...'
+                  //     // );
+                  //     const docRef = doc(db, 'orders', uniqueId);
+                  //     const docSnap = await getDoc(docRef);
+
+                  //     if (docSnap.data().invoiceRequested === true) {
+                  //       console.log('confirming email as sent in db');
+
+                  //       axios({
+                  //         method: 'post',
+                  //         url: 'https://api.sendinblue.com/v3/smtp/email',
+                  //         headers: {
+                  //           accept: 'application/json',
+                  //           'api-key':
+                  //             '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',
+                  //           'content-type': 'application/json',
+                  //         },
+                  //         data: {
+                  //           sender: {
+                  //             name: 'Kacper Porada Fotografia',
+                  //             email: 'sklep.kacperporada@gmail.com',
+                  //           },
+                  //           to: [
+                  //             {
+                  //               email: 'nifeprty@gmail.com',
+                  //               name: 'Kacper Porada Fotografia',
+                  //             },
+                  //           ],
+                  //           subject: 'Klient prosi o wystawienie faktury',
+                  //           htmlContent: `<html>
+                  //           <head></head>
+                  //           <body>
+                  //           <p>Hej <span style="text-transform: capitalize">${userName},</span></p>
+                  //           <p>Podczas składania zamówienia klient  ${
+                  //             docSnap.data().name
+                  //           }  ${
+                  //             docSnap.data().surname
+                  //           } poprosił o wystawienie faktury.</p>
+                  //           <p>Email klienta: ${docSnap.data().email}</p>
+                  //           <p>NIP klienta: ${docSnap.data().invoiceTaxId}</p>
+                  //           <p>Identyfikator zamówienia: ${uniqueId}</p>
+                  //           <p>Podgląd zamówienia:</p>
+                  //             <a href="https://www.kacperporada.pl/zakupione/${uniqueId}">
+                  //               <button
+                  //               style="
+                  //               padding: 10px 26px;
+                  //               background-color: rgba(0, 230, 0, .5);
+                  //               color: black;
+                  //               cursor: pointer;
+                  //               border: 1px solid rgba(0,0,0,0.2);
+                  //               border-radius: 4px">
+                  //                 Zobacz zdjęcia</button>
+                  //             </a>
+
+                  //           <p>Kacper Porada Fotografia</p>
+                  //           </body>
+                  //           </html>`,
+                  //         },
+                  //       });
+                  //       console.log(
+                  //         // 'email sending completed. emailSent in state:',
+                  //         // emailSent,
+                  //         'email invooice request sent in db:',
+                  //         docSnap.data().invoiceRequested
+                  //       );
+                  //     } else {
+                  //       console.log(
+                  //         'unable to confirm email status as sent upon accessing db. current emailSent status:',
+                  //         docSnap.data().emailSent
+                  //       );
+                  //     }
+                  //   })();
+                  // };
+                  // sendEmailInvoiceRequest();
                 } else {
                   console.log('payment confirmation: order paid');
                   setPaymentConfirmed(true);
