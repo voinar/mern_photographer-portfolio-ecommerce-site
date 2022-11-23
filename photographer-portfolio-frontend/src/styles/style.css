@@ -2925,6 +2925,20 @@ button {
   ul {
     padding: 0;
   }
+  .btn--primary {
+    background-color: rgba(0, 222, 0, 0.7) !important;
+    width: 200px;
+  }
+  .btn--primary:hover {
+    all: unset;
+  }
+  .btn--secondary {
+    background-color: rgba(0, 0, 0, 0.09) !important;
+    width: 200px;
+  }
+  .btn--secondary:hover {
+    all: unset;
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */

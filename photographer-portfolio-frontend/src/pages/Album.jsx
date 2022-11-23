@@ -105,6 +105,7 @@ const Album = () => {
       setIndexEnd(indexEnd + numberOfImages);
       setAlbumControlPrevInactive(false);
       console.log(indexStart, numberOfImages, indexEnd);
+      window.scrollTo(0, 0);
     } else {
       setAlbumControlsNextInactive(true);
     }
@@ -118,6 +119,7 @@ const Album = () => {
       setIndexStart(indexStart - numberOfImages);
       setIndexEnd(indexEnd - numberOfImages);
       setAlbumControlsNextInactive(false);
+      window.scrollTo(0, 0);
     }
   };
 
