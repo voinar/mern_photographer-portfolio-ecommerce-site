@@ -39,7 +39,7 @@ const Album = () => {
   const [previewImageUrl, setPreviewImageUrl] = useState(undefined);
 
   const [imageThumbnailSize, setImageThumbnailSize] =
-    useState('album__card--small');
+    useState(window.innerWidth <= 768 ? 'album__card--small' : 'album__card--medium');
 
   useEffect(() => {
     const albumRef = ref(storage, `albums/${album.replaceAll(' ', '_')}/male/`);
@@ -84,11 +84,13 @@ const Album = () => {
       html.style.overflow = showPreviewImage ? 'hidden' : 'auto';
     }
   }, [showPreviewImage]);
-
+  console.log('width', window.innerWidth);
   //pagination
   const [indexStart, setIndexStart] = useState(0);
-  const [numberOfImages, setNumberOfImages] = useState(10);
-  const [indexEnd, setIndexEnd] = useState(10);
+  const [numberOfImages, setNumberOfImages] = useState(
+    window.innerWidth <= 768 ? 10 : 30
+  );
+  const [indexEnd, setIndexEnd] = useState(window.innerWidth <= 768 ? 10 : 30);
   const [albumControlsPrevInactive, setAlbumControlPrevInactive] =
     useState(false);
   const [albumControlsNextInactive, setAlbumControlsNextInactive] =
