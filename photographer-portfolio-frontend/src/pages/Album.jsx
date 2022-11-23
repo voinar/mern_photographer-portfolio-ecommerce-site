@@ -39,7 +39,8 @@ const Album = () => {
   const [previewImageUrl, setPreviewImageUrl] = useState(undefined);
 
   const [imageThumbnailSize, setImageThumbnailSize] = useState(
-    window.innerWidth <= 768 ? 'album__card--small' : 'album__card--medium'
+    // window.innerWidth <= 768 ? 'album__card--small' : 'album__card--medium'
+    'album__card--small'
   );
 
   useEffect(() => {
@@ -85,13 +86,14 @@ const Album = () => {
       html.style.overflow = showPreviewImage ? 'hidden' : 'auto';
     }
   }, [showPreviewImage]);
-  console.log('width', window.innerWidth);
+  // console.log('width', window.innerWidth);
+
   //pagination
   const [indexStart, setIndexStart] = useState(0);
   const [numberOfImages, setNumberOfImages] = useState(
-    window.innerWidth <= 768 ? 10 : 30
+    30
   );
-  const [indexEnd, setIndexEnd] = useState(window.innerWidth <= 768 ? 10 : 30);
+  const [indexEnd, setIndexEnd] = useState(30);
   const [albumControlsPrevInactive, setAlbumControlPrevInactive] =
     useState(false);
   const [albumControlsNextInactive, setAlbumControlsNextInactive] =
@@ -209,9 +211,7 @@ const Album = () => {
               </button>
               <h1>{album}</h1>
               <div className="album__toolbar__thumbnail-controls">
-                <button onClick={handlePaginationPrevPage}>
-                  Poprzednie
-                </button>
+                <button onClick={handlePaginationPrevPage}>Poprzednie</button>
 
                 <div className="album__toolbar__thumbnail-controls__dropdown">
                   <button className="album__toolbar__thumbnail-controls__dropbtn">
@@ -228,9 +228,7 @@ const Album = () => {
                   </div>
                 </div>
 
-                <button onClick={handlePaginationNextPage}>
-                  Następne
-                </button>
+                <button onClick={handlePaginationNextPage}>Następne</button>
 
                 <button
                   onClick={() => setImageThumbnailSize('album__card--small')}
@@ -258,11 +256,29 @@ const Album = () => {
                     id={image}
                     url={image}
                     albumCardSize={`album__card ${imageThumbnailSize}`}
-                    handleImagePreview={() => handleImagePreview(image)}
+                    handleImagePreview={
+                      window.innerWidth >= 768
+                        ? () => handleImagePreview(image)
+                        : null
+                    }
                   />
 
                   {imageThumbnailSize === 'album__card--large' ? (
                     <div className="album__card__add-btn">
+                      <button
+                        onClick={() => addToCartFromImageThumbnail(image)}
+                      >
+                        <img
+                          src={IconCartAdd}
+                          alt="dodaj do koszyka"
+                          title="dodaj do koszyka"
+                        />
+                      </button>
+                    </div>
+                  ) : null}
+
+                  {window.innerWidth <= 768 ? (
+                    <div className="album__card__mobile__add-btn">
                       <button
                         onClick={() => addToCartFromImageThumbnail(image)}
                       >
