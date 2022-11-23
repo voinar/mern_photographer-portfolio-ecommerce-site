@@ -487,8 +487,8 @@ const Purchased = () => {
                             },
                             to: [
                               {
-                                email: 'nifeprty@gmail.com',
                                 name: 'Kacper Porada Fotografia',
+                                email: 'sklep.kacperporada@gmail.com',
                               },
                             ],
                             subject: 'Klient prosi o wystawienie faktury',
