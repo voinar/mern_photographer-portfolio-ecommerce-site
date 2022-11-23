@@ -60,7 +60,7 @@ function Shop() {
   return (
     <>
       <Helmet>
-        <title>Sklep</title>
+        <title>Sklep: Kacper Porada Fotografia</title>
       </Helmet>
       <div className="shop__container">
         <div className="shop__steps__cards">

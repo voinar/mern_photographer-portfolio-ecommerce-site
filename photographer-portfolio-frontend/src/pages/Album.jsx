@@ -311,10 +311,14 @@ const Album = () => {
           </div>
           <div className="album__page__controls">
             <div className="album__page__controls__prev">
-              <button onClick={handlePaginationPrevPage}>-</button>
+              <button onClick={handlePaginationPrevPage}>
+              <img src={IconChevron} alt="poprzednie" />
+              </button>
             </div>
             <div className="album__page__controls__next">
-              <button onClick={handlePaginationNextPage}>+</button>
+              <button onClick={handlePaginationNextPage}>
+              <img src={IconChevron} alt="następne" />
+              </button>
             </div>
           </div>
         </div>

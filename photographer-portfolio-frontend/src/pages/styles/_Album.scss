@@ -353,12 +353,14 @@
     position: fixed;
     top: 50%;
     left: 50px;
+    transform: rotate(90deg) !important;
   }
 
   .album__page__controls__next {
     position: fixed;
     top: 50%;
     right: 50px;
+    transform: rotate(-90deg) !important;
   }
 }
 
@@ -383,20 +385,49 @@
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
   .album__toolbar__thumbnail-controls {
-    // display: none !important;
+    display: none !important;
   }
 
   .album__title {
-    flex-direction: column !important;
+    // flex-direction: column !important;
   }
 
   .album__cards {
     // height: 200px;
     width: 100%;
   }
+
   .album__card--small {
     height: auto;
     width: 100%;
+  }
+
+  .album__page__controls {
+    // display: flex;
+    // flex-direction: row;
+    // padding: 20px;
+    // justify-content: space-between;
+
+    button {
+      padding: 14px 20px;
+      font-size: $--font-xxl;
+      font-weight: 200;
+      background-color: white;
+    }
+
+    .album__page__controls__prev {
+      position: fixed;
+      top: 50%;
+      left: 0px;
+      // transform: rotate(90deg);
+    }
+
+    .album__page__controls__next {
+      position: fixed;
+      top: 50%;
+      right: 0px;
+      // transform: rotate(-90deg);
+    }
   }
 
   // .album__preview__background {

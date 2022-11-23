@@ -1138,12 +1138,16 @@ select {
   position: fixed;
   top: 50%;
   left: 50px;
+  -webkit-transform: rotate(90deg) !important;
+          transform: rotate(90deg) !important;
 }
 
 .album__page__controls .album__page__controls__next {
   position: fixed;
   top: 50%;
   right: 50px;
+  -webkit-transform: rotate(-90deg) !important;
+          transform: rotate(-90deg) !important;
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -1164,11 +1168,8 @@ select {
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
-  .album__title {
-    -webkit-box-orient: vertical !important;
-    -webkit-box-direction: normal !important;
-        -ms-flex-direction: column !important;
-            flex-direction: column !important;
+  .album__toolbar__thumbnail-controls {
+    display: none !important;
   }
   .album__cards {
     width: 100%;
@@ -1176,6 +1177,22 @@ select {
   .album__card--small {
     height: auto;
     width: 100%;
+  }
+  .album__page__controls button {
+    padding: 14px 20px;
+    font-size: 36px;
+    font-weight: 200;
+    background-color: white;
+  }
+  .album__page__controls .album__page__controls__prev {
+    position: fixed;
+    top: 50%;
+    left: 0px;
+  }
+  .album__page__controls .album__page__controls__next {
+    position: fixed;
+    top: 50%;
+    right: 0px;
   }
 }
 
