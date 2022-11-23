@@ -244,7 +244,7 @@ const Purchased = () => {
                       </html>`;
                   };
 
-                  //send email to user
+                  //send order email to user
                   const sendEmailConfirmation = () => {
                     console.log('sending email confirmation');
                     //update order status in db to emailSent: true
@@ -308,7 +308,7 @@ const Purchased = () => {
                   };
                   sendEmailConfirmation();
 
-                  //send email to user
+                  //send email invoice request to shop admin
                   const sendEmailInvoiceRequest = () => {
                     console.log('sending email invoice request');
                     //update order status in db to emailSent: true
@@ -351,8 +351,9 @@ const Purchased = () => {
                               docSnap.data().name
                             }  ${
                               docSnap.data().surname
-                            }poprosił o wystawienie faktury</p>
+                            } poprosił o wystawienie faktury.</p>
                             <p>Email klienta: ${docSnap.data().email}</p>
+                            <p>NIP klienta: ${docSnap.data().invoiceTaxId}</p>
                             <p>Identyfikator zamówienia: ${uniqueId}</p>
                             <p>Podgląd zamówienia:</p>
                               <a href="https://www.kacperporada.pl/zakupione/${uniqueId}">
@@ -372,22 +373,13 @@ const Purchased = () => {
                             </html>`,
                           },
                         });
-
-                        // setDoc(docRef, { emailSent: true }, { merge: true });
-
                         console.log(
                           // 'email sending completed. emailSent in state:',
                           // emailSent,
                           'email invooice request sent in db:',
                           docSnap.data().invoiceRequested
                         );
-                        // }
-                        // catch (error) {
-                        //   console.log(
-                        //     'error while sending confirmation email:',
-                        //     error
-                        //   );
-                        // }
+
                       } else {
                         console.log(
                           'unable to confirm email status as sent upon accessing db. current emailSent status:',
@@ -397,6 +389,7 @@ const Purchased = () => {
                     })();
                   };
                   sendEmailInvoiceRequest();
+
                 } else {
                   console.log('payment confirmation: order paid');
                   setPaymentConfirmed(true);
