@@ -98,6 +98,7 @@ const Album = () => {
     useState(false);
 
   const handlePaginationRange = (n) => {
+    setIndexStart(0);
     setIndexEnd(n);
     setNumberOfImages(n);
   };
@@ -356,6 +357,14 @@ const Album = () => {
               </button>
             </div>
           </div>
+          <div className="album__page-count">
+            Oglądasz {indexStart}
+            {'-'}
+            {indexEnd} {'z ' + albumImagesList.length}
+            {'zdjęć'}
+          </div>
+
+          {/* {numberOfImages} */}
         </div>
       </main>
     </>

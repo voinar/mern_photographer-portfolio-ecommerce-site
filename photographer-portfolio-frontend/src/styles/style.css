@@ -1158,6 +1158,17 @@ select {
   opacity: 0.2;
 }
 
+.album__page-count {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 20px;
+  font-weight: 200;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 600px) {
   .album__container {
@@ -1171,6 +1182,14 @@ select {
   }
   .album__toolbar--compact {
     padding: 68px 0px 10px 40px;
+  }
+  .album__page__controls button {
+    padding: 4px 10px;
+  }
+  .album__page__controls img {
+    -webkit-filter: invert(80%);
+            filter: invert(80%);
+    width: 50px;
   }
 }
 
@@ -1190,8 +1209,6 @@ select {
     padding: 4px 10px;
   }
   .album__page__controls img {
-    -webkit-filter: invert(80%);
-            filter: invert(80%);
     width: 50px;
   }
   .album__page__controls .album__page__controls__prev {

@@ -379,6 +379,13 @@
   }
 }
 
+.album__page-count {
+  display: flex;
+  font-size: $--font-lg;
+  font-weight: 200;
+  justify-content: center;
+}
+
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 600px) {
   .album__container {
@@ -395,6 +402,26 @@
 
   .album__toolbar--compact {
     padding: 68px 0px 10px 40px;
+  }
+
+  .album__page__controls {
+    // display: flex;
+    // flex-direction: row;
+    // padding: 20px;
+    // justify-content: space-between;
+
+    button {
+      padding: 4px 10px;
+      // font-size: $--font-xxl;
+      // font-weight: 200;
+      // background-color: rgba(255, 255, 255, 0.075);
+      // outline: 1px solid #fff;
+    }
+
+    img {
+      filter: invert(80%);
+      width: 50px;
+    }
   }
 }
 /* Medium devices (landscape tablets, 768px and up) */
@@ -432,7 +459,7 @@
     }
 
     img {
-      filter: invert(80%);
+      // filter: invert(80%);
       width: 50px;
     }
 
