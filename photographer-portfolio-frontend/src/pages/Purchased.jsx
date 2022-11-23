@@ -351,9 +351,9 @@ const Purchased = () => {
                             <p>Hej <span style="text-transform: capitalize">${
                               process.env.REACT_APP_USER_NAME
                             },</span></p>
-                            <p>Podczas składania zamówienia klient  ${
+                            <p>Podczas składania zamówienia klient ${
                               docSnap.data().name
-                            }  ${
+                            } ${
                               docSnap.data().surname
                             } poprosił o wystawienie faktury.</p>
                             <p>Email klienta: ${docSnap.data().email}</p>
