@@ -263,13 +263,14 @@ const Purchased = () => {
                           url: 'https://api.sendinblue.com/v3/smtp/email',
                           headers: {
                             accept: 'application/json',
-                            'api-key': process.env.SENDINBLUE_API_KEY,
+                            'api-key':
+                              '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',
                             'content-type': 'application/json',
                           },
                           data: {
                             sender: {
-                              name: process.env.REACT_APP_MAILING_SENDER_NAME,
-                              email: process.env.REACT_APP_MAILING_SENDER_EMAIL,
+                              name: 'Kacper Porada Fotografia',
+                              email: 'sklep.kacperporada@gmail.com',
                             },
                             to: [
                               {
@@ -326,18 +327,19 @@ const Purchased = () => {
                           url: 'https://api.sendinblue.com/v3/smtp/email',
                           headers: {
                             accept: 'application/json',
-                            'api-key': process.env.SENDINBLUE_API_KEY,
+                            'api-key':
+                              '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',
                             'content-type': 'application/json',
                           },
                           data: {
                             sender: {
-                              name: process.env.REACT_APP_MAILING_SENDER_NAME,
-                              email: process.env.REACT_APP_MAILING_SENDER_EMAIL,
+                              name: 'Kacper Porada Fotografia',
+                              email: 'sklep.kacperporada@gmail.com',
                             },
                             to: [
                               {
-                                name: process.env.REACT_APP_MAILING_SENDER_NAME,
-                                email: process.env.REACT_APP_MAILING_CONTACT,
+                                email: 'nifeprty@gmail.com',
+                                name: 'Kacper Porada Fotografia',
                               },
                             ],
                             subject: 'Klient prosi o wystawienie faktury',
@@ -377,6 +379,7 @@ const Purchased = () => {
                           'email invooice request sent in db:',
                           docSnap.data().invoiceRequested
                         );
+
                       } else {
                         console.log(
                           'unable to confirm email status as sent upon accessing db. current emailSent status:',
@@ -386,6 +389,7 @@ const Purchased = () => {
                     })();
                   };
                   sendEmailInvoiceRequest();
+
                 } else {
                   console.log('payment confirmation: order paid');
                   setPaymentConfirmed(true);
