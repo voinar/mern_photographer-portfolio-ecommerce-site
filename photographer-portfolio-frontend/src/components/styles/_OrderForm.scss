@@ -40,18 +40,23 @@
     display: flex;
     flex-direction: row;
     gap: 6px;
+    // width: 10px;
     // align-items: center;
 
     label {
       display: block;
-
+      width: 95%;
       a {
         color: rgb(200, 0, 0);
       }
     }
 
     input {
-      width: auto;
+      width: 200px;
+    }
+
+    input[type='checkbox'] {
+      width: 16px;
     }
   }
 }
@@ -76,6 +81,12 @@
       display: flex;
       flex-direction: column;
       gap: 0px;
+    }
+  }
+
+  .order-form__content__checkbox {
+    input[type='checkbox'] {
+      width: 24px !important;
     }
   }
 }

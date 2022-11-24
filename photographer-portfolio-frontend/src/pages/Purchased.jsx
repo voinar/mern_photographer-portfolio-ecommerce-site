@@ -37,6 +37,8 @@ const Purchased = () => {
   const [userName, setUserName] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [emailConfirmationSent, setEmailConfirmationSent] = useState(false);
+  const [invoiceRequestEmailSent, setInvoiceRequestEmailSent] = useState(false);
 
   //1.use uniqueId from url params to find order in db.
   //found? proceed to 2. no? show error message
@@ -67,7 +69,7 @@ const Purchased = () => {
 
       if (docSnap.exists() && docSnap.data().isPaid === false) {
         console.log(
-          'order is created but seems unpaid. veryfying order status.'
+          'order found in db. status: unpaid. veryfying order status.'
         );
         setUserEmail(docSnap.data().email);
         setUserName(docSnap.data().name);
@@ -404,7 +406,10 @@ const Purchased = () => {
                       const docRef = doc(db, 'orders', uniqueId);
                       const docSnap = await getDoc(docRef);
 
-                      if (docSnap.data().emailSent === false) {
+                      if (
+                        docSnap.data().emailSent === false &&
+                        emailConfirmationSent === false
+                      ) {
                         console.log('confirming email as sent in db');
 
                         axios({
@@ -433,6 +438,7 @@ const Purchased = () => {
                         });
 
                         setDoc(docRef, { emailSent: true }, { merge: true });
+                        setEmailConfirmationSent(true)
 
                         console.log(
                           // 'email sending completed. emailSent in state:',
@@ -468,7 +474,7 @@ const Purchased = () => {
                       const docRef = doc(db, 'orders', uniqueId);
                       const docSnap = await getDoc(docRef);
 
-                      if (docSnap.data().invoiceRequested === true) {
+                      if (docSnap.data().invoiceRequested === true && invoiceRequestEmailSent(false)) {
                         console.log('confirming email as sent in db');
 
                         axios({
@@ -526,6 +532,9 @@ const Purchased = () => {
                             </html>`,
                           },
                         });
+
+                        setInvoiceRequestEmailSent(true);
+                        
                         console.log(
                           // 'email sending completed. emailSent in state:',
                           // emailSent,

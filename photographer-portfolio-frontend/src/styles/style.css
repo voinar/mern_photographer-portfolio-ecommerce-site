@@ -2552,6 +2552,7 @@ select {
 
 .order-form__content .order-form__content__checkbox label {
   display: block;
+  width: 95%;
 }
 
 .order-form__content .order-form__content__checkbox label a {
@@ -2559,7 +2560,11 @@ select {
 }
 
 .order-form__content .order-form__content__checkbox input {
-  width: auto;
+  width: 200px;
+}
+
+.order-form__content .order-form__content__checkbox input[type='checkbox'] {
+  width: 16px;
 }
 
 .order-form__content--error {
@@ -2585,6 +2590,9 @@ select {
         -ms-flex-direction: column;
             flex-direction: column;
     gap: 0px;
+  }
+  .order-form__content__checkbox input[type='checkbox'] {
+    width: 24px !important;
   }
 }
 
