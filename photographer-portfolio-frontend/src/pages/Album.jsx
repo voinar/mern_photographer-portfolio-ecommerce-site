@@ -200,9 +200,32 @@ const Album = () => {
     }
   };
 
-
   //listen for key presses
   useEffect(() => {
+    const handlePaginationNextPage = () => {
+      if (indexStart + numberOfImages < albumImagesList.length) {
+        setIndexStart(indexStart + numberOfImages);
+        setIndexEnd(indexEnd + numberOfImages);
+        setAlbumControlPrevInactive(false);
+        console.log(indexStart, numberOfImages, indexEnd);
+        window.scrollTo(0, 0);
+      } else {
+        setAlbumControlsNextInactive(true);
+      }
+    };
+
+    const handlePaginationPrevPage = () => {
+      if (indexStart - numberOfImages < 0) {
+        setAlbumControlPrevInactive(true);
+        console.log(indexStart, numberOfImages, indexEnd);
+      } else {
+        setIndexStart(indexStart - numberOfImages);
+        setIndexEnd(indexEnd - numberOfImages);
+        setAlbumControlsNextInactive(false);
+        window.scrollTo(0, 0);
+      }
+    };
+
     const detectKeyDown = (e) => {
       console.log('detectKeyDown: ', e.key);
       switch (e.key) {
