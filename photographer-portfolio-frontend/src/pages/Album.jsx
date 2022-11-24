@@ -92,7 +92,7 @@ const Album = () => {
   );
   const [indexEnd, setIndexEnd] = useState(window.innerWidth <= 768 ? 100 : 50);
   const [albumControlsPrevInactive, setAlbumControlPrevInactive] =
-    useState(false);
+    useState(true);
   const [albumControlsNextInactive, setAlbumControlsNextInactive] =
     useState(false);
 
@@ -128,7 +128,7 @@ const Album = () => {
 
   const getIndexEnd = () => {
     if (indexEnd >= albumImagesList.length) {
-      return albumImagesList.length
+      return albumImagesList.length;
     } else return indexEnd;
   };
 
@@ -200,6 +200,27 @@ const Album = () => {
     }
   };
 
+
+  //listen for key presses
+  useEffect(() => {
+    const detectKeyDown = (e) => {
+      console.log('detectKeyDown: ', e.key);
+      switch (e.key) {
+        case 'ArrowLeft':
+          handlePaginationPrevPage();
+          break;
+        case 'ArrowRight':
+          handlePaginationNextPage();
+          break;
+        default:
+          return null;
+      }
+    };
+    window.addEventListener('keydown', detectKeyDown, false);
+
+    return () => window.removeEventListener('keydown', detectKeyDown, false);
+  }, [handlePaginationPrevPage, handlePaginationNextPage]);
+
   return (
     <>
       <main>
@@ -214,7 +235,16 @@ const Album = () => {
               </button>
               <h1>{album}</h1>
               <div className="album__toolbar__thumbnail-controls">
-                <button onClick={handlePaginationPrevPage}>Poprzednie</button>
+                {albumControlsPrevInactive ? (
+                  <button
+                    style={{ opacity: '.6' }}
+                    onClick={handlePaginationPrevPage}
+                  >
+                    Poprzednie
+                  </button>
+                ) : (
+                  <button onClick={handlePaginationPrevPage}>Poprzednie</button>
+                )}
 
                 <div className="album__toolbar__thumbnail-controls__dropdown">
                   <button className="album__toolbar__thumbnail-controls__dropbtn">
@@ -229,7 +259,16 @@ const Album = () => {
                   </div>
                 </div>
 
-                <button onClick={handlePaginationNextPage}>Następne</button>
+                {albumControlsNextInactive ? (
+                  <button
+                    style={{ opacity: '.6' }}
+                    onClick={handlePaginationNextPage}
+                  >
+                    Następne
+                  </button>
+                ) : (
+                  <button onClick={handlePaginationNextPage}>Następne</button>
+                )}
 
                 <button
                   onClick={() => setImageThumbnailSize('album__card--small')}
