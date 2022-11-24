@@ -21,10 +21,6 @@ const initialState = {
     ? JSON.parse(localStorage.getItem('cookiesConsentPopupAccepted'))
     : false,
   paymentVerification: null,
-  // const [emailConfirmationSent, setEmailConfirmationSent] = useState(false);
-  // const [invoiceRequestEmailSent, setInvoiceRequestEmailSent] = useState(false);
-  emailConfirmationSent: false,
-  invoiceRequestEmailSent: false,
 };
 
 function reducer(state, action) {
@@ -95,14 +91,6 @@ function reducer(state, action) {
 
     case 'PAYMENT_VERIFICATION': {
       return { ...state, paymentVerification: action.payload };
-    }
-
-    case 'EMAIL_CONFIRMATION_SENT': {
-      return { ...state, emailConfirmationSent: action.payload };
-    }
-
-    case 'EMAIL_INVOICE_REQUEST_SENT': {
-      return { ...state, invoiceRequestEmailSent: action.payload };
     }
 
     default:
