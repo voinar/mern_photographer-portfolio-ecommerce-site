@@ -369,13 +369,13 @@ const Purchased = () => {
                       docSnap.data().invoiceRequested === true &&
                       invoiceRequestEmailSent(false)
                     ) {
-                      sendEmailConfirmation();
                       sendEmailInvoiceRequest();
-                      setEmailConfirmationSent(true);
                       setInvoiceRequestEmailSent(true);
+                      sendEmailConfirmation();
+                      setEmailConfirmationSent(true);
                     }
 
-                    if (
+                    else if (
                       docSnap.data().emailSent === false &&
                       emailConfirmationSent === false
                     ) {
@@ -384,7 +384,7 @@ const Purchased = () => {
                     }
                   };
                   sendEmailConfirmations();
-                  
+
                 } else {
                   console.log('payment confirmation: order already paid');
                   setPaymentConfirmed(true);
