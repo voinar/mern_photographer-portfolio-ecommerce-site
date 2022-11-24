@@ -271,7 +271,7 @@ const Purchased = () => {
           },
           data: {
             sender: {
-              name: 'Kacper Porada Fotografia',
+              name: process.env.REACT_APP_MAILING_SENDER_NAME,
               email: 'sklep.kacperporada@gmail.com',
             },
             to: [
@@ -313,7 +313,7 @@ const Purchased = () => {
           },
           data: {
             sender: {
-              name: 'Kacper Porada Fotografia',
+              name: process.env.REACT_APP_MAILING_SENDER_NAME,
               email: 'sklep.kacperporada@gmail.com',
             },
             to: [
