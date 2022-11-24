@@ -37,8 +37,9 @@ const Purchased = () => {
   const [userName, setUserName] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [emailConfirmationSent, setEmailConfirmationSent] = useState(false);
-  const [invoiceRequestEmailSent, setInvoiceRequestEmailSent] = useState(false);
+  // const [emailConfirmationSent, setEmailConfirmationSent] = useState(false);
+  // const [invoiceRequestEmailSent, setInvoiceRequestEmailSent] = useState(false);
+  const [emailConfirmationsSent, setEmailConfirmationsSent] = useState(false);
 
   //1.use uniqueId from url params to find order in db.
   //found? proceed to 2. no? show error message
@@ -212,7 +213,10 @@ const Purchased = () => {
               const docSnap = await getDoc(docRef);
 
               if (docSnap.exists()) {
-                console.log('is order paid?', docSnap.data().isPaid);
+                console.log(
+                  'is order paid? status in db: ',
+                  docSnap.data().isPaid
+                );
                 if (docSnap.data().isPaid === false) {
                   console.log('run payment verification');
 
@@ -285,7 +289,6 @@ const Purchased = () => {
                     });
 
                     setDoc(docRef, { emailSent: true }, { merge: true });
-                    setEmailConfirmationSent(true);
 
                     console.log(
                       // 'email sending completed. emailSent in state:',
@@ -358,31 +361,28 @@ const Purchased = () => {
                             </html>`,
                       },
                     });
-
-                    setInvoiceRequestEmailSent(true);
                   };
 
                   const sendEmailConfirmations = () => {
                     if (
                       docSnap.data().emailSent === false &&
-                      emailConfirmationSent === false &&
                       docSnap.data().invoiceRequested === true &&
-                      invoiceRequestEmailSent === false
+                      emailConfirmationsSent === false
                     ) {
-                      console.log('sending email invoice request');
+                      console.log('sending invoice request email');
                       sendEmailInvoiceRequest();
-                      setInvoiceRequestEmailSent(true);
 
                       console.log('sending email confirmation');
                       sendEmailConfirmation();
-                      setEmailConfirmationSent(true);
+
+                      setEmailConfirmationsSent(true);
                     } else if (
                       docSnap.data().emailSent === false &&
-                      emailConfirmationSent === false
+                      emailConfirmationsSent === false
                     ) {
                       console.log('sending email confirmation only');
                       sendEmailConfirmation();
-                      setEmailConfirmationSent(true);
+                      setEmailConfirmationsSent(true);
                     }
                   };
                   sendEmailConfirmations();
@@ -409,8 +409,7 @@ const Purchased = () => {
     uniqueId,
     userName,
     userEmail,
-    emailConfirmationSent,
-    invoiceRequestEmailSent,
+    emailConfirmationsSent,
   ]);
 
   //get full versions of images after confirming order status as paid

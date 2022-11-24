@@ -233,8 +233,7 @@ const OrderForm = () => {
 
     // templatka sign: {"sessionId":"str","merchantId":int,"amount":int,"currency":"str","crc":"str"}
     const signTemplate = `{"sessionId":"${state.cart.uniqueId}","merchantId":${username},"amount":${calculatedAmount},"currency":"PLN","crc":"${crcValue}"}`;
-    console.log('signtemp', signTemplate);
-    console.log('id type', typeof state.cart.uniqueId);
+    // console.log('signtemp', signTemplate);
     // const signTemplate = `{"sessionId":${uniqueId},"merchantId":200527,"amount":2,"currency":"PLN","crc":${crcValue}}`; //template string do obliczenia sumy kontrolnej
     const shaObj = new jsSHA('SHA-384', 'TEXT', { encoding: 'UTF8' }); //nowy obiekt sha-384 generowany przez jsSHA
     shaObj.update(signTemplate); //wprowadzenie ciągu signCryptoInput do hashowania przez shaObj
