@@ -267,13 +267,13 @@ const Purchased = () => {
           headers: {
             accept: 'application/json',
             'api-key':
-             process.env.REACT_APP_SIB_API_KEY,
+              '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',
             'content-type': 'application/json',
           },
           data: {
             sender: {
-              name:  process.env.REACT_APP_MAILING_SENDER_NAME,
-              email: process.env.REACT_APP_MAILING_SENDER_CONTACT
+              name: 'Kacper Porada Fotografia',
+              email: 'sklep.kacperporada@gmail.com',
             },
             to: [
               {
@@ -310,18 +310,18 @@ const Purchased = () => {
           headers: {
             accept: 'application/json',
             'api-key':
-             process.env.REACT_APP_SIB_API_KEY,
+              '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',
             'content-type': 'application/json',
           },
           data: {
             sender: {
-              name: process.env.REACT_APP_MAILING_SENDER_NAME,
-              email: process.env.REACT_APP_MAILING_SENDER_CONTACT,
+              name: 'Kacper Porada Fotografia',
+              email: 'sklep.kacperporada@gmail.com',
             },
             to: [
               {
-                name: process.env.REACT_APP_MAILING_SENDER_NAME,
-                email: process.env.REACT_APP_MAILING_SENDER_CONTACT,
+                name: 'Kacper Porada Fotografia',
+                email: 'sklep.kacperporada@gmail.com',
               },
             ],
             subject: 'Klient prosi o wystawienie faktury',
