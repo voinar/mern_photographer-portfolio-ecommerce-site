@@ -226,14 +226,45 @@ const Album = () => {
       }
     };
 
+    const handleImagePreviewPrev = () => {
+      console.log(albumImagesList.indexOf(previewImageUrl));
+      if (albumImagesList.indexOf(previewImageUrl) === 0) {
+        setPreviewImageUrl(albumImagesList[albumImagesList.length - 1]);
+      } else {
+        setPreviewImageUrl(
+          albumImagesList[albumImagesList.indexOf(previewImageUrl) - 1]
+        ); //find item in images list and decrement by 1
+      }
+    };
+
+    const handleImagePreviewNext = () => {
+      console.log(albumImagesList.indexOf(previewImageUrl));
+      if (
+        albumImagesList.indexOf(previewImageUrl) ===
+        albumImagesList.length - 1
+      ) {
+        setPreviewImageUrl(albumImagesList[0]);
+      } else {
+        setPreviewImageUrl(
+          albumImagesList[albumImagesList.indexOf(previewImageUrl) + 1]
+        ); //find item in images list and increment by 1
+      }
+    };
+
     const detectKeyDown = (e) => {
       console.log('detectKeyDown: ', e.key);
       switch (e.key) {
         case 'ArrowLeft':
-          handlePaginationPrevPage();
+          showPreviewImage === true
+            ? handleImagePreviewPrev()
+            : handlePaginationPrevPage();
+
           break;
         case 'ArrowRight':
-          handlePaginationNextPage();
+          showPreviewImage === true
+            ? handleImagePreviewNext()
+            : handlePaginationNextPage();
+
           break;
         default:
           return null;
