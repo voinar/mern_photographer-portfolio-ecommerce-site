@@ -33,13 +33,12 @@ const Purchased = () => {
   const [largeImageMetadata, setLargeImageMetadata] = useState([]);
   const [largeImageDimensions, setLargeImageDimensions] = useState([]);
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
-  // const [emailSent, setEmailSent] = useState(null);
   const [userName, setUserName] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  // const [emailConfirmationSent, setEmailConfirmationSent] = useState(false);
-  // const [invoiceRequestEmailSent, setInvoiceRequestEmailSent] = useState(false);
   const [emailConfirmationsSent, setEmailConfirmationsSent] = useState(false);
+
+  console.log('ENV',process.env)
 
   //1.use uniqueId from url params to find order in db.
   //found? proceed to 2. no? show error message
@@ -119,35 +118,6 @@ const Purchased = () => {
       }
     })();
   }, [uniqueId, contextDispatch]);
-
-  //payment verification
-  //1. find payment confirmation with sessionId === uniqueId in api data array
-  // useEffect(() => {
-  //   console.log('start payment confirmation');
-  //   getPaymentConfirmation();
-
-  //   async function getPaymentConfirmation() {
-  //     console.log('getPaymentConfirmation start');
-  //     try {
-  //       await axios({
-  //         method: 'get',
-  //         url: process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS,
-  //         // responseType: 'stream'
-  //       }).then(function (response) {
-  //         console.log('getPaymentConfirmation', response);
-  //         contextDispatch({
-  //           type: 'PAYMENT_VERIFICATION',
-  //           payload: response.data.find(
-  //             (element) => element.sessionId === state.cart.uniqueId
-  //           ),
-  //         });
-  //         // paymentVerification(); //send back payment verification data
-  //       });
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   }
-  // }, [contextDispatch, state.cart.uniqueId]);
 
   useEffect(() => {
     //1. find payment id db, 2. if isPaid: false, then confirm via payment gateway api query & set status as paid in db; if isPaid: true, then show images to user
@@ -297,13 +267,13 @@ const Purchased = () => {
           headers: {
             accept: 'application/json',
             'api-key':
-              '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',
+             process.env.REACT_APP_SIB_API_KEY,
             'content-type': 'application/json',
           },
           data: {
             sender: {
-              name: 'Kacper Porada Fotografia',
-              email: 'sklep.kacperporada@gmail.com',
+              name:  process.env.REACT_APP_MAILING_SENDER_NAME,
+              email: process.env.REACT_APP_MAILING_SENDER_CONTACT
             },
             to: [
               {
@@ -340,18 +310,18 @@ const Purchased = () => {
           headers: {
             accept: 'application/json',
             'api-key':
-              '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',
+             process.env.REACT_APP_SIB_API_KEY,
             'content-type': 'application/json',
           },
           data: {
             sender: {
-              name: 'Kacper Porada Fotografia',
-              email: 'sklep.kacperporada@gmail.com',
+              name: process.env.REACT_APP_MAILING_SENDER_NAME,
+              email: process.env.REACT_APP_MAILING_SENDER_CONTACT,
             },
             to: [
               {
-                name: 'Kacper Porada Fotografia',
-                email: 'sklep.kacperporada@gmail.com',
+                name: process.env.REACT_APP_MAILING_SENDER_NAME,
+                email: process.env.REACT_APP_MAILING_SENDER_CONTACT,
               },
             ],
             subject: 'Klient prosi o wystawienie faktury',
@@ -421,9 +391,6 @@ const Purchased = () => {
 
   //get full versions of images after confirming order status as paid
   useEffect(() => {
-    // console.log('url:',image)
-    // console.log('large url:',imageUrlFormatted)
-
     console.log('purchasedImages available', purchasedImages);
     purchasedImages.map((image) => {
       const storage = getStorage();
@@ -518,7 +485,6 @@ const Purchased = () => {
           <>
             {paymentConfirmed ? (
               <>
-                {/* <button onClick={sendEmailConfirmation}>send email</button> */}
                 <h1>Twoje zdjęcia</h1>
 
                 <div className="purchased__images">
