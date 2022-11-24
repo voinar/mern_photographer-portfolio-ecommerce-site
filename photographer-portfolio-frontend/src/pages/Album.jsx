@@ -126,6 +126,12 @@ const Album = () => {
     }
   };
 
+  const getIndexEnd = () => {
+    if (indexEnd >= albumImagesList.length) {
+      return albumImagesList.length
+    } else return indexEnd;
+  };
+
   //preview images in album page
   const handleImagePreview = (image) => {
     setPreviewImageUrl(image);
@@ -369,7 +375,9 @@ const Album = () => {
             </div>
           </div>
           <div className="album__page-count">
-            <span>{`Oglądasz ${indexStart}-${indexEnd} z ${albumImagesList.length} zdjęć`}</span>
+            <span>{`Oglądasz ${indexStart}-${getIndexEnd()} z ${
+              albumImagesList.length
+            } zdjęć`}</span>
           </div>
 
           {/* {numberOfImages} */}
