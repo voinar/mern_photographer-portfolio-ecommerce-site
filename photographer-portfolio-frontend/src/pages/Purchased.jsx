@@ -38,7 +38,7 @@ const Purchased = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [emailConfirmationsSent, setEmailConfirmationsSent] = useState(false);
 
-  console.log('ENV',process.env)
+  console.log('ENV', process.env);
 
   //1.use uniqueId from url params to find order in db.
   //found? proceed to 2. no? show error message
@@ -266,8 +266,7 @@ const Purchased = () => {
           url: 'https://api.sendinblue.com/v3/smtp/email',
           headers: {
             accept: 'application/json',
-            'api-key':
-              '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',
+            'api-key': process.env.REACT_APP_SIB_API_KEY,
             'content-type': 'application/json',
           },
           data: {
@@ -309,8 +308,7 @@ const Purchased = () => {
           url: 'https://api.sendinblue.com/v3/smtp/email',
           headers: {
             accept: 'application/json',
-            'api-key':
-              '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',
+            'api-key': process.env.REACT_APP_SIB_API_KEY,
             'content-type': 'application/json',
           },
           data: {
