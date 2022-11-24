@@ -242,7 +242,7 @@ const Album = () => {
     window.addEventListener('keydown', detectKeyDown, false);
 
     return () => window.removeEventListener('keydown', detectKeyDown, false);
-  }, [handlePaginationPrevPage, handlePaginationNextPage]);
+  });
 
   return (
     <>
