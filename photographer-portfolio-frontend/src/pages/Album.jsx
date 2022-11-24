@@ -28,9 +28,6 @@ const Album = () => {
   const navigate = useNavigate(); //used to return to previous page
   const goBack = () => navigate(-1);
 
-  // const token = 'universalToken';
-  const token = 'a9586b20-d423-4ef6-807e-2ca64610af45';
-  // const token = 'adf90091-3085-4adf-b27b-9edad8fd9723';
 
   //local component state
   const [albumImagesList, setAlbumImagesList] = useState([]);
@@ -44,6 +41,8 @@ const Album = () => {
   );
 
   useEffect(() => {
+  const token = process.env.REACT_APP_FIREBASE_IMAGE_TOKEN;
+
     const albumRef = ref(storage, `albums/${album.replaceAll(' ', '_')}/male/`);
     listAll(albumRef)
       .then((res) => {
@@ -86,14 +85,11 @@ const Album = () => {
       html.style.overflow = showPreviewImage ? 'hidden' : 'auto';
     }
   }, [showPreviewImage]);
-  // console.log('width', window.innerWidth);
 
   //pagination
   const [indexStart, setIndexStart] = useState(0);
-  const [numberOfImages, setNumberOfImages] = useState(
-    30
-  );
-  const [indexEnd, setIndexEnd] = useState(30);
+  const [numberOfImages, setNumberOfImages] = useState(25);
+  const [indexEnd, setIndexEnd] = useState(25);
   const [albumControlsPrevInactive, setAlbumControlPrevInactive] =
     useState(false);
   const [albumControlsNextInactive, setAlbumControlsNextInactive] =
@@ -219,10 +215,9 @@ const Album = () => {
                     <img src={IconChevron} alt="rozwiń"></img>
                   </button>
                   <div className="album__toolbar__thumbnail-controls__dropdown-content">
-                    <span onClick={() => handlePaginationRange(10)}>10</span>
-                    <span onClick={() => handlePaginationRange(20)}>20</span>
-                    <span onClick={() => handlePaginationRange(30)}>30</span>
+                    <span onClick={() => handlePaginationRange(25)}>25</span>
                     <span onClick={() => handlePaginationRange(50)}>50</span>
+                    <span onClick={() => handlePaginationRange(100)}>100</span>
                     {/* <span onClick={() => handlePaginationRange(75)}>75</span> */}
                     {/* <span onClick={() => handlePaginationRange(100)}>100</span> */}
                   </div>

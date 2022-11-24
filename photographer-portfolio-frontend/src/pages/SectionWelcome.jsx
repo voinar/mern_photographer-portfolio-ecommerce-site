@@ -49,14 +49,14 @@ const SectionWelcome = () => {
         <div className="cover__icons__row-container">
           <div className="cover__icons__social">
             <a
-              href="https://www.facebook.com/profile.php?id=100069653350294"
+              href={`${process.env.REACT_APP_SOCIAL_FACEBOOK}`}
               target="_blank"
               rel="noreferrer"
             >
               <img src={IconFacebook} alt="facebook" />
             </a>
             <a
-              href="https://www.instagram.com/kacper_porada_fotografia/"
+              href={`${process.env.REACT_APP_SOCIAL_INSTAGRAM}`}
               target="_blank"
               rel="noreferrer"
             >

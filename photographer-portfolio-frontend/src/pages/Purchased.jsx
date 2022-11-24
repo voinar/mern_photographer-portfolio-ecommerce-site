@@ -259,7 +259,6 @@ const Purchased = () => {
         const docRef = doc(db, 'orders', uniqueId);
         const docSnap = await getDoc(docRef);
 
-        console.log('confirming email as sent in db');
 
         axios({
           method: 'post',
@@ -285,6 +284,7 @@ const Purchased = () => {
           },
         });
 
+        console.log('confirming email status as sent in db');
         setDoc(docRef, { emailSent: true }, { merge: true });
 
         console.log(

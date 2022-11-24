@@ -28,7 +28,7 @@ const Footer = () => {
                 <span>Znajdź mnie na</span>
                 <div className="footer__icon">
                   <a
-                    href="https://www.facebook.com/profile.php?id=100069653350294"
+                    href={`${process.env.REACT_APP_SOCIAL_FACEBOOK}`}
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -37,7 +37,7 @@ const Footer = () => {
                 </div>
                 <div className="footer__icon">
                   <a
-                    href="https://www.instagram.com/kacper_porada_fotografia/"
+                    href={`${process.env.REACT_APP_SOCIAL_INSTAGRAM}`}
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -62,12 +62,12 @@ const Footer = () => {
                 <span>Polityka prywatności</span>
               </Link>
 
-              <Link to="/Kontakt">
+              <Link to="/Pomoc">
                 <span>Kontakt</span>
               </Link>
             </div>
             <div className="footer__column footer__tags">
-              <Link to="/Kontakt">
+              <Link to="/Pomoc">
                 <span>Pomoc</span>
               </Link>
             </div>

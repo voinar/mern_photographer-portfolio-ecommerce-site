@@ -41,7 +41,7 @@ import Cart from './pages/Cart';
 import SignIn from './pages/SignIn';
 import Checkout from './pages/Checkout';
 import Purchased from './pages/Purchased';
-import Contact from './pages/Contact';
+import Support from './pages/Support';
 import Cookies from './pages/Cookies';
 import TermsConditions from './pages/TermsConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
@@ -82,6 +82,7 @@ import IconGridMedium from './img/icons/icon-grid-medium.svg';
 import IconGridLarge from './img/icons/icon-grid-large.svg';
 import IconError from './img/icons/icon-error.svg';
 import IconQuestion from './img/icons/icon-question.svg';
+import IconAnswer from './img/icons/icon-answer.svg';
 import IconStepsEye from './img/icons/icon-steps-eye.svg';
 import IconStepsCart from './img/icons/icon-steps-cart.svg';
 import IconStepsPhoto from './img/icons/icon-steps-photo.svg';
@@ -122,7 +123,7 @@ export {
   SignIn,
   Checkout,
   Purchased,
-  Contact,
+  Support,
   Cookies,
   TermsConditions,
   PrivacyPolicy,
@@ -160,6 +161,7 @@ export {
   IconGridLarge,
   IconError,
   IconQuestion,
+  IconAnswer,
   IconStepsEye,
   IconStepsCart,
   IconStepsPhoto,

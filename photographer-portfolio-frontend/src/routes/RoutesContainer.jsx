@@ -13,7 +13,7 @@ import {
   Checkout,
   OrderForm,
   Purchased,
-  Contact,
+  Support,
   TermsConditions,
   PrivacyPolicy,
   Cookies,
@@ -33,7 +33,7 @@ const RoutesContainer = () => (
     <Route path="/podsumowanie" element={<Checkout />} />
     <Route path="/zamawiam" element={<OrderForm />} />
     <Route path="/zakupione/:uniqueId" element={<Purchased />} />
-    <Route path="/pomoc" element={<Contact />} />
+    <Route path="/pomoc" element={<Support />} />
     <Route path="/regulamin" element={<TermsConditions />} />
     <Route path="/polityka-prywatnosci" element={<PrivacyPolicy />} />
     <Route path="/cookies" element={<Cookies />} />

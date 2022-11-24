@@ -25,12 +25,14 @@ const About = () => (
             <div className="section__about__contact__row">
               <img src={IconEmail} alt="napisz email" />
               <h3>
-                <a href="mailto:kporadafoto@gmail.com">kporadafoto@gmail.com</a>
+                <a
+                  href={`mailto:${process.env.REACT_APP_MAILING_CONTACT}`}
+                >{`${process.env.REACT_APP_MAILING_CONTACT}`}</a>
               </h3>
             </div>
             <div className="section__about__contact__row">
               <img src={IconPhone} alt="zadzwoń" />
-              <h3>+48 537 256 492</h3>
+              <h3>{`${process.env.REACT_APP_PHONE_CONTACT}`}</h3>
             </div>
 
             <div className="about__icons">
@@ -39,7 +41,7 @@ const About = () => (
                 <div className="about__icons__social">
                   <div className="about__icon__social">
                     <a
-                      href="https://www.facebook.com/profile.php?id=100069653350294"
+                      href={`${process.env.REACT_APP_SOCIAL_FACEBOOK}`}
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -48,7 +50,7 @@ const About = () => (
                   </div>
                   <div className="about__icon__social">
                     <a
-                      href="https://www.instagram.com/kacper_porada_fotografia/"
+                      href={`${process.env.REACT_APP_SOCIAL_INSTAGRAM}`}
                       target="_blank"
                       rel="noreferrer"
                     >
