@@ -438,7 +438,7 @@ const Purchased = () => {
                         });
 
                         setDoc(docRef, { emailSent: true }, { merge: true });
-                        setEmailConfirmationSent(true)
+                        setEmailConfirmationSent(true);
 
                         console.log(
                           // 'email sending completed. emailSent in state:',
@@ -474,7 +474,10 @@ const Purchased = () => {
                       const docRef = doc(db, 'orders', uniqueId);
                       const docSnap = await getDoc(docRef);
 
-                      if (docSnap.data().invoiceRequested === true && invoiceRequestEmailSent(false)) {
+                      if (
+                        docSnap.data().invoiceRequested === true &&
+                        invoiceRequestEmailSent(false)
+                      ) {
                         console.log('confirming email as sent in db');
 
                         axios({
@@ -534,7 +537,7 @@ const Purchased = () => {
                         });
 
                         setInvoiceRequestEmailSent(true);
-                        
+
                         console.log(
                           // 'email sending completed. emailSent in state:',
                           // emailSent,
@@ -568,7 +571,14 @@ const Purchased = () => {
       }
     };
     paymentVerification(); //send back the payment confirmation to payment gateway api
-  }, [state.paymentVerification, uniqueId, userName, userEmail]);
+  }, [
+    state.paymentVerification,
+    uniqueId,
+    userName,
+    userEmail,
+    emailConfirmationSent,
+    invoiceRequestEmailSent,
+  ]);
 
   //get full versions of images after confirming order status as paid
   useEffect(() => {
