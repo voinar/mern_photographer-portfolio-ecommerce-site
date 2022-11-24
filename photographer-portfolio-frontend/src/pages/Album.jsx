@@ -28,7 +28,6 @@ const Album = () => {
   const navigate = useNavigate(); //used to return to previous page
   const goBack = () => navigate(-1);
 
-
   //local component state
   const [albumImagesList, setAlbumImagesList] = useState([]);
   const [scroll, setScroll] = useState(false);
@@ -41,7 +40,7 @@ const Album = () => {
   );
 
   useEffect(() => {
-  const token = process.env.REACT_APP_FIREBASE_IMAGE_TOKEN;
+    const token = process.env.REACT_APP_FIREBASE_IMAGE_TOKEN;
 
     const albumRef = ref(storage, `albums/${album.replaceAll(' ', '_')}/male/`);
     listAll(albumRef)
@@ -88,8 +87,10 @@ const Album = () => {
 
   //pagination
   const [indexStart, setIndexStart] = useState(0);
-  const [numberOfImages, setNumberOfImages] = useState(25);
-  const [indexEnd, setIndexEnd] = useState(25);
+  const [numberOfImages, setNumberOfImages] = useState(
+    window.innerWidth <= 768 ? 25 : 75
+  );
+  const [indexEnd, setIndexEnd] = useState(window.innerWidth <= 768 ? 25 : 75);
   const [albumControlsPrevInactive, setAlbumControlPrevInactive] =
     useState(false);
   const [albumControlsNextInactive, setAlbumControlsNextInactive] =
@@ -217,7 +218,9 @@ const Album = () => {
                   <div className="album__toolbar__thumbnail-controls__dropdown-content">
                     <span onClick={() => handlePaginationRange(25)}>25</span>
                     <span onClick={() => handlePaginationRange(50)}>50</span>
+                    <span onClick={() => handlePaginationRange(75)}>75</span>
                     <span onClick={() => handlePaginationRange(100)}>100</span>
+                    <span onClick={() => handlePaginationRange(150)}>150</span>
                     {/* <span onClick={() => handlePaginationRange(75)}>75</span> */}
                     {/* <span onClick={() => handlePaginationRange(100)}>100</span> */}
                   </div>
