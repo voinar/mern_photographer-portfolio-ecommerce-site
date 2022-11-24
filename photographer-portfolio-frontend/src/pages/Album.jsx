@@ -88,9 +88,9 @@ const Album = () => {
   //pagination
   const [indexStart, setIndexStart] = useState(0);
   const [numberOfImages, setNumberOfImages] = useState(
-    window.innerWidth <= 768 ? 25 : 75
+    window.innerWidth <= 768 ? 100 : 50
   );
-  const [indexEnd, setIndexEnd] = useState(window.innerWidth <= 768 ? 25 : 75);
+  const [indexEnd, setIndexEnd] = useState(window.innerWidth <= 768 ? 100 : 50);
   const [albumControlsPrevInactive, setAlbumControlPrevInactive] =
     useState(false);
   const [albumControlsNextInactive, setAlbumControlsNextInactive] =
@@ -216,13 +216,10 @@ const Album = () => {
                     <img src={IconChevron} alt="rozwiń"></img>
                   </button>
                   <div className="album__toolbar__thumbnail-controls__dropdown-content">
-                    <span onClick={() => handlePaginationRange(25)}>25</span>
+                    {/* <span onClick={() => handlePaginationRange(25)}>25</span> */}
                     <span onClick={() => handlePaginationRange(50)}>50</span>
                     <span onClick={() => handlePaginationRange(75)}>75</span>
                     <span onClick={() => handlePaginationRange(100)}>100</span>
-                    <span onClick={() => handlePaginationRange(150)}>150</span>
-                    {/* <span onClick={() => handlePaginationRange(75)}>75</span> */}
-                    {/* <span onClick={() => handlePaginationRange(100)}>100</span> */}
                   </div>
                 </div>
 
