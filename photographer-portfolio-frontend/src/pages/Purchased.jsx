@@ -367,7 +367,7 @@ const Purchased = () => {
                       docSnap.data().emailSent === false &&
                       emailConfirmationSent === false &&
                       docSnap.data().invoiceRequested === true &&
-                      invoiceRequestEmailSent(false)
+                      invoiceRequestEmailSent === false
                     ) {
                       console.log('sending email invoice request');
                       sendEmailInvoiceRequest();
@@ -380,7 +380,7 @@ const Purchased = () => {
                       docSnap.data().emailSent === false &&
                       emailConfirmationSent === false
                     ) {
-                      console.log('sending email confirmation');
+                      console.log('sending email confirmation only');
                       sendEmailConfirmation();
                       setEmailConfirmationSent(true);
                     }
