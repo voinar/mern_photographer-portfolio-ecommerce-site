@@ -251,7 +251,7 @@ const Purchased = () => {
 
                   //send order email to user
                   const sendEmailConfirmation = async () => {
-                    console.log('sending email confirmation');
+                    // console.log('sending email confirmation');
                     //update order status in db to emailSent: true
 
                     const docRef = doc(db, 'orders', uniqueId);
@@ -297,7 +297,7 @@ const Purchased = () => {
 
                   //send email invoice request to shop admin
                   const sendEmailInvoiceRequest = async () => {
-                    console.log('sending email invoice request');
+                    // console.log('sending email invoice request');
                     //update order status in db to emailSent: true
 
                     const docRef = doc(db, 'orders', uniqueId);
@@ -359,7 +359,7 @@ const Purchased = () => {
                       },
                     });
 
-                    invoiceRequestEmailSent(true);
+                    setInvoiceRequestEmailSent(true);
                   };
 
                   const sendEmailConfirmations = () => {
@@ -367,24 +367,25 @@ const Purchased = () => {
                       docSnap.data().emailSent === false &&
                       emailConfirmationSent === false &&
                       docSnap.data().invoiceRequested === true &&
-                      invoiceRequestEmailSent(false)
+                      setInvoiceRequestEmailSent(false)
                     ) {
+                      console.log('sending email invoice request');
                       sendEmailInvoiceRequest();
                       setInvoiceRequestEmailSent(true);
+                      console.log('sending email confirmation');
+
                       sendEmailConfirmation();
                       setEmailConfirmationSent(true);
-                    }
-
-                    else if (
+                    } else if (
                       docSnap.data().emailSent === false &&
                       emailConfirmationSent === false
                     ) {
+                      console.log('sending email confirmation');
                       sendEmailConfirmation();
                       setEmailConfirmationSent(true);
                     }
                   };
                   sendEmailConfirmations();
-
                 } else {
                   console.log('payment confirmation: order already paid');
                   setPaymentConfirmed(true);
