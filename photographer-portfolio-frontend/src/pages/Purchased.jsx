@@ -318,8 +318,8 @@ const Purchased = () => {
             },
             to: [
               {
-                name: 'Kacper Porada Fotografia',
-                email: 'sklep.kacperporada@gmail.com',
+                name: process.env.REACT_APP_MAILING_SENDER_NAME,
+                email: process.env.REACT_APP_MAILING_SENDER_EMAIL
               },
             ],
             subject: 'Klient prosi o wystawienie faktury',
