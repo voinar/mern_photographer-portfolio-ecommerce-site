@@ -83,6 +83,18 @@
     flex-wrap: wrap;
     gap: 100px 0px;
   }
+
+  .shop__cards__background-image {
+    position: fixed;
+    opacity: 0.05;
+    bottom: 0px;
+    right: 100px;
+    // border: 2px solid red;
+
+    svg {
+      // width: 500px;
+    }
+  }
 }
 
 .shop__card {

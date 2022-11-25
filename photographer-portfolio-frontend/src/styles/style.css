@@ -691,6 +691,13 @@ select {
   gap: 100px 0px;
 }
 
+.shop__cards .shop__cards__background-image {
+  position: fixed;
+  opacity: 0.05;
+  bottom: 0px;
+  right: 100px;
+}
+
 .shop__card {
   height: auto;
   opacity: 0.9;

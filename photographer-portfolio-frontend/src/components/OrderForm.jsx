@@ -29,7 +29,6 @@ const OrderForm = () => {
 
   //generate unique id used as order id, payment id & save it to context
   useEffect(() => {
-    // if (state.cart.uniqueId === null) {
     const generateUniqueId = () => {
       try {
         contextDispatch({
@@ -41,7 +40,6 @@ const OrderForm = () => {
       }
     };
     generateUniqueId();
-    // }
   }, [contextDispatch]);
   console.log('generateUniqueId: ' + state.cart.uniqueId);
 
@@ -125,19 +123,6 @@ const OrderForm = () => {
       }
     };
     surnameValidation();
-
-    // const phoneValidation = () => {
-    //   const regEx = /^[+0-9 ]{9,16}$/g;
-    //   if (formPhone === '' || regEx.test(formPhone) === true) {
-    //     setErrorMessage('');
-    //     return true;
-    //   } else {
-    //     setErrorMessage(
-    //       'Proszę wprowadzić poprawny numer telefonu lub pozostawić pole jako puste'
-    //     );
-    //   }
-    // };
-    // phoneValidation();
 
     const formInvoiceNumberValidation = () => {
       if (formInvoiceRequested === true) {

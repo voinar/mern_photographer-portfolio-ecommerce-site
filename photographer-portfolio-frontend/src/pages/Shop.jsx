@@ -10,10 +10,10 @@ import {
   IconStepsEye,
   IconStepsCart,
   IconStepsPhoto,
-  // IconSportsGymnast,
-  // IconSportsRunner,
-  // IconSportsHandball,
-  // IconSportsLifter,
+  IconSportsGymnast,
+  IconSportsRunner,
+  IconSportsHandball,
+  IconSportsLifter,
   textContent,
 } from '../imports';
 
@@ -28,6 +28,16 @@ function Shop() {
 
   // Create a reference under which you want to list
   const [foldersList, setFoldersList] = useState([]);
+
+  const backgroundImage = () => {
+    const images = [
+      IconSportsGymnast,
+      IconSportsRunner,
+      IconSportsHandball,
+      IconSportsLifter,
+    ];
+    return images[Math.floor(Math.random() * images.length)];
+  };
 
   // Find all the prefixes and items.
   useEffect(() => {
@@ -131,17 +141,19 @@ function Shop() {
             </div>
           </div>
         </div>
-        <h1>{
+        <h1>
+          {
             textContent[
               textContent.findIndex((obj) => {
                 return obj.language === state.languageSelected;
               })
             ]?.shop?.header
-          }</h1>
+          }
+        </h1>
         <div className="shop__cards">
-          {/* <div className="shop__cards__background-image">
-            <img src={IconSportsRunner} alt="" />
-          </div> */}
+          <div className="shop__cards__background-image">
+            <img src={backgroundImage()} alt="" />
+          </div>
           {foldersList.map((folder) => {
             return (
               <li key={v4()}>
