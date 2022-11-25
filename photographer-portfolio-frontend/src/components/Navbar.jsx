@@ -12,6 +12,7 @@ import {
   IconCart,
   IconMenu,
   IconClose,
+  textContent,
 } from '../imports';
 
 import categoryData from '../data/staticData.json';
@@ -87,12 +88,12 @@ const Navbar = () => {
   const renderNavbar = () => {
     if (
       location.pathname === '/' ||
-      location.pathname === '/biegi' ||
-      location.pathname === '/emocje' ||
-      location.pathname === '/portret' ||
-      location.pathname === '/krajobraz' ||
-      location.pathname === '/wi%C4%99cej' ||
-      location.pathname === '/o%20mnie'
+      location.pathname === '/portfolio/biegi' ||
+      location.pathname === '/portfolio/emocje' ||
+      location.pathname === '/portfolio/portret' ||
+      location.pathname === '/portfolio/krajobraz' ||
+      location.pathname === '/portfolio/wi%C4%99cej' ||
+      location.pathname === '/portfolio/o%20mnie'
     ) {
       return (
         <nav>
@@ -142,7 +143,7 @@ const Navbar = () => {
                       className="navbar__section-link"
                       onClick={showNavbar}
                     >
-                      <Link to={category}>{category}</Link>
+                      <Link to={`portfolio/${category}`}>{category}</Link>
                     </li>
                   );
                 } else return null;
@@ -178,7 +179,15 @@ const Navbar = () => {
             </Link>
           </div>
           <Link to="/sklep" className="navbar__shop__header">
-            <span>Sklep</span>
+            <span>
+              {
+                textContent[
+                  textContent.findIndex((obj) => {
+                    return obj.language === state.languageSelected;
+                  })
+                ]?.navbar?.title
+              }
+            </span>
           </Link>
           <div className="navbar__shop__icons">
             <div className="navbar__shop__userinfo">

@@ -12,6 +12,7 @@ import {
   IconGridSmall,
   IconGridMedium,
   IconGridLarge,
+  textContent,
 } from '../imports';
 
 import {
@@ -38,7 +39,7 @@ const Album = () => {
     'album__card--small'
   );
 
-  const [thumbnailsLoading, setThumbnailLoading] = useState(true);
+  // const [thumbnailsLoading, setThumbnailLoading] = useState(true);
 
   useEffect(() => {
     const token = process.env.REACT_APP_FIREBASE_IMAGE_TOKEN;
@@ -276,6 +277,25 @@ const Album = () => {
     return () => window.removeEventListener('keydown', detectKeyDown, false);
   });
 
+  //   const getLanguageContent = (requestedString) => {
+
+  //   // console.log('arg',arg)
+  //   const requestedStrings = 'button.previous'
+
+  //   console.log('string',typeof textContent[textContent.findIndex(obj => {return obj.language === state.languageSelected})].requestedString)
+  //  return textContent[textContent.findIndex(obj => {return obj.language === state.languageSelected})].button.previous
+  // console.log(arg)
+  // const languageSelected = state.languageSelected.findIndex('PL');
+  // console.log('lang', languageSelected);
+  // const languageContent = textContent.filter('PL')
+  // console.log(JSON.stringify(textContent))
+  // console.log(JSON.stringify(languageContent));
+  // state.languageSelected.toString()
+  // return;
+  // ? textContent.EN?.button?.previous
+  // : textContent.PL?.button?.previous} */}
+  // };
+
   return (
     <>
       <main>
@@ -290,20 +310,34 @@ const Album = () => {
               </button>
               <h1>{album}</h1>
               <div className="album__toolbar__thumbnail-controls">
-                {albumControlsPrevInactive ? (
-                  <button
-                    style={{ opacity: '.6' }}
-                    onClick={handlePaginationPrevPage}
-                  >
-                    Poprzednie
-                  </button>
-                ) : (
-                  <button onClick={handlePaginationPrevPage}>Poprzednie</button>
-                )}
+                <button
+                  style={
+                    albumControlsPrevInactive
+                      ? { opacity: '.6' }
+                      : { opacity: '1' }
+                  }
+                  onClick={handlePaginationPrevPage}
+                >
+                  {
+                    textContent[
+                      textContent.findIndex((obj) => {
+                        return obj.language === state.languageSelected;
+                      })
+                    ]?.button?.previous
+                  }
+                </button>
 
                 <div className="album__toolbar__thumbnail-controls__dropdown">
                   <button className="album__toolbar__thumbnail-controls__dropbtn">
-                    <span>Ilość zdjęć</span>
+                    <span>
+                      {
+                        textContent[
+                          textContent.findIndex((obj) => {
+                            return obj.language === state.languageSelected;
+                          })
+                        ]?.album?.numberOfImages
+                      }
+                    </span>
                     <img src={IconChevron} alt="rozwiń"></img>
                   </button>
                   <div className="album__toolbar__thumbnail-controls__dropdown-content">
@@ -314,16 +348,22 @@ const Album = () => {
                   </div>
                 </div>
 
-                {albumControlsNextInactive ? (
-                  <button
-                    style={{ opacity: '.6' }}
-                    onClick={handlePaginationNextPage}
-                  >
-                    Następne
-                  </button>
-                ) : (
-                  <button onClick={handlePaginationNextPage}>Następne</button>
-                )}
+                <button
+                  style={
+                    albumControlsNextInactive
+                      ? { opacity: '.6' }
+                      : { opacity: '1' }
+                  }
+                  onClick={handlePaginationNextPage}
+                >
+                  {
+                    textContent[
+                      textContent.findIndex((obj) => {
+                        return obj.language === state.languageSelected;
+                      })
+                    ]?.button?.next
+                  }
+                </button>
 
                 <button
                   onClick={() => setImageThumbnailSize('album__card--small')}
@@ -469,12 +509,25 @@ const Album = () => {
             </div>
           </div>
           <div className="album__page-count">
-            <span>{`Oglądasz ${indexStart}-${getIndexEnd()} z ${
-              albumImagesList.length
-            } zdjęć`}</span>
+            {/* <span>
+              {
+                textContent[
+                  textContent.findIndex((obj) => {
+                    return obj.language === state.languageSelected;
+                  })
+                ]?.album?.numberOfImagesDisplayed
+              }
+            </span> */}
+            <span>
+              {state.languageSelected === 'PL'
+                ? `Oglądasz ${indexStart}-${getIndexEnd()} z ${
+                    albumImagesList.length
+                  } zdjęć`
+                : `You are viewing ${indexStart}-${getIndexEnd()} of ${
+                    albumImagesList.length
+                  }`}
+            </span>
           </div>
-
-          {/* {numberOfImages} */}
         </div>
       </main>
     </>

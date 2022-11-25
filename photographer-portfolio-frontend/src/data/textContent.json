@@ -1,0 +1,140 @@
+[
+  {
+    "language": "EN",
+    "navbar": {
+      "title": "Store"
+    },
+    "button": {
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "album": {
+      "numberOfImages": "Number of images"
+    },
+    "cart": {
+      "title": "Cart",
+      "picture": "Image",
+      "preview": "Preview",
+      "price": "Price",
+      "info": "Info",
+      "options": "Options",
+      "about": "About",
+      "remove": "Remove",
+      "summary": "Summary",
+      "gross": "incl. tax",
+      "proceed": "Proceed to order",
+      "return": "Back to store"
+    },
+    "checkout": {
+      "title": "Checkout",
+      "empty": "Your cart is empty :)",
+      "return": "Back to store",
+      "greeting": "Hi, these are your items:",
+      "price": "Price:",
+      "gross": "gross"
+    },
+    "orderForm": {
+      "title": "Please fill out this form:",
+      "email": "Email",
+      "name": "Name",
+      "surname": "Surname",
+      "taxId": "Tax ID (PL NIP)",
+      "receiptRequested": "I would like to receive a receipt",
+      "payment": "Purchase",
+      "necessary": "necessary field",
+      "nextStepsHeader": "You are now being redirected to the payment page...",
+      "nextStepsPara1": "If your browser hasn't opened a new page, then please make sure that you allow 'popup windows'. You can check this in your browser's settings.",
+      "nextStepsUl": "If you have already completed the payment then you can find your images:",
+      "nextStepsLi1": " 1. In the page to which you have been redirected after completing the payment, as well as...",
+      "nextStepsLi2": " 2. In the link that was sent with eto your email address after you completed the payment.",
+      "nextStepsLi3": "In case of any issues with your order please contact me using the support page."
+    },
+    "purchased": {
+      "helmet": "Your images: Kacper Porada Fotografia",
+      "title": "Your images:",
+      "download": "Download image",
+      "newTab": "View in new tab",
+      "resolution": "Dimensions:",
+      "fileSize": "File size:",
+      "errorTitle": "Oops...",
+      "errorHeader": "We were unable to find images linked to this order. How to proceed?",
+      "errorAddressQ": "Have you entered a correct URL?",
+      "errorAddressA": "If you received this link from a friend, then please make sure that the link is correct. A correct link has been also sent in the email which was sent to the address entered at the checkout.",
+      "errorPaymentQ": "Have you completed the payment?",
+      "errorPaymentY": "If yes, then please check your email inbox. The email message which contains a link to the images has been sent after you completed the payment.",
+      "errorPaymentN": "If no, and no funds have been charged then you may go back to the cart and proceed to complete the order.",
+      "errorSupport1": "Still unable to retrieve images?",
+      "errorSupport2": "Please contact us using the link below:",
+      "errorHelp": "Help"
+    }
+  },
+  {
+    "language": "PL",
+    "navbar": {
+      "title": "Sklep"
+    },
+    "button": {
+      "previous": "Poprzednie",
+      "next": "Następne"
+    },
+    "album": {
+      "numberOfImages": "Ilość zdjęć"
+    },
+    "cart": {
+      "title": "Koszyk",
+      "picture": "Zdjęcie",
+      "preview": "Podgląd",
+      "price": "Cena",
+      "info": "Info",
+      "options": "Opcje",
+      "about": "O zdjęciu",
+      "remove": "Usuń",
+      "summary": "Podsumowanie",
+      "gross": "brutto",
+      "proceed": "Przejdź do zamówienia",
+      "return": "Wróć do sklepu"
+    },
+    "checkout": {
+      "title": "Podsumowanie",
+      "empty": "Twój koszyk jest pusty :)",
+      "return": "Wróć do sklepu",
+      "greeting": "Hej, oto Twój koszyk:",
+      "price": "Cena:",
+      "gross": "brutto"
+    },
+    "orderForm": {
+      "title": "Dane zamawiającego",
+      "email": "Email",
+      "name": "Imię",
+      "surname": "Nazwisko",
+      "taxId": "NIP",
+      "receiptRequested": "Chcę otrzymać fakturę na adres email podany w zamówieniu",
+      "payment": "Kupuję i płacę",
+      "necessary": "pole wymagane",
+      "nextStepsHeader": "Zostaniesz teraz przekierowany(a) do płatności.",
+      "nextStepsPara1": "Jeżeli Twoja przeglądarka nie otworzyła nowego okna, to upewnij się, że Twoje ustawienia pozwalają na otwieranie 'wyskakujących okien'. Możesz to sprawdzić w pasku adresu.",
+      "nextStepsUl": "Jeżeli natomiast już ukończyłeś(aś) płatność, to zakupione zdjęcia znajdziesz:",
+      "nextStepsLi1": " 1. Na stronie, na która wyświetliła się po sfinalizowaniu płatności, oraz...",
+      "nextStepsLi2": " 2. W linku, który znajdziesz w emailu wysłanym na adres podany w formularzu zamówienia.",
+      "nextStepsLi3": "W razie problemów ze złożeniem zamówienia zapraszam do kontaktu przez stronę pomocy"
+    },
+    "purchased": {
+      "helmet": "Twoje zdjęcia: Kacper Porada Fotografia",
+      "title": "Twoje zdjęcia",
+      "download": "Pobierz zdjęcie",
+      "newTab": "Zobacz w nowej karcie",
+      "resolution": "Wymiary obrazu:",
+      "fileSize": "Rozmiar pliku:",
+      "errorTitle": "Ups...",
+      "errorHeader": " Nie jesteśmy w stanie znaleźć zdjęć powiązanych z tym zamówieniem. Co dalej?",
+      "errorAddressQ": "Czy adres strony został wpisany poprawnie?",
+      "errorAddressA": " Jeśli otrzymałeś/aś link do albumu od znajomego, to upewnij się, że adres został wpisany w całości poprawnie. Adres do albumu można również znaleźć we wiadomości email otrzymanej po zakupie zdjęć.",
+      "errorPaymentQ": "Czy płatność została sfinalizowana? ",
+      "errorPaymentY": "Jeśli tak, to sprawdź swoją skrzynkę email. Po sfinalizowaniu płatności wysłaliśmy do Ciebie wiadomość, która zawiera link do zdjęć.",
+      "errorPaymentN": "Jeśli nie i pieniądze nie zostały pobrane, to nic się nie stało - możesz stworzyć nowe zamówienie lub wrócić do koszyka. Po wykonaniu płatności otrzymasz automatycznie linki do zdjęć na adres email podany w zamówieniu.",
+      "errorSupport1": "Nadal nie jesteś w stanie otrzymać zdjęć?",
+      "errorSupport2": "Zapraszamy do kontaktu, wspólnie rozwiążemy wszelkie problemy:",
+      "errorHelp": "Pomoc"
+    }
+  }
+]

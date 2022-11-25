@@ -95,7 +95,6 @@ function reducer(state, action) {
     }
 
     case 'SET_UI_LANGUAGE': {
-      // localStorage.setItem('languageSelected', JSON.stringify(state.languageSelected));
       return { ...state, languageSelected: action.payload };
     }
 

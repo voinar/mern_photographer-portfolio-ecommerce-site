@@ -21,6 +21,7 @@ import {
   LoadingSpinner,
   IconError,
   IconQuestion,
+  textContent,
 } from '../imports';
 
 const Purchased = () => {
@@ -259,7 +260,6 @@ const Purchased = () => {
         const docRef = doc(db, 'orders', uniqueId);
         const docSnap = await getDoc(docRef);
 
-
         axios({
           method: 'post',
           url: 'https://api.sendinblue.com/v3/smtp/email',
@@ -271,7 +271,7 @@ const Purchased = () => {
           data: {
             sender: {
               name: process.env.REACT_APP_MAILING_SENDER_NAME,
-              email: process.env.REACT_APP_MAILING_SENDER_EMAIL
+              email: process.env.REACT_APP_MAILING_SENDER_EMAIL,
             },
             to: [
               {
@@ -314,12 +314,12 @@ const Purchased = () => {
           data: {
             sender: {
               name: process.env.REACT_APP_MAILING_SENDER_NAME,
-              email: process.env.REACT_APP_MAILING_SENDER_EMAIL
+              email: process.env.REACT_APP_MAILING_SENDER_EMAIL,
             },
             to: [
               {
                 name: process.env.REACT_APP_MAILING_SENDER_NAME,
-                email: process.env.REACT_APP_MAILING_SENDER_EMAIL
+                email: process.env.REACT_APP_MAILING_SENDER_EMAIL,
               },
             ],
             subject: 'Klient prosi o wystawienie faktury',
@@ -474,7 +474,15 @@ const Purchased = () => {
   return (
     <>
       <Helmet>
-        <title>Twoje zdjęcia: Kacper Porada Fotografia</title>
+        <title>
+          {
+            textContent[
+              textContent.findIndex((obj) => {
+                return obj.language === state.languageSelected;
+              })
+            ]?.purchased?.helmet
+          }
+        </title>
       </Helmet>
       <div className="purchased__container">
         {isLoading ? (
@@ -483,7 +491,15 @@ const Purchased = () => {
           <>
             {paymentConfirmed ? (
               <>
-                <h1>Twoje zdjęcia</h1>
+                <h1>
+                  {
+                    textContent[
+                      textContent.findIndex((obj) => {
+                        return obj.language === state.languageSelected;
+                      })
+                    ]?.purchased?.title
+                  }
+                </h1>
 
                 <div className="purchased__images">
                   <ul>
@@ -499,7 +515,15 @@ const Purchased = () => {
                             onClick={() => downloadImage(image)}
                             className="btn--primary"
                           >
-                            Pobierz zdjęcie
+                            {
+                              textContent[
+                                textContent.findIndex((obj) => {
+                                  return (
+                                    obj.language === state.languageSelected
+                                  );
+                                })
+                              ]?.purchased?.download
+                            }
                           </button>
                           <a
                             href={image}
@@ -507,11 +531,27 @@ const Purchased = () => {
                             rel="noopener noreferrer"
                           >
                             <button className="btn--primary">
-                              Zobacz w nowej karcie
+                              {
+                                textContent[
+                                  textContent.findIndex((obj) => {
+                                    return (
+                                      obj.language === state.languageSelected
+                                    );
+                                  })
+                                ]?.purchased?.newTab
+                              }
                             </button>
                           </a>
                           <h3>
-                            Wymiary obrazu:{' '}
+                            {
+                              textContent[
+                                textContent.findIndex((obj) => {
+                                  return (
+                                    obj.language === state.languageSelected
+                                  );
+                                })
+                              ]?.purchased?.resolution
+                            }{' '}
                             {largeImageDimensions[
                               largeImageDimensions.findIndex(
                                 (item) => item.url === image
@@ -542,7 +582,15 @@ const Purchased = () => {
                             )}
                           </h3>
                           <h3>
-                            Rozmiar pliku:{' '}
+                            {
+                              textContent[
+                                textContent.findIndex((obj) => {
+                                  return (
+                                    obj.language === state.languageSelected
+                                  );
+                                })
+                              ]?.purchased?.fileSize
+                            }{' '}
                             {largeImageMetadata[
                               largeImageMetadata.findIndex(
                                 (item) => item.url === image
@@ -574,12 +622,25 @@ const Purchased = () => {
                       alt="błąd"
                       className="purchased__icon purchased__icon--error"
                     />
-                    <h1>Ups...</h1>
+                    <h1>
+                      {
+                        textContent[
+                          textContent.findIndex((obj) => {
+                            return obj.language === state.languageSelected;
+                          })
+                        ]?.purchased?.errorTitle
+                      }
+                    </h1>
                   </div>
 
                   <h2>
-                    Nie jesteśmy w stanie znaleźć zdjęć powiązanych z tym
-                    zamówieniem. Co dalej?
+                    {
+                      textContent[
+                        textContent.findIndex((obj) => {
+                          return obj.language === state.languageSelected;
+                        })
+                      ]?.purchased?.errorHeader
+                    }
                     <br />
                   </h2>
                   <ul>
@@ -590,11 +651,21 @@ const Purchased = () => {
                           alt="pytanie"
                           className="purchased__icon purchased__icon--question"
                         />
-                        Czy adres został wpisany poprawnie? <br />
-                        Jeśli otrzymałeś/aś link do albumu od znajomego, to
-                        upewnij się, że adres został wpisany w całości
-                        poprawnie. Adres do albumu można również znaleźć we
-                        wiadomości email otrzymanej po zakupie zdjęć.
+                        {
+                          textContent[
+                            textContent.findIndex((obj) => {
+                              return obj.language === state.languageSelected;
+                            })
+                          ]?.purchased?.errorAddressQ
+                        }
+                        <br />
+                        {
+                          textContent[
+                            textContent.findIndex((obj) => {
+                              return obj.language === state.languageSelected;
+                            })
+                          ]?.purchased?.errorAddressA
+                        }
                       </p>
                     </li>
                     <br />
@@ -605,23 +676,33 @@ const Purchased = () => {
                           alt="pytanie"
                           className="purchased__icon purchased__icon--question"
                         />
-                        Czy płatność została sfinalizowana? <br />
-                        Jeśli <i>tak</i>, to sprawdź swoją skrzynkę email. Po
-                        sfinalizowaniu płatności wysłaliśmy do Ciebie wiadomość,
-                        która zawiera link do zdjęć.
+                        {
+                          textContent[
+                            textContent.findIndex((obj) => {
+                              return obj.language === state.languageSelected;
+                            })
+                          ]?.purchased?.errorPaymentQ
+                        }
+                        <br />
+                        {
+                          textContent[
+                            textContent.findIndex((obj) => {
+                              return obj.language === state.languageSelected;
+                            })
+                          ]?.purchased?.errorPaymentY
+                        }
                       </p>
-                    </li>
-                    <li>
                       <p>
-                        Jeśli <i>nie</i> i pieniądze nie zostały pobrane, to nic
-                        się nie stało - możesz stworzyć{' '}
-                        <Link to="/koszyk">
-                          <i>nowe zamówienie</i>
-                        </Link>
-                        . Po wykonaniu płatności otrzymasz automatycznie linki
-                        do zdjęć na adres email podany w zamówieniu.
+                        {
+                          textContent[
+                            textContent.findIndex((obj) => {
+                              return obj.language === state.languageSelected;
+                            })
+                          ]?.purchased?.errorPaymentN
+                        }
                       </p>
                     </li>
+
                     <br />
                     <li>
                       <p>
@@ -630,15 +711,35 @@ const Purchased = () => {
                           alt="pytanie"
                           className="purchased__icon purchased__icon--question"
                         />
-                        Nadal nie jesteś w stanie otrzymać zdjęć? <br />
-                        Zapraszamy do kontaktu, wspólnie rozwiążemy wszelkie
-                        problemy:{' '}
+                        {
+                          textContent[
+                            textContent.findIndex((obj) => {
+                              return obj.language === state.languageSelected;
+                            })
+                          ]?.purchased?.errorSupport1
+                        }
+                        <br />
+                        {
+                          textContent[
+                            textContent.findIndex((obj) => {
+                              return obj.language === state.languageSelected;
+                            })
+                          ]?.purchased?.errorSupport2
+                        }
                       </p>
                     </li>
                     <br />
                     <li>
-                      <Link to="/kontakt">
-                        <button>Pomoc</button>
+                      <Link to="/Pomoc">
+                        <button>
+                          {
+                            textContent[
+                              textContent.findIndex((obj) => {
+                                return obj.language === state.languageSelected;
+                              })
+                            ]?.purchased?.errorHelp
+                          }
+                        </button>
                       </Link>
                     </li>
                   </ul>

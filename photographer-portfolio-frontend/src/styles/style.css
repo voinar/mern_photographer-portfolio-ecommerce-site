@@ -2055,6 +2055,35 @@ select {
   height: auto;
 }
 
+.page-not-found__container {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 180px 100px 200px;
+  height: auto;
+}
+
+.page-not-found__container span {
+  font-size: 160px;
+  font-weight: 100;
+  opacity: 0.2;
+}
+
+.page-not-found__container h2 {
+  margin-bottom: 20px;
+}
+
+.page-not-found__container a {
+  color: green;
+}
+
+@media only screen and (max-width: 768px) {
+  .page-not-found__container {
+    padding: 100px 20px;
+  }
+  .page-not-found__container span {
+    font-size: 100px;
+  }
+}
+
 .navbar {
   position: fixed;
   top: 0;

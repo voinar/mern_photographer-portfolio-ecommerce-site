@@ -8,6 +8,7 @@ import {
   v4,
   jsSHA,
   axios,
+  textContent,
 } from '../imports';
 
 import { doc, getDoc, setDoc } from 'firebase/firestore';
@@ -280,135 +281,236 @@ const OrderForm = () => {
 
   return (
     <>
-      <p>
-        {paymentInitiated === false ? (
-          <div className="order-form__container">
-            <span>
-              <h2>Dane zamawiającego:</h2>
-            </span>
-            <div className="order-form__content">
-              <form>
+      {paymentInitiated === false ? (
+        <div className="order-form__container">
+          <span>
+            <h2>
+              {
+                textContent[
+                  textContent.findIndex((obj) => {
+                    return obj.language === state.languageSelected;
+                  })
+                ]?.orderForm?.return
+              }
+            </h2>
+          </span>
+          <div className="order-form__content">
+            <form>
+              <label>
+                {
+                  textContent[
+                    textContent.findIndex((obj) => {
+                      return obj.language === state.languageSelected;
+                    })
+                  ]?.orderForm?.email
+                }
+                *:
+                <input
+                  value={formEmail}
+                  onChange={handleFormEmailUpdate}
+                  type="email"
+                  name="email"
+                  required
+                />
+              </label>
+              <div className="order-form__content__group">
                 <label>
-                  Email*:
+                  {
+                    textContent[
+                      textContent.findIndex((obj) => {
+                        return obj.language === state.languageSelected;
+                      })
+                    ]?.orderForm?.name
+                  }
+                  *:
                   <input
-                    value={formEmail}
-                    onChange={handleFormEmailUpdate}
-                    type="email"
-                    name="email"
+                    value={formName}
+                    onChange={handleFormNameUpdate}
+                    type="text"
+                    name="name"
                     required
                   />
                 </label>
-                <div className="order-form__content__group">
-                  <label>
-                    Imię*:
-                    <input
-                      value={formName}
-                      onChange={handleFormNameUpdate}
-                      type="text"
-                      name="name"
-                      required
-                    />
-                  </label>
-                  <label>
-                    Nazwisko*:
-                    <input
-                      value={formSurname}
-                      onChange={handleFormSurnameUpdate}
-                      type="text"
-                      name="surname"
-                      required
-                    />
-                  </label>
-                </div>
-                <div className="order-form__content__checkbox">
+                <label>
+                  {
+                    textContent[
+                      textContent.findIndex((obj) => {
+                        return obj.language === state.languageSelected;
+                      })
+                    ]?.orderForm?.surname
+                  }
+                  *:
                   <input
-                    name="consentInvoice"
-                    type="checkbox"
-                    onChange={toggleInputInvoice}
+                    value={formSurname}
+                    onChange={handleFormSurnameUpdate}
+                    type="text"
+                    name="surname"
+                    required
                   />
-                  <label>
-                    Chcę otrzymać fakturę na adres email podany w zamówieniu
-                  </label>
-                </div>
+                </label>
+              </div>
+              <div className="order-form__content__checkbox">
+                <input
+                  name="consentInvoice"
+                  type="checkbox"
+                  onChange={toggleInputInvoice}
+                />
+                <label>
+                  {
+                    textContent[
+                      textContent.findIndex((obj) => {
+                        return obj.language === state.languageSelected;
+                      })
+                    ]?.orderForm?.receiptRequested
+                  }
+                </label>
+              </div>
 
-                {formInvoiceRequested ? (
-                  <>
-                    <div className="order-form__content__checkbox">
-                      <label>
-                        NIP:{' '}
-                        <input
-                          value={formInvoiceNumber}
-                          onChange={handleFormInvoiceFieldChange}
-                          type="text"
-                          name="phone"
-                        />
-                      </label>
-                    </div>
-                  </>
-                ) : null}
+              {formInvoiceRequested ? (
+                <>
+                  <div className="order-form__content__checkbox">
+                    <label>
+                      {
+                        textContent[
+                          textContent.findIndex((obj) => {
+                            return obj.language === state.languageSelected;
+                          })
+                        ]?.orderForm?.taxId
+                      }{' '}
+                      <input
+                        value={formInvoiceNumber}
+                        onChange={handleFormInvoiceFieldChange}
+                        type="text"
+                        name="phone"
+                      />
+                    </label>
+                  </div>
+                </>
+              ) : null}
 
-                <div className="order-form__content__checkbox">
-                  <input
-                    name="consentTermsConditions"
-                    type="checkbox"
-                    onChange={handleFormTermsConditionsAccept}
-                  />
-                  <label>
-                    Oświadczam, że znany mi jest{' '}
-                    <Link to="/regulamin">Regulamin</Link> oraz{' '}
-                    <Link to="/polityka-prywatnosci">Polityka prywatności</Link>{' '} i
-                    akceptuję ich postanowienia.*
-                  </label>
-                </div>
+              <div className="order-form__content__checkbox">
+                <input
+                  name="consentTermsConditions"
+                  type="checkbox"
+                  onChange={handleFormTermsConditionsAccept}
+                />
+                <label>
+                  {state.languageSelected === 'PL' ? (
+                    <>
+                      Oświadczam, że znany mi jest
+                      <Link to="/regulamin"> Regulamin</Link> oraz
+                      <Link to="/polityka-prywatnosci">
+                        {' '}
+                        Polityka prywatności
+                      </Link>{' '}
+                      i akceptuję ich postanowienia.*
+                    </>
+                  ) : (
+                    <>
+                      I confirm that I have read and accept the
+                      <Link to="/regulamin"> Terms and Conditions</Link> as well
+                      as the
+                      <Link to="/polityka-prywatnosci"> Privacy Policy</Link>
+                      .*
+                    </>
+                  )}
+                </label>
+              </div>
 
-                <br />
-                <div className="form__error-message">
-                  <span>{errorMessage}</span>
-                </div>
-                <br />
-                <button
-                  onClick={dispatchFormDataToContext}
-                  type="submit"
-                  value="Zapisz"
-                  className="btn--primary"
-                >
-                  Kupuję i płacę
-                </button>
-                <br />
-                <span>*pole wymagane</span>
-              </form>
-            </div>
-          </div>
-        ) : (
-          <>
-            <div className="order-form__container">
-              <h2>Zostaniesz teraz przekierowany(a) do płatności.</h2>
               <br />
-              <p>
-                Jeżeli Twoja przeglądarka nie otworzyła nowego okna, to upewnij
-                się, że Twoje ustawienia pozwalają na otwieranie "wyskakujących
-                okien". Możesz to sprawdzić w pasku adresu.
-              </p>
-              <ul>
-                Jeżeli natomiast już ukończyłeś(aś) płatność, to zakupione
-                zdjęcia znajdziesz:
-                <li>
-                  1. Na stronie, na która wyświetliła się po sfinalizowaniu
-                  płatności, lub...
-                </li>
-                <li>
-                  2. W linku, który znajdziesz w emailu wysłanym na adres podany
-                  w formularzu zamówienia.
-                </li>
-              </ul>
-              <p>
-                W razie problemów ze złożeniem zamówienia zapraszam do kontaktu
-                przez stronę <Link to="/pomoc">pomocy.</Link>
-              </p>
-            </div>
-          </>
-        )}
-      </p>
+              <div className="form__error-message">
+                <span>{errorMessage}</span>
+              </div>
+              <br />
+              <button
+                onClick={dispatchFormDataToContext}
+                type="submit"
+                value="Zapisz"
+                className="btn--primary"
+              >
+                {
+                  textContent[
+                    textContent.findIndex((obj) => {
+                      return obj.language === state.languageSelected;
+                    })
+                  ]?.orderForm?.payment
+                }
+              </button>
+              <br />
+              <span>
+                *{' '}
+                {
+                  textContent[
+                    textContent.findIndex((obj) => {
+                      return obj.language === state.languageSelected;
+                    })
+                  ]?.orderForm?.necessary
+                }
+              </span>
+            </form>
+          </div>
+        </div>
+      ) : (
+        <>
+          <div className="order-form__container">
+            <h2>
+              {
+                textContent[
+                  textContent.findIndex((obj) => {
+                    return obj.language === state.languageSelected;
+                  })
+                ]?.orderForm?.nextStepsHeader
+              }
+            </h2>
+            <br />
+            <p>
+              {
+                textContent[
+                  textContent.findIndex((obj) => {
+                    return obj.language === state.languageSelected;
+                  })
+                ]?.orderForm?.nextStepsPara1
+              }
+            </p>
+            <ul>
+              {
+                textContent[
+                  textContent.findIndex((obj) => {
+                    return obj.language === state.languageSelected;
+                  })
+                ]?.orderForm?.nextStepsUl
+              }
+              <li>
+                {
+                  textContent[
+                    textContent.findIndex((obj) => {
+                      return obj.language === state.languageSelected;
+                    })
+                  ]?.orderForm?.nextStepsLi1
+                }
+              </li>
+              <li>
+                {
+                  textContent[
+                    textContent.findIndex((obj) => {
+                      return obj.language === state.languageSelected;
+                    })
+                  ]?.orderForm?.nextStepsLi2
+                }
+              </li>
+            </ul>
+            <p>
+              {
+                textContent[
+                  textContent.findIndex((obj) => {
+                    return obj.language === state.languageSelected;
+                  })
+                ]?.orderForm?.nextStepsLi3
+              }
+            </p>
+          </div>
+        </>
+      )}
     </>
   );
 };

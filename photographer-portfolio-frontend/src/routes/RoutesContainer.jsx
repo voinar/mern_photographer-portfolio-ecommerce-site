@@ -2,6 +2,8 @@ import {
   React,
   Routes,
   Route,
+  Navigate,
+  PageNotFound,
   SectionWelcome,
   SectionContent,
   About,
@@ -23,8 +25,8 @@ const RoutesContainer = () => (
   <Routes>
     <Route path="/" element={<SectionWelcome />} />
     <Route path="/witaj" element={<SectionWelcome />} />
-    <Route path="/:category" element={<SectionContent />} />
-    <Route path="/o%20mnie" element={<About />} />
+    <Route path="/portfolio/:category" element={<SectionContent />} />
+    <Route path="/portfolio/o%20mnie" element={<About />} />
     <Route path="/sklep" element={<Shop />} />
     <Route path="/album/:album" element={<Album />} />
     <Route path="/experiments" element={<Experiments />} />
@@ -37,7 +39,10 @@ const RoutesContainer = () => (
     <Route path="/regulamin" element={<TermsConditions />} />
     <Route path="/polityka-prywatnosci" element={<PrivacyPolicy />} />
     <Route path="/cookies" element={<Cookies />} />
+    <Route path="/404" element={<PageNotFound />} />
+    <Route path="/*" element={<Navigate to="/404" replace />} />
   </Routes>
 );
+
 
 export default RoutesContainer;

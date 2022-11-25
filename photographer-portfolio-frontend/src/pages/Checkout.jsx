@@ -8,6 +8,7 @@ import {
   Helmet,
   Link,
   OrderForm,
+  textContent,
 } from '../imports';
 
 import { doc, getDoc } from 'firebase/firestore';
@@ -22,12 +23,7 @@ const Checkout = () => {
   } = useContext(Store);
 
   //local component state
-  // const [showOrderForm, setShowOrderForm] = useState(true);
   const [itemPrice, setItemPrice] = useState(null);
-
-  // const toggleOrderForm = () => {
-  //   setShowOrderForm((prevState) => !prevState);
-  // };
 
   useEffect(() => {
     const getPrice = async () => {
@@ -45,7 +41,7 @@ const Checkout = () => {
       }
     };
     getPrice();
-  }, [state]);
+  }, [state.cart]);
 
   const navigate = useNavigate(); //used to return to previous page
   const goBack = () => navigate(-1);
@@ -53,7 +49,15 @@ const Checkout = () => {
   return (
     <>
       <Helmet>
-        <title>Podsumowanie</title>
+        <title>
+          {
+            textContent[
+              textContent.findIndex((obj) => {
+                return obj.language === state.languageSelected;
+              })
+            ]?.checkout?.title
+          }
+        </title>
       </Helmet>
 
       {state?.cart?.cartItems?.length === 0 ? (
@@ -62,12 +66,36 @@ const Checkout = () => {
             <button onClick={goBack} className="btn--back">
               <img src={iconChevron} alt="zobacz" />
             </button>
-            <h1>Podsumowanie</h1>
+            <h1>
+              {
+                textContent[
+                  textContent.findIndex((obj) => {
+                    return obj.language === state.languageSelected;
+                  })
+                ]?.checkout?.title
+              }
+            </h1>
           </div>
           <div className="cart__images">
-            <h3>Twój koszyk jest pusty :)</h3>
+            <h3>
+              {
+                textContent[
+                  textContent.findIndex((obj) => {
+                    return obj.language === state.languageSelected;
+                  })
+                ]?.checkout?.empty
+              }
+            </h3>
             <Link to="/sklep">
-              <button className="btn--primary">Wracam do sklepu.</button>
+              <button className="btn--primary">
+                {
+                  textContent[
+                    textContent.findIndex((obj) => {
+                      return obj.language === state.languageSelected;
+                    })
+                  ]?.checkout?.return
+                }
+              </button>
             </Link>
           </div>
         </main>
@@ -78,12 +106,28 @@ const Checkout = () => {
               <button onClick={goBack} className="btn--back">
                 <img src={iconChevron} alt="zobacz" />
               </button>
-              <h1>Podsumowanie</h1>
+              <h1>
+                {
+                  textContent[
+                    textContent.findIndex((obj) => {
+                      return obj.language === state.languageSelected;
+                    })
+                  ]?.checkout?.title
+                }
+              </h1>
             </div>
 
             <div className="checkout__summary">
               <div className="checkout__summary__cart">
-                <h1>Hej, oto Twój koszyk:</h1>
+                <h1>
+                  {
+                    textContent[
+                      textContent.findIndex((obj) => {
+                        return obj.language === state.languageSelected;
+                      })
+                    ]?.checkout?.greeting
+                  }
+                </h1>
 
                 <div className="checkout__items">
                   {state?.cart?.cartItems?.map((image) => {
@@ -95,13 +139,28 @@ const Checkout = () => {
                   })}
                 </div>
                 <div className="checkout__total">
-                  <h2>Cena:</h2>
+                  <h2>
+                    {
+                      textContent[
+                        textContent.findIndex((obj) => {
+                          return obj.language === state.languageSelected;
+                        })
+                      ]?.checkout?.price
+                    }
+                  </h2>
                   <span className="checkout__total__price">
                     {new Intl.NumberFormat('pl-PL', {
                       minimumFractionDigits: 2,
                       maximumFractionDigits: 2,
                     }).format(state?.cart?.cartItems?.length * itemPrice)}
-                    zł brutto
+                    zł
+                    {
+                      textContent[
+                        textContent.findIndex((obj) => {
+                          return obj.language === state.languageSelected;
+                        })
+                      ]?.checkout?.gross
+                    }
                   </span>
                 </div>
               </div>

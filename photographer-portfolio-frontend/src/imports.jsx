@@ -19,6 +19,7 @@ import { Store } from './contexts/Store';
 import {
   Routes,
   Route,
+  Navigate,
   useLocation,
   useNavigate,
   useParams,
@@ -32,6 +33,7 @@ import jsSHA from 'jssha';
 import axios from 'axios';
 
 //pages
+import PageNotFound from './pages/PageNotFound'
 import SectionWelcome from './pages/SectionWelcome';
 import SectionContent from './pages/SectionContent';
 import About from './pages/About';
@@ -91,6 +93,9 @@ import IconSportsRunner from './img/icons/icon-sports-runner.svg';
 import IconSportsHandball from './img/icons/icon-sports-handball.svg';
 import IconSportsLifter from './img/icons/icon-sports-lifter.svg';
 
+//text content for language versions
+import textContent from './data/textContent.json';
+
 export {
   //hooks
   useState,
@@ -104,6 +109,7 @@ export {
   //react router
   Routes,
   Route,
+  Navigate,
   useLocation,
   useNavigate,
   useParams,
@@ -114,6 +120,7 @@ export {
   jsSHA,
   axios,
   //pages
+  PageNotFound,
   SectionWelcome,
   SectionContent,
   About,
@@ -169,4 +176,6 @@ export {
   IconSportsRunner,
   IconSportsHandball,
   IconSportsLifter,
+  //text content for language versions
+  textContent,
 };

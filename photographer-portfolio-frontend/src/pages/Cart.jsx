@@ -1,5 +1,6 @@
 import {
   React,
+  Helmet,
   useContext,
   useState,
   useEffect,
@@ -7,6 +8,7 @@ import {
   Link,
   IconChevron,
   IconMagnifyingGlass,
+  textContent,
 } from '../imports';
 import { Store } from '../contexts/Store';
 
@@ -67,12 +69,31 @@ const Cart = () => {
 
   return (
     <>
+      <Helmet>
+        <title>
+          {
+            textContent[
+              textContent.findIndex((obj) => {
+                return obj.language === state.languageSelected;
+              })
+            ]?.cart?.title
+          }
+        </title>
+      </Helmet>
       <div className="cart__container">
         <div className="cart__return">
           <button onClick={goBack} className="btn--back">
             <img src={IconChevron} alt="zobacz" />
           </button>
-          <h1>Koszyk</h1>
+          <h1>
+            {
+              textContent[
+                textContent.findIndex((obj) => {
+                  return obj.language === state.languageSelected;
+                })
+              ]?.cart?.title
+            }
+          </h1>
         </div>
         <div className="cart__sections">
           {state.cart.cartItems.length === 0 ? (
@@ -86,11 +107,51 @@ const Cart = () => {
             <>
               <ul className="cart__images">
                 <div className="cart__image__labels">
-                  <span className="cart__image__labels--photo">Zdjęcie</span>
-                  <span className="cart__image__labels--preview">Podgląd</span>
-                  <span className="cart__image__labels--price">Cena</span>
-                  <span className="cart__image__labels--price">Info</span>
-                  <span className="cart__image__labels--options">Opcje</span>
+                  <span className="cart__image__labels--photo">
+                    {
+                      textContent[
+                        textContent.findIndex((obj) => {
+                          return obj.language === state.languageSelected;
+                        })
+                      ]?.cart?.picture
+                    }
+                  </span>
+                  <span className="cart__image__labels--preview">
+                    {
+                      textContent[
+                        textContent.findIndex((obj) => {
+                          return obj.language === state.languageSelected;
+                        })
+                      ]?.cart?.preview
+                    }
+                  </span>
+                  <span className="cart__image__labels--price">
+                    {
+                      textContent[
+                        textContent.findIndex((obj) => {
+                          return obj.language === state.languageSelected;
+                        })
+                      ]?.cart?.price
+                    }
+                  </span>
+                  <span className="cart__image__labels--price">
+                    {
+                      textContent[
+                        textContent.findIndex((obj) => {
+                          return obj.language === state.languageSelected;
+                        })
+                      ]?.cart?.info
+                    }
+                  </span>
+                  <span className="cart__image__labels--options">
+                    {
+                      textContent[
+                        textContent.findIndex((obj) => {
+                          return obj.language === state.languageSelected;
+                        })
+                      ]?.cart?.options
+                    }
+                  </span>
                 </div>
                 {state.cart.cartItems.map((image) => {
                   return (
@@ -111,11 +172,26 @@ const Cart = () => {
                           {itemPrice}zł
                         </span>
                         <div className="cart__image__tools--button">
-                          <div class="tooltip">
-                            O zdjęciu
-                            <span class="tooltiptext">
-                              Zdjęcie cyfrowe wysokiej jakości, które otrzymasz
-                              na adres email podany w zamówieniu.
+                          <div className="tooltip">
+                            {
+                              textContent[
+                                textContent.findIndex((obj) => {
+                                  return (
+                                    obj.language === state.languageSelected
+                                  );
+                                })
+                              ]?.cart?.about
+                            }
+                            <span className="tooltiptext">
+                              {
+                                textContent[
+                                  textContent.findIndex((obj) => {
+                                    return (
+                                      obj.language === state.languageSelected
+                                    );
+                                  })
+                                ]?.cart?.info
+                              }
                             </span>
                           </div>
                         </div>
@@ -124,7 +200,15 @@ const Cart = () => {
                             onClick={() => cartRemoveItem(image)}
                             className="btn--tertiary"
                           >
-                            Usuń
+                            {
+                              textContent[
+                                textContent.findIndex((obj) => {
+                                  return (
+                                    obj.language === state.languageSelected
+                                  );
+                                })
+                              ]?.cart?.remove
+                            }
                           </button>
                         </div>
                       </div>
@@ -157,30 +241,56 @@ const Cart = () => {
           {state.cart.cartItems.length !== 0 ? (
             <div className="cart__summary">
               <div>
-                <h2>Podsumowanie:</h2>
+                <h2>
+                  {
+                    textContent[
+                      textContent.findIndex((obj) => {
+                        return obj.language === state.languageSelected;
+                      })
+                    ]?.cart?.summary
+                  }
+                </h2>
                 <span className="cart__summary__price">
                   {new Intl.NumberFormat('pl-PL', {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
                   }).format(state.cart.cartItems.length * itemPrice)}
-                  zł brutto
+                  zł{' '}
+                  {
+                    textContent[
+                      textContent.findIndex((obj) => {
+                        return obj.language === state.languageSelected;
+                      })
+                    ]?.cart?.gross
+                  }
                 </span>
               </div>
               <br />
               <Link to="/podsumowanie">
                 <button className="btn--primary cart__summary__button">
-                  Przejdź do zamówienia
+                  {
+                    textContent[
+                      textContent.findIndex((obj) => {
+                        return obj.language === state.languageSelected;
+                      })
+                    ]?.cart?.summary
+                  }{' '}
                 </button>
               </Link>
               <Link to="/sklep">
-              <button
-                // onClick={goBack}
-                className="btn--secondary cart__summary__button"
-              >
-                Wróć do sklepu
-              </button>
+                <button
+                  // onClick={goBack}
+                  className="btn--secondary cart__summary__button"
+                >
+                  {
+                    textContent[
+                      textContent.findIndex((obj) => {
+                        return obj.language === state.languageSelected;
+                      })
+                    ]?.cart?.return
+                  }{' '}
+                </button>
               </Link>
-
             </div>
           ) : null}
         </div>
