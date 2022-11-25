@@ -1,5 +1,7 @@
 import {
   React,
+  Store,
+  useContext,
   useEffect,
   useState,
   Helmet,
@@ -12,12 +14,18 @@ import {
   // IconSportsRunner,
   // IconSportsHandball,
   // IconSportsLifter,
+  textContent,
 } from '../imports';
 
 import { storage } from '../firebase/config';
 import { ref, listAll } from 'firebase/storage';
 
 function Shop() {
+  const {
+    state,
+    // , dispatch: contextDispatch
+  } = useContext(Store);
+
   // Create a reference under which you want to list
   const [foldersList, setFoldersList] = useState([]);
 
@@ -34,13 +42,6 @@ function Shop() {
 
             setFoldersList((prevFoldersList) => [
               ...prevFoldersList,
-              // {
-              //   albumName,
-              //   coverImage: `https://firebasestorage.googleapis.com/v0/b/kacper-foto.appspot.com/o/albums%2F${folderRef._location.path.slice(
-              //     7
-              //   )}%2Fmale%2Fcover.jpg?alt=media&amp;token=a9586b20-d423-4ef6-807e-2ca64610af45`,
-              //   )}%2Fmale%2Fcover.jpg?alt=media&amp;token=86c43d72-fd6d-412b-a7e5-0ece13d815b5`,
-              // },
               {
                 albumName,
                 coverImage: `https://firebasestorage.googleapis.com/v0/b/kacper-foto.appspot.com/o/albums%2F${folderRef._location.path.slice(
@@ -60,7 +61,15 @@ function Shop() {
   return (
     <>
       <Helmet>
-        <title>Sklep: Kacper Porada Fotografia</title>
+        <title>
+          {
+            textContent[
+              textContent.findIndex((obj) => {
+                return obj.language === state.languageSelected;
+              })
+            ]?.shop?.helmet
+          }
+        </title>
       </Helmet>
       <div className="shop__container">
         <div className="shop__steps__cards">
@@ -69,7 +78,15 @@ function Shop() {
               <span>1.</span>
             </div>
             <div className="shop__steps__explanation">
-              <p>Przeglądaj albumy i dodaj zdjęcia do koszyka</p>
+              <p>
+                {
+                  textContent[
+                    textContent.findIndex((obj) => {
+                      return obj.language === state.languageSelected;
+                    })
+                  ]?.shop?.steps1
+                }
+              </p>
             </div>
             <div className="shop__steps__icon shop__steps__icon--eye">
               <img src={IconStepsEye} alt="pierwszy krok" />
@@ -80,7 +97,15 @@ function Shop() {
               <span>2.</span>
             </div>
             <div className="shop__steps__explanation">
-              <p>Wprowadź swój adres email i dokonaj płatności</p>
+              <p>
+                {
+                  textContent[
+                    textContent.findIndex((obj) => {
+                      return obj.language === state.languageSelected;
+                    })
+                  ]?.shop?.steps2
+                }
+              </p>
             </div>
             <div className="shop__steps__icon shop__steps__icon--cart">
               <img src={IconStepsCart} alt="drugi krok" />
@@ -91,14 +116,28 @@ function Shop() {
               <span>3.</span>
             </div>
             <div className="shop__steps__explanation">
-              <p>Otrzymaj na email zdjęcia cyfrowe najwyższej jakości</p>
+              <p>
+                {
+                  textContent[
+                    textContent.findIndex((obj) => {
+                      return obj.language === state.languageSelected;
+                    })
+                  ]?.shop?.steps3
+                }
+              </p>
             </div>
             <div className="shop__steps__icon shop__steps__icon--photo">
               <img src={IconStepsPhoto} alt="trzeci krok" />
             </div>
           </div>
         </div>
-        <h1>Przeglądaj wydarzenia:</h1>
+        <h1>{
+            textContent[
+              textContent.findIndex((obj) => {
+                return obj.language === state.languageSelected;
+              })
+            ]?.shop?.header
+          }</h1>
         <div className="shop__cards">
           {/* <div className="shop__cards__background-image">
             <img src={IconSportsRunner} alt="" />

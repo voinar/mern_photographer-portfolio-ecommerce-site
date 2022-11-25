@@ -697,7 +697,7 @@ select {
 }
 
 .shop__card img {
-  width: auto;
+  width: 500px;
   height: inherit;
   -o-object-fit: cover;
      object-fit: cover;

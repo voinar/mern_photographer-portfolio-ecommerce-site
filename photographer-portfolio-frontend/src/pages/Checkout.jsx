@@ -153,7 +153,7 @@ const Checkout = () => {
                       minimumFractionDigits: 2,
                       maximumFractionDigits: 2,
                     }).format(state?.cart?.cartItems?.length * itemPrice)}
-                    zł
+                    zł{' '}
                     {
                       textContent[
                         textContent.findIndex((obj) => {
