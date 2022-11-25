@@ -4,6 +4,7 @@ export const Store = createContext();
 
 const initialState = {
   alertContent: null,
+  languageSelected: localStorage.getItem('languageSelected') ? JSON.parse(localStorage.getItem('languageSelected')) : 'PL',
   cart: {
     cartItems: localStorage.getItem('cartItems')
       ? JSON.parse(localStorage.getItem('cartItems'))
@@ -75,14 +76,14 @@ function reducer(state, action) {
       };
     }
 
-    case 'USER_SIGNIN': {
-      return { ...state, userInfo: action.payload };
-    }
+    // case 'USER_SIGNIN': {
+    //   return { ...state, userInfo: action.payload };
+    // }
 
-    case 'USER_SIGNOUT': {
-      localStorage.setItem('userInfo', null);
-      return { ...state, userInfo: null };
-    }
+    // case 'USER_SIGNOUT': {
+    //   localStorage.setItem('userInfo', null);
+    //   return { ...state, userInfo: null };
+    // }
 
     case 'ACCEPT_COOKIES': {
       localStorage.setItem('cookiesConsentPopupAccepted', true);
@@ -91,6 +92,11 @@ function reducer(state, action) {
 
     case 'PAYMENT_VERIFICATION': {
       return { ...state, paymentVerification: action.payload };
+    }
+
+    case 'SET_UI_LANGUAGE': {
+      // localStorage.setItem('languageSelected', JSON.stringify(state.languageSelected));
+      return { ...state, languageSelected: action.payload };
     }
 
     default:
@@ -106,8 +112,6 @@ export function StoreProvider(props) {
 }
 
 export default StoreProvider;
-
-
 
 // import React, { createContext, useReducer } from 'react';
 

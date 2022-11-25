@@ -33,11 +33,12 @@ const Album = () => {
   const [scroll, setScroll] = useState(false);
   const [showPreviewImage, setShowPreviewImage] = useState(false);
   const [previewImageUrl, setPreviewImageUrl] = useState(undefined);
-
   const [imageThumbnailSize, setImageThumbnailSize] = useState(
     // window.innerWidth <= 768 ? 'album__card--small' : 'album__card--medium'
     'album__card--small'
   );
+
+  const [thumbnailsLoading, setThumbnailLoading] = useState(true);
 
   useEffect(() => {
     const token = process.env.REACT_APP_FIREBASE_IMAGE_TOKEN;

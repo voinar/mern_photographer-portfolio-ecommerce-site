@@ -7,31 +7,26 @@ import {
   useContext,
   Link,
   useLocation,
+  IconChevron,
+  NavLogo,
+  IconCart,
+  IconMenu,
+  IconClose,
 } from '../imports';
 
 import categoryData from '../data/staticData.json';
 
-import {
-  NavLogo,
-  IconCart,
-  // IconShare,
-  IconMenu,
-  IconClose,
-  // IconLogin,
-  // IconChevron,
-} from '../imports';
-
 const Navbar = () => {
-  const { state
-    // , dispatch: contextDispatch
-  } = useContext(Store);
+  const { state, dispatch: contextDispatch } = useContext(Store);
   const location = useLocation();
 
   //navbar behavior on scroll in desktop view. menu shrinks height and gains a solid background.
   const [scroll, setScroll] = useState(false);
   const navRef = useRef(); //used to apply solid background class on scroll
 
-  // const [userMenuVisibility, setUserMenuVisibility] = useState('false');
+  const [languageDropdownVisibility, setLanguageDropdownVisibility] =
+    useState('false');
+  // const [languageSelected, setLanguageSelected] = useState('PL');
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -56,6 +51,38 @@ const Navbar = () => {
   //   localStorage.removeItem('userInfo');
   //   console.log('logout');
   // };
+
+  const setUILanguage = (language) => {
+    switch (language) {
+      case 'PL':
+        contextDispatch({
+          type: 'SET_UI_LANGUAGE',
+          payload: 'PL',
+        });
+        break;
+      case 'EN':
+        contextDispatch({
+          type: 'SET_UI_LANGUAGE',
+          payload: 'EN',
+        });
+        break;
+      default:
+        return;
+    }
+
+    console.log('setUILanguage');
+    // contextDispatch({
+    //   type: 'CART_ADD_ITEM',
+    //   payload: { id: previewImageUrl },
+    // });
+  };
+
+  useEffect(() => {
+    localStorage.setItem(
+      'languageSelected',
+      JSON.stringify(state.languageSelected)
+    );
+  }, [state.languageSelected]);
 
   const renderNavbar = () => {
     if (
@@ -154,11 +181,13 @@ const Navbar = () => {
             <span>Sklep</span>
           </Link>
           <div className="navbar__shop__icons">
-            {/* <div className="navbar__shop__userinfo">
-              <div className="navbar__shop__userinfo__usermenu">
-                <span>'Witaj!'</span>
+            <div className="navbar__shop__userinfo">
+              <div className="navbar__shop__language">
+                <span>{state.languageSelected}</span>
                 <button
-                  onClick={() => setUserMenuVisibility(!userMenuVisibility)}
+                  onClick={() =>
+                    setLanguageDropdownVisibility(!languageDropdownVisibility)
+                  }
                 >
                   <img
                     src={IconChevron}
@@ -166,21 +195,16 @@ const Navbar = () => {
                     title="Konto użytkownika"
                   />
                 </button>
-                <ul
-                  className={
-                    userMenuVisibility
-                      ? 'navbar__shop__userinfo__usermenu__content hidden'
-                      : 'navbar__shop__userinfo__usermenu__content'
-                  }
-                >
-                  <li>Moje zdjęcia</li>
-                  <li>Konto użytkownika</li>
-                  <li className="navbar__shop__userinfo__usermenu__content__logout">
-                    <button onClick={handleSignout}>Wyloguj</button>
+                <ul className={'navbar__shop__language__content'}>
+                  <li onClick={(e) => setUILanguage(e.target.textContent)}>
+                    EN
+                  </li>
+                  <li onClick={(e) => setUILanguage(e.target.textContent)}>
+                    PL
                   </li>
                 </ul>
               </div>
-            </div> */}
+            </div>
             <Link to="/Koszyk">
               <div className="navbar__shop__icon__cart">
                 {state?.cart?.cartItems?.length > 0 && (

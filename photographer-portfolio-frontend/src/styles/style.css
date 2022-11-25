@@ -2281,7 +2281,7 @@ select {
   text-transform: capitalize;
 }
 
-.navbar__shop__userinfo .navbar__shop__userinfo__usermenu {
+.navbar__shop__userinfo .navbar__shop__language {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2293,39 +2293,53 @@ select {
       -ms-flex-align: center;
           align-items: center;
   position: relative;
+  cursor: pointer;
   gap: 6px;
 }
 
-.navbar__shop__userinfo .navbar__shop__userinfo__usermenu button {
+.navbar__shop__userinfo .navbar__shop__language button {
   all: unset;
 }
 
-.navbar__shop__userinfo .navbar__shop__userinfo__usermenu img {
+.navbar__shop__userinfo .navbar__shop__language img {
   width: 20px;
 }
 
-.navbar__shop__userinfo .navbar__shop__userinfo__usermenu .navbar__shop__userinfo__usermenu__content {
+.navbar__shop__userinfo .navbar__shop__language .navbar__shop__language__content {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   position: absolute;
   background-color: rgba(255, 255, 255, 0.6);
-  width: 180px;
+  width: 60px;
   height: auto;
-  top: 20px;
-  left: 0;
+  top: 8px;
+  left: -18px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  padding: 6px 12px;
   -webkit-box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
           box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
 }
 
-.navbar__shop__userinfo .navbar__shop__userinfo__usermenu .navbar__shop__userinfo__usermenu__content li {
+.navbar__shop__userinfo .navbar__shop__language .navbar__shop__language__content li {
   line-height: 200%;
+  width: 100%;
+  padding: 4px 0px 4px 18px;
 }
 
-.navbar__shop__userinfo .navbar__shop__userinfo__usermenu .navbar__shop__userinfo__usermenu__content .navbar__shop__userinfo__usermenu__content__logout {
-  padding: 4px 0;
-  margin: 8px 0 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+.navbar__shop__userinfo .navbar__shop__language .navbar__shop__language__content li:hover {
+  background-color: #74ff78;
+}
+
+.navbar__shop__userinfo .navbar__shop__language:hover .navbar__shop__language__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .navbar__shop__icons {
