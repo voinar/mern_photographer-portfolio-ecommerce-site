@@ -249,7 +249,8 @@ const OrderForm = () => {
         const tokenLink = `https://sandbox.przelewy24.pl/trnRequest/${String(
           response.data.data.token
         )}`;
-        window.open(tokenLink, '_blank', 'noopener,noreferrer'); //open payment window in sepaarte tab
+        // window.open(tokenLink, '_blank', 'noopener,noreferrer'); //open payment window in sepaarte tab
+        window.open(tokenLink, '_self', 'noopener,noreferrer'); //open payment window in sepaarte tab
       })
       .catch((err) => {
         //blok dla odpowiedzi z błędem 400/401
