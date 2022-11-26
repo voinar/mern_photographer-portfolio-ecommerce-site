@@ -12,8 +12,6 @@ import {
   CookiesPopup,
 } from './imports';
 
-import IconAppleTouch from './img/icons/logo192.png'
-
 import RoutesContainer from './routes/RoutesContainer'; //react router v6
 
 import { Store } from './contexts/Store'; //context api
@@ -63,25 +61,10 @@ function App() {
   return (
     <>
       <ScrollToTop />
-      {/* <Helmet>
+      <Helmet>
         <title>Kacper Porada Fotografia</title>
-      </Helmet> */}
-      <Helmet
-                title="Kacper Porada Fotografia"
-                titleTemplate="Kacper Porada Fotografia"
-                base={{"target": "_blank", "href": "https://kacperporada.pl/"}}
-                meta={[
-                    {"name": "description", "content": "Strona główna"},
-                    {"property": "og:type", "content": "article"}
-                ]}
-                link={[
-                    {"rel": "icon", "href": "%PUBLIC_URL%/favicon.ico"},
-                    {"rel": "canonical", "href": "https://kacperporada.pl/"},
-                    {"rel": "apple-touch-icon", "href": {IconAppleTouch}},
-                    {"rel": "apple-touch-icon", "sizes": "192x192", "href": {IconAppleTouch}}
-                ]}
-                onChangeClientState={(newState) => console.log(newState)}
-            />
+      </Helmet>
+
       <div className="App">
         <FacebookPixel />
         {showAlert && <Alert />}
