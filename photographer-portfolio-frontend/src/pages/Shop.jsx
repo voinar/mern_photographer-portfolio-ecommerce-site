@@ -4,9 +4,11 @@ import {
   useContext,
   useEffect,
   useState,
+  useNavigate,
   Helmet,
   AlbumCard,
   v4,
+  IconChevron,
   IconStepsEye,
   IconStepsCart,
   IconStepsPhoto,
@@ -67,6 +69,9 @@ function Shop() {
     };
     listAlbums();
   }, []);
+
+  const navigate = useNavigate(); //used to return to previous page
+  const goBack = () => navigate(-1);
 
   return (
     <>
@@ -168,6 +173,13 @@ function Shop() {
               </li>
             );
           })}
+        </div>
+        <br/>
+        <div className="cart__return">
+          <button onClick={goBack} className="btn--back">
+            <img src={IconChevron} alt="zobacz" />
+          </button>
+          <h1>Powrót</h1>
         </div>
       </div>
     </>

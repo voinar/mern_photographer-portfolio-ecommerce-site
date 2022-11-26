@@ -44,7 +44,6 @@ import SignIn from './pages/SignIn';
 import Checkout from './pages/Checkout';
 import Purchased from './pages/Purchased';
 import Support from './pages/Support';
-import Cookies from './pages/Cookies';
 import TermsConditions from './pages/TermsConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Experiments from './pages/Experiments';
@@ -131,7 +130,6 @@ export {
   Checkout,
   Purchased,
   Support,
-  Cookies,
   TermsConditions,
   PrivacyPolicy,
   Experiments,

@@ -123,7 +123,7 @@ const Navbar = () => {
                     <li
                       key={category}
                       className="navbar__section-link"
-                      style={{ display: 'none' }}
+                      // style={{ display: 'none' }}
                     >
                       <Link
                         className="navbar__section-link navbar__section-link__shop"

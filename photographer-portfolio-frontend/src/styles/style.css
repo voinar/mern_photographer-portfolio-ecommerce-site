@@ -90,13 +90,15 @@ select {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -webkit-animation: fadeIn 5s;
+          animation: fadeIn 5s;
 }
 
 .cover__icons {
   position: fixed;
   bottom: 10vh;
   right: 5vw;
-  z-index: 10;
+  z-index: 5;
 }
 
 .cover__icons .cover__icons__row-container {
@@ -2088,12 +2090,6 @@ select {
   .privacy-policy__container {
     padding: 100px 20px;
   }
-}
-
-.cookies__container {
-  background-color: rgba(255, 255, 255, 0.85);
-  padding: 180px 100px 200px;
-  height: auto;
 }
 
 .page-not-found__container {

@@ -22,7 +22,9 @@ const Footer = () => {
           <div className="footer__content">
             <div className="footer__column">
               <div className="footer__logo">
-                <img src={FooterLogo} alt="logo" />
+                <Link to="/">
+                  <img src={FooterLogo} alt="logo" />
+                </Link>
               </div>
               <div className="footer__social">
                 <span>Znajdź mnie na</span>
@@ -80,7 +82,7 @@ const Footer = () => {
           </div>
           <div className="footer__slogan">Zobacz emocje</div>
           <div className="footer__copyright">
-            <Link to="o%20mnie">
+            <Link to="/portfolio/o%20mnie">
               <span>copyright Ⓒ 2022 Kacper Porada</span>
             </Link>
           </div>

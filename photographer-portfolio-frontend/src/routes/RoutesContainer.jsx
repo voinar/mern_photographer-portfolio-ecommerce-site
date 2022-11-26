@@ -38,7 +38,6 @@ const RoutesContainer = () => (
     <Route path="/pomoc" element={<Support />} />
     <Route path="/regulamin" element={<TermsConditions />} />
     <Route path="/polityka-prywatnosci" element={<PrivacyPolicy />} />
-    <Route path="/cookies" element={<Cookies />} />
     <Route path="/404" element={<PageNotFound />} />
     <Route path="/*" element={<Navigate to="/404" replace />} />
   </Routes>

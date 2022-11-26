@@ -12,11 +12,11 @@ const SectionWelcome = () => {
           interval={3000}
           ariaLabel={'moje zdjęcia'}
           showThumbs={false}
-          animationHandler={'fade'}
+          // animationHandler={'fade'}
           infiniteLoop={true}
           showStatus={false}
           // showArrows={true}
-          swipeable={false}
+          swipeable={true}
         >
           {window.innerWidth > 768
             ? photographyData.imagesWelcome.map((image) => {
