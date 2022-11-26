@@ -1,5 +1,5 @@
 import {
-  React, 
+  React,
   useLocation,
   useState,
   Helmet,
@@ -63,6 +63,12 @@ function App() {
       <ScrollToTop />
       <Helmet>
         <title>Kacper Porada Fotografia</title>
+        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <link
+          rel="apple-touch-icon"
+          sizes="192x192"
+          href="%PUBLIC_URL%/logo192.png"
+        />
       </Helmet>
       <div className="App">
         <FacebookPixel />
