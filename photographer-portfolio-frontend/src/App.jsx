@@ -12,6 +12,8 @@ import {
   CookiesPopup,
 } from './imports';
 
+import appleTouchIcon from './img/icons/logo192.png';
+
 import RoutesContainer from './routes/RoutesContainer'; //react router v6
 
 import { Store } from './contexts/Store'; //context api
@@ -68,10 +70,16 @@ function App() {
           rel="apple-touch-icon"
           sizes="192x192"
           type="image/png"
-          href="%PUBLIC_URL%/logo192.png"
+          href={appleTouchIcon}
         />
       </Helmet>
       <div className="App">
+        {/* <><img src={appleTouchIcon} alt="">
+
+        </img>xxxxx<img src="%PUBLIC_URL%/logo192.png" alt="">
+
+</img><br></br>
+        </> */}
         <FacebookPixel />
         {showAlert && <Alert />}
         <Navbar />
