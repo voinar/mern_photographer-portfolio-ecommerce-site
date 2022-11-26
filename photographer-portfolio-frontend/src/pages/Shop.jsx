@@ -154,6 +154,9 @@ function Shop() {
           <div className="shop__cards__background-image">
             <img src={backgroundImage()} alt="" />
           </div>
+          <div className="shop__cards__background-image shop__cards__background-image--large">
+            <img src={backgroundImage()} alt="" />
+          </div>
           {foldersList.map((folder) => {
             return (
               <li key={v4()}>

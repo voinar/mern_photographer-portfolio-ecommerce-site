@@ -12,6 +12,10 @@ import {
   IconGridSmall,
   IconGridMedium,
   IconGridLarge,
+  IconSportsGymnast,
+  IconSportsRunner,
+  IconSportsHandball,
+  IconSportsLifter,
   textContent,
 } from '../imports';
 
@@ -298,6 +302,16 @@ const Album = () => {
   // : textContent.PL?.button?.previous} */}
   // };
 
+  const backgroundImage = () => {
+    const images = [
+      IconSportsGymnast,
+      IconSportsRunner,
+      IconSportsHandball,
+      IconSportsLifter,
+    ];
+    return images[Math.floor(Math.random() * images.length)];
+  };
+
   return (
     <>
       <main>
@@ -343,7 +357,7 @@ const Album = () => {
                     <img src={IconChevron} alt="rozwiń"></img>
                   </button>
                   <div className="album__toolbar__thumbnail-controls__dropdown-content">
-                    {/* <span onClick={() => handlePaginationRange(25)}>25</span> */}
+                    <span onClick={() => handlePaginationRange(25)}>25</span>
                     <span onClick={() => handlePaginationRange(50)}>50</span>
                     <span onClick={() => handlePaginationRange(75)}>75</span>
                     <span onClick={() => handlePaginationRange(100)}>100</span>
@@ -485,6 +499,14 @@ const Album = () => {
                 </li>
               );
             })}
+            <div className="shop__cards">
+              <div className="shop__cards__background-image">
+                <img src={backgroundImage()} alt="" />
+              </div>
+              <div className="shop__cards__background-image shop__cards__background-image--large">
+                <img src={backgroundImage()} alt="" />
+              </div>
+            </div>
           </div>
           <div className="album__page__controls">
             <div

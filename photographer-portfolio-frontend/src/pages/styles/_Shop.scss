@@ -3,6 +3,7 @@
   color: $--c-black;
   min-height: 90vh;
   padding: 140px 100px;
+  animation: fadeIn 1s;
 }
 
 .shop__steps__cards {
@@ -29,6 +30,7 @@
   align-items: center;
   padding: 20px;
   border: $--border-standard;
+  animation: fadeIn 2s;
   transition: all 0.3s;
 
   span {
@@ -80,6 +82,7 @@
   gap: 80px;
   margin-top: 50px;
   justify-content: center;
+  animation: fadeIn 2s;
 
   ul {
     display: flex;
@@ -90,14 +93,22 @@
 
   .shop__cards__background-image {
     position: fixed;
-    opacity: 0.05;
-    bottom: 0px;
+    opacity: 0.03;
+    bottom: 100px;
     right: 100px;
     // border: 2px solid red;
-
-    svg {
-      // width: 500px;
+    img {
+      animation: fadeIn 3s;
     }
+  }
+
+  .shop__cards__background-image--large {
+    // width: 800px;
+    // height: 800px;
+    left: 0px;
+    bottom: 0px;
+    // border: 3px solid red;
+    // top: 20vh;
   }
 }
 

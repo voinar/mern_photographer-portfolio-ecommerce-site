@@ -581,6 +581,8 @@ select {
   color: #3a3939;
   min-height: 90vh;
   padding: 140px 100px;
+  -webkit-animation: fadeIn 1s;
+          animation: fadeIn 1s;
 }
 
 .shop__steps__cards {
@@ -621,6 +623,8 @@ select {
           align-items: center;
   padding: 20px;
   border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-animation: fadeIn 2s;
+          animation: fadeIn 2s;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
@@ -680,6 +684,8 @@ select {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-animation: fadeIn 2s;
+          animation: fadeIn 2s;
 }
 
 .shop__cards ul {
@@ -697,9 +703,19 @@ select {
 
 .shop__cards .shop__cards__background-image {
   position: fixed;
-  opacity: 0.05;
-  bottom: 0px;
+  opacity: 0.03;
+  bottom: 100px;
   right: 100px;
+}
+
+.shop__cards .shop__cards__background-image img {
+  -webkit-animation: fadeIn 3s;
+          animation: fadeIn 3s;
+}
+
+.shop__cards .shop__cards__background-image--large {
+  left: 0px;
+  bottom: 0px;
 }
 
 .shop__card {
@@ -976,6 +992,8 @@ select {
   transition: all 0.3s;
   --webkit-transition: -webkit-filter 1000ms linear;
   cursor: pointer;
+  -webkit-animation: fadeIn 1s;
+          animation: fadeIn 1s;
 }
 
 .album__card img {

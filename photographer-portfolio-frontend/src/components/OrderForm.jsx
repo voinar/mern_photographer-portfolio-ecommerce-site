@@ -73,10 +73,6 @@ const OrderForm = () => {
     setFormSurname(e.target.value);
   };
 
-  // const handleFormPhoneUpdate = (e) => {
-  //   setFormPhone(e.target.value);
-  // };
-
   const toggleInputInvoice = () => {
     setFormInvoiceRequested((prevState) => !prevState);
     setFormInvoiceNumber('');
@@ -150,7 +146,6 @@ const OrderForm = () => {
       emailValidation() === true &&
       nameValidation() === true &&
       surnameValidation() === true &&
-      // phoneValidation() === true &&
       formInvoiceNumberValidation() === true &&
       termsConditionsAcceptValidation() === true
     ) {
@@ -186,7 +181,6 @@ const OrderForm = () => {
           email: formEmail,
           name: formName,
           surname: formSurname,
-          // phone: formPhone,
           invoiceRequested: formInvoiceRequested,
           invoiceTaxId: formInvoiceNumber,
           termsConditionsAccepted: formTermsConditionsAccept,
