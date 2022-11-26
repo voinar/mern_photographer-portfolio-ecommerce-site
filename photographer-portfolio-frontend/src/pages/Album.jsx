@@ -49,15 +49,17 @@ const Album = () => {
       .then((res) => {
         console.log('result', res);
         res.items.forEach((image) => {
-          let currentImage =
-            'https://firebasestorage.googleapis.com/v0/b/kacper-foto.appspot.com/o/' +
-            image._location.path_.replaceAll('/', '%2F') +
-            `?alt=media&token=${token}`;
+          if (image._location.path_.includes('cover.jpg') === false) {
+            let currentImage =
+              'https://firebasestorage.googleapis.com/v0/b/kacper-foto.appspot.com/o/' +
+              image._location.path_.replaceAll('/', '%2F') +
+              `?alt=media&token=${token}`;
 
-          setAlbumImagesList((prevAlbumImagesList) => [
-            ...prevAlbumImagesList,
-            currentImage,
-          ]);
+            setAlbumImagesList((prevAlbumImagesList) => [
+              ...prevAlbumImagesList,
+              currentImage,
+            ]);
+          }
         });
       })
       .catch((error) => {

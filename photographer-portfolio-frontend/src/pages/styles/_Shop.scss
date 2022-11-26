@@ -36,6 +36,10 @@
     font-weight: 100;
   }
 
+  p {
+    font-size: $--font-lg;
+  }
+
   .shop__steps__icon {
     position: absolute;
     height: 60px;
@@ -158,6 +162,12 @@
 
   .shop__card {
     padding: 10px;
+  }
+
+  .shop__cards {
+    .shop__cards__background-image {
+      display: none;
+    }
   }
 }
 /* Large devices (laptops/desktops, 992px and up) */

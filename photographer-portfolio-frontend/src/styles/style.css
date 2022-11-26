@@ -630,6 +630,10 @@ select {
   font-weight: 100;
 }
 
+.shop__steps__card p {
+  font-size: 20px;
+}
+
 .shop__steps__card .shop__steps__icon {
   position: absolute;
   height: 60px;
@@ -756,6 +760,9 @@ select {
   }
   .shop__card {
     padding: 10px;
+  }
+  .shop__cards .shop__cards__background-image {
+    display: none;
   }
 }
 
@@ -981,6 +988,13 @@ select {
 
 .shop__card__title {
   font-size: 20px;
+}
+
+.album__card:hover img {
+  -webkit-transform: scale(1.016);
+          transform: scale(1.016);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .album__card--small {

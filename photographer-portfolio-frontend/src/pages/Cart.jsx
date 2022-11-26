@@ -190,7 +190,7 @@ const Cart = () => {
                                       obj.language === state.languageSelected
                                     );
                                   })
-                                ]?.cart?.info
+                                ]?.cart?.infoTooltip
                               }
                             </span>
                           </div>

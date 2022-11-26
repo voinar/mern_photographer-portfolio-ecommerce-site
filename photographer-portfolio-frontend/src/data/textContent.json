@@ -10,9 +10,9 @@
     },
     "shop": {
       "helmet": "Store: Kacper Porada Fotografia",
-      "steps1": "Browse albums and add images to cart",
-      "steps2": "Enter your email address and proceed to the payment",
-      "steps3": "Receive high quality images to your email",
+      "steps1": "Add images to cart",
+      "steps2": "Proceed to payment",
+      "steps3": "Receive images to your email",
       "header": "Browse images:"
     },
     "album": {
@@ -24,6 +24,7 @@
       "preview": "Preview",
       "price": "Price",
       "info": "Info",
+      "infoTooltip": "High quality image which will be sent to your email.",
       "options": "Options",
       "about": "About",
       "remove": "Remove",
@@ -86,9 +87,9 @@
     },
     "shop": {
       "helmet": "Sklep: Kacper Porada Fotografia",
-      "steps1": "Przeglądaj albumy i dodaj zdjęcia do koszyka",
-      "steps2": "Wprowadź swój adres email i dokonaj płatności",
-      "steps3": "Otrzymaj na email zdjęcia cyfrowe najwyższej jakości",
+      "steps1": "Dodaj zdjęcia do koszyka",
+      "steps2": "Przejdź do płatności",
+      "steps3": "Otrzymaj na zdjęcia na email",
       "header": "Przeglądaj wydarzenia:"
     },
     "album": {
@@ -100,6 +101,7 @@
       "preview": "Podgląd",
       "price": "Cena",
       "info": "Info",
+      "infoTooltip": "Zdjęcie cyfrowe najwyższej jakości, które otrzymasz na email.",
       "options": "Opcje",
       "about": "O zdjęciu",
       "remove": "Usuń",
