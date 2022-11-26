@@ -18,7 +18,6 @@ import {
   Support,
   TermsConditions,
   PrivacyPolicy,
-  Cookies,
 } from '../imports';
 
 const RoutesContainer = () => (
@@ -42,6 +41,5 @@ const RoutesContainer = () => (
     <Route path="/*" element={<Navigate to="/404" replace />} />
   </Routes>
 );
-
 
 export default RoutesContainer;
