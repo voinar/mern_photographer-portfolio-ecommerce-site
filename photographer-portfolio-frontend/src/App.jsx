@@ -69,7 +69,7 @@ function App() {
         <link
           rel="apple-touch-icon"
           sizes="192x192"
-          type="image/png"
+          // type="image/png"
           href={appleTouchIcon}
         />
       </Helmet>
