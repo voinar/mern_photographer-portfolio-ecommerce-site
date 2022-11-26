@@ -63,15 +63,20 @@ function App() {
   return (
     <>
       <ScrollToTop />
-      <Helmet>
+      <Helmet
+        link={[
+          {
+            rel: 'apple-touch-icon',
+            href: { appleTouchIcon },
+          },
+          {
+            rel: 'apple-touch-icon',
+            sizes: '192x192',
+            href: { appleTouchIcon },
+          },
+        ]}
+      >
         <title>Kacper Porada Fotografia</title>
-        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-        <link
-          rel="apple-touch-icon"
-          sizes="192x192"
-          // type="image/png"
-          href={appleTouchIcon}
-        />
       </Helmet>
       <div className="App">
         {/* <><img src={appleTouchIcon} alt="">
