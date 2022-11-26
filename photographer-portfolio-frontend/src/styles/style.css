@@ -708,7 +708,6 @@ select {
   opacity: 0.03;
   bottom: 100px;
   right: 100px;
-  z-index: 1;
 }
 
 .shop__cards .shop__cards__background-image img {

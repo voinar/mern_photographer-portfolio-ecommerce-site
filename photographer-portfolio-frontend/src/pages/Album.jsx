@@ -12,10 +12,10 @@ import {
   IconGridSmall,
   IconGridMedium,
   IconGridLarge,
-  IconSportsGymnast,
-  IconSportsRunner,
-  IconSportsHandball,
-  IconSportsLifter,
+  // IconSportsGymnast,
+  // IconSportsRunner,
+  // IconSportsHandball,
+  // IconSportsLifter,
   textContent,
 } from '../imports';
 
