@@ -708,6 +708,7 @@ select {
   opacity: 0.03;
   bottom: 100px;
   right: 100px;
+  z-index: 1;
 }
 
 .shop__cards .shop__cards__background-image img {
@@ -1011,8 +1012,8 @@ select {
 }
 
 .album__card:hover img {
-  -webkit-transform: scale(1.016);
-          transform: scale(1.016);
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }

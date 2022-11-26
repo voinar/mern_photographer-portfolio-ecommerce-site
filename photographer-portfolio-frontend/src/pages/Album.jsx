@@ -302,15 +302,15 @@ const Album = () => {
   // : textContent.PL?.button?.previous} */}
   // };
 
-  const backgroundImage = () => {
-    const images = [
-      IconSportsGymnast,
-      IconSportsRunner,
-      IconSportsHandball,
-      IconSportsLifter,
-    ];
-    return images[Math.floor(Math.random() * images.length)];
-  };
+  // const backgroundImage = () => {
+  //   const images = [
+  //     IconSportsGymnast,
+  //     IconSportsRunner,
+  //     IconSportsHandball,
+  //     IconSportsLifter,
+  //   ];
+  //   return images[Math.floor(Math.random() * images.length)];
+  // };
 
   return (
     <>
@@ -499,14 +499,14 @@ const Album = () => {
                 </li>
               );
             })}
-            <div className="shop__cards">
+            {/* <div className="shop__cards">
               <div className="shop__cards__background-image">
                 <img src={backgroundImage()} alt="" />
               </div>
               <div className="shop__cards__background-image shop__cards__background-image--large">
                 <img src={backgroundImage()} alt="" />
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="album__page__controls">
             <div

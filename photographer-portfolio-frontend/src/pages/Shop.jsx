@@ -31,15 +31,15 @@ function Shop() {
   // Create a reference under which you want to list
   const [foldersList, setFoldersList] = useState([]);
 
-  const backgroundImage = () => {
-    const images = [
-      IconSportsGymnast,
-      IconSportsRunner,
-      IconSportsHandball,
-      IconSportsLifter,
-    ];
-    return images[Math.floor(Math.random() * images.length)];
-  };
+  // const backgroundImage = () => {
+  //   const images = [
+  //     IconSportsGymnast,
+  //     IconSportsRunner,
+  //     IconSportsHandball,
+  //     IconSportsLifter,
+  //   ];
+  //   return images[Math.floor(Math.random() * images.length)];
+  // };
 
   // Find all the prefixes and items.
   useEffect(() => {
@@ -156,12 +156,12 @@ function Shop() {
           }
         </h1>
         <div className="shop__cards">
-          <div className="shop__cards__background-image">
+          {/* <div className="shop__cards__background-image">
             <img src={backgroundImage()} alt="" />
           </div>
           <div className="shop__cards__background-image shop__cards__background-image--large">
             <img src={backgroundImage()} alt="" />
-          </div>
+          </div> */}
           {foldersList.map((folder) => {
             return (
               <li key={v4()}>
