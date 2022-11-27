@@ -13,7 +13,8 @@
       "steps1": "Add images to cart",
       "steps2": "Proceed to payment",
       "steps3": "Receive images to your email",
-      "header": "Browse images:"
+      "header": "Browse images:",
+      "back": "Return"
     },
     "album": {
       "numberOfImages": "Number of images"
@@ -90,7 +91,8 @@
       "steps1": "Dodaj zdjęcia do koszyka",
       "steps2": "Przejdź do płatności",
       "steps3": "Otrzymaj na zdjęcia na email",
-      "header": "Przeglądaj wydarzenia:"
+      "header": "Przeglądaj wydarzenia:",
+      "back": "Powrót"
     },
     "album": {
       "numberOfImages": "Ilość zdjęć"

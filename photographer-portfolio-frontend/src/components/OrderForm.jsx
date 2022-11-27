@@ -154,7 +154,7 @@ const OrderForm = () => {
   };
 
   //data submission function
-  const dispatchFormDataToContext = (e) => {
+  const initiatePayment = (e) => {
     e.preventDefault();
 
     console.log('generated UniqueId: ' + state.cart.uniqueId);
@@ -206,7 +206,6 @@ const OrderForm = () => {
 
   const paymentRegister = () => {
     //funkcja dla pierwszego etapu transkacji /v1/transaction/register
-    // e.preventDefault();
     const crcValue = process.env.REACT_APP_PAYMENT_GATEWAY_CRC_VALUE; //CRC pobrane z danych konta
     const username = process.env.REACT_APP_PAYMENT_GATEWAY_USERNAME;
     const password = process.env.REACT_APP_PAYMENT_GATEWAY_PASSWORD;
@@ -214,7 +213,6 @@ const OrderForm = () => {
     // templatka sign: {"sessionId":"str","merchantId":int,"amount":int,"currency":"str","crc":"str"}
     const signTemplate = `{"sessionId":"${state.cart.uniqueId}","merchantId":${username},"amount":${calculatedAmount},"currency":"PLN","crc":"${crcValue}"}`;
     // console.log('signtemp', signTemplate);
-    // const signTemplate = `{"sessionId":${uniqueId},"merchantId":200527,"amount":2,"currency":"PLN","crc":${crcValue}}`; //template string do obliczenia sumy kontrolnej
     const shaObj = new jsSHA('SHA-384', 'TEXT', { encoding: 'UTF8' }); //nowy obiekt sha-384 generowany przez jsSHA
     shaObj.update(signTemplate); //wprowadzenie ciągu signCryptoInput do hashowania przez shaObj
     const signSha = shaObj.getHash('HEX'); //konwersja shaObj do hex
@@ -249,8 +247,8 @@ const OrderForm = () => {
         const tokenLink = `https://sandbox.przelewy24.pl/trnRequest/${String(
           response.data.data.token
         )}`;
-        // window.open(tokenLink, '_blank', 'noopener,noreferrer'); //open payment window in sepaarte tab
-        window.open(tokenLink, '_self', 'noopener,noreferrer'); //open payment window in sepaarte tab
+        // window.open(tokenLink, '_blank', 'noopener,noreferrer'); //open payment window in separate tab
+        window.open(tokenLink, '_self', 'noopener,noreferrer'); //open payment window in same tab
       })
       .catch((err) => {
         //blok dla odpowiedzi z błędem 400/401
@@ -403,7 +401,7 @@ const OrderForm = () => {
               </div>
               <br />
               <button
-                onClick={dispatchFormDataToContext}
+                onClick={initiatePayment}
                 type="submit"
                 value="Zapisz"
                 className="btn--primary"

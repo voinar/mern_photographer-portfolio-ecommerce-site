@@ -49,8 +49,8 @@ function App() {
   //run actions on every state update
   useEffect(() => {
     console.log('store updated');
-    localStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
-    localStorage.setItem('uniqueId', JSON.stringify(state.cart.uniqueId));
+    sessionStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
+    sessionStorage.setItem('uniqueId', JSON.stringify(state.cart.uniqueId));
   }, [state.cart]);
 
   useEffect(() => {

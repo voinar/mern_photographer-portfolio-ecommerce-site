@@ -16,7 +16,7 @@
     rgba(0, 0, 0, 0) 20%,
     rgba(0, 0, 0, 0.9) 100%
   );
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s;
 
   .navbar__content {
     display: flex;
@@ -137,7 +137,9 @@
   width: 100%;
   padding: 20px 50px;
   z-index: 10;
-  transition: 0.3s ease-in-out;
+  transition: linear 0.3s;
+  animation: fadeIn .3s;
+
 }
 
 .navbar__shop__logo {
@@ -146,7 +148,6 @@
   filter: invert(100%);
   align-items: center;
   justify-content: center;
-  transition: 0.3s ease-in-out;
 }
 
 .navbar__shop__content {

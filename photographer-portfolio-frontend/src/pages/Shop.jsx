@@ -174,12 +174,20 @@ function Shop() {
             );
           })}
         </div>
-        <br/>
+        <br />
         <div className="cart__return">
           <button onClick={goBack} className="btn--back">
             <img src={IconChevron} alt="zobacz" />
           </button>
-          <h1>Powrót</h1>
+          <h1>
+            {
+              textContent[
+                textContent.findIndex((obj) => {
+                  return obj.language === state.languageSelected;
+                })
+              ]?.shop?.back
+            }
+          </h1>
         </div>
       </div>
     </>

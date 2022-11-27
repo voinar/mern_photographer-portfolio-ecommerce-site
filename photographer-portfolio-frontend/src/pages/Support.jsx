@@ -1,4 +1,6 @@
 import {
+  Store,
+  useContext,
   useNavigate,
   Link,
   IconChevron,
@@ -6,11 +8,16 @@ import {
   IconAnswer,
   IconCartAdd,
   IconCart,
+  textContent
 } from '../imports';
 
 const Support = () => {
   const navigate = useNavigate(); //used to return to previous page
   const goBack = () => navigate(-1);
+  const {
+    state,
+    // , dispatch: contextDispatch
+  } = useContext(Store);
 
   return (
     <div className="support__container">
@@ -123,7 +130,15 @@ const Support = () => {
         <button onClick={goBack} className="btn--back">
           <img src={IconChevron} alt="zobacz" />
         </button>
-        <h1>Powrót</h1>
+        <h1>
+          {
+            textContent[
+              textContent.findIndex((obj) => {
+                return obj.language === state.languageSelected;
+              })
+            ]?.shop?.back
+          }
+        </h1>
       </div>
     </div>
   );

@@ -2137,8 +2137,8 @@ select {
   z-index: 10;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(20%, rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.9)));
   background: linear-gradient(0deg, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.9) 100%);
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .navbar .navbar__content {
@@ -2286,8 +2286,10 @@ select {
   width: 100%;
   padding: 20px 50px;
   z-index: 10;
-  -webkit-transition: 0.3s ease-in-out;
-  transition: 0.3s ease-in-out;
+  -webkit-transition: linear 0.3s;
+  transition: linear 0.3s;
+  -webkit-animation: fadeIn .3s;
+          animation: fadeIn .3s;
 }
 
 .navbar__shop__logo {
@@ -2303,8 +2305,6 @@ select {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-transition: 0.3s ease-in-out;
-  transition: 0.3s ease-in-out;
 }
 
 .navbar__shop__content {
@@ -3166,7 +3166,6 @@ button {
 }
 
 .btn--secondary {
-  background-color: rgba(0, 0, 0, 0.09) !important;
   width: 300px;
 }
 
