@@ -15,10 +15,14 @@ const initialState = {
       ? JSON.parse(sessionStorage.getItem('uniqueId'))
       : null,
   },
-  cookiesConsentPopupSet: localStorage.getItem(
-    'cookiesConsentPopupSet'
-  )
+  cookiesConsentPopupSet: localStorage.getItem('cookiesConsentPopupSet')
     ? JSON.parse(localStorage.getItem('cookiesConsentPopupSet'))
+    : false,
+  cookiesConsentAll: localStorage.getItem('cookiesConsentAll')
+    ? JSON.parse(localStorage.getItem('cookiesConsentAll'))
+    : false,
+    cookiesConsentDecline: localStorage.getItem('cookiesConsentDecline')
+    ? JSON.parse(localStorage.getItem('cookiesConsentDecline'))
     : false,
   paymentVerification: null,
 };
@@ -87,13 +91,21 @@ function reducer(state, action) {
     case 'ACCEPT_COOKIES': {
       localStorage.setItem('cookiesConsentPopupSet', true);
       localStorage.setItem('cookiesConsentAll', true);
-      return { ...state, cookiesConsentPopupSet: true, cookiesConsentAll: true };
+      return {
+        ...state,
+        cookiesConsentPopupSet: true,
+        cookiesConsentAll: true,
+      };
     }
 
     case 'DECLINE_COOKIES': {
       localStorage.setItem('cookiesConsentPopupSet', true);
       localStorage.setItem('cookiesConsentDecline', true);
-      return { ...state, cookiesConsentPopupSet: true, cookiesConsentDecline: true };
+      return {
+        ...state,
+        cookiesConsentPopupSet: true,
+        cookiesConsentDecline: true,
+      };
     }
 
     case 'PAYMENT_VERIFICATION': {

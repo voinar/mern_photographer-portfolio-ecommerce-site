@@ -39,14 +39,14 @@
   display: flex;
   justify-content: center;
   height: 100%;
-  width: 70vw;
+  width: 50vw;
   margin: 0 auto;
-  bottom: 120px;
+  bottom: 50px;
   text-align: center;
   font-weight: 300;
   background: rgba(0, 0, 0, 0.4);
   color: $--c-white;
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(4px);
   padding: 20px;
 }
 
@@ -57,7 +57,7 @@
 
 .section__photos__see-more {
   position: fixed;
-  bottom: 8vh;
+  bottom: 12vh;
   right: 10vw;
   opacity: 1;
 

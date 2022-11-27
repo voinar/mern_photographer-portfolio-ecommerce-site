@@ -22,7 +22,7 @@ const CookiesPopup = () => {
   return (
     <>
       {state.cookiesConsentPopupSet ? (
-        false
+        null
       ) : (
         <div className="cookies__container">
           <span>

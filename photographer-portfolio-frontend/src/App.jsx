@@ -43,17 +43,33 @@ function App() {
   //google analytics log page currently displayed
   const location = useLocation();
   useEffect(() => {
-    state.cookiesConsentPopupSet === true &&
-      state.cookiesAcceptAll === true &&
+    if (
+      state.cookiesConsentPopupSet === true &&
+      state.cookiesConsentAll === true
+    ) {
       ReactGA.send('pageview');
-  }, [location, state.cookiesConsentPopupSet, state.cookiesAcceptAll]);
+      // console.log('ga action');
+    }
+    // console.log('cookiesConsentPopupSet', state.cookiesConsentPopupSet);
+    // console.log('cookiesConsentAll', state.cookiesConsentAll);
+    // console.log('cookiesConsentDecline', state.cookiesConsentDecline);
+  }, [
+    location,
+    state.cookiesConsentPopupSet,
+    state.cookiesConsentAll,
+    state.cookiesConsentDecline,
+  ]);
 
   //run actions on every state update
   useEffect(() => {
-    console.log('store updated');
+    // console.log('store updated');
     sessionStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
+  }, [state.cart.cartItems]);
+
+  useEffect(() => {
+    // console.log('store updated');
     sessionStorage.setItem('uniqueId', JSON.stringify(state.cart.uniqueId));
-  }, [state.cart]);
+  }, [state.cart.uniqueId]);
 
   useEffect(() => {
     setShowAlert(true);
@@ -68,8 +84,7 @@ function App() {
       </Helmet>
 
       <div className="App">
-        {state.cookiesConsentPopupSet === true &&
-          state.cookiesAcceptAll === true && <FacebookPixel />}
+        {state.cookiesConsentAll === true && <FacebookPixel />}
         {showAlert && <Alert />}
         <Navbar />
         <RoutesContainer />
