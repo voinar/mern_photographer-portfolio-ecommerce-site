@@ -6,20 +6,17 @@ const initialState = {
   alertContent: null,
   languageSelected: localStorage.getItem('languageSelected') ? JSON.parse(localStorage.getItem('languageSelected')) : 'PL',
   cart: {
-    cartItems: localStorage.getItem('cartItems')
-      ? JSON.parse(localStorage.getItem('cartItems'))
+    cartItems: sessionStorage.getItem('cartItems')
+      ? JSON.parse(sessionStorage.getItem('cartItems'))
       : [],
-    uniqueId: JSON.parse(localStorage.getItem('uniqueId'))
-      ? JSON.parse(localStorage.getItem('uniqueId'))
+    uniqueId: JSON.parse(sessionStorage.getItem('uniqueId'))
+      ? JSON.parse(sessionStorage.getItem('uniqueId'))
       : null,
   },
-  userInfo: localStorage.getItem('userInfo')
-    ? JSON.parse(localStorage.getItem('userInfo'))
-    : [],
   cookiesConsentPopupAccepted: localStorage.getItem(
     'cookiesConsentPopupAccepted'
   )
-    ? JSON.parse(localStorage.getItem('cookiesConsentPopupAccepted'))
+    ? JSON.parse(sessionStorage.getItem('cookiesConsentPopupAccepted'))
     : false,
   paymentVerification: null,
 };

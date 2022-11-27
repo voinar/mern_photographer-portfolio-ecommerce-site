@@ -189,7 +189,7 @@ const Album = () => {
         type: 'CART_ADD_ITEM',
         payload: { id: previewImageUrl },
       });
-      localStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
+      sessionStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
     } catch (err) {
       console.log(err);
     }
@@ -202,7 +202,7 @@ const Album = () => {
         type: 'CART_ADD_ITEM',
         payload: { id: image },
       });
-      localStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
+      sessionStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
     } catch (err) {
       console.log(err);
     }
