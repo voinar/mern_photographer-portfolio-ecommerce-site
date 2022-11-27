@@ -102,24 +102,27 @@ button {
 
 .btn--primary:hover {
   background-color: rgba(0, 255, 0, 0.9) !important;
-  width: 320px;
+  width: 310px;
 }
 
 .btn--secondary {
-  // background-color: rgba(0, 0, 0, 0.03) !important;
   width: 300px;
 }
 
 .btn--secondary:hover {
   background-color: rgba(0, 0, 0, 0.03) !important;
-  width: 320px;
+  width: 310px;
 }
 
 .btn--tertiary {
   padding: 8px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(250, 250, 250);
   border-radius: 4px;
+}
+
+.btn--tertiary:hover {
+  opacity: .8;
 }
 
 .btn--back {

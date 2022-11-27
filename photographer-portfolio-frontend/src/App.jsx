@@ -32,7 +32,7 @@ function FacebookPixel() {
     ReactPixel.init(facebookPixelId);
     ReactPixel.pageView();
   }, [location]);
-  console.log(location);
+  // console.log(location);
   return null;
 }
 
@@ -43,8 +43,10 @@ function App() {
   //google analytics log page currently displayed
   const location = useLocation();
   useEffect(() => {
-    ReactGA.send('pageview');
-  }, [location]);
+    state.cookiesConsentPopupSet === true &&
+      state.cookiesAcceptAll === true &&
+      ReactGA.send('pageview');
+  }, [location, state.cookiesConsentPopupSet, state.cookiesAcceptAll]);
 
   //run actions on every state update
   useEffect(() => {
@@ -66,7 +68,8 @@ function App() {
       </Helmet>
 
       <div className="App">
-        <FacebookPixel />
+        {state.cookiesConsentPopupSet === true &&
+          state.cookiesAcceptAll === true && <FacebookPixel />}
         {showAlert && <Alert />}
         <Navbar />
         <RoutesContainer />

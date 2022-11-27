@@ -206,7 +206,7 @@ const TermsConditions = () => {
       </p>
       <br />
 
-      <h3>§ 8 Pliki cookies</h3>
+      <h3 id="cookies">§ 8 Pliki cookies</h3>
       <ul>
         <li>
           1. Sklep Internetowy używa technologii plików cookies, a także
