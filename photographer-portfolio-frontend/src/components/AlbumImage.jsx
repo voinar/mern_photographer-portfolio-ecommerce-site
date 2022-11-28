@@ -1,39 +1,65 @@
-// import { useState, LoadingSpinner } from '../imports';
+// import { useEffect } from 'react';
+import {
+  Store,
+  useState,
+  useContext,
+  IconCartAdd,
+} from '../imports';
 
 const AlbumImage = (props) => {
-  // const [isLoaded, setIsLoaded] = useState(false);
+  const { state, dispatch: contextDispatch } = useContext(Store);
 
-  return (    <div
-    className={props.albumCardSize}
-    onClick={props.handleImagePreview}
-    src={props.url}
-  >
-    <span style={{ display: 'none' }}>{props.id}</span>
-    <img
-      src={props.url}
-      alt="zdjęcie"
-      loading="lazy"
-      // onLoad={() => setIsLoaded(true)}
-    />
-  </div>)
+  const [isLoaded, setIsLoaded] = useState(false);
+  const image = props.image;
 
-  // isLoaded ? (
-  //   <div
-  //     className={props.albumCardSize}
-  //     onClick={props.handleImagePreview}
-  //     src={props.url}
-  //   >
-  //     <span style={{ display: 'none' }}>{props.id}</span>
-  //     <img
-  //       src={props.url}
-  //       alt="zdjęcie"
-  //       loading="lazy"
-  //       onLoad={() => setIsLoaded(true)}
-  //     />
-  //   </div>
-  // ) : (
-  //   <LoadingSpinner />
-  // );
+  const onLoad = () => {
+    console.log('loaded');
+    setIsLoaded(true);
+  };
+
+  const addToCartFromImageThumbnail = (image) => {
+    console.log('addimg');
+    try {
+      contextDispatch({
+        type: 'CART_ADD_ITEM',
+        payload: { id: image },
+      });
+      sessionStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  return (
+    <>
+      <div
+        className={`${isLoaded ? null : 'album__card--isloading'} ${
+          props.albumCardSize
+        }`}
+        onClick={props.handleImagePreview}
+        src={props.url}
+        // onLoad={() => {setIsLoaded(true); console.log('isLoaded', isLoaded);}}
+        onLoad={onLoad}
+        loading="lazy"
+      >
+        <span style={{ display: 'none' }}>{props.id}</span>
+        <img src={props.url} alt="zdjęcie" />
+      </div>
+
+      {window.innerWidth <= 768 && isLoaded === true ? (
+        <div className="album__card__mobile__add-btn">
+          <button onClick={() => addToCartFromImageThumbnail(image)}>
+            <img
+              src={IconCartAdd}
+              alt="dodaj do koszyka"
+              title="dodaj do koszyka"
+            />
+          </button>
+        </div>
+      ) : null}
+
+    </>
+  );
 };
 
 export default AlbumImage;

@@ -1037,6 +1037,10 @@ select {
   border-radius: 6px;
 }
 
+.album__card--isloading {
+  opacity: 0.3;
+}
+
 .album__card__add-btn {
   position: relative;
   height: 0;
@@ -1306,14 +1310,14 @@ select {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    -webkit-animation: 3s ease 0s normal forwards 1 fadein;
-    animation: 3s ease 0s normal forwards 1 fadein;
+    -webkit-animation: fadeIn 2s;
+            animation: fadeIn 2s;
   }
   .album__card__mobile__add-btn button {
     padding: 6px;
     width: 28px;
     margin-top: -20px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
   }
   .album__preview-image img {
     height: auto;
@@ -1334,30 +1338,6 @@ select {
 @media only screen and (max-width: 1200px) {
   .shop__container {
     padding: 100px 20px;
-  }
-}
-
-@keyframes fadein {
-  0% {
-    opacity: 0;
-  }
-  66% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes fadein {
-  0% {
-    opacity: 0;
-  }
-  66% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
   }
 }
 

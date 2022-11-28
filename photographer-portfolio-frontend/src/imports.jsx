@@ -50,7 +50,7 @@ import Experiments from './pages/Experiments';
 
 //components
 import Navbar from './components/Navbar';
-import AlbumCard from './components/AlbumCard';
+import ShopCard from './components/ShopCard';
 import AlbumImage from './components/AlbumImage';
 import ScrollToTop from './components/ScrollToTop';
 import Footer from './components/Footer';
@@ -135,7 +135,7 @@ export {
   Experiments,
   //components
   Navbar,
-  AlbumCard,
+  ShopCard,
   AlbumImage,
   ScrollToTop,
   Footer,

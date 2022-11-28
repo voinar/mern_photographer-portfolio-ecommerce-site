@@ -1,6 +1,6 @@
 import { Link } from '../imports';
 
-const AlbumCard = (props) => {
+const ShopCard = (props) => {
   // console.log('id is: ' + JSON.stringify(props.image._id));
   const { image } = props;
 
@@ -16,4 +16,4 @@ const AlbumCard = (props) => {
   );
 };
 
-export default AlbumCard;
+export default ShopCard;

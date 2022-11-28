@@ -203,6 +203,10 @@
   }
 }
 
+.album__card--isloading {
+  opacity: 0.3;
+}
+
 .album__card__add-btn {
   position: relative;
   height: 0;
@@ -529,15 +533,15 @@
     position: relative;
     display: flex;
     justify-content: center;
-    // animation: fadeIn 3s;
-    -webkit-animation: 3s ease 0s normal forwards 1 fadein;
-    animation: 3s ease 0s normal forwards 1 fadein;
+    animation: fadeIn 2s;
+    // -webkit-animation: 3s ease 0s normal forwards 1 fadein;
+    // animation: 3s ease 0s normal forwards 1 fadein;
 
     button {
       padding: 6px;
       width: 28px;
       margin-top: -20px;
-      background-color: rgba(255, 255, 255, 0.8);
+      background-color: rgba(255, 255, 255, 0.9);
     }
   }
 
@@ -623,26 +627,26 @@
   }
 }
 
-@keyframes fadein {
-  0% {
-    opacity: 0;
-  }
-  66% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
+// @keyframes fadein {
+//   0% {
+//     opacity: 0;
+//   }
+//   66% {
+//     opacity: 0;
+//   }
+//   100% {
+//     opacity: 1;
+//   }
+// }
 
-@-webkit-keyframes fadein {
-  0% {
-    opacity: 0;
-  }
-  66% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
+// @-webkit-keyframes fadein {
+//   0% {
+//     opacity: 0;
+//   }
+//   66% {
+//     opacity: 0;
+//   }
+//   100% {
+//     opacity: 1;
+//   }
+// }

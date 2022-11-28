@@ -315,193 +315,178 @@ const Album = () => {
 
   return (
     <>
-      <main>
-        <Helmet>
-          <title>{album}: Kacper Porada Fotografia</title>
-        </Helmet>
-        <div className="album__container">
-          <div className={toggleToolbarClassOnScroll()}>
-            <div className="album__title">
-              <button onClick={goBack} className="btn--back">
-                <img src={IconChevron} alt="zobacz" />
+      <Helmet>
+        <title>{album}: Kacper Porada Fotografia</title>
+      </Helmet>
+      <main className="album__container">
+        <div className={toggleToolbarClassOnScroll()}>
+          <div className="album__title">
+            <button onClick={goBack} className="btn--back">
+              <img src={IconChevron} alt="zobacz" />
+            </button>
+            <h1>{album}</h1>
+            <div className="album__toolbar__thumbnail-controls">
+              <button
+                style={
+                  albumControlsPrevInactive
+                    ? { opacity: '.6' }
+                    : { opacity: '1' }
+                }
+                onClick={handlePaginationPrevPage}
+              >
+                {
+                  textContent[
+                    textContent.findIndex((obj) => {
+                      return obj.language === state.languageSelected;
+                    })
+                  ]?.button?.previous
+                }
               </button>
-              <h1>{album}</h1>
-              <div className="album__toolbar__thumbnail-controls">
-                <button
-                  style={
-                    albumControlsPrevInactive
-                      ? { opacity: '.6' }
-                      : { opacity: '1' }
-                  }
-                  onClick={handlePaginationPrevPage}
-                >
-                  {
-                    textContent[
-                      textContent.findIndex((obj) => {
-                        return obj.language === state.languageSelected;
-                      })
-                    ]?.button?.previous
-                  }
-                </button>
 
-                <div className="album__toolbar__thumbnail-controls__dropdown">
-                  <button className="album__toolbar__thumbnail-controls__dropbtn">
-                    <span>
-                      {
-                        textContent[
-                          textContent.findIndex((obj) => {
-                            return obj.language === state.languageSelected;
-                          })
-                        ]?.album?.numberOfImages
-                      }
-                    </span>
-                    <img src={IconChevron} alt="rozwiń"></img>
-                  </button>
-                  <div className="album__toolbar__thumbnail-controls__dropdown-content">
-                    <span onClick={() => handlePaginationRange(25)}>25</span>
-                    <span onClick={() => handlePaginationRange(50)}>50</span>
-                    <span onClick={() => handlePaginationRange(75)}>75</span>
-                    <span onClick={() => handlePaginationRange(100)}>100</span>
-                  </div>
+              <div className="album__toolbar__thumbnail-controls__dropdown">
+                <button className="album__toolbar__thumbnail-controls__dropbtn">
+                  <span>
+                    {
+                      textContent[
+                        textContent.findIndex((obj) => {
+                          return obj.language === state.languageSelected;
+                        })
+                      ]?.album?.numberOfImages
+                    }
+                  </span>
+                  <img src={IconChevron} alt="rozwiń"></img>
+                </button>
+                <div className="album__toolbar__thumbnail-controls__dropdown-content">
+                  <span onClick={() => handlePaginationRange(25)}>25</span>
+                  <span onClick={() => handlePaginationRange(50)}>50</span>
+                  <span onClick={() => handlePaginationRange(75)}>75</span>
+                  <span onClick={() => handlePaginationRange(100)}>100</span>
                 </div>
-
-                <button
-                  style={
-                    albumControlsNextInactive
-                      ? { opacity: '.6' }
-                      : { opacity: '1' }
-                  }
-                  onClick={handlePaginationNextPage}
-                >
-                  {
-                    textContent[
-                      textContent.findIndex((obj) => {
-                        return obj.language === state.languageSelected;
-                      })
-                    ]?.button?.next
-                  }
-                </button>
-
-                <button
-                  onClick={() => setImageThumbnailSize('album__card--small')}
-                >
-                  <img src={IconGridSmall} alt="mały rozmiar podglądów" />
-                </button>
-                <button
-                  onClick={() => setImageThumbnailSize('album__card--medium')}
-                >
-                  <img src={IconGridMedium} alt="średni rozmiar podglądów" />
-                </button>
-                <button
-                  onClick={() => setImageThumbnailSize('album__card--large')}
-                >
-                  <img src={IconGridLarge} alt="duży rozmiar podglądów" />
-                </button>
               </div>
+
+              <button
+                style={
+                  albumControlsNextInactive
+                    ? { opacity: '.6' }
+                    : { opacity: '1' }
+                }
+                onClick={handlePaginationNextPage}
+              >
+                {
+                  textContent[
+                    textContent.findIndex((obj) => {
+                      return obj.language === state.languageSelected;
+                    })
+                  ]?.button?.next
+                }
+              </button>
+
+              <button
+                onClick={() => setImageThumbnailSize('album__card--small')}
+              >
+                <img src={IconGridSmall} alt="mały rozmiar podglądów" />
+              </button>
+              <button
+                onClick={() => setImageThumbnailSize('album__card--medium')}
+              >
+                <img src={IconGridMedium} alt="średni rozmiar podglądów" />
+              </button>
+              <button
+                onClick={() => setImageThumbnailSize('album__card--large')}
+              >
+                <img src={IconGridLarge} alt="duży rozmiar podglądów" />
+              </button>
             </div>
           </div>
-          <div className="album__cards">
-            {albumImagesList.length === 0 ? <LoadingSpinner /> : null}
-            {albumImagesList.slice(indexStart, indexEnd).map((image) => {
-              return (
-                <li key={image}>
-                  <AlbumImage
-                    id={image}
-                    url={image}
-                    albumCardSize={`album__card ${imageThumbnailSize}`}
-                    handleImagePreview={
-                      window.innerWidth >= 768
-                        ? () => handleImagePreview(image)
-                        : null
-                    }
-                  />
+        </div>
+        <div className="album__cards">
+          {albumImagesList.length === 0 ? <LoadingSpinner /> : null}
+          {albumImagesList.slice(indexStart, indexEnd).map((image) => {
+            return (
+              <li key={image}>
+                <AlbumImage
+                  id={image}
+                  url={image}
+                  albumCardSize={`album__card ${imageThumbnailSize}`}
+                  handleImagePreview={
+                    window.innerWidth >= 768
+                      ? () => handleImagePreview(image)
+                      : null
+                  }
+                />
 
-                  {imageThumbnailSize === 'album__card--large' ? (
-                    <div className="album__card__add-btn">
-                      <button
-                        onClick={() => addToCartFromImageThumbnail(image)}
-                      >
-                        <img
-                          src={IconCartAdd}
-                          alt="dodaj do koszyka"
-                          title="dodaj do koszyka"
-                        />
-                      </button>
-                    </div>
-                  ) : null}
+                {imageThumbnailSize === 'album__card--large' ? (
+                  <div className="album__card__add-btn">
+                    <button onClick={() => addToCartFromImageThumbnail(image)}>
+                      <img
+                        src={IconCartAdd}
+                        alt="dodaj do koszyka"
+                        title="dodaj do koszyka"
+                      />
+                    </button>
+                  </div>
+                ) : null}
 
-                  {window.innerWidth <= 768 ? (
-                    <div className="album__card__mobile__add-btn">
-                      <button
-                        onClick={() => addToCartFromImageThumbnail(image)}
-                      >
-                        <img
-                          src={IconCartAdd}
-                          alt="dodaj do koszyka"
-                          title="dodaj do koszyka"
-                        />
-                      </button>
-                    </div>
-                  ) : null}
+     
 
-                  {showPreviewImage && ( //image preview overlay
-                    <>
-                      <div
-                        className="album__preview__background"
-                        onClick={() => handleImagePreview(image)}
-                      ></div>
-                      <div
-                        className="album__preview"
-                        style={{ top: window.scrollY }}
-                      >
-                        <div className="album__preview-image__container">
-                          <button
-                            onClick={handleImagePreview}
-                            className="album__preview__btn-close"
-                          >
-                            X
-                          </button>
-                          <div className="album__preview-image">
+                {showPreviewImage && ( //image preview overlay
+                  <>
+                    <div
+                      className="album__preview__background"
+                      onClick={() => handleImagePreview(image)}
+                    ></div>
+                    <div
+                      className="album__preview"
+                      style={{ top: window.scrollY }}
+                    >
+                      <div className="album__preview-image__container">
+                        <button
+                          onClick={handleImagePreview}
+                          className="album__preview__btn-close"
+                        >
+                          X
+                        </button>
+                        <div className="album__preview-image">
+                          <img
+                            className="album__preview-image__picture"
+                            src={previewImageUrl}
+                            alt=""
+                          />
+                        </div>
+
+                        <div className="album__preview-image__tools">
+                          <button onClick={handleImagePreviewPrev}>
                             <img
-                              className="album__preview-image__picture"
-                              src={previewImageUrl}
-                              alt=""
+                              className="album__preview-image__tools__arrow album__preview-image__tools__arrow--prev"
+                              src={IconChevron}
+                              alt="poprzednie zdjęcie"
+                              title="poprzednie zdjęcie"
                             />
-                          </div>
-
-                          <div className="album__preview-image__tools">
-                            <button onClick={handleImagePreviewPrev}>
-                              <img
-                                className="album__preview-image__tools__arrow album__preview-image__tools__arrow--prev"
-                                src={IconChevron}
-                                alt="poprzednie zdjęcie"
-                                title="poprzednie zdjęcie"
-                              />
-                            </button>
-                            <button onClick={() => addToCart(image._id)}>
-                              <img
-                                src={IconCartAdd}
-                                alt="dodaj do koszyka"
-                                title="dodaj do koszyka"
-                              />
-                            </button>
-                            <button onClick={handleImagePreviewNext}>
-                              <img
-                                className="album__preview-image__tools__arrow album__preview-image__tools__arrow--next"
-                                src={IconChevron}
-                                alt="następne zdjęcie"
-                                title="następne zdjęcie"
-                              />
-                            </button>
-                          </div>
+                          </button>
+                          <button onClick={() => addToCart(image._id)}>
+                            <img
+                              src={IconCartAdd}
+                              alt="dodaj do koszyka"
+                              title="dodaj do koszyka"
+                            />
+                          </button>
+                          <button onClick={handleImagePreviewNext}>
+                            <img
+                              className="album__preview-image__tools__arrow album__preview-image__tools__arrow--next"
+                              src={IconChevron}
+                              alt="następne zdjęcie"
+                              title="następne zdjęcie"
+                            />
+                          </button>
                         </div>
                       </div>
-                    </>
-                  )}
-                </li>
-              );
-            })}
-            {/* <div className="shop__cards">
+                    </div>
+                  </>
+                )}
+              </li>
+            );
+          })}
+          {/* <div className="shop__cards">
               <div className="shop__cards__background-image">
                 <img src={backgroundImage()} alt="" />
               </div>
@@ -509,33 +494,33 @@ const Album = () => {
                 <img src={backgroundImage()} alt="" />
               </div>
             </div> */}
+        </div>
+        <div className="album__page__controls">
+          <div
+            className={
+              albumControlsPrevInactive
+                ? 'album__page__controls__prev album__page__controls__prev--inactive'
+                : 'album__page__controls__prev'
+            }
+          >
+            <button onClick={handlePaginationPrevPage}>
+              <img src={IconChevron} alt="poprzednie" />
+            </button>
           </div>
-          <div className="album__page__controls">
-            <div
-              className={
-                albumControlsPrevInactive
-                  ? 'album__page__controls__prev album__page__controls__prev--inactive'
-                  : 'album__page__controls__prev'
-              }
-            >
-              <button onClick={handlePaginationPrevPage}>
-                <img src={IconChevron} alt="poprzednie" />
-              </button>
-            </div>
-            <div
-              className={
-                albumControlsNextInactive
-                  ? 'album__page__controls__next album__page__controls__next--inactive'
-                  : 'album__page__controls__next'
-              }
-            >
-              <button onClick={handlePaginationNextPage}>
-                <img src={IconChevron} alt="następne" />
-              </button>
-            </div>
+          <div
+            className={
+              albumControlsNextInactive
+                ? 'album__page__controls__next album__page__controls__next--inactive'
+                : 'album__page__controls__next'
+            }
+          >
+            <button onClick={handlePaginationNextPage}>
+              <img src={IconChevron} alt="następne" />
+            </button>
           </div>
-          <div className="album__page-count">
-            {/* <span>
+        </div>
+        <div className="album__page-count">
+          {/* <span>
               {
                 textContent[
                   textContent.findIndex((obj) => {
@@ -544,18 +529,17 @@ const Album = () => {
                 ]?.album?.numberOfImagesDisplayed
               }
             </span> */}
-            {albumImagesList.length === 0 ? null : (
-              <span>
-                {state.languageSelected === 'PL'
-                  ? `Oglądasz ${indexStart}-${getIndexEnd()} z ${
-                      albumImagesList.length
-                    } zdjęć`
-                  : `You are viewing ${indexStart}-${getIndexEnd()} of ${
-                      albumImagesList.length
-                    }`}
-              </span>
-            )}
-          </div>
+          {albumImagesList.length === 0 ? null : (
+            <span>
+              {state.languageSelected === 'PL'
+                ? `Oglądasz ${indexStart}-${getIndexEnd()} z ${
+                    albumImagesList.length
+                  } zdjęć`
+                : `You are viewing ${indexStart}-${getIndexEnd()} of ${
+                    albumImagesList.length
+                  }`}
+            </span>
+          )}
         </div>
       </main>
     </>

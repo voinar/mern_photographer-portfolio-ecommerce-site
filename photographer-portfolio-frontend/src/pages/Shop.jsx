@@ -7,7 +7,7 @@ import {
   useNavigate,
   Helmet,
   LoadingSpinner,
-  AlbumCard,
+  ShopCard,
   v4,
   IconChevron,
   IconStepsEye,
@@ -168,7 +168,7 @@ function Shop() {
           {foldersList.length === 0 ? <LoadingSpinner/> : (foldersList.map((folder) => {
             return (
               <li key={v4()}>
-                <AlbumCard
+                <ShopCard
                   image={folder.coverImage}
                   albumName={folder.albumName}
                   collection={folder.albumName}
