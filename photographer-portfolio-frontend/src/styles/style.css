@@ -2289,8 +2289,8 @@ select {
   z-index: 10;
   -webkit-transition: linear 0.3s;
   transition: linear 0.3s;
-  -webkit-animation: fadeIn .3s;
-          animation: fadeIn .3s;
+  -webkit-animation: fadeIn 0.3s;
+          animation: fadeIn 0.3s;
 }
 
 .navbar__shop__logo {
@@ -2407,6 +2407,11 @@ select {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.navbar__shop__userinfo--main-page img {
+  -webkit-filter: invert(90%);
+          filter: invert(90%);
 }
 
 .navbar__shop__icons {
@@ -2532,6 +2537,18 @@ select {
     border: none;
   }
   .navbar .navbar__content .navbar__section-link a:hover {
+    background-color: black;
+  }
+  .navbar .navbar__shop__userinfo {
+    padding: 16px;
+    font-size: 20px;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 100vw;
+    text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+  }
+  .navbar .navbar__shop__userinfo li {
     background-color: black;
   }
   .navbar__menu__button {
@@ -3096,7 +3113,7 @@ select {
 
 .cookies__content button {
   padding: 6px;
-  width: 160px;
+  width: 100%;
   height: 22px;
   font-size: 14px;
   font-weight: 200;
@@ -3104,7 +3121,7 @@ select {
 }
 
 .cookies__content button:hover {
-  width: 160px !important;
+  width: 100%;
   outline: #2e2e2e !important;
 }
 

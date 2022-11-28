@@ -85,6 +85,14 @@ const Navbar = () => {
     );
   }, [state.languageSelected]);
 
+  const getCategory = (category) => {
+    return textContent[
+      textContent.findIndex((obj) => {
+        return obj.language === state.languageSelected;
+      })
+    ]?.categories?.[category];
+  };
+
   const renderNavbar = () => {
     if (
       location.pathname === '/' ||
@@ -130,7 +138,7 @@ const Navbar = () => {
                         to={category}
                         onClick={showNavbar}
                       >
-                        {category}
+                        {getCategory(category)}
                       </Link>
                     </li>
                   );
@@ -143,12 +151,39 @@ const Navbar = () => {
                       className="navbar__section-link"
                       onClick={showNavbar}
                     >
-                      <Link to={`portfolio/${category}`}>{category}</Link>
+                      <Link to={`portfolio/${category}`}>
+                        {getCategory(category)}
+                      </Link>
                     </li>
                   );
                 } else return null;
               })}
             </ul>
+
+              <div className="navbar__shop__userinfo navbar__shop__userinfo--main-page">
+                <div className="navbar__shop__language">
+                  <span>{state.languageSelected}</span>
+                  <button
+                    onClick={() =>
+                      setLanguageDropdownVisibility(!languageDropdownVisibility)
+                    }
+                  >
+                    <img
+                      src={IconChevron}
+                      alt="Konto użytkownika"
+                      title="Konto użytkownika"
+                    />
+                  </button>
+                  <ul className={'navbar__shop__language__content'}>
+                    <li onClick={(e) => setUILanguage(e.target.textContent)}>
+                      EN
+                    </li>
+                    <li onClick={(e) => setUILanguage(e.target.textContent)}>
+                      PL
+                    </li>
+                  </ul>
+                </div>
+              </div>
           </div>
 
           <button

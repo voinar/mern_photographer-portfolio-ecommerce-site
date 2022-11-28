@@ -27,6 +27,8 @@ const RoutesContainer = () => (
     <Route path="/portfolio/:category" element={<SectionContent />} />
     <Route path="/portfolio/o%20mnie" element={<About />} />
     <Route path="/sklep" element={<Shop />} />
+    <Route path="/shop" element={<Shop />} />
+    <Route path="/store" element={<Shop />} />
     <Route path="/album/:album" element={<Album />} />
     <Route path="/experiments" element={<Experiments />} />
     <Route path="/koszyk" element={<Cart />} />

@@ -1,4 +1,4 @@
-import { Store, useContext, Link } from '../imports';
+import { Store, useContext, Link, textContent } from '../imports';
 
 const CookiesPopup = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
@@ -21,30 +21,51 @@ const CookiesPopup = () => {
 
   return (
     <>
-      {state.cookiesConsentPopupSet ? (
-        null
-      ) : (
+      {state.cookiesConsentPopupSet ? null : (
         <div className="cookies__container">
           <span>
-            Strona korzysta z plików cookie w celu dostarczenia najlepszej
-            jakości usług &#127850;
+            {
+              textContent[
+                textContent.findIndex((obj) => {
+                  return obj.language === state.languageSelected;
+                })
+              ]?.cookiesPopup?.header
+            }
           </span>
           <div className="cookies__content">
             <button
               className="cookies__button--all btn--primary"
               onClick={cookiesAcceptAll}
             >
-              Akceptuj wszystkie
+              {
+                textContent[
+                  textContent.findIndex((obj) => {
+                    return obj.language === state.languageSelected;
+                  })
+                ]?.cookiesPopup?.accept
+              }
             </button>
             <button
               className="cookies__button--decline btn--secondary"
               onClick={cookiesDeclineAll}
             >
-              Odrzuć wszystkie
+              {
+                textContent[
+                  textContent.findIndex((obj) => {
+                    return obj.language === state.languageSelected;
+                  })
+                ]?.cookiesPopup?.decline
+              }
             </button>
             <Link to="/polityka-prywatnosci">
               <button className="cookies__button--more btn--tertiary">
-                Dowiedz się więcej.
+                {
+                  textContent[
+                    textContent.findIndex((obj) => {
+                      return obj.language === state.languageSelected;
+                    })
+                  ]?.cookiesPopup?.more
+                }
               </button>
             </Link>
           </div>

@@ -1,12 +1,27 @@
 [
   {
     "language": "EN",
+    "categories": {
+      "biegi": "running",
+      "emocje": "emotions",
+      "portret": "portrait",
+      "krajobraz": "landscapes",
+      "więcej": "more",
+      "o mnie": "about me",
+      "sklep": "shop"
+    },
     "navbar": {
       "title": "Store"
     },
     "button": {
       "previous": "Previous",
       "next": "Next"
+    },
+    "cookiesPopup": {
+      "header": "This site is using cookies to provide you with the best experience🍪",
+      "accept": "Accept",
+      "decline": "Decline",
+      "more": "Learn more"
     },
     "shop": {
       "helmet": "Store: Kacper Porada Fotografia",
@@ -82,9 +97,24 @@
     "navbar": {
       "title": "Sklep"
     },
+    "categories": {
+      "biegi": "biegi",
+      "emocje": "emocje",
+      "portret": "portret",
+      "krajobraz": "krajobraz",
+      "więcej": "więcej",
+      "o mnie": "o mnie",
+      "sklep": "sklep"
+    },
     "button": {
       "previous": "Poprzednie",
       "next": "Następne"
+    },
+    "cookiesPopup": {
+      "header": "Strona korzysta z plików cookie w celu dostarczenia najlepszej jakości usług 🍪",
+      "accept": "Akceptuj",
+      "decline": "Odrzuć",
+      "more": "Dowiedz się więcej"
     },
     "shop": {
       "helmet": "Sklep: Kacper Porada Fotografia",
