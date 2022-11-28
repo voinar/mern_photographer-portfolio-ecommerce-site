@@ -12,8 +12,7 @@ const AlbumImage = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const image = props.image;
 
-  const onLoad = () => {
-    console.log('loaded');
+  const handleLoad = () => {
     setIsLoaded(true);
   };
 
@@ -38,9 +37,8 @@ const AlbumImage = (props) => {
         }`}
         onClick={props.handleImagePreview}
         src={props.url}
-        // onLoad={() => {setIsLoaded(true); console.log('isLoaded', isLoaded);}}
-        onLoad={onLoad}
-        loading="lazy"
+        onLoad={handleLoad}
+        // loading="lazy"
       >
         <span style={{ display: 'none' }}>{props.id}</span>
         <img src={props.url} alt="zdjęcie" />
