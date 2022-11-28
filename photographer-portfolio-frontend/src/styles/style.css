@@ -2414,6 +2414,10 @@ select {
           filter: invert(90%);
 }
 
+.navbar__shop__userinfo--main-page li {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 .navbar__shop__icons {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2547,9 +2551,6 @@ select {
             justify-content: center;
     width: 100vw;
     text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
-  }
-  .navbar .navbar__shop__userinfo li {
-    background-color: black;
   }
   .navbar__menu__button {
     display: -webkit-box;
