@@ -6,6 +6,7 @@ import {
   useState,
   useNavigate,
   Helmet,
+  LoadingSpinner,
   AlbumCard,
   v4,
   IconChevron,
@@ -162,7 +163,9 @@ function Shop() {
           <div className="shop__cards__background-image shop__cards__background-image--large">
             <img src={backgroundImage()} alt="" />
           </div> */}
-          {foldersList.map((folder) => {
+
+
+          {foldersList.length === 0 ? <LoadingSpinner/> : (foldersList.map((folder) => {
             return (
               <li key={v4()}>
                 <AlbumCard
@@ -172,7 +175,7 @@ function Shop() {
                 />
               </li>
             );
-          })}
+          }))}
         </div>
         <br />
         <div className="cart__return">

@@ -6,6 +6,7 @@ import {
   useContext,
   useParams,
   useNavigate,
+  LoadingSpinner,
   AlbumImage,
   IconChevron,
   IconCartAdd,
@@ -400,6 +401,7 @@ const Album = () => {
             </div>
           </div>
           <div className="album__cards">
+            {albumImagesList.length === 0 ? <LoadingSpinner /> : null}
             {albumImagesList.slice(indexStart, indexEnd).map((image) => {
               return (
                 <li key={image}>
@@ -542,15 +544,17 @@ const Album = () => {
                 ]?.album?.numberOfImagesDisplayed
               }
             </span> */}
-            <span>
-              {state.languageSelected === 'PL'
-                ? `Oglądasz ${indexStart}-${getIndexEnd()} z ${
-                    albumImagesList.length
-                  } zdjęć`
-                : `You are viewing ${indexStart}-${getIndexEnd()} of ${
-                    albumImagesList.length
-                  }`}
-            </span>
+            {albumImagesList.length === 0 ? null : (
+              <span>
+                {state.languageSelected === 'PL'
+                  ? `Oglądasz ${indexStart}-${getIndexEnd()} z ${
+                      albumImagesList.length
+                    } zdjęć`
+                  : `You are viewing ${indexStart}-${getIndexEnd()} of ${
+                      albumImagesList.length
+                    }`}
+              </span>
+            )}
           </div>
         </div>
       </main>
