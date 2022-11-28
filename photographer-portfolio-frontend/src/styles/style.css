@@ -3107,6 +3107,7 @@ select {
 
 .cookies__content .cookies__button--more {
   height: 22px;
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .cookies__content .cookies__button--all:hover {
