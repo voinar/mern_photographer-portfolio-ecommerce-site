@@ -1,10 +1,12 @@
 .loading-spinner__container {
-    // border: 10px solid teal;
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    left: 50%;
-    top: 40%;
+  // border: 10px solid teal;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .loading-spinner {

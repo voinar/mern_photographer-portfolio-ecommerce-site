@@ -1306,11 +1306,12 @@ select {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    -webkit-animation: fadeIn 3s;
-            animation: fadeIn 3s;
+    -webkit-animation: 3s ease 0s normal forwards 1 fadein;
+    animation: 3s ease 0s normal forwards 1 fadein;
   }
   .album__card__mobile__add-btn button {
-    width: 30px;
+    padding: 6px;
+    width: 28px;
     margin-top: -20px;
     background-color: rgba(255, 255, 255, 0.8);
   }
@@ -1333,6 +1334,30 @@ select {
 @media only screen and (max-width: 1200px) {
   .shop__container {
     padding: 100px 20px;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  66% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  66% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
@@ -2917,8 +2942,10 @@ select {
       -ms-flex-direction: column;
           flex-direction: column;
   position: absolute;
+  top: 50%;
   left: 50%;
-  top: 40%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .loading-spinner {
