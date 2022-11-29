@@ -196,48 +196,6 @@ button {
   ul {
     padding: 0;
   }
-
-  .btn--primary {
-    background-color: rgba(0, 222, 0, 0.7) !important;
-    width: 200px;
-  }
-
-  .btn--primary:hover {
-    background-color: rgba(0, 222, 0, 0.7) !important;
-    width: 200px;
-  }
-
-  .btn--secondary {
-    background-color: rgba(0, 0, 0, 0.09) !important;
-    width: 200px;
-  }
-
-  .btn--secondary:hover {
-    background-color: rgba(0, 0, 0, 0.09) !important;
-    width: 200px;
-  }
-
-  .btn--tertiary {
-    // padding: 8px;
-    // border: 1px solid rgba(0, 0, 0, 0.1);
-    // background-color: rgb(255, 255, 255);
-    // border-radius: 4px;
-  }
-
-  // .btn--back {
-  //   all: unset !important;
-  //   border: 0px;
-  //   padding: 0;
-  //   cursor: pointer !important;
-
-  //   img {
-  //     border: 0px;
-  //     min-width: 30px;
-  //     align-self: center;
-  //     transform: rotate(90deg);
-  //     cursor: pointer;
-  //   }
-  // }
 }
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (max-width: 992px) {

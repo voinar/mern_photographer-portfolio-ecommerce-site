@@ -55,23 +55,25 @@ const Footer = () => {
               <span>Zdjęcia imprez sportowych</span>
               <span>Rzeszów fotografia</span>
             </div>
-            <div className="footer__column footer__tags">
-              <Link to="/regulamin">
-                <span>Regulamin</span>
-              </Link>
+            <div className="footer__column">
+              <div className="footer__column footer__links">
+                <Link to="/regulamin">
+                  <span>Regulamin</span>
+                </Link>
 
-              <Link to="/polityka-prywatnosci">
-                <span>Polityka prywatności</span>
-              </Link>
+                <Link to="/polityka-prywatnosci">
+                  <span>Polityka prywatności</span>
+                </Link>
 
-              <Link to="/Pomoc">
-                <span>Kontakt</span>
-              </Link>
-            </div>
-            <div className="footer__column footer__tags">
-              <Link to="/Pomoc">
-                <span>Pomoc</span>
-              </Link>
+                <Link to="/Pomoc">
+                  <span>Kontakt</span>
+                </Link>
+              </div>
+              <div className="footer__column footer__links">
+                <Link to="/Pomoc">
+                  <span>Pomoc</span>
+                </Link>
+              </div>
             </div>
             <div
               className="footer__column footer__return"
@@ -82,9 +84,17 @@ const Footer = () => {
           </div>
           <div className="footer__slogan">Zobacz emocje</div>
           <div className="footer__copyright">
-            <Link to="/portfolio/o%20mnie">
-              <span>copyright Ⓒ 2022 Kacper Porada</span>
-            </Link>
+            <span>copyright Ⓒ 2022 Kacper Porada.&nbsp;</span>
+            <span>
+              made by{' '}
+              <a
+                rel="noopener noreferrer"
+                href="http://indragon.eu"
+                target="_blank"
+              >
+                indragon.eu
+              </a>
+            </span>
           </div>
         </footer>
       )}
