@@ -530,7 +530,7 @@ const Purchased = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            <button className="btn--primary">
+                            <button className="btn--secondary">
                               {
                                 textContent[
                                   textContent.findIndex((obj) => {

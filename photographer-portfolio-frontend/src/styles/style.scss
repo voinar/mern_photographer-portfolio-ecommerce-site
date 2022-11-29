@@ -40,7 +40,6 @@ body {
   font-family: $--font-main;
   color: $--c-black;
   background-color: $--c-white;
-  // min-width: 600px;
   overflow: hidden;
   scroll-behavior: smooth;
 }
@@ -53,7 +52,6 @@ h5,
 h6,
 p,
 a {
-  // font-family: $--font-main;
   font-weight: 300;
 }
 
@@ -80,8 +78,7 @@ ul {
 }
 
 img {
-  //disable image copy/drag
-  pointer-events: none;
+  pointer-events: none;   //disable image copy/drag
 }
 
 button {
@@ -102,7 +99,7 @@ button {
 
 .btn--primary:hover {
   background-color: rgba(0, 255, 0, 0.9) !important;
-  width: 310px;
+  // width: 310px;
 }
 
 .btn--secondary {
@@ -111,7 +108,7 @@ button {
 
 .btn--secondary:hover {
   background-color: rgba(0, 0, 0, 0.03) !important;
-  width: 310px;
+  // width: 310px;
 }
 
 .btn--tertiary {

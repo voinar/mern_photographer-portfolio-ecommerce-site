@@ -1120,6 +1120,11 @@ select {
   background-color: #fcfcfc;
 }
 
+.album__preview-image__container .album__preview__btn-close:hover {
+  -webkit-filter: invert(80%);
+          filter: invert(80%);
+}
+
 .album__preview-image__tools {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1150,6 +1155,11 @@ select {
   padding: 8px;
   height: 48px;
   border-radius: 4px;
+}
+
+.album__preview-image__tools button:hover {
+  -webkit-filter: invert(80%);
+          filter: invert(80%);
 }
 
 .album__preview-image__tools__arrow--prev {
@@ -1489,10 +1499,6 @@ select {
   width: 220px;
 }
 
-.cart__summary .cart__summary__button:hover {
-  width: 230px;
-}
-
 .cart__images:hover,
 .cart__summary:hover {
   border: 1px solid rgba(0, 0, 0, 0.5);
@@ -1787,6 +1793,10 @@ select {
   margin: 0 auto;
   font-weight: 300;
   font-size: 14px;
+}
+
+.purchased__container img {
+  pointer-events: auto;
 }
 
 .purchased__image__card {
@@ -3228,7 +3238,6 @@ button {
 
 .btn--primary:hover {
   background-color: rgba(0, 255, 0, 0.9) !important;
-  width: 310px;
 }
 
 .btn--secondary {
@@ -3237,7 +3246,6 @@ button {
 
 .btn--secondary:hover {
   background-color: rgba(0, 0, 0, 0.03) !important;
-  width: 310px;
 }
 
 .btn--tertiary {

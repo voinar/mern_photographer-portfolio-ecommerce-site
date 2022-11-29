@@ -219,7 +219,6 @@
 .album__preview-image {
   display: flex;
   flex-direction: column;
-
 }
 
 .album__preview-image__picture {
@@ -243,6 +242,9 @@
     background-color: #fcfcfc;
   }
 
+  .album__preview__btn-close:hover {
+    filter: invert(80%);
+  }
 }
 
 .album__preview-image__tools {
@@ -270,6 +272,9 @@
     }
   }
 
+  button:hover {
+    filter: invert(80%);
+  }
 }
 
 .album__preview-image__tools__arrow--prev {
@@ -384,7 +389,6 @@
     display: none !important;
   }
 
-
   .album__cards {
     // height: 200px;
     width: 100%;
@@ -396,10 +400,8 @@
   }
 
   .album__page__controls {
-
     button {
       padding: 4px 10px;
-
     }
 
     img {
