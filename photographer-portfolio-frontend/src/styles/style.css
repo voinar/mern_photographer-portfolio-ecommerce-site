@@ -1047,10 +1047,10 @@ select {
 
 .album__card__add-btn button {
   position: absolute;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.3);
   bottom: 120px;
-  right: 12px;
+  right: 16px;
 }
 
 .album__preview {
@@ -2334,7 +2334,7 @@ select {
       -ms-flex-align: center;
           align-items: center;
   font-size: 26px;
-  font-weight: 400;
+  font-weight: 300;
   margin-left: 16px;
 }
 
