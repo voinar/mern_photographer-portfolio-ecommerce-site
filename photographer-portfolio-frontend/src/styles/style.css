@@ -3124,7 +3124,7 @@ select {
 
 .cookies__content button {
   padding: 6px;
-  width: 100%;
+  width: 160px;
   height: 22px;
   font-size: 14px;
   font-weight: 200;
@@ -3132,7 +3132,6 @@ select {
 }
 
 .cookies__content button:hover {
-  width: 100%;
   outline: #2e2e2e !important;
 }
 
