@@ -84,7 +84,9 @@ const Footer = () => {
           </div>
           <div className="footer__slogan">Zobacz emocje</div>
           <div className="footer__copyright">
-            <span>copyright Ⓒ 2022 Kacper Porada.&nbsp;</span>
+            <span>
+              copyright Ⓒ {new Date().getFullYear()} Kacper Porada.&nbsp;
+            </span>
             <span>
               made by{' '}
               <a

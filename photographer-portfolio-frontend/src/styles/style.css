@@ -2733,24 +2733,24 @@ select {
   font-weight: 200;
   width: 100%;
   opacity: 1;
-  color: rgba(255, 255, 255, 0.7);
-  background-color: rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(0, 0, 0, 0.2);
   z-index: 3 !important;
 }
 
 .footer__copyright a {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  color: rgba(231, 182, 255, 0.8);
+  color: rgba(231, 182, 255, 0.7);
 }
 
 .footer__copyright a:hover {
-  color: lime;
+  color: #00ff9b;
 }
 
 @media (max-width: 1024px) {
   .footer {
-    padding: 20px 0 80px;
+    padding: 20px 24px 80px;
   }
   .footer__logo {
     padding: 20px 0;
@@ -2784,7 +2784,8 @@ select {
   }
   .footer__return {
     position: absolute;
-    right: 30px;
+    right: 36px;
+    top: 20px;
   }
   .footer__copyright {
     -webkit-box-orient: vertical;

@@ -360,17 +360,8 @@
   }
 
   .album__page__controls {
-    // display: flex;
-    // flex-direction: row;
-    // padding: 20px;
-    // justify-content: space-between;
-
     button {
       padding: 4px 10px;
-      // font-size: $--font-xxl;
-      // font-weight: 200;
-      // background-color: rgba(255, 255, 255, 0.075);
-      // outline: 1px solid #fff;
     }
 
     img {
@@ -383,6 +374,7 @@
     font-size: $--font-md;
   }
 }
+
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
   .album__toolbar__thumbnail-controls {
@@ -451,8 +443,6 @@
     display: flex;
     justify-content: center;
     animation: fadeIn 2s;
-    // -webkit-animation: 3s ease 0s normal forwards 1 fadein;
-    // animation: 3s ease 0s normal forwards 1 fadein;
 
     button {
       padding: 6px;

@@ -11,7 +11,7 @@ import './styles/style.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <React.StrictMode>
+  <React.StrictMode>
     <StoreProvider>
       <HelmetProvider>
         <BrowserRouter>
@@ -19,7 +19,7 @@ root.render(
         </BrowserRouter>
       </HelmetProvider>
     </StoreProvider>
-  // </React.StrictMode>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
