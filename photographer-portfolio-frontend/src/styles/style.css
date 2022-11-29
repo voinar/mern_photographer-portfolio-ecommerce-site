@@ -2136,8 +2136,8 @@ select {
   width: 100%;
   color: #f2f2f2;
   z-index: 10;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(20%, rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.9)));
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.9) 100%);
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.9)));
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.9) 100%);
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
@@ -2529,6 +2529,7 @@ select {
         -ms-flex-direction: column;
             flex-direction: column;
     gap: 4px;
+    margin-top: -10vh;
     width: 100vw;
   }
   .navbar .navbar__content .navbar__section-link {
@@ -2537,7 +2538,7 @@ select {
   }
   .navbar .navbar__content .navbar__section-link a {
     width: 100%;
-    padding: 16px;
+    padding: 12px;
     border: none;
   }
   .navbar .navbar__content .navbar__section-link a:hover {
@@ -2571,16 +2572,15 @@ select {
             filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.7));
     z-index: 5;
   }
-  .navbar--invert {
-    -webkit-filter: invert(5%);
-            filter: invert(5%);
-    background-color: black;
-  }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (max-width: 992px) {
+  .navbar {
+    background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.2)), to(rgba(0, 0, 0, 0.9)));
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.9) 100%);
+  }
   .navbar__shop {
     padding: 10px 40px 10px 40px;
   }

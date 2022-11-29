@@ -1,6 +1,6 @@
 import { IconEmail, IconPhone, IconFacebook, IconInstagram } from '../imports';
 
-//phot assets
+//photo assets
 import img0 from '../img/about/about-1.jpg';
 import img1 from '../img/about/about-2.jpg';
 import img2 from '../img/about/about-3.jpg';

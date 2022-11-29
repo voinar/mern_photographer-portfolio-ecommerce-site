@@ -36,10 +36,10 @@ const Navbar = () => {
   }, [location.pathname]);
 
   useEffect(() => {
-    location.pathname === '/o%20mnie'
+    location.pathname === '/portfolio/o%20mnie'
       ? navRef.current.classList.add('navbar--invert')
       : navRef.current.classList.remove('navbar--invert');
-  }, [location.pathname]);
+  }, [location.pathname, scroll]);
 
   const showNavbar = () => {
     // return window.innerWidth < 1024 ?
@@ -70,12 +70,6 @@ const Navbar = () => {
       default:
         return;
     }
-
-    console.log('setUILanguage');
-    // contextDispatch({
-    //   type: 'CART_ADD_ITEM',
-    //   payload: { id: previewImageUrl },
-    // });
   };
 
   useEffect(() => {
@@ -113,7 +107,7 @@ const Navbar = () => {
               className="navbar__menu__button navbar__menu__button--close"
               onClick={showNavbar}
             >
-              <img src={IconClose} alt="zamknij menu"></img>
+              <img src={IconClose} alt="zamknij menu"/>
             </button>
 
             <div className="navbar__logo">

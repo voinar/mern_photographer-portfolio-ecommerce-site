@@ -62,7 +62,7 @@ const SectionWelcome = () => {
             >
               <img src={IconInstagram} alt="instagram" />
             </a>
-            <a href="/o%20mnie">
+            <a href="/portfolio/o%20mnie">
               <img src={IconMail} alt="kontakt" />
             </a>
           </div>
