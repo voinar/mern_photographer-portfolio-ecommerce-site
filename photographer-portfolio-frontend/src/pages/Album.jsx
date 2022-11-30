@@ -13,10 +13,6 @@ import {
   IconGridSmall,
   IconGridMedium,
   IconGridLarge,
-  // IconSportsGymnast,
-  // IconSportsRunner,
-  // IconSportsHandball,
-  // IconSportsLifter,
   textContent,
 } from '../imports';
 
@@ -145,16 +141,6 @@ const Album = () => {
   const handleImagePreview = (image) => {
     setPreviewImageUrl(image);
     console.log('Image Preview url', image);
-    // const imageUrlFormatted = image
-    //   .replace('https://firebasestorage.googleapis.com/v0/b/', 'gs://')
-    //   .replace('/o', '')
-    //   .replace('male', 'duze')
-    //   .split('?')[0]
-    //   .replace('jpg', 'JPG')
-    //   .replace(/%2F/gi, '/');
-    //   console.log('url:',image)
-    //   console.log('large url:',imageUrlFormatted)
-    // setPreviewImageUrl(getDownloadURL(ref(storage, image)));
 
     setShowPreviewImage((prevState) => !prevState);
   };
@@ -284,35 +270,6 @@ const Album = () => {
     return () => window.removeEventListener('keydown', detectKeyDown, false);
   });
 
-  //   const getLanguageContent = (requestedString) => {
-
-  //   // console.log('arg',arg)
-  //   const requestedStrings = 'button.previous'
-
-  //   console.log('string',typeof textContent[textContent.findIndex(obj => {return obj.language === state.languageSelected})].requestedString)
-  //  return textContent[textContent.findIndex(obj => {return obj.language === state.languageSelected})].button.previous
-  // console.log(arg)
-  // const languageSelected = state.languageSelected.findIndex('PL');
-  // console.log('lang', languageSelected);
-  // const languageContent = textContent.filter('PL')
-  // console.log(JSON.stringify(textContent))
-  // console.log(JSON.stringify(languageContent));
-  // state.languageSelected.toString()
-  // return;
-  // ? textContent.EN?.button?.previous
-  // : textContent.PL?.button?.previous} */}
-  // };
-
-  // const backgroundImage = () => {
-  //   const images = [
-  //     IconSportsGymnast,
-  //     IconSportsRunner,
-  //     IconSportsHandball,
-  //     IconSportsLifter,
-  //   ];
-  //   return images[Math.floor(Math.random() * images.length)];
-  // };
-
   return (
     <>
       <Helmet>
@@ -427,8 +384,6 @@ const Album = () => {
                   </div>
                 ) : null}
 
-     
-
                 {showPreviewImage && ( //image preview overlay
                   <>
                     <div
@@ -486,14 +441,7 @@ const Album = () => {
               </li>
             );
           })}
-          {/* <div className="shop__cards">
-              <div className="shop__cards__background-image">
-                <img src={backgroundImage()} alt="" />
-              </div>
-              <div className="shop__cards__background-image shop__cards__background-image--large">
-                <img src={backgroundImage()} alt="" />
-              </div>
-            </div> */}
+
         </div>
         <div className="album__page__controls">
           <div
@@ -520,15 +468,6 @@ const Album = () => {
           </div>
         </div>
         <div className="album__page-count">
-          {/* <span>
-              {
-                textContent[
-                  textContent.findIndex((obj) => {
-                    return obj.language === state.languageSelected;
-                  })
-                ]?.album?.numberOfImagesDisplayed
-              }
-            </span> */}
           {albumImagesList.length === 0 ? null : (
             <span>
               {state.languageSelected === 'PL'

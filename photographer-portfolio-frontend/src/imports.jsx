@@ -46,7 +46,6 @@ import Purchased from './pages/Purchased';
 import Support from './pages/Support';
 import TermsConditions from './pages/TermsConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
-import Experiments from './pages/Experiments';
 
 //components
 import Navbar from './components/Navbar';
@@ -132,7 +131,6 @@ export {
   Support,
   TermsConditions,
   PrivacyPolicy,
-  Experiments,
   //components
   Navbar,
   ShopCard,

@@ -7,10 +7,8 @@
   font-weight: 300;
   font-size: 14px;
 
-
-
   img {
-    pointer-events: auto; //enable image copy/drag
+    pointer-events: auto; //re-enable image copy/drag
   }
 }
 
@@ -86,10 +84,8 @@
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
-  .purchased__container {
-    // padding: 10px 20px;
-  }
 }
+
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 600px) {
   .purchased__container {

@@ -6,7 +6,6 @@
   span {
     font-size: 160px;
     font-weight: 100;
-    // color: red;
     opacity: 0.2;
   }
 
@@ -22,12 +21,6 @@
 @media only screen and (max-width: 768px) {
   .page-not-found__container {
     padding: 100px 20px;
-
-    h3 {
-    }
-
-    li {
-    }
 
     span {
       font-size: 100px;

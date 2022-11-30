@@ -1,7 +1,6 @@
 .alert__container {
   position: fixed;
   display: flex;
-  // display: none;
   justify-content: center;
   align-items: center;
   top: 12vh;
@@ -35,7 +34,6 @@
 }
 
 .alert__autohide {
-  // animation: cssAnimation 0s ease-in 3s forwards;
   animation-fill-mode: forwards;
 }
 

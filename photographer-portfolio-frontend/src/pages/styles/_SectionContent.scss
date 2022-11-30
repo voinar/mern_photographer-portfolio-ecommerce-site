@@ -93,10 +93,6 @@
 
   .section__photos__description {
     opacity: 1;
-    // position: relative;
-    // display: flex;
-    // justify-content: center;
-    // height: 0;
     font-size: $--font-xs;
     font-weight: 300;
     bottom: 0px;
@@ -112,24 +108,19 @@
     display: flex;
     width: 100%;
     height: 100%;
-    // border: 2px solid red;
     background: rgba(0, 0, 0, 0.9);
 
     .section__photos__preview__image {
-      // height: 100vh;
       justify-content: flex-end;
       object-fit: scale-down;
     }
-  }
-  .section__photos__images__image {
-    // margin-top: 10px;
   }
 
   .section__photos__images__image--mobile {
     height: 100vh;
     width: 100vw;
-    // border: 1px solid red;
     margin-bottom: 20px;
+
     img {
       height: 100vh;
       width: 100vw;

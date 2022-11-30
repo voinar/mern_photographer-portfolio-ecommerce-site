@@ -9,7 +9,6 @@ import {
   About,
   Shop,
   Album,
-  Experiments,
   Cart,
   SignIn,
   Checkout,
@@ -30,7 +29,6 @@ const RoutesContainer = () => (
     <Route path="/shop" element={<Shop />} />
     <Route path="/store" element={<Shop />} />
     <Route path="/album/:album" element={<Album />} />
-    <Route path="/experiments" element={<Experiments />} />
     <Route path="/koszyk" element={<Cart />} />
     <Route path="/logowanie" element={<SignIn />} />
     <Route path="/podsumowanie" element={<Checkout />} />

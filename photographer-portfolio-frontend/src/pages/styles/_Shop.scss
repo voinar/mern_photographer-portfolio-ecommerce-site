@@ -96,24 +96,19 @@
     opacity: 0.03;
     bottom: 100px;
     right: 100px;
-    // border: 2px solid red;
+
     img {
       animation: fadeIn 3s;
     }
   }
 
   .shop__cards__background-image--large {
-    // width: 800px;
-    // height: 800px;
     left: 0px;
     bottom: 0px;
-    // border: 3px solid red;
-    // top: 20vh;
   }
 }
 
 .shop__card {
-  // width: 400px;
   height: auto;
   opacity: 0.9;
 
@@ -129,7 +124,6 @@
 }
 
 .shop__card__title {
-  // width: auto;
   height: auto;
   word-wrap: break-word;
 }
@@ -200,7 +194,6 @@
     height: 60px;
     width: 60px;
     opacity: 0.16;
-    // transition: all 0.3s;
     justify-content: flex-end;
   }
 
@@ -218,7 +211,4 @@
     top: 26px !important;
     right: 30px !important;
   }
-}
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (max-width: 1200px) {
 }

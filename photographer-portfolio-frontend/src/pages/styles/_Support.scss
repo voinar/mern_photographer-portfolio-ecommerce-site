@@ -117,23 +117,9 @@
     li {
       display: flex;
       flex-direction: column;
-      // align-items: left;
       padding: 20px;
     }
   }
-
-  .support__faq__question {
-    li {
-      // padding: 0px;
-    }
-  }
-  // .support__main {
-  //   display: flex;
-  //   flex-direction: column;
-  //   gap: 20px;
-  //   padding-top: 60px;
-  //   width: 100%;
-  // }
 }
 
 @media only screen and (max-width: 992px) {

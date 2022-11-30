@@ -114,13 +114,9 @@
 
 .section__about__image--secondary {
   border-radius: 14px;
-  // width: 100%;
 }
 
 .about__icons {
-  // position: fixed;
-  // bottom: 10vh;
-  // right: 5vw;
   display: flex;
   flex-direction: column;
   margin: 20px 0 0;
@@ -133,7 +129,6 @@
     display: flex;
     flex-direction: row;
     cursor: pointer;
-    // filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
 
     .about__icons__social {
       display: flex;
@@ -164,7 +159,6 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
-    // margin-bottom: 0px;
 
     p {
       font-size: $--font-sm;
@@ -178,15 +172,10 @@
       }
     }
 
-    .section__about__image__caption:hover {
-      // width: 100%;
-    }
-
     .section__about__contact {
       background-color: rgba(255, 255, 255, 0.3);
       border-radius: 6px;
       border: 1px solid rgba(255, 255, 255, 0.5);
-      // margin-top: 0px;
       padding: 14px;
 
       h2 {
@@ -217,65 +206,22 @@
       }
     }
 
-    .section__about__images {
-      img {
-        // margin-bottom: 10px;
-      }
-    }
-
-    .section__about__image--secondary {
-      // border-radius: 14px;
-      // width: 100%;
-    }
-
     .about__icons {
-      // position: fixed;
-      // bottom: 10vh;
-      // right: 5vw;
-      // display: flex;
-      // flex-direction: column;
       margin: 20px 0 0;
 
       h3 {
         font-weight: 300;
         font-size: 18px;
-        // margin: 0 8px 8px 0;
-      }
-
-      .about__icons__row-container {
-        // display: flex;
-        // flex-direction: row;
-        // cursor: pointer;
-        // filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3));
-
-        .about__icons__social {
-          // display: flex;
-          // flex-direction: row;
-          // gap: 10px;
-
-          img {
-            // height: 30px;
-            // filter: invert(100%);
-            // cursor: pointer;
-          }
-
-          .about__icon__social {
-            // display: flex;
-            // flex-direction: row;
-          }
-        }
       }
     }
   }
 
   .section__about__image__caption {
     display: flex;
-    // justify-content: center;
     position: absolute;
     background: rgba(0, 0, 0, 0.6);
     color: $--c-white;
     font-size: $--font-sm;
-
     padding: 8px 20px 10px;
     bottom: 0;
     width: 100%;

@@ -826,7 +826,6 @@ select {
   }
 }
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
 .album__container {
   background-color: #f2f2f2;
   color: #3a3939;
@@ -1565,6 +1564,15 @@ select {
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  .cart__image__labels--preview {
+    display: none;
+  }
+  .cart__images .cart__image__tools--preview {
+    display: none;
+  }
+}
+
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (max-width: 992px) {
   .cart__container {
