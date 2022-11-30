@@ -5,7 +5,7 @@ const AlbumImage = (props) => {
   const { state, dispatch: contextDispatch } = useContext(Store);
 
   const [isLoaded, setIsLoaded] = useState(false);
-  
+
   const image = props.id;
 
   const handleLoad = () => {
@@ -37,7 +37,7 @@ const AlbumImage = (props) => {
         // loading="lazy"
       >
         <span style={{ display: 'none' }}>{props.id}</span>
-        <img src={props.url} alt="zdjęcie" />
+        <img src={props.url} alt="" />
       </div>
 
       {window.innerWidth <= 768 && isLoaded === true ? (

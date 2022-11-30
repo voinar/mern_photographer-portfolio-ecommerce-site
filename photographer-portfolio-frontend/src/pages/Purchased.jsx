@@ -39,8 +39,6 @@ const Purchased = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [emailConfirmationsSent, setEmailConfirmationsSent] = useState(false);
 
-  console.log('ENV', process.env);
-
   //1.use uniqueId from url params to find order in db.
   //found? proceed to 2. no? show error message
 
@@ -459,13 +457,14 @@ const Purchased = () => {
 
   const downloadImage = async (url) => {
     const imageName = url.split(/%2F(.*?)%2F/)[1];
-    const imageNumber = url.split(/(\d+)[^\d]+JPG/)[1];
+    const imageNumber = url.match(/([0-9]{4})(?=.jpg)/g);
     const imageType = 'jpg';
+    console.log('downloading image', imageNumber);
 
     const a = document.createElement('a');
     a.style.display = 'none';
     a.href = await toDataURL(url);
-    a.download = imageName + '_' + imageNumber + '.' + imageType;
+    a.download = `${imageName}_${imageNumber}_full.${imageType}`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -500,7 +499,7 @@ const Purchased = () => {
                     ]?.purchased?.titleSmall
                   }
                 </p>
-                <br/>
+                <br />
                 <h1>
                   {
                     textContent[
