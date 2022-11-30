@@ -1,5 +1,5 @@
 import {
-  React, 
+  React,
   useState,
   useEffect,
   useParams,
@@ -31,7 +31,6 @@ const SectionContent = () => {
   const handleImagePreview = (e) => {
     setShowPreviewImage((prevState) => !prevState);
     setPreviewImageUrl(e.target.getAttribute('src'));
-    // console.log(e.target.getAttribute('src'));
   };
 
   return (

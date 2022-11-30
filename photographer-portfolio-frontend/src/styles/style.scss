@@ -87,7 +87,6 @@ button {
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  // margin-right: 8px;
   cursor: pointer;
   transition: all 0.3s;
 }
@@ -99,7 +98,6 @@ button {
 
 .btn--primary:hover {
   background-color: rgba(0, 255, 0, 0.9) !important;
-  // width: 310px;
 }
 
 .btn--secondary {
@@ -108,7 +106,6 @@ button {
 
 .btn--secondary:hover {
   background-color: rgba(0, 0, 0, 0.03) !important;
-  // width: 310px;
 }
 
 .btn--tertiary {
