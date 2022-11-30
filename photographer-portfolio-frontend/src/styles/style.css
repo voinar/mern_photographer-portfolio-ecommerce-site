@@ -1121,11 +1121,6 @@ select {
   background-color: #fcfcfc;
 }
 
-.album__preview-image__container .album__preview__btn-close:hover {
-  -webkit-filter: invert(80%);
-          filter: invert(80%);
-}
-
 .album__preview-image__tools {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1156,11 +1151,6 @@ select {
   padding: 8px;
   height: 48px;
   border-radius: 4px;
-}
-
-.album__preview-image__tools button:hover {
-  -webkit-filter: invert(80%);
-          filter: invert(80%);
 }
 
 .album__preview-image__tools__arrow--prev {
