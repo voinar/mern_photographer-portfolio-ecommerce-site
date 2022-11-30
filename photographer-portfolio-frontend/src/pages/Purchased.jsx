@@ -491,6 +491,16 @@ const Purchased = () => {
           <>
             {paymentConfirmed ? (
               <>
+                <p>
+                  {
+                    textContent[
+                      textContent.findIndex((obj) => {
+                        return obj.language === state.languageSelected;
+                      })
+                    ]?.purchased?.titleSmall
+                  }
+                </p>
+                <br/>
                 <h1>
                   {
                     textContent[
@@ -611,6 +621,36 @@ const Purchased = () => {
                       </li>
                     ))}
                   </ul>
+
+                  <div className="purchased__error__container">
+                    <div className="purchased__error__header">
+                      <img
+                        src={IconError}
+                        alt="błąd"
+                        className="purchased__icon purchased__icon--error"
+                      />
+                      <h2>
+                        {
+                          textContent[
+                            textContent.findIndex((obj) => {
+                              return obj.language === state.languageSelected;
+                            })
+                          ]?.purchased?.info
+                        }
+                      </h2>
+                    </div>
+
+                    <h3>
+                      {
+                        textContent[
+                          textContent.findIndex((obj) => {
+                            return obj.language === state.languageSelected;
+                          })
+                        ]?.purchased?.infoContent
+                      }
+                      <br />
+                    </h3>
+                  </div>
                 </div>
               </>
             ) : (
