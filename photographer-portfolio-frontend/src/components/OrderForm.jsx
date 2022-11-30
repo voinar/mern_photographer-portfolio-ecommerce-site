@@ -196,7 +196,6 @@ const OrderForm = () => {
         paymentRegister();
         setPaymentInitiated(true);
       } catch (err) {
-        // setErrorMessage(err.message);
         console.log('error: ' + err);
       }
     } else {
