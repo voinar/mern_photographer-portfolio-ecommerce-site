@@ -197,11 +197,10 @@
   padding: 22px 20px;
   border: $--border-standard;
   border-radius: 4px;
-
   width: auto;
   height: auto;
   background-color: rgba(255, 255, 255, 1);
-  z-index: 7;
+  z-index: 11;
 }
 
 .album__preview__background {
@@ -231,7 +230,6 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  z-index: 11;
 
   .album__preview__btn-close {
     position: relative;
