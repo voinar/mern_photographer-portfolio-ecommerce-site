@@ -54,8 +54,8 @@ const Cart = () => {
   //   // preview images in album page
   const handleImagePreview = (image) => {
     console.log(image);
-    setPreviewImageUrl(image);
-    setShowPreviewImage((prevState) => !prevState);
+      setPreviewImageUrl(image);
+      setShowPreviewImage((prevState) => !prevState);
     console.log(image);
   };
 

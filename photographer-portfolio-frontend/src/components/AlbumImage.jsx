@@ -1,23 +1,19 @@
 // import { useEffect } from 'react';
-import {
-  Store,
-  useState,
-  useContext,
-  IconCartAdd,
-} from '../imports';
+import { Store, useState, useContext, IconCartAdd } from '../imports';
 
 const AlbumImage = (props) => {
   const { state, dispatch: contextDispatch } = useContext(Store);
 
   const [isLoaded, setIsLoaded] = useState(false);
-  const image = props.image;
+  
+  const image = props.id;
 
   const handleLoad = () => {
     setIsLoaded(true);
   };
 
   const addToCartFromImageThumbnail = (image) => {
-    console.log('addimg');
+    console.log('addimg', image);
     try {
       contextDispatch({
         type: 'CART_ADD_ITEM',
@@ -55,7 +51,6 @@ const AlbumImage = (props) => {
           </button>
         </div>
       ) : null}
-
     </>
   );
 };

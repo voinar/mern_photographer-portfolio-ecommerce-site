@@ -193,6 +193,10 @@ button {
   ul {
     padding: 0;
   }
+
+  .btn--primary, .btn--secondary, .btn--tertiary {
+    width: auto;
+  }
 }
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (max-width: 992px) {

@@ -2930,8 +2930,8 @@ select {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  top: 12vh;
-  right: 24vw;
+  top: 16vh;
+  right: 6vw;
   font-size: 16px;
   font-weight: 300;
   width: auto;
@@ -3374,6 +3374,9 @@ button {
   }
   ul {
     padding: 0;
+  }
+  .btn--primary, .btn--secondary, .btn--tertiary {
+    width: auto;
   }
 }
 
