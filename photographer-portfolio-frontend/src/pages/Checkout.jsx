@@ -28,7 +28,7 @@ const Checkout = () => {
   useEffect(() => {
     const getPrice = async () => {
       try {
-        const docRef = doc(db, 'settings', '5cJniz1wK9Sri7EmlSzD');
+        const docRef = doc(db, 'settings', `${process.env.REACT_APP_FIREBASE_SETTINGS_PRICE}`);
         const docSnap = await getDoc(docRef);
         setItemPrice(
           Number(
