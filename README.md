@@ -21,7 +21,6 @@
 * React w/hooks, React Router v6, Helmet, Context API
 * SCSS
 * Axios
-* Dotenv
 
 ### Backend: 
 * Node.js
