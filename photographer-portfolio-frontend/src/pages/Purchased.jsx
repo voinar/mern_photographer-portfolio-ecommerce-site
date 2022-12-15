@@ -128,10 +128,10 @@ const Purchased = () => {
         if (docSnap.data().isPaid === false) {
           paymentVerification(); //send back the payment confirmation to payment gateway api
         } else {
-          console.log('payment confirmation: order unpaid');
+          console.log('order status: already paid.');
         }
       } else {
-        console.log('error: order not found in db');
+        console.log('error: order not found in db.');
       }
     })();
 
