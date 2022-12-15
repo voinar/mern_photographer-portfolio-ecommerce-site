@@ -32,7 +32,6 @@ function FacebookPixel() {
     ReactPixel.init(facebookPixelId);
     ReactPixel.pageView();
   }, [location]);
-  // console.log(location);
   return null;
 }
 
@@ -48,11 +47,7 @@ function App() {
       state.cookiesConsentAll === true
     ) {
       ReactGA.send('pageview');
-      // console.log('ga action');
     }
-    // console.log('cookiesConsentPopupSet', state.cookiesConsentPopupSet);
-    // console.log('cookiesConsentAll', state.cookiesConsentAll);
-    // console.log('cookiesConsentDecline', state.cookiesConsentDecline);
   }, [
     location,
     state.cookiesConsentPopupSet,
@@ -96,8 +91,3 @@ function App() {
 }
 
 export default App;
-
-// {localStorage.setItem('user', 'name')}
-// {sessionStorage.setItem('status', 'unread')}
-// {document.cookie='user=new'}
-// {document.cookie='myCookie=init; expires=' + new  Date(2022, 7, 28, 11, 52, 30)}

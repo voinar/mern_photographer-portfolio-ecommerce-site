@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from '../imports';
 
 import photographyData from "../data/staticData.json";
 

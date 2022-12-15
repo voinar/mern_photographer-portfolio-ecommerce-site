@@ -9,12 +9,12 @@ import {
   Link,
   OrderForm,
   textContent,
+  IconChevron,
+  doc,
+  getDoc,
+  db
 } from '../imports';
 
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '../firebase/config';
-
-import iconChevron from '../img/icons/icon-chevron.svg';
 
 const Checkout = () => {
   const {
@@ -64,7 +64,7 @@ const Checkout = () => {
         <main className="checkout__container">
           <div className="cart__return">
             <button onClick={goBack} className="btn--back">
-              <img src={iconChevron} alt="zobacz" />
+              <img src={IconChevron} alt="zobacz" />
             </button>
             <h1>
               {
@@ -104,7 +104,7 @@ const Checkout = () => {
           <main className="checkout__container">
             <div className="cart__return">
               <button onClick={goBack} className="btn--back">
-                <img src={iconChevron} alt="zobacz" />
+                <img src={IconChevron} alt="zobacz" />
               </button>
               <h1>
                 {

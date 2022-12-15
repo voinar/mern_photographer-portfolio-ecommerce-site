@@ -33,7 +33,7 @@ import jsSHA from 'jssha';
 import axios from 'axios';
 
 //pages
-import PageNotFound from './pages/PageNotFound'
+import PageNotFound from './pages/PageNotFound';
 import SectionWelcome from './pages/SectionWelcome';
 import SectionContent from './pages/SectionContent';
 import About from './pages/About';
@@ -93,6 +93,11 @@ import IconSportsLifter from './img/icons/icon-sports-lifter.svg';
 
 //text content for language versions
 import textContent from './data/textContent.json';
+
+//firebase
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { getStorage, ref, getDownloadURL, getMetadata } from 'firebase/storage';
+import { db } from './firebase/config';
 
 export {
   //hooks
@@ -174,4 +179,13 @@ export {
   IconSportsLifter,
   //text content for language versions
   textContent,
+  //firebase
+  doc,
+  getDoc,
+  setDoc,
+  getStorage,
+  ref,
+  getDownloadURL,
+  getMetadata,
+  db,
 };

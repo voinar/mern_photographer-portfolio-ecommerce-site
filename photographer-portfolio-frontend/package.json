@@ -53,6 +53,7 @@
     ]
   },
   "devDependencies": {
-    "netlify-cli": "^12.2.7"
+    "netlify-cli": "^12.2.7",
+    "webpack-bundle-analyzer": "^4.7.0"
   }
 }

@@ -130,17 +130,3 @@ const SectionContent = () => {
 };
 
 export default SectionContent;
-
-// {this.state.productCategories.categories.map((category) => {
-//   return (
-//     <Route
-//       key={`${category.name}`}
-//       path={`${category.name}`}
-//       element={
-//         <ProductListing
-//           category={`${category.name}`}
-//         />
-//       }
-//     />
-//   );
-// })}

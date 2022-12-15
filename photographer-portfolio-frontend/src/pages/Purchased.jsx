@@ -1,7 +1,5 @@
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { db } from '../firebase/config';
-import { getStorage, ref, getDownloadURL, getMetadata } from 'firebase/storage';
 import reactImageSize from 'react-image-size';
+import { doc, getDoc, setDoc, db, getStorage, ref, getDownloadURL, getMetadata } from '../imports'
 
 // Import the functions you need from the SDKs you need
 import 'firebase/storage';
