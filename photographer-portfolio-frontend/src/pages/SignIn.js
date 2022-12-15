@@ -31,13 +31,7 @@ const SignIn = () => {
 
   const handleSignin = async (e) => {
     try {
-      // const { data } = await axios.post('/api/users/signin', {
-      //   email,
-      //   password,
-      // });
-
       const data = { email, password };
-      console.log('data', data);
       contextDispatch({ type: 'USER_SIGNIN', payload: data });
       console.log('data received: ' + JSON.stringify(data));
       console.log('state: ' + state.toString());
@@ -46,7 +40,6 @@ const SignIn = () => {
       navigate(redirect || '/koszyk');
     } catch (err) {
       setErrorMessage('Niepoprawny adres email lub hasło');
-      // setErrorMessage(err.message);
       console.log('error: ' + err);
     }
   };
@@ -54,7 +47,6 @@ const SignIn = () => {
   const handleCreateAccount = async (e, email, password) => {
     e.preventDefault();
     try {
-      console.log('add');
       const isDuplicateUser = async (email, password) => {
         const q = query(usersColRef, where('email', '==', email));
         const querySnapshot = await getDocs(q);
@@ -107,7 +99,6 @@ const SignIn = () => {
   const toggleForm = () => {
     setSigninForm((prevState) => !prevState);
     setErrorMessage('');
-    console.log('toggle form');
   };
 
   const goBack = () => navigate(-1);

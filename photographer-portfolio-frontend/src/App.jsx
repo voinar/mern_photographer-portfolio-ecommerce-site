@@ -32,6 +32,7 @@ function FacebookPixel() {
     ReactPixel.init(facebookPixelId);
     ReactPixel.pageView();
   }, [location]);
+  // console.log(location);
   return null;
 }
 

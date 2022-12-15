@@ -1,7 +1,6 @@
 import { Link } from '../imports';
 
 const ShopCard = (props) => {
-  // console.log('id is: ' + JSON.stringify(props.image._id));
   const { image } = props;
 
   return (

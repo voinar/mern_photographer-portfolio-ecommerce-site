@@ -1,5 +1,14 @@
 import reactImageSize from 'react-image-size';
-import { doc, getDoc, setDoc, db, getStorage, ref, getDownloadURL, getMetadata } from '../imports'
+import {
+  doc,
+  getDoc,
+  setDoc,
+  db,
+  getStorage,
+  ref,
+  getDownloadURL,
+  getMetadata,
+} from '../imports';
 
 // Import the functions you need from the SDKs you need
 import 'firebase/storage';
@@ -25,7 +34,6 @@ import {
 const Purchased = () => {
   const { state, dispatch: contextDispatch } = useContext(Store);
   const { uniqueId } = useParams();
-  console.log('useParams uniqueId', uniqueId);
 
   const [purchasedImages, setPurchasedImages] = useState([]);
   const [largeImages, setLargeImages] = useState([]);
@@ -58,23 +66,16 @@ const Purchased = () => {
         setPurchasedImages(docSnap.data().cartItems);
         setUserEmail(docSnap.data().email);
         setUserName(docSnap.data().name);
-        // setEmailSent(docSnap.data().emailSent);
         setPaymentConfirmed(true);
         setIsLoading(false);
-        // console.log('docSnap.exists() && docSnap.data().isPaid === true emailSent', docSnap.data().emailSent)
       }
 
       if (docSnap.exists() && docSnap.data().isPaid === false) {
-        console.log(
-          'order found in db. status: unpaid. veryfying order status.'
-        );
         setUserEmail(docSnap.data().email);
         setUserName(docSnap.data().name);
-        // setEmailSent(docSnap.data().emailSent);
 
         evaluateOrderStatus(); //find payment confirmation in api endpoint; if none found then display error message
         async function evaluateOrderStatus() {
-          console.log('getPaymentConfirmation start');
           try {
             await axios({
               method: 'get',
@@ -83,7 +84,7 @@ const Purchased = () => {
               if (
                 response.data.find((element) => element.sessionId === uniqueId)
               ) {
-                console.log('payment found in api endpoint');
+                // console.log('payment found in api endpoint');
                 setIsLoading(false);
 
                 //send payment verification data to context
@@ -101,7 +102,7 @@ const Purchased = () => {
                 setPaymentConfirmed(true);
                 setPurchasedImages(docSnap.data().cartItems);
               } else {
-                console.log('payment not found in api endpoint');
+                console.log('error: payment not found in api endpoint');
                 setIsLoading(false);
               }
             });
@@ -124,13 +125,10 @@ const Purchased = () => {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        console.log('Document data:', docSnap.data().isPaid);
         if (docSnap.data().isPaid === false) {
-          console.log('run payment verification');
           paymentVerification(); //send back the payment confirmation to payment gateway api
         } else {
           console.log('payment confirmation: order unpaid');
-          // setPaymentConfirmed(true);
         }
       } else {
         console.log('error: order not found in db');
@@ -139,7 +137,6 @@ const Purchased = () => {
 
     const paymentVerification = () => {
       if (state.paymentVerification !== null) {
-        console.log('state.paymentVerification', state.paymentVerification);
         //funkcja dla pierwszego etapu transkacji /v1/transaction/register
         const crcValue = process.env.REACT_APP_PAYMENT_GATEWAY_CRC_VALUE; //CRC pobrane z danych konta
         const username = process.env.REACT_APP_PAYMENT_GATEWAY_USERNAME;
@@ -170,10 +167,6 @@ const Purchased = () => {
         })
           .then((response) => {
             //blok uruchamiany dla odpowiedzi z kodem 200. potwierdzenie zamówienia dla klienta.
-            console.log(
-              'payment confirmation sent. verification response: ',
-              response
-            );
             (async () => {
               console.log('update order status as paid');
               const docRef = doc(db, 'orders', uniqueId);
@@ -185,9 +178,6 @@ const Purchased = () => {
                   docSnap.data().isPaid
                 );
                 if (docSnap.data().isPaid === false) {
-                  console.log('run payment verification');
-
-                  // paymentVerification(); //send back the payment confirmation to payment gateway api
                   setDoc(docRef, { isPaid: true }, { merge: true }); //set order as paid in db
                   setPaymentConfirmed(true);
                 } else {
@@ -204,7 +194,7 @@ const Purchased = () => {
             console.log('err', err);
           });
       } else {
-        console.log('state.paymentVerification is', state.paymentVerification);
+        console.log('payment verification status: ', state.paymentVerification);
       }
     };
     paymentVerification(); //send back the payment confirmation to payment gateway api
@@ -250,7 +240,6 @@ const Purchased = () => {
 
       //send order email to user
       const sendEmailConfirmation = async () => {
-        // console.log('sending email confirmation');
         //update order status in db to emailSent: true
 
         const docRef = doc(db, 'orders', uniqueId);
@@ -283,17 +272,11 @@ const Purchased = () => {
         console.log('confirming email status as sent in db');
         setDoc(docRef, { emailSent: true }, { merge: true });
 
-        console.log(
-          // 'email sending completed. emailSent in state:',
-          // emailSent,
-          'emailSent in db:',
-          docSnap.data().emailSent
-        );
+        console.log('emailSent in db:', docSnap.data().emailSent);
       };
 
       //send email invoice request to shop admin
       const sendEmailInvoiceRequest = async () => {
-        // console.log('sending email invoice request');
         //update order status in db to emailSent: true
 
         const docRef = doc(db, 'orders', uniqueId);
@@ -374,7 +357,7 @@ const Purchased = () => {
           docSnap.data().emailSent === false &&
           emailConfirmationsSent === false
         ) {
-          console.log('sending email confirmation only');
+          console.log('sending email confirmation');
           sendEmailConfirmation();
           setEmailConfirmationsSent(true);
         }
@@ -385,7 +368,6 @@ const Purchased = () => {
 
   //get full versions of images after confirming order status as paid
   useEffect(() => {
-    console.log('purchasedImages available', purchasedImages);
     purchasedImages.map((image) => {
       const storage = getStorage();
       const imageUrlFormatted = image
@@ -400,7 +382,6 @@ const Purchased = () => {
 
       getDownloadURL(ref(storage, imageUrlFormatted))
         .then((url) => {
-          console.log('downloadURL', url);
           setLargeImages((prevState) => [...prevState, url]);
           reactImageSize(url)
             .then(({ width, height }) =>
@@ -457,7 +438,6 @@ const Purchased = () => {
     const imageName = url.split(/%2F(.*?)%2F/)[1];
     const imageNumber = url.match(/([0-9]{4})(?=.jpg)/g);
     const imageType = 'jpg';
-    console.log('downloading image', imageNumber);
 
     const a = document.createElement('a');
     a.style.display = 'none';

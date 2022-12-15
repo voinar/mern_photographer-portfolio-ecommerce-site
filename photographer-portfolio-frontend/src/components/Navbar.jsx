@@ -42,16 +42,9 @@ const Navbar = () => {
   }, [location.pathname, scroll]);
 
   const showNavbar = () => {
-    // return window.innerWidth < 1024 ?
     navRef.current.classList.toggle('navbar--show');
-    // document.body.style.overflow = 'scroll';
   };
 
-  // const handleSignout = () => {
-  //   contextDispatch({ type: 'USER_SIGNOUT' });
-  //   localStorage.removeItem('userInfo');
-  //   console.log('logout');
-  // };
 
   const setUILanguage = (language) => {
     switch (language) {

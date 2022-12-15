@@ -48,7 +48,6 @@ const Album = () => {
     const albumRef = ref(storage, `albums/${album.replaceAll(' ', '_')}/male/`);
     listAll(albumRef)
       .then((res) => {
-        console.log('result', res);
         res.items.forEach((image) => {
           if (image._location.path_.includes('cover.jpg') === false) {
             let currentImage =
@@ -76,7 +75,6 @@ const Album = () => {
   }, [album]);
 
   const toggleToolbarClassOnScroll = () => {
-    // console.log('scroll test', window.scrollY > 100);
     return scroll === false
       ? 'album__toolbar'
       : 'album__toolbar album__toolbar--compact';
@@ -112,7 +110,6 @@ const Album = () => {
       setIndexStart(indexStart + numberOfImages);
       setIndexEnd(indexEnd + numberOfImages);
       setAlbumControlPrevInactive(false);
-      console.log(indexStart, numberOfImages, indexEnd);
       window.scrollTo(0, 0);
     } else {
       setAlbumControlsNextInactive(true);
@@ -122,7 +119,6 @@ const Album = () => {
   const handlePaginationPrevPage = () => {
     if (indexStart - numberOfImages < 0) {
       setAlbumControlPrevInactive(true);
-      console.log(indexStart, numberOfImages, indexEnd);
     } else {
       setIndexStart(indexStart - numberOfImages);
       setIndexEnd(indexEnd - numberOfImages);
@@ -140,13 +136,10 @@ const Album = () => {
   //preview images in album page
   const handleImagePreview = (image) => {
     setPreviewImageUrl(image);
-    console.log('Image Preview url', image);
-
     setShowPreviewImage((prevState) => !prevState);
   };
 
   const handleImagePreviewPrev = () => {
-    console.log(albumImagesList.indexOf(previewImageUrl));
     if (albumImagesList.indexOf(previewImageUrl) === 0) {
       setPreviewImageUrl(albumImagesList[albumImagesList.length - 1]);
     } else {
@@ -157,7 +150,6 @@ const Album = () => {
   };
 
   const handleImagePreviewNext = () => {
-    console.log(albumImagesList.indexOf(previewImageUrl));
     if (
       albumImagesList.indexOf(previewImageUrl) ===
       albumImagesList.length - 1
@@ -183,7 +175,6 @@ const Album = () => {
   };
 
   const addToCartFromImageThumbnail = (image) => {
-    console.log('addimg');
     try {
       contextDispatch({
         type: 'CART_ADD_ITEM',
@@ -202,7 +193,6 @@ const Album = () => {
         setIndexStart(indexStart + numberOfImages);
         setIndexEnd(indexEnd + numberOfImages);
         setAlbumControlPrevInactive(false);
-        console.log(indexStart, numberOfImages, indexEnd);
         window.scrollTo(0, 0);
       } else {
         setAlbumControlsNextInactive(true);
@@ -222,7 +212,6 @@ const Album = () => {
     };
 
     const handleImagePreviewPrev = () => {
-      console.log(albumImagesList.indexOf(previewImageUrl));
       if (albumImagesList.indexOf(previewImageUrl) === 0) {
         setPreviewImageUrl(albumImagesList[albumImagesList.length - 1]);
       } else {
@@ -233,7 +222,6 @@ const Album = () => {
     };
 
     const handleImagePreviewNext = () => {
-      console.log(albumImagesList.indexOf(previewImageUrl));
       if (
         albumImagesList.indexOf(previewImageUrl) ===
         albumImagesList.length - 1
@@ -247,7 +235,6 @@ const Album = () => {
     };
 
     const detectKeyDown = (e) => {
-      console.log('detectKeyDown: ', e.key);
       switch (e.key) {
         case 'ArrowLeft':
           showPreviewImage === true

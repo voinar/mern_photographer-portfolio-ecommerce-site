@@ -40,7 +40,6 @@ const SectionContent = () => {
       </Helmet>
       <main>
         <ul className="section__photos">
-          {console.log(window.innerWidth < 768)}
           {window.innerWidth < 768
             ? photographyData.images.map((image) => {
                 if (image.isMobile !== undefined) {

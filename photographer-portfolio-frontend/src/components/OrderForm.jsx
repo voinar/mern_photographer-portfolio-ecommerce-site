@@ -41,7 +41,6 @@ const OrderForm = () => {
     };
     generateUniqueId();
   }, [contextDispatch]);
-  console.log('generateUniqueId: ' + state.cart.uniqueId);
 
   const getPrice = async () => {
     try {
@@ -157,8 +156,6 @@ const OrderForm = () => {
   const initiatePayment = (e) => {
     e.preventDefault();
 
-    console.log('generated UniqueId: ' + state.cart.uniqueId);
-
     if (formValidation() === true) {
       setPaymentInitiated(true); //toggle order form and tell the user to continue to the payment
     } else {
@@ -173,8 +170,6 @@ const OrderForm = () => {
     if (formValidation() === true) {
       try {
         //add order to db
-        console.log('add order to database');
-
         const orderRef = doc(db, 'orders', state.cart.uniqueId);
 
         await setDoc(orderRef, {
@@ -242,7 +237,6 @@ const OrderForm = () => {
     })
       .then((response) => {
         //blok uruchamiany dla odpowiedzi z kodem 200
-        console.log('token', response.data.data.token);
         const tokenLink = `https://sandbox.przelewy24.pl/trnRequest/${String(
           response.data.data.token
         )}`;
@@ -252,7 +246,6 @@ const OrderForm = () => {
       .catch((err) => {
         //blok dla odpowiedzi z błędem 400/401
         console.log('err', err);
-        console.log('err', err.response.data.error);
       });
   };
 
