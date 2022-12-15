@@ -44,7 +44,11 @@ const OrderForm = () => {
 
   const getPrice = async () => {
     try {
-      const docRef = doc(db, 'settings', `${process.env.REACT_APP_FIREBASE_SETTINGS_PRICE}`);
+      const docRef = doc(
+        db,
+        'settings',
+        `${process.env.REACT_APP_FIREBASE_SETTINGS_PRICE}`
+      );
       const docSnap = await getDoc(docRef);
       setItemPrice(
         Number(
@@ -229,7 +233,7 @@ const OrderForm = () => {
         description: 'Zakup zdjec',
         transferLabel: 'Zakup zdjec',
         email: formEmail,
-        urlReturn: `https://kacperporada.pl/zakupione/${state.cart.uniqueId}`, //adres do przekierowania po wykonanej płatności
+        urlReturn: `${process.env.REACT_APP_PAYMENT_GATEWAY_URLRETURN}/zakupione/${state.cart.uniqueId}`, //adres do przekierowania po wykonanej płatności
         urlStatus: process.env.REACT_APP_PAYMENT_GATEWAY_URLSTATUS, //adres do otrzymania informacji zwrotnej o transakcji z systemu przelewy24
         country: 'PL',
         sign: signSha, //wygenerowany wyżej hash
