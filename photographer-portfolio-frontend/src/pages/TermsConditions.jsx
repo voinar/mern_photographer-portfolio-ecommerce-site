@@ -1,4 +1,4 @@
-import { React, useNavigate, IconChevron } from '../imports';
+import { useNavigate, IconChevron } from '../imports';
 
 function TermsConditions() {
   const navigate = useNavigate(); // used to return to previous page

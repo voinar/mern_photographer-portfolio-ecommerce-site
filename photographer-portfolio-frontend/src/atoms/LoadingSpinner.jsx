@@ -1,5 +1,3 @@
-import { React } from '../imports';
-
 function LoadingSpinner() {
   <div className="loading-spinner__container">
     <div className="loading-spinner">
