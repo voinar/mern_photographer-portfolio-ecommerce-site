@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-boolean-value */
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import {
@@ -11,15 +10,15 @@ function SectionWelcome() {
     <main>
       <div className="section__welcome">
         <Carousel
-          autoPlay={true}
+          autoPlay
           interval={3000}
           ariaLabel="moje zdjęcia"
           showThumbs={false}
-          // animationHandler={'fade'}
-          infiniteLoop={true}
+          animationHandler={window.innerWidth >= 1024 ? 'fade' : null}
+          infiniteLoop
           showStatus={false}
           // showArrows={true}
-          swipeable={true}
+          swipeable
         >
           { window.innerWidth > 768
             ? photographyData.imagesWelcome.map(

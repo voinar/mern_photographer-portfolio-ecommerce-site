@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
 import { React, createContext, useReducer } from 'react';
 
 export const Store = createContext();
@@ -120,7 +119,8 @@ export function StoreProvider(props) {
   const value = {
     state, dispatch,
   };
-  // eslint-disable-next-line react/destructuring-assignment, react/prop-types
+  // eslint-disable-next-line max-len
+  // eslint-disable-next-line react/destructuring-assignment, react/prop-types, react/jsx-filename-extension
   return <Store.Provider value={value}>{props.children}</Store.Provider>;
 }
 

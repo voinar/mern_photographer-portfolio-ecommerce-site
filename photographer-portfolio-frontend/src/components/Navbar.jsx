@@ -1,7 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-// /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-// /* eslint-disable jsx-a11y/click-events-have-key-events */
 import {
   React,
   Store,
@@ -112,7 +108,6 @@ function Navbar() {
                 <li
                   key={category}
                   className="navbar__section-link"
-                  // style={{ display: 'none' }}
                 >
                   <Link
                     className="navbar__section-link navbar__section-link__shop"
@@ -159,11 +154,23 @@ function Navbar() {
               />
             </button>
             <ul className="navbar__shop__language__content">
-              <li onClick={(e) => setUILanguage(e.target.textContent)}>
-                EN
+              <li>
+                <button
+                  onClick={(e) => setUILanguage(e.target.textContent)}
+                  onKeyDown={(e) => setUILanguage(e.target.textContent)}
+                  type="button"
+                >
+                  EN
+                </button>
               </li>
-              <li onClick={(e) => setUILanguage(e.target.textContent)}>
-                PL
+              <li>
+                <button
+                  onClick={(e) => setUILanguage(e.target.textContent)}
+                  onKeyDown={(e) => setUILanguage(e.target.textContent)}
+                  type="button"
+                >
+                  PL
+                </button>
               </li>
             </ul>
           </div>
@@ -224,11 +231,23 @@ function Navbar() {
               />
             </button>
             <ul className="navbar__shop__language__content">
-              <li onClick={(e) => setUILanguage(e.target.textContent)}>
-                EN
+              <li>
+                <button
+                  onClick={(e) => setUILanguage(e.target.textContent)}
+                  onKeyDown={(e) => setUILanguage(e.target.textContent)}
+                  type="button"
+                >
+                  EN
+                </button>
               </li>
-              <li onClick={(e) => setUILanguage(e.target.textContent)}>
-                PL
+              <li>
+                <button
+                  onClick={(e) => setUILanguage(e.target.textContent)}
+                  onKeyDown={(e) => setUILanguage(e.target.textContent)}
+                  type="button"
+                >
+                  PL
+                </button>
               </li>
             </ul>
           </div>

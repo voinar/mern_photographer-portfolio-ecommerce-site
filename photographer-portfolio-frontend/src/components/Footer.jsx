@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import {
   React,
   useLocation,
@@ -81,6 +80,7 @@ function Footer() {
           <div
             className="footer__column footer__return"
             onClick={returnToTop}
+            onKeyDown={returnToTop}
           >
             <img src={IconChevronUp} alt="wróć do początku" />
           </div>
