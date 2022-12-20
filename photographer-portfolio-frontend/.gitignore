@@ -1,3 +1,5 @@
 node_modules
+.env
+firebase/settings.js
 b0024b147b1514c72396b74c86bdbd3e.html
 public/assets/portfolio/STRONKA
