@@ -4,7 +4,6 @@
 
 // hooks
 import {
-  React,
   useState,
   useEffect,
   useContext,
@@ -106,8 +105,6 @@ import { Store } from './contexts/Store';
 import textContent from './data/textContent.json';
 
 export {
-  React,
-
   // hooks
   useState,
   useEffect,
