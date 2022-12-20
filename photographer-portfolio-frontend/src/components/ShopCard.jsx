@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { React, Link } from '../imports';
+import { Link } from '../imports';
 
 function ShopCard(props) {
   const { image } = props;
