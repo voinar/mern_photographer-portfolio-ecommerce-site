@@ -1,5 +1,5 @@
 import {
-  React, IconEmail, IconPhone, IconFacebook, IconInstagram,
+  IconEmail, IconPhone, IconFacebook, IconInstagram,
 } from '../imports';
 
 // photo assets

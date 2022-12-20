@@ -1,7 +1,7 @@
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import {
-  React, v4, IconFacebook, IconInstagram, IconMail,
+  v4, IconFacebook, IconInstagram, IconMail,
 } from '../imports';
 import photographyData from '../data/staticData.json';
 

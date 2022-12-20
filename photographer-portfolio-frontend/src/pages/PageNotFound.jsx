@@ -1,5 +1,5 @@
 import {
-  React, useNavigate, IconChevron, Link,
+  useNavigate, IconChevron, Link,
 } from '../imports';
 
 function PageNotFound() {

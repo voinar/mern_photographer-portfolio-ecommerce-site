@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import {
-  React, Store, useState, useContext, IconCartAdd,
+  Store, useState, useContext, IconCartAdd,
 } from '../imports';
 
 function AlbumImage(props) {

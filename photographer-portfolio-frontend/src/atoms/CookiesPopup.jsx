@@ -1,5 +1,5 @@
 import {
-  React, Store, useContext, Link, textContent,
+  Store, useContext, Link, textContent,
 } from '../imports';
 
 function CookiesPopup() {

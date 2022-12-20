@@ -5,7 +5,6 @@ import 'firebase/storage';
 import 'firebase/firestore';
 
 import {
-  React,
   Helmet,
   Store,
   useState,

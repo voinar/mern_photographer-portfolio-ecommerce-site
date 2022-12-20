@@ -1,5 +1,4 @@
 import {
-  React,
   useLocation,
   Link,
   FooterLogo,

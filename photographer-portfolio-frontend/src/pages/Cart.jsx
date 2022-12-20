@@ -1,5 +1,4 @@
 import {
-  React,
   Store,
   Helmet,
   useContext,

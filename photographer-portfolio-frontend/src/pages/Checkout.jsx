@@ -1,5 +1,4 @@
 import {
-  React,
   Store,
   useContext,
   useState,

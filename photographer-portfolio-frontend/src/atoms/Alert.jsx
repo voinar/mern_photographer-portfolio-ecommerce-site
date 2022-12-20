@@ -1,5 +1,5 @@
 import {
-  React, useContext, Store,
+  useContext, Store,
 } from '../imports';
 
 function Alert() {
