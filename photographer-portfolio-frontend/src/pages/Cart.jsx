@@ -43,6 +43,9 @@ function Cart() {
               .integerValue / 100,
           ),
         );
+        console.log('itemPrice', docSnap._document.data.value.mapValue.fields.imagePrice.integerValue);
+        console.log('docRef', docRef);
+        console.log('docSnap', docSnap);
       } catch (err) {
         console.error(err);
       }
