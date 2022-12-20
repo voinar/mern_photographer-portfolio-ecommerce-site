@@ -30,7 +30,6 @@ function Checkout() {
         const docSnap = await getDoc(docRef);
         setItemPrice(
           Number(
-            // eslint-disable-next-line no-underscore-dangle
             docSnap._document.data.value.mapValue.fields.imagePrice
               .integerValue / 100,
           ),
