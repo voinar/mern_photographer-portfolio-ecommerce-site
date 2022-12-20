@@ -1,4 +1,3 @@
-// /* eslint-disable no-shadow */
 import {
   React,
   Store,
@@ -188,51 +187,6 @@ function Album() {
 
   // listen for key presses
   useEffect(() => {
-    // const handlePaginationNextPage = () => {
-    //   if (indexStart + numberOfImages < albumImagesList.length) {
-    //     setIndexStart(indexStart + numberOfImages);
-    //     setIndexEnd(indexEnd + numberOfImages);
-    //     setAlbumControlPrevInactive(false);
-    //     window.scrollTo(0, 0);
-    //   } else {
-    //     setAlbumControlsNextInactive(true);
-    //   }
-    // };
-
-    // const handlePaginationPrevPage = () => {
-    //   if (indexStart - numberOfImages < 0) {
-    //     setAlbumControlPrevInactive(true);
-    //   } else {
-    //     setIndexStart(indexStart - numberOfImages);
-    //     setIndexEnd(indexEnd - numberOfImages);
-    //     setAlbumControlsNextInactive(false);
-    //     window.scrollTo(0, 0);
-    //   }
-    // };
-
-    // const handleImagePreviewPrev = () => {
-    //   if (albumImagesList.indexOf(previewImageUrl) === 0) {
-    //     setPreviewImageUrl(albumImagesList[albumImagesList.length - 1]);
-    //   } else {
-    //     setPreviewImageUrl(
-    //       albumImagesList[albumImagesList.indexOf(previewImageUrl) - 1],
-    //     ); // find item in images list and decrement by 1
-    //   }
-    // };
-
-    // const handleImagePreviewNext = () => {
-    //   if (
-    //     albumImagesList.indexOf(previewImageUrl)
-    //     === albumImagesList.length - 1
-    //   ) {
-    //     setPreviewImageUrl(albumImagesList[0]);
-    //   } else {
-    //     setPreviewImageUrl(
-    //       albumImagesList[albumImagesList.indexOf(previewImageUrl) + 1],
-    //     ); // find item in images list and increment by 1
-    //   }
-    // };
-
     const detectKeyDown = (e) => {
       switch (e.key) {
         case 'ArrowLeft':

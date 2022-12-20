@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import {
   React,
   useState,
@@ -67,6 +66,7 @@ function SectionContent() {
                     className="section__photos__images__image"
                     src={image.url}
                     onClick={handleImagePreview}
+                    onKeyDown={handleImagePreview}
                   >
                     <img
                       className={
@@ -106,6 +106,7 @@ function SectionContent() {
             <div
               className="section__photos__see-more__icon"
               onClick={scrollToContent}
+              onKeyDown={scrollToContent}
             >
               <img src={IconChevronUp} alt="facebook" />
             </div>
@@ -116,6 +117,7 @@ function SectionContent() {
           <div
             className="section__photos__preview"
             onClick={handleImagePreview}
+            onKeyDown={handleImagePreview}
           >
             <img
               className="section__photos__preview__image"

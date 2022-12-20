@@ -26,7 +26,6 @@ import {
 function Shop() {
   const {
     state,
-    // , dispatch: contextDispatch
   } = useContext(Store);
 
   // Create a reference under which you want to list
