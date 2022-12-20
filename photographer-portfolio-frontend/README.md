@@ -1,31 +1,36 @@
-## Photographer portfolio site & content shop
+### Photographer portfolio site & content shop
 
+# Features
 ### Portfolio section
-* Intro section
-* Sections showcasing author's works, + specific content selection for mobile devices
+* Intro section w/ swipe gestures browsing for mobile
+* Sections showcasing author's works
+* Specific content variables for mobile view
 * About & contact page 
+* T&C & support (FAQ) page
+* Language selection widget
+* Cookies consent popup (GDPR)
+* Responsive Web Design
 
 ### Storefront 
 * Database (Firebase)
-* Albums displayed via live feed from cloud storage
-* Payment gateway
-* User authentication system (wip)
-* Mailing system (wip)
-* Settings panel for admin (wip)
-* RWD (wip)
+* Content displayed via feed from cloud storage
+* Payment gateway integration
+* Order validation via Netlify Functions API
+* Mailing notifications via REST API
   
-## Tech
+# Tech
 ### Frontend: 
-* React w/hooks, React Router v6, Helmet
+* React w/hooks, React Router v6, Helmet, Context API
 * SCSS
-* Locomotive scroll (tba)
+* Axios
+* Eslint w/airbnb rules
 
 ### Backend: 
-* Node+Express.js
-* Firebase (Cloud Storage, Firestore DB)
-
+* Node.js
+* Express.js
+* Firebase (Cloud Storage, Firestore Database)
+* Netlify Functions
 
 ### See live
-
-* Portfolio site: www.kacperporada.pl
-* Shop: www.kacperporada.pl/sklep (wip)
+* Portfolio: https://photographer-portfolio-shop-preview.netlify.app/
+* Shop: https://photographer-portfolio-shop-preview.netlify.app/sklep
