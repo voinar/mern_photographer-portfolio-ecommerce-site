@@ -1,26 +1,29 @@
-## Photographer portfolio site & content shop
+### Photographer portfolio site & content shop
 
-## Features
+# Features
 ### Portfolio section
-* Intro section w/ swipe gesture browsing for mobile
+* Intro section w/ swipe gestures browsing for mobile
 * Sections showcasing author's works
-* Specific content for mobile devices
+* Specific content variables for mobile view
 * About & contact page 
-* Language selection
-* Cookies consent popup
+* T&C & support (FAQ) page
+* Language selection widget
+* Cookies consent popup (GDPR)
 * Responsive Web Design
 
 ### Storefront 
 * Database (Firebase)
 * Content displayed via feed from cloud storage
 * Payment gateway integration
-* Mailing notifications via REST api
+* Order validation via Netlify Functions API
+* Mailing notifications via REST API
   
-## Tech
+# Tech
 ### Frontend: 
 * React w/hooks, React Router v6, Helmet, Context API
 * SCSS
 * Axios
+* Eslint w/airbnb rules
 
 ### Backend: 
 * Node.js
