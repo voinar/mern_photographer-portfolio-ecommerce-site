@@ -97,6 +97,10 @@ import IconSportsGymnast from './img/icons/icon-sports-gymnast.svg';
 import IconSportsRunner from './img/icons/icon-sports-runner.svg';
 import IconSportsHandball from './img/icons/icon-sports-handball.svg';
 import IconSportsLifter from './img/icons/icon-sports-lifter.svg';
+import img0 from './img/about/about-1.jpg';
+import img1 from './img/about/about-2.jpg';
+import img2 from './img/about/about-3.jpg';
+import img3 from './img/about/about-4.jpg';
 
 // contexts
 import { Store } from './contexts/Store';
@@ -192,6 +196,10 @@ export {
   IconSportsRunner,
   IconSportsHandball,
   IconSportsLifter,
+  img0,
+  img1,
+  img2,
+  img3,
 
   // text content for language versions
   textContent,

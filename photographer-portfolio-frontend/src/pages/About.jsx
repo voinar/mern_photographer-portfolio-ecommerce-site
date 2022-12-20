@@ -1,12 +1,8 @@
 import {
   IconEmail, IconPhone, IconFacebook, IconInstagram,
+  // photo assets
+  img0, img1, img2, img3,
 } from '../imports';
-
-// photo assets
-import img0 from '../img/about/about-1.jpg';
-import img1 from '../img/about/about-2.jpg';
-import img2 from '../img/about/about-3.jpg';
-import img3 from '../img/about/about-4.jpg';
 
 function About() {
   return (

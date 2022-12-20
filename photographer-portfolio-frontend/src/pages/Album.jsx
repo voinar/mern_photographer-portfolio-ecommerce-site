@@ -45,10 +45,6 @@ function Album() {
         res.items.forEach((image) => {
           if (image._location.path_.includes('cover.jpg') === false) {
             const currentImage = `https://firebasestorage.googleapis.com/v0/b/kacper-foto.appspot.com/o/${image._location.path_.replaceAll('/', '%2F')}?alt=media&token=${token}`;
-            // let currentImage =
-            // 'https://firebasestorage.googleapis.com/v0/b/kacper-foto.appspot.com/o/'
-            // + image._location.path_.replaceAll('/', '%2F') +
-            // `?alt=media&token=${token}`;
 
             setAlbumImagesList((prevAlbumImagesList) => [
               ...prevAlbumImagesList,

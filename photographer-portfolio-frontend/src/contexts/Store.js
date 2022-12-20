@@ -1,4 +1,5 @@
-import { createContext, useReducer } from 'react';
+import PropTypes from 'prop-types';
+import { createContext, useReducer, useMemo } from 'react';
 
 export const Store = createContext();
 
@@ -114,14 +115,15 @@ function reducer(state, action) {
 }
 
 export function StoreProvider(props) {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  // eslint-disable-next-line react/jsx-no-constructed-context-values
-  const value = {
-    state, dispatch,
+  StoreProvider.propTypes = {
+    children: PropTypes.node.isRequired,
   };
-  // eslint-disable-next-line max-len
-  // eslint-disable-next-line react/destructuring-assignment, react/prop-types, react/jsx-filename-extension
-  return <Store.Provider value={value}>{props.children}</Store.Provider>;
+  const { children } = props;
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const value = useMemo(() => ({ state, dispatch }), [state]);
+
+  // eslint-disable-next-line max-len, react/jsx-filename-extension
+  return <Store.Provider value={value}>{children}</Store.Provider>;
 }
 
 export default StoreProvider;
