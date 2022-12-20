@@ -2,7 +2,6 @@
 import {
   ReactGA,
   ReactPixel,
-  React,
   Store,
   useLocation,
   useState,
