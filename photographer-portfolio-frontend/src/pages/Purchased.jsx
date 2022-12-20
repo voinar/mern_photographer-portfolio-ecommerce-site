@@ -232,7 +232,7 @@ function Purchased() {
           <p>Hej <span style="text-transform: capitalize">${userName},</span></p>
           <p>Dziękuję za zakup. Mam nadzieję, że te zdjęcia sprawią Ci wiele radości i będą wspaniałą pamiątką na przyszłość.</p>
           <p>Linki do zakupionych zdjęć oraz ich podgląd znajdziesz na tej stronie:</p>
-            <a href="https://www.kacperporada.pl/zakupione/${uniqueId}">
+            <a href="${process.env.REACT_APP_PAYMENT_GATEWAY_URLRETURN}/zakupione/${uniqueId}">
               <button
               style="
               padding: 10px 26px;
