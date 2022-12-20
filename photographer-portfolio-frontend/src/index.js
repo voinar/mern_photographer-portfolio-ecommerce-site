@@ -5,6 +5,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { StoreProvider } from './contexts/Store';
 
 import App from './App';
+// eslint-disable-next-line import/no-named-as-default, import/no-named-as-default-member
 import reportWebVitals from './reportWebVitals';
 
 import './styles/style.css';
@@ -12,13 +13,14 @@ import './styles/style.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-    <StoreProvider>
-      <HelmetProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </HelmetProvider>
-    </StoreProvider>
+  // eslint-disable-next-line react/jsx-filename-extension
+  <StoreProvider>
+    <HelmetProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </HelmetProvider>
+  </StoreProvider>,
   // </React.StrictMode>
 );
 

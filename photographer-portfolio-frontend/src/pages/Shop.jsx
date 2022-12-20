@@ -6,9 +6,9 @@ import {
   useState,
   useNavigate,
   Helmet,
+  v4,
   LoadingSpinner,
   ShopCard,
-  v4,
   IconChevron,
   IconStepsEye,
   IconStepsCart,
@@ -18,10 +18,10 @@ import {
   // IconSportsHandball,
   // IconSportsLifter,
   textContent,
+  storage,
+  ref,
+  listAll,
 } from '../imports';
-
-import { storage } from '../firebase/config';
-import { ref, listAll } from 'firebase/storage';
 
 function Shop() {
   const {
@@ -49,7 +49,7 @@ function Shop() {
       listAll(listRef)
         .then((res) => {
           res.prefixes.forEach((folderRef) => {
-            let albumName = folderRef._location.path
+            const albumName = folderRef._location.path
               .slice(7)
               .replaceAll('_', ' ');
 
@@ -58,7 +58,7 @@ function Shop() {
               {
                 albumName,
                 coverImage: `https://firebasestorage.googleapis.com/v0/b/kacper-foto.appspot.com/o/albums%2F${folderRef._location.path.slice(
-                  7
+                  7,
                 )}%2Fmale%2Fcover.jpg?alt=media`,
               },
             ]);
@@ -71,7 +71,7 @@ function Shop() {
     listAlbums();
   }, []);
 
-  const navigate = useNavigate(); //used to return to previous page
+  const navigate = useNavigate(); // used to return to previous page
   const goBack = () => navigate(-1);
 
   return (
@@ -80,10 +80,10 @@ function Shop() {
         <title>
           {
             textContent[
-              textContent.findIndex((obj) => {
-                return obj.language === state.languageSelected;
-              })
-            ]?.shop?.helmet
+              textContent.findIndex(
+                (obj) => obj.language === state.languageSelected,
+              )
+            ].shop.helmet
           }
         </title>
       </Helmet>
@@ -97,10 +97,10 @@ function Shop() {
               <p>
                 {
                   textContent[
-                    textContent.findIndex((obj) => {
-                      return obj.language === state.languageSelected;
-                    })
-                  ]?.shop?.steps1
+                    textContent.findIndex(
+                      (obj) => obj.language === state.languageSelected,
+                    )
+                  ].shop.steps1
                 }
               </p>
             </div>
@@ -116,10 +116,10 @@ function Shop() {
               <p>
                 {
                   textContent[
-                    textContent.findIndex((obj) => {
-                      return obj.language === state.languageSelected;
-                    })
-                  ]?.shop?.steps2
+                    textContent.findIndex(
+                      (obj) => obj.language === state.languageSelected,
+                    )
+                  ].shop.steps2
                 }
               </p>
             </div>
@@ -135,10 +135,10 @@ function Shop() {
               <p>
                 {
                   textContent[
-                    textContent.findIndex((obj) => {
-                      return obj.language === state.languageSelected;
-                    })
-                  ]?.shop?.steps3
+                    textContent.findIndex(
+                      (obj) => obj.language === state.languageSelected,
+                    )
+                  ].shop.steps3
                 }
               </p>
             </div>
@@ -150,10 +150,10 @@ function Shop() {
         <h1>
           {
             textContent[
-              textContent.findIndex((obj) => {
-                return obj.language === state.languageSelected;
-              })
-            ]?.shop?.header
+              textContent.findIndex(
+                (obj) => obj.language === state.languageSelected,
+              )
+            ].shop.header
           }
         </h1>
         <div className="shop__cards">
@@ -164,9 +164,8 @@ function Shop() {
             <img src={backgroundImage()} alt="" />
           </div> */}
 
-
-          {foldersList.length === 0 ? <LoadingSpinner/> : (foldersList.map((folder) => {
-            return (
+          { foldersList.length === 0 ? <LoadingSpinner />
+            : (foldersList.map((folder) => (
               <li key={v4()}>
                 <ShopCard
                   image={folder.coverImage}
@@ -174,21 +173,20 @@ function Shop() {
                   collection={folder.albumName}
                 />
               </li>
-            );
-          }))}
+            )))}
         </div>
         <br />
         <div className="cart__return">
-          <button onClick={goBack} className="btn--back">
+          <button onClick={goBack} className="btn--back" type="button">
             <img src={IconChevron} alt="zobacz" />
           </button>
           <h1>
             {
               textContent[
-                textContent.findIndex((obj) => {
-                  return obj.language === state.languageSelected;
-                })
-              ]?.shop?.back
+                textContent.findIndex(
+                  (obj) => obj.language === state.languageSelected,
+                )
+              ].shop.back
             }
           </h1>
         </div>

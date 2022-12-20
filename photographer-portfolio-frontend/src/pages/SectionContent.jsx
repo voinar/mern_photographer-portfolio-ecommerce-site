@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import {
   React,
   useState,
@@ -9,8 +10,8 @@ import {
 
 import photographyData from '../data/staticData.json';
 
-const SectionContent = () => {
-  let { category } = useParams();
+function SectionContent() {
+  const { category } = useParams();
 
   const [scrollToContentBtn, setScrollToContentBtn] = useState(true);
 
@@ -20,9 +21,10 @@ const SectionContent = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
-      window.scrollY > 100
-        ? setScrollToContentBtn(false)
-        : setScrollToContentBtn(true);
+      if (window.scrollY > 100) {
+        setScrollToContentBtn(false);
+      }
+      setScrollToContentBtn(true);
     });
   }, []);
 
@@ -36,28 +38,28 @@ const SectionContent = () => {
   return (
     <>
       <Helmet>
-        <title>{category.toUpperCase() + ' Kacper Porada Fotografia'}</title>
+        <title>{`${category.toUpperCase()} ' Kacper Porada Fotografia'`}</title>
       </Helmet>
       <main>
         <ul className="section__photos">
-          {window.innerWidth < 768
+          { window.innerWidth < 768
             ? photographyData.images.map((image) => {
-                if (image.isMobile !== undefined) {
-                  if (image.category === category) {
-                    return (
-                      <li className="section">
-                        <div className="section__photos__images__image--mobile">
-                          <img src={image.url} alt={image.description} />
-                        </div>
-                      </li>
-                    );
-                  }
+              if (image.isMobile !== undefined) {
+                if (image.category === category) {
+                  return (
+                    <li className="section">
+                      <div className="section__photos__images__image--mobile">
+                        <img src={image.url} alt={image.description} />
+                      </div>
+                    </li>
+                  );
                 }
-                return null;
-              })
+              }
+              return null;
+            })
             : null}
 
-          {photographyData.images.map((image) => {
+          { photographyData.images.map((image) => {
             if (image.category === category && image.isMobile === undefined) {
               return (
                 <li className="section__photos__images" key={`${image.url}`}>
@@ -90,7 +92,7 @@ const SectionContent = () => {
                   </div>
                 </li>
               );
-            } else return null;
+            } return null;
           })}
         </ul>
         <div
@@ -109,23 +111,22 @@ const SectionContent = () => {
             </div>
           </div>
         </div>
-        {showPreviewImage && window.innerWidth < 768 ? ( //image preview modal, show only in mobile mode
-          <>
-            <div
-              className="section__photos__preview"
-              onClick={handleImagePreview}
-            >
-              <img
-                className="section__photos__preview__image"
-                src={previewImageUrl}
-                alt=""
-              />
-            </div>
-          </>
+        { showPreviewImage && window.innerWidth < 768 ? (
+          // image preview modal, show only in mobile mode
+          <div
+            className="section__photos__preview"
+            onClick={handleImagePreview}
+          >
+            <img
+              className="section__photos__preview__image"
+              src={previewImageUrl}
+              alt=""
+            />
+          </div>
         ) : null}
       </main>
     </>
   );
-};
+}
 
 export default SectionContent;

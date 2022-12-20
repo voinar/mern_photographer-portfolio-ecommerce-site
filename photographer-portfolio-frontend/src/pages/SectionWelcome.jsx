@@ -1,16 +1,19 @@
-import photographyData from '../data/staticData.json';
-import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+/* eslint-disable react/jsx-boolean-value */
 import { Carousel } from 'react-responsive-carousel';
-import { v4, IconFacebook, IconInstagram, IconMail } from '../imports';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import {
+  React, v4, IconFacebook, IconInstagram, IconMail,
+} from '../imports';
+import photographyData from '../data/staticData.json';
 
-const SectionWelcome = () => {
+function SectionWelcome() {
   return (
     <main>
       <div className="section__welcome">
         <Carousel
           autoPlay={true}
           interval={3000}
-          ariaLabel={'moje zdjęcia'}
+          ariaLabel="moje zdjęcia"
           showThumbs={false}
           // animationHandler={'fade'}
           infiniteLoop={true}
@@ -18,31 +21,31 @@ const SectionWelcome = () => {
           // showArrows={true}
           swipeable={true}
         >
-          {window.innerWidth > 768
-            ? photographyData.imagesWelcome.map((image) => {
-                return (
-                  <div key={v4()}>
-                    <img
-                      className="cover__image"
-                      style={{ width: '100vw' }}
-                      src={image.url}
-                      alt="moje zdjęcia"
-                    />
-                  </div>
-                );
-              })
-            : photographyData.imagesWelcomeMobile.map((image) => {
-                return (
-                  <div key={v4()}>
-                    <img
-                      className="cover__image"
-                      style={{ width: '100vw' }}
-                      src={image.url}
-                      alt="moje zdjęcia"
-                    />
-                  </div>
-                );
-              })}
+          { window.innerWidth > 768
+            ? photographyData.imagesWelcome.map(
+              (image) => (
+                <div key={v4()}>
+                  <img
+                    className="cover__image"
+                    style={{ width: '100vw' }}
+                    src={image.url}
+                    alt="moje zdjęcia"
+                  />
+                </div>
+              ),
+            )
+            : photographyData.imagesWelcomeMobile.map(
+              (image) => (
+                <div key={v4()}>
+                  <img
+                    className="cover__image"
+                    style={{ width: '100vw' }}
+                    src={image.url}
+                    alt="moje zdjęcia"
+                  />
+                </div>
+              ),
+            )}
         </Carousel>
       </div>
       <div className="cover__icons">
@@ -70,6 +73,6 @@ const SectionWelcome = () => {
       </div>
     </main>
   );
-};
+}
 
 export default SectionWelcome;

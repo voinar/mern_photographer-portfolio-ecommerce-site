@@ -1,4 +1,5 @@
-import React, { createContext, useReducer } from 'react';
+/* eslint-disable react/jsx-filename-extension */
+import { React, createContext, useReducer } from 'react';
 
 export const Store = createContext();
 
@@ -21,7 +22,7 @@ const initialState = {
   cookiesConsentAll: localStorage.getItem('cookiesConsentAll')
     ? JSON.parse(localStorage.getItem('cookiesConsentAll'))
     : false,
-    cookiesConsentDecline: localStorage.getItem('cookiesConsentDecline')
+  cookiesConsentDecline: localStorage.getItem('cookiesConsentDecline')
     ? JSON.parse(localStorage.getItem('cookiesConsentDecline'))
     : false,
   paymentVerification: null,
@@ -30,13 +31,14 @@ const initialState = {
 function reducer(state, action) {
   switch (action.type) {
     case 'CART_ADD_ITEM': {
-      //check if item is already in cart
+      // check if item is already in cart
       const newItem = action.payload.id;
-      const isInCart = state.cart.cartItems.find((id) => {
-        return id === action.payload.id;
-      });
+      const isInCart = state.cart.cartItems.find(
+        (id) => id === action.payload.id,
+      );
 
-      //if not in cart then create new item
+      // if not in cart then create new item
+      // else inform the user that the item is already in the cart
       if (isInCart === undefined) {
         return {
           ...state,
@@ -46,19 +48,18 @@ function reducer(state, action) {
             cartItems: [...state.cart.cartItems, newItem],
           },
         };
-      } else {
-        //else inform the user that the item is already in the cart
-        return {
-          ...state,
-          alertContent: 'Zdjęcie już znajduje się w koszyku',
-        };
       }
+
+      return {
+        ...state,
+        alertContent: 'Zdjęcie już znajduje się w koszyku',
+      };
     }
 
     case 'CART_REMOVE_ITEM': {
-      //remove item from cart by id
+      // remove item from cart by id
       const cartItems = state.cart.cartItems.filter(
-        (id) => id !== action.payload.id
+        (id) => id !== action.payload.id,
       );
       return {
         ...state,
@@ -78,15 +79,6 @@ function reducer(state, action) {
         cart: { ...state.cart, uniqueId: action.payload.uniqueId },
       };
     }
-
-    // case 'USER_SIGNIN': {
-    //   return { ...state, userInfo: action.payload };
-    // }
-
-    // case 'USER_SIGNOUT': {
-    //   localStorage.setItem('userInfo', null);
-    //   return { ...state, userInfo: null };
-    // }
 
     case 'ACCEPT_COOKIES': {
       localStorage.setItem('cookiesConsentPopupSet', true);
@@ -124,7 +116,11 @@ function reducer(state, action) {
 
 export function StoreProvider(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const value = { state, dispatch };
+  // eslint-disable-next-line react/jsx-no-constructed-context-values
+  const value = {
+    state, dispatch,
+  };
+  // eslint-disable-next-line react/destructuring-assignment, react/prop-types
   return <Store.Provider value={value}>{props.children}</Store.Provider>;
 }
 

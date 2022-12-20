@@ -1,13 +1,15 @@
-import { IconEmail, IconPhone, IconFacebook, IconInstagram } from '../imports';
+import {
+  React, IconEmail, IconPhone, IconFacebook, IconInstagram,
+} from '../imports';
 
-//photo assets
+// photo assets
 import img0 from '../img/about/about-1.jpg';
 import img1 from '../img/about/about-2.jpg';
 import img2 from '../img/about/about-3.jpg';
 import img3 from '../img/about/about-4.jpg';
 
-const About = () => (
-  <>
+function About() {
+  return (
     <div className="section__about">
       <div className="section__about__main">
         <div className="section__about__content--left">
@@ -15,7 +17,9 @@ const About = () => (
             <img src={img0} alt="moje zdjęcie" />
             <div className="section__about__image__caption">
               <span>
-                Zwycięstwo UltraBies 45km, <br /> fot. Mała Gośka
+                Zwycięstwo UltraBies 45km,
+                <br />
+                fot. Mała Gośka
               </span>
             </div>
           </div>
@@ -27,7 +31,9 @@ const About = () => (
               <h3>
                 <a
                   href={`mailto:${process.env.REACT_APP_MAILING_CONTACT}`}
-                >{`${process.env.REACT_APP_MAILING_CONTACT}`}</a>
+                >
+                  {`${process.env.REACT_APP_MAILING_CONTACT}`}
+                </a>
               </h3>
             </div>
             <div className="section__about__contact__row">
@@ -100,7 +106,7 @@ const About = () => (
             alt="moje zdjęcie"
           />
           <span className="section__about__image__caption">
-            Góry pomagają mi "naładować baterie".
+            Góry pomagają mi `&quot;`naładować baterie`&quot;`.
           </span>
         </div>
         <div className="section__about__image--main">
@@ -126,7 +132,7 @@ const About = () => (
         </div>
       </div>
     </div>
-  </>
-);
+  );
+}
 
 export default About;

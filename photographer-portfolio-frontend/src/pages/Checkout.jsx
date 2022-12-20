@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import {
   React,
   Store,
@@ -7,22 +8,21 @@ import {
   useNavigate,
   Helmet,
   Link,
-  OrderForm,
   textContent,
+  OrderForm,
   IconChevron,
   doc,
   getDoc,
-  db
+  db,
 } from '../imports';
 
-
-const Checkout = () => {
+function Checkout() {
   const {
     state,
     // dispatch: contextDispatch
   } = useContext(Store);
 
-  //local component state
+  // local component state
   const [itemPrice, setItemPrice] = useState(null);
 
   useEffect(() => {
@@ -33,8 +33,8 @@ const Checkout = () => {
         setItemPrice(
           Number(
             docSnap._document.data.value.mapValue.fields.imagePrice
-              .integerValue / 100
-          )
+              .integerValue / 100,
+          ),
         );
       } catch (err) {
         console.error(err);
@@ -43,7 +43,7 @@ const Checkout = () => {
     getPrice();
   }, [state.cart]);
 
-  const navigate = useNavigate(); //used to return to previous page
+  const navigate = useNavigate(); // used to return to previous page
   const goBack = () => navigate(-1);
 
   return (
@@ -52,27 +52,27 @@ const Checkout = () => {
         <title>
           {
             textContent[
-              textContent.findIndex((obj) => {
-                return obj.language === state.languageSelected;
-              })
-            ]?.checkout?.title
+              textContent.findIndex(
+                (obj) => obj.language === state.languageSelected,
+              )
+            ].checkout.title
           }
         </title>
       </Helmet>
 
-      {state?.cart?.cartItems?.length === 0 ? (
+      {state.cart.cartItems.length === 0 ? (
         <main className="checkout__container">
           <div className="cart__return">
-            <button onClick={goBack} className="btn--back">
+            <button onClick={goBack} className="btn--back" type="button">
               <img src={IconChevron} alt="zobacz" />
             </button>
             <h1>
               {
                 textContent[
-                  textContent.findIndex((obj) => {
-                    return obj.language === state.languageSelected;
-                  })
-                ]?.checkout?.title
+                  textContent.findIndex(
+                    (obj) => obj.language === state.languageSelected,
+                  )
+                ].checkout.title
               }
             </h1>
           </div>
@@ -80,86 +80,83 @@ const Checkout = () => {
             <h3>
               {
                 textContent[
-                  textContent.findIndex((obj) => {
-                    return obj.language === state.languageSelected;
-                  })
-                ]?.checkout?.empty
+                  textContent.findIndex(
+                    (obj) => obj.language === state.languageSelected,
+                  )
+                ].checkout.empty
               }
             </h3>
             <Link to="/sklep">
-              <button className="btn--primary">
+              <button className="btn--primary" type="button">
                 {
                   textContent[
-                    textContent.findIndex((obj) => {
-                      return obj.language === state.languageSelected;
-                    })
-                  ]?.checkout?.return
+                    textContent.findIndex(
+                      (obj) => obj.language === state.languageSelected,
+                    )
+                  ].checkout.return
                 }
               </button>
             </Link>
           </div>
         </main>
       ) : (
-        <>
+        <div>
           <main className="checkout__container">
             <div className="cart__return">
-              <button onClick={goBack} className="btn--back">
+              <button onClick={goBack} className="btn--back" type="button">
                 <img src={IconChevron} alt="zobacz" />
               </button>
               <h1>
                 {
                   textContent[
-                    textContent.findIndex((obj) => {
-                      return obj.language === state.languageSelected;
-                    })
-                  ]?.checkout?.title
+                    textContent.findIndex(
+                      (obj) => obj.language === state.languageSelected,
+                    )
+                  ].checkout.title
                 }
               </h1>
             </div>
-
             <div className="checkout__summary">
               <div className="checkout__summary__cart">
                 <h1>
                   {
                     textContent[
-                      textContent.findIndex((obj) => {
-                        return obj.language === state.languageSelected;
-                      })
-                    ]?.checkout?.greeting
+                      textContent.findIndex(
+                        (obj) => obj.language === state.languageSelected,
+                      )
+                    ].checkout.greeting
                   }
                 </h1>
-
                 <div className="checkout__items">
-                  {state?.cart?.cartItems?.map((image) => {
-                    return (
-                      <li key={image} className="checkout__items__image">
-                        <img src={image} alt="" />
-                      </li>
-                    );
-                  })}
+                  {state.cart.cartItems.map((image) => (
+                    <li key={image} className="checkout__items__image">
+                      <img src={image} alt="" />
+                    </li>
+                  ))}
                 </div>
                 <div className="checkout__total">
                   <h2>
                     {
                       textContent[
-                        textContent.findIndex((obj) => {
-                          return obj.language === state.languageSelected;
-                        })
-                      ]?.checkout?.price
+                        textContent.findIndex(
+                          (obj) => obj.language === state.languageSelected,
+                        )
+                      ].checkout.price
                     }
                   </h2>
                   <span className="checkout__total__price">
                     {new Intl.NumberFormat('pl-PL', {
                       minimumFractionDigits: 2,
                       maximumFractionDigits: 2,
-                    }).format(state?.cart?.cartItems?.length * itemPrice)}
-                    zł{' '}
+                    }).format(state.cart.cartItems.length * itemPrice)}
+                    zł
+                    {' '}
                     {
-                      textContent[
-                        textContent.findIndex((obj) => {
-                          return obj.language === state.languageSelected;
-                        })
-                      ]?.checkout?.gross
+                    textContent[
+                      textContent.findIndex(
+                        (obj) => obj.language === state.languageSelected,
+                      )
+                    ].checkout.gross
                     }
                   </span>
                 </div>
@@ -167,10 +164,10 @@ const Checkout = () => {
             </div>
             <OrderForm />
           </main>
-        </>
+        </div>
       )}
     </>
   );
-};
+}
 
 export default Checkout;

@@ -1,5 +1,7 @@
+// navbar has two variants depending on site section: portfolio vs shop
+
 //--------------------
-//portfolio navbar
+// 1. portfolio navbar
 //--------------------
 
 .navbar {
@@ -24,12 +26,12 @@
     flex-direction: row;
     width: 100%;
     justify-content: center;
+    align-items: center;
     gap: 24px;
   }
 
   .navbar__logo {
     width: 200px;
-    // height: 140px;
     display: flex;
     align-items: center;
   }
@@ -38,9 +40,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    // margin: 0 auto;
     width: auto;
     text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+    border: none;
+    padding: 0 6px;
 
     a {
       display: flex;
@@ -126,7 +129,7 @@
 }
 
 //--------------------
-//shop navbar
+// 2. shop navbar
 //--------------------
 
 .navbar__shop {
@@ -342,11 +345,7 @@
   }
 
   .navbar__menu__button {
-    // all: unset; //unset all styles
     display: flex; //do not render in desktop mode
-    // border: 1px solid rgba(255, 255, 255, 0.5);
-    // height: 40px;
-    // width: 60px;
   }
 
   .mobile__logo {

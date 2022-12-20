@@ -15,6 +15,7 @@
     "firebase": "^9.12.1",
     "json_encode": "^0.1.0",
     "jssha": "^3.3.0",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-facebook-pixel": "^1.0.4",
@@ -38,7 +39,17 @@
     "extends": [
       "airbnb",
       "airbnb/hooks"
-    ]
+    ],
+    "env": {
+      "browser": true
+    },
+    "rules": {
+      "import/no-cycle": 0,
+      "no-underscore-dangle": 0,
+      "jsx-a11y/no-static-element-interactions": 0,
+      "jsx-a11y/label-has-associated-control": 0
+    },
+    "ignorePatterns": ["reportWebVitals.js"]
   },
   "browserslist": {
     "production": [

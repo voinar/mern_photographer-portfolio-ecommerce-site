@@ -1,20 +1,15 @@
-import { useContext, Store } from '../imports';
+import {
+  React, useContext, Store,
+} from '../imports';
 
-const Alert = () => {
-  const {
-    state,
-    // , dispatch: contextDispatch
-  } = useContext(Store);
+function Alert() {
+  const { state } = useContext(Store);
 
-  return (
-    <>
-      {state.alertContent !== null && (
-        <div className="alert__container alert__container--green alert__autohide">
-          <div className="alert__content">{state.alertContent}</div>
-        </div>
-      )}
-    </>
+  return state.alertContent !== null && (
+    <div className="alert__container alert__container--green alert__autohide">
+      <div className="alert__content">{state.alertContent}</div>
+    </div>
   );
-};
+}
 
 export default Alert;

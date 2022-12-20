@@ -1,4 +1,5 @@
 import {
+  React,
   Store,
   useContext,
   useNavigate,
@@ -8,21 +9,20 @@ import {
   IconAnswer,
   IconCartAdd,
   IconCart,
-  textContent
+  textContent,
 } from '../imports';
 
-const Support = () => {
-  const navigate = useNavigate(); //used to return to previous page
+function Support() {
+  const navigate = useNavigate(); // used to return to previous page
   const goBack = () => navigate(-1);
   const {
     state,
-    // , dispatch: contextDispatch
   } = useContext(Store);
 
   return (
     <div className="support__container">
       <div className="cart__return">
-        <button onClick={goBack} className="btn--back">
+        <button onClick={goBack} className="btn--back" type="button">
           <img src={IconChevron} alt="zobacz" />
         </button>
         <h1>POMOC</h1>
@@ -53,8 +53,8 @@ const Support = () => {
           <ul>
             <li>
               <div>
-                <img src={IconQuestion} alt="pytanie" />W jaki sposób otrzymam
-                zakupione zdjęcia?
+                <img src={IconQuestion} alt="pytanie" />
+                W jaki sposób otrzymam zakupione zdjęcia?
               </div>
               <div>
                 <img src={IconAnswer} alt="pytanie" />
@@ -82,19 +82,20 @@ const Support = () => {
                     aby dodać wybrane zdjęcia do koszyka.
                   </li>
                   <li>
-                    3. Przejdź do koszyka <img src={IconCart} alt="ikona" /> aby
-                    zobaczyć wszystkie dodane zdjęcia
+                    3. Przejdź do koszyka
+                    <img src={IconCart} alt="ikona" />
+                    aby zobaczyć wszystkie dodane zdjęcia
                   </li>
-                  <li>4. Kliknij przycisk 'Przejdź do zamówienia'.</li>
+                  <li>4. Kliknij przycisk `&#39;`Przejdź do zamówienia`&#39;`.</li>
                   <li>
-                    5. Wypełnij dane w formularzu "Dane zamawiającego",
-                    zaakceptuj regulamin i kliknij "Kupuję i płacę"
+                    5. Wypełnij dane w formularzu `&#39;`Dane zamawiającego`&#39;`,
+                    zaakceptuj regulamin i kliknij `&#39;`Kupuję i płacę`&#39;`
                   </li>
                   <li>
                     6. Następnie Twoja przeglądarka wyświetli nową kartę
                     zawierającą okno płatności. Jeśli okno płatności nie
                     wyświetliło się, to upewnij się, że Twoja przeglądarka nie
-                    blokuje "wyskakujących okien". Opcja odblokowania tego typu
+                    blokuje `&#39;`wyskakujących okien`&#39;`. Opcja odblokowania tego typu
                     okien powinna być dostępna na końcu paska adresu.
                   </li>
                   <li>7. Dokonaj płatności.</li>
@@ -127,21 +128,21 @@ const Support = () => {
         </div>
       </main>
       <div className="cart__return">
-        <button onClick={goBack} className="btn--back">
+        <button onClick={goBack} className="btn--back" type="button">
           <img src={IconChevron} alt="zobacz" />
         </button>
         <h1>
           {
             textContent[
-              textContent.findIndex((obj) => {
-                return obj.language === state.languageSelected;
-              })
-            ]?.shop?.back
+              textContent.findIndex(
+                (obj) => obj.language === state.languageSelected,
+              )
+            ].shop.back
           }
         </h1>
       </div>
     </div>
   );
-};
+}
 
 export default Support;

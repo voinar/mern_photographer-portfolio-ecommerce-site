@@ -1,9 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getStorage } from 'firebase/storage';
-import { getFirestore, collection} from 'firebase/firestore';
-import 'firebase/storage';
-import 'firebase/firestore';
+import { getFirestore, collection } from 'firebase/firestore';
 
 // //production
 // // Your web app's Firebase configuration
@@ -33,8 +31,7 @@ import 'firebase/firestore';
 
 // export { storage, db, usersColRef, settingsColRef, ordersColRef };
 
-
-//dev
+// dev
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: 'AIzaSyC6k9fNi8-usqWG_AeRMLBpErWhc45jo9o',
@@ -49,15 +46,17 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // firebase.initializeApp(firebaseConfig);
 
-//initiate storage
+// initiate storage
 const storage = getStorage(app);
 
-//initiate database
+// initiate database
 const db = getFirestore();
 
-//refs
+// refs
 const usersColRef = collection(db, 'users');
 const settingsColRef = collection(db, 'settings');
 const ordersColRef = collection(db, 'orders');
 
-export { storage, db, usersColRef, settingsColRef, ordersColRef };
+export {
+  storage, db, usersColRef, settingsColRef, ordersColRef,
+};

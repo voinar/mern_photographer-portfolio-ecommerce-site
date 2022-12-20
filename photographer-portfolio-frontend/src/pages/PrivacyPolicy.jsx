@@ -1,13 +1,14 @@
-import { useNavigate, IconChevron } from '../imports';
+/* eslint-disable max-len */
+import { React, useNavigate, IconChevron } from '../imports';
 
-const TermsConditions = () => {
-  const navigate = useNavigate(); //used to return to previous page
+function TermsConditions() {
+  const navigate = useNavigate(); // used to return to previous page
   const goBack = () => navigate(-1);
 
   return (
     <div className="privacy-policy__container">
       <div className="cart__return">
-        <button onClick={goBack} className="btn--back">
+        <button onClick={goBack} className="btn--back" type="button">
           <img src={IconChevron} alt="zobacz" />
         </button>
         <h1>POLITYKA PRYWATNOŚCI KACPERPORADA.PL/SKLEP</h1>
@@ -180,7 +181,8 @@ const TermsConditions = () => {
       <h3>§ 7 Kategorie danych osobowych</h3>
       <p>
         1. Administrator zbiera, przetwarza i przechowuje następujące dane
-        Klientów:{' '}
+        Klientów:
+        {' '}
       </p>
       <ul>
         <li>
@@ -313,7 +315,8 @@ const TermsConditions = () => {
           prywatności W urządzeniu końcowym osoby odwiedzającej Sklep
           internetowy mogą być zapisywane pliki cookies pochodzące od tych
           podmiotów trzecich, którzy mogą być ich samodzielnymi administratorami
-          lub też działać jako współadministratorzy wraz z Administratorem.{' '}
+          lub też działać jako współadministratorzy wraz z Administratorem.
+          {' '}
         </li>
         <li>
           10. Sklep internetowy korzysta z narzędzi marketingowych i
@@ -337,7 +340,8 @@ const TermsConditions = () => {
           Analytics (Funkcje Reklamowe Google Analytics). Możesz to zmienić nie
           tylko poprzez wyżej wspomniane odpowiednie ustawienia przeglądarki
           internetowej, ale również poprzez ustawienia preferencji reklam
-          Google.{' '}
+          Google.
+          {' '}
         </li>
       </ul>
 
@@ -349,39 +353,44 @@ const TermsConditions = () => {
           1. Dane osobowe Klientów mogą być przekazywane podmiotom, którym
           Administrator powierza do przetwarzania dane osobowe na podstawie umów
           oraz podmiotom uprawnionym do uzyskania danych osobowych na podstawie
-          przepisów prawa.{' '}
+          przepisów prawa.
+          {' '}
         </li>
         <li>
           2. W celu realizacji umowy zawartej za pośrednictwem Sklepu
           internetowego oraz zapewnienia prawidłowego funkcjonowania Sklepu,
           Administrator udostępnia dane osobowe Klientów w szczególności
-          podmiotom świadczącym usługi: <br />
-          a) płatności elektronicznych, <br />
-          b) księgowe, <br />
-          c) hostingowe, <br />
+          podmiotom świadczącym usługi:
+          <br />
+          a) płatności elektronicznych,
+          <br />
+          b) księgowe,
+          <br />
+          c) hostingowe,
+          <br />
           d) informatyczne i w zakresie dostawy oprogramowania oraz narzędzi
           służących w szczególności do prowadzenia badań analitycznych,
           tworzenia statystyk, śledzenia ruchu na naszej stronie internetowej,
-          automatyzacji marketingu, systemy CRM, <br />
+          automatyzacji marketingu, systemy CRM,
+          <br />
           e) marketingowe w zakresie obsługi sklepu internetowego,
         </li>
-        <li>3.	Podmioty świadczące usługi dla Administratora mogą przechowywać dane Klientów poza Europejskim Obszarem Gospodarczym. W takich sytuacjach dane Użytkowników będą przekazane wyłącznie do państw, które zapewniają adekwatny stopień ochrony, a do państw, które nie zapewniają adekwatnego stopnia ochrony, jedynie w przypadku zapewnienia odpowiednich zabezpieczeń, w tym m.in. na podstawie standardowych klauzul umownych przyjętych przez Komisję Europejską.</li>
+        <li>3. Podmioty świadczące usługi dla Administratora mogą przechowywać dane Klientów poza Europejskim Obszarem Gospodarczym. W takich sytuacjach dane Użytkowników będą przekazane wyłącznie do państw, które zapewniają adekwatny stopień ochrony, a do państw, które nie zapewniają adekwatnego stopnia ochrony, jedynie w przypadku zapewnienia odpowiednich zabezpieczeń, w tym m.in. na podstawie standardowych klauzul umownych przyjętych przez Komisję Europejską.</li>
       </ul>
 
       <br />
 
       <h3>§ 10 Uprawnienia Klientów</h3>
-      <p></p>
       <ul>
-        <li>1.	Klientowi przysługuje prawo dostępu do jego danych oraz prawo żądania ich sprostowania, usunięcia lub ograniczenia przetwarzania. W zakresie, w jakim podstawą przetwarzania danych osobowych jest przesłanka prawnie uzasadnionego interesu administratora, Klientowi przysługuje prawo wniesienia sprzeciwu wobec przetwarzania jego danych osobowych.</li>
-        <li>2.	W zakresie, w jakim podstawą przetwarzania danych osobowych Klienta jest zgoda, Klient ma prawo wycofania zgody. Wycofanie zgody nie ma wpływu na zgodność z prawem przetwarzania, którego dokonano na podstawie zgody przed jej wycofaniem.</li>
-        <li>3.	W zakresie, w jakim dane Klienta są przetwarzane w celu zawarcia i wykonywania Umowy lub przetwarzane na podstawie zgody – Klientowi przysługuje także prawo do przenoszenia danych osobowych, tj. do otrzymania od administratora danych osobowych, w ustrukturyzowanym, powszechnie używanym formacie nadającym się do odczytu maszynowego. Klient może przesłać te dane innemu administratorowi danych. </li>
-        <li>4.	Klientowi przysługuje również prawo wniesienia skargi do organu nadzorczego zajmującego się ochroną danych osobowych.</li>
+        <li>1. Klientowi przysługuje prawo dostępu do jego danych oraz prawo żądania ich sprostowania, usunięcia lub ograniczenia przetwarzania. W zakresie, w jakim podstawą przetwarzania danych osobowych jest przesłanka prawnie uzasadnionego interesu administratora, Klientowi przysługuje prawo wniesienia sprzeciwu wobec przetwarzania jego danych osobowych.</li>
+        <li>2. W zakresie, w jakim podstawą przetwarzania danych osobowych Klienta jest zgoda, Klient ma prawo wycofania zgody. Wycofanie zgody nie ma wpływu na zgodność z prawem przetwarzania, którego dokonano na podstawie zgody przed jej wycofaniem.</li>
+        <li>3. W zakresie, w jakim dane Klienta są przetwarzane w celu zawarcia i wykonywania Umowy lub przetwarzane na podstawie zgody – Klientowi przysługuje także prawo do przenoszenia danych osobowych, tj. do otrzymania od administratora danych osobowych, w ustrukturyzowanym, powszechnie używanym formacie nadającym się do odczytu maszynowego. Klient może przesłać te dane innemu administratorowi danych. </li>
+        <li>4. Klientowi przysługuje również prawo wniesienia skargi do organu nadzorczego zajmującego się ochroną danych osobowych.</li>
       </ul>
 
       <br />
     </div>
   );
-};
+}
 
 export default TermsConditions;

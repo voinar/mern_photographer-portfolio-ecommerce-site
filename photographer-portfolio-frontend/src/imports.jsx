@@ -1,9 +1,10 @@
 //----------------------------------------------------------------
-//container for imported modules and assets
+// container for imported modules and assets
 //----------------------------------------------------------------
 
-//hooks
+// hooks
 import {
+  React,
   useState,
   useEffect,
   useContext,
@@ -12,10 +13,7 @@ import {
   useCallback,
 } from 'react';
 
-//contexts
-import { Store } from './contexts/Store';
-
-//react router
+// react router
 import {
   Routes,
   Route,
@@ -26,13 +24,24 @@ import {
   Link,
 } from 'react-router-dom';
 
-//tools
+// analytics
+import ReactGA from 'react-ga4';
+import ReactPixel from 'react-facebook-pixel';
+
+// tools
 import { v4 } from 'uuid';
 import { Helmet } from 'react-helmet-async';
 import jsSHA from 'jssha';
 import axios from 'axios';
 
-//pages
+// firebase
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import {
+  getStorage, ref, listAll, getDownloadURL, getMetadata,
+} from 'firebase/storage';
+import { db, storage } from './firebase/config';
+
+// pages
 import PageNotFound from './pages/PageNotFound';
 import SectionWelcome from './pages/SectionWelcome';
 import SectionContent from './pages/SectionContent';
@@ -40,14 +49,13 @@ import About from './pages/About';
 import Shop from './pages/Shop';
 import Album from './pages/Album';
 import Cart from './pages/Cart';
-import SignIn from './pages/SignIn';
 import Checkout from './pages/Checkout';
 import Purchased from './pages/Purchased';
 import Support from './pages/Support';
 import TermsConditions from './pages/TermsConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 
-//components
+// components
 import Navbar from './components/Navbar';
 import ShopCard from './components/ShopCard';
 import AlbumImage from './components/AlbumImage';
@@ -55,12 +63,12 @@ import ScrollToTop from './components/ScrollToTop';
 import Footer from './components/Footer';
 import OrderForm from './components/OrderForm';
 
-//atoms
+// atoms
 import Alert from './atoms/Alert';
 import CookiesPopup from './atoms/CookiesPopup';
 import LoadingSpinner from './atoms/LoadingSpinner';
 
-//assets
+// assets
 import NavLogo from './img/logo-nav.png';
 import FooterLogo from './img/logo-full.png';
 import IconEmail from './img/icons/icon-email.svg';
@@ -91,25 +99,27 @@ import IconSportsRunner from './img/icons/icon-sports-runner.svg';
 import IconSportsHandball from './img/icons/icon-sports-handball.svg';
 import IconSportsLifter from './img/icons/icon-sports-lifter.svg';
 
-//text content for language versions
+// contexts
+import { Store } from './contexts/Store';
+
+// text content for language versions
 import textContent from './data/textContent.json';
 
-//firebase
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { getStorage, ref, getDownloadURL, getMetadata } from 'firebase/storage';
-import { db } from './firebase/config';
-
 export {
-  //hooks
+  React,
+
+  // hooks
   useState,
   useEffect,
   useContext,
   useReducer,
   useRef,
   useCallback,
-  //context store
+
+  // context store
   Store,
-  //react router
+
+  // react router
   Routes,
   Route,
   Navigate,
@@ -117,12 +127,18 @@ export {
   useNavigate,
   useParams,
   Link,
-  //tools
+
+  // analytics
+  ReactGA,
+  ReactPixel,
+
+  // tools
   Helmet,
   v4,
   jsSHA,
   axios,
-  //pages
+
+  // pages
   PageNotFound,
   SectionWelcome,
   SectionContent,
@@ -130,24 +146,26 @@ export {
   Shop,
   Album,
   Cart,
-  SignIn,
   Checkout,
   Purchased,
   Support,
   TermsConditions,
   PrivacyPolicy,
-  //components
+
+  // components
   Navbar,
   ShopCard,
   AlbumImage,
   ScrollToTop,
   Footer,
   OrderForm,
-  //atoms
+
+  // atoms
   Alert,
   CookiesPopup,
   LoadingSpinner,
-  //assets
+
+  // assets
   NavLogo,
   FooterLogo,
   IconEmail,
@@ -177,14 +195,18 @@ export {
   IconSportsRunner,
   IconSportsHandball,
   IconSportsLifter,
-  //text content for language versions
+
+  // text content for language versions
   textContent,
-  //firebase
+
+  // firebase
   doc,
+  storage,
   getDoc,
   setDoc,
   getStorage,
   ref,
+  listAll,
   getDownloadURL,
   getMetadata,
   db,

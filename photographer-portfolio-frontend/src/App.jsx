@@ -1,69 +1,64 @@
+// main imports
 import {
+  ReactGA,
+  ReactPixel,
   React,
-  // useLocation,
+  Store,
+  useLocation,
   useState,
   Helmet,
   useEffect,
   useContext,
+  ScrollToTop,
   Navbar,
   Footer,
   Alert,
-  ScrollToTop,
   CookiesPopup,
 } from './imports';
 
 import RoutesContainer from './routes/RoutesContainer'; // react router v6
 
-import { Store } from './contexts/Store'; // context api
+// // google analytics
+const TRACKING_ID = 'G-5EQQ443LWM'; // OUR_TRACKING_ID
+ReactGA.initialize(TRACKING_ID);
 
-// //analytics
-// import ReactGA from 'react-ga4';
-// import ReactPixel from 'react-facebook-pixel';
-
-// //google analytics
-// const TRACKING_ID = 'G-5EQQ443LWM'; // OUR_TRACKING_ID
-// ReactGA.initialize(TRACKING_ID);
-
-// //facebook pixel
-// function FacebookPixel() {
-//   const location = useLocation();
-//   const facebookPixelId = '5969461459733693';
-//   useEffect(() => {
-//     ReactPixel.init(facebookPixelId);
-//     ReactPixel.pageView();
-//   }, [location]);
-//   // console.log(location);
-//   return null;
-// }
+// // facebook pixel
+function FacebookPixel() {
+  const location = useLocation();
+  const facebookPixelId = '5969461459733693';
+  useEffect(() => {
+    ReactPixel.init(facebookPixelId);
+    ReactPixel.pageView();
+  }, [location]);
+  return null;
+}
 
 function App() {
   const { state } = useContext(Store);
   const [showAlert, setShowAlert] = useState(false);
 
-  //google analytics log page currently displayed
-  // const location = useLocation();
-  // useEffect(() => {
-  //   if (
-  //     state.cookiesConsentPopupSet === true &&
-  //     state.cookiesConsentAll === true
-  //   ) {
-  //     ReactGA.send('pageview');
-  //   }
-  // }, [
-  //   location,
-  //   state.cookiesConsentPopupSet,
-  //   state.cookiesConsentAll,
-  //   state.cookiesConsentDecline,
-  // ]);
-
-  //run actions on every state update
+  // google analytics log page currently displayed
+  const location = useLocation();
   useEffect(() => {
-    // console.log('store updated');
+    if (
+      state.cookiesConsentPopupSet === true
+      && state.cookiesConsentAll === true
+    ) {
+      ReactGA.send('pageview');
+    }
+  }, [
+    location,
+    state.cookiesConsentPopupSet,
+    state.cookiesConsentAll,
+    state.cookiesConsentDecline,
+  ]);
+
+  // run actions on every state update
+  useEffect(() => {
     sessionStorage.setItem('cartItems', JSON.stringify(state.cart.cartItems));
   }, [state.cart.cartItems]);
 
   useEffect(() => {
-    // console.log('store updated');
     sessionStorage.setItem('uniqueId', JSON.stringify(state.cart.uniqueId));
   }, [state.cart.uniqueId]);
 

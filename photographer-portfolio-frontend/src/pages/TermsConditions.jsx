@@ -1,13 +1,13 @@
-import { useNavigate, IconChevron } from '../imports';
+import { React, useNavigate, IconChevron } from '../imports';
 
-const TermsConditions = () => {
-  const navigate = useNavigate(); //used to return to previous page
+function TermsConditions() {
+  const navigate = useNavigate(); // used to return to previous page
   const goBack = () => navigate(-1);
 
   return (
     <div className="terms__container">
       <div className="cart__return">
-        <button onClick={goBack} className="btn--back">
+        <button onClick={goBack} className="btn--back" type="button">
           <img src={IconChevron} alt="zobacz" />
         </button>
         <h1>REGULAMIN SKLEPU INTERNETOWEGO KACPERPORADA.PL/SKLEP</h1>
@@ -360,50 +360,51 @@ const TermsConditions = () => {
 
       <h3>§ 7 Odstąpienie od umowy</h3>
 
-      <ul></ul>
-      <li>
-        1. Klient będący Konsumentem, jak również Przedsiębiorcą na prawach
-        konsumenta, który za pośrednictwem Sklepu internetowego zawarł umowę na
-        odległość, może w terminie 14 dni odstąpić od niej bez podawania
-        przyczyny, z zastrzeżeniem ust. 2.
-      </li>
-      <li>
-        2. Prawo do odstąpienia od umowy nie przysługuje Klientowi, jeżeli
-        spełnianie świadczenia w postaci dostarczania treści cyfrowych
-        rozpoczęło się za wyraźną zgodą Klienta przed upływem terminu do
-        odstąpienia od umowy, zgodnie z art. 38 pkt 13) ustawy z dnia 30 maja
-        2014 r. o prawach konsumenta.
-      </li>
-      <li>
-        3. Bieg terminu do odstąpienia od umowy rozpoczyna się od dnia zawarcia
-        Umowy. Do zachowania terminu do odstąpienia od umowy wystarczy wysłanie
-        oświadczenia o odstąpieniu od umowy przed upływem terminu do odstąpienia
-        od umowy.
-      </li>
-      <li>
-        4. Klient, uprawnienie do odstąpienia od Umowy może zrealizować poprzez
-        wysłanie oświadczenia o odstąpieniu drogą mailową lub pisemnie na adres
-        Sprzedawcy.
-      </li>
-      <li>
-        5. Wykonując prawo do odstąpienia od Umowy Klient może skorzystać z
-        formularza oświadczenia o odstąpieniu od umowy zamieszczonego na stronie
-        Sklepu internetowego, jednak nie jest to obowiązkowe.
-      </li>
-      <li>
-        6. W przypadku odstąpienia od Umowy, Umowę uważa się za niezawartą.
-      </li>
-      <li>
-        7. Sprzedawca niezwłocznie, nie później niż w terminie 14 dni od
-        otrzymania oświadczenia Klienta o odstąpieniu od umowy, zwróci Klientowi
-        wszystkie dokonane przez niego płatności.
-      </li>
-      <li>
-        8. Sprzedawca dokonuje zwrotu płatności przy użyciu takiego samego
-        sposobu zapłaty, jakiego użył Klient, chyba że Klient w oświadczeniu o
-        odstąpieniu od umowy wskazał inny sposób zwrotu, który nie wiąże się dla
-        niego z żadnymi kosztami.
-      </li>
+      <ul>
+        <li>
+          1. Klient będący Konsumentem, jak również Przedsiębiorcą na prawach
+          konsumenta, który za pośrednictwem Sklepu internetowego zawarł umowę na
+          odległość, może w terminie 14 dni odstąpić od niej bez podawania
+          przyczyny, z zastrzeżeniem ust. 2.
+        </li>
+        <li>
+          2. Prawo do odstąpienia od umowy nie przysługuje Klientowi, jeżeli
+          spełnianie świadczenia w postaci dostarczania treści cyfrowych
+          rozpoczęło się za wyraźną zgodą Klienta przed upływem terminu do
+          odstąpienia od umowy, zgodnie z art. 38 pkt 13) ustawy z dnia 30 maja
+          2014 r. o prawach konsumenta.
+        </li>
+        <li>
+          3. Bieg terminu do odstąpienia od umowy rozpoczyna się od dnia zawarcia
+          Umowy. Do zachowania terminu do odstąpienia od umowy wystarczy wysłanie
+          oświadczenia o odstąpieniu od umowy przed upływem terminu do odstąpienia
+          od umowy.
+        </li>
+        <li>
+          4. Klient, uprawnienie do odstąpienia od Umowy może zrealizować poprzez
+          wysłanie oświadczenia o odstąpieniu drogą mailową lub pisemnie na adres
+          Sprzedawcy.
+        </li>
+        <li>
+          5. Wykonując prawo do odstąpienia od Umowy Klient może skorzystać z
+          formularza oświadczenia o odstąpieniu od umowy zamieszczonego na stronie
+          Sklepu internetowego, jednak nie jest to obowiązkowe.
+        </li>
+        <li>
+          6. W przypadku odstąpienia od Umowy, Umowę uważa się za niezawartą.
+        </li>
+        <li>
+          7. Sprzedawca niezwłocznie, nie później niż w terminie 14 dni od
+          otrzymania oświadczenia Klienta o odstąpieniu od umowy, zwróci Klientowi
+          wszystkie dokonane przez niego płatności.
+        </li>
+        <li>
+          8. Sprzedawca dokonuje zwrotu płatności przy użyciu takiego samego
+          sposobu zapłaty, jakiego użył Klient, chyba że Klient w oświadczeniu o
+          odstąpieniu od umowy wskazał inny sposób zwrotu, który nie wiąże się dla
+          niego z żadnymi kosztami.
+        </li>
+      </ul>
       <br />
 
       <h3>§ 8 Rękojmia za wady</h3>
@@ -601,6 +602,6 @@ const TermsConditions = () => {
       </ul>
     </div>
   );
-};
+}
 
 export default TermsConditions;
