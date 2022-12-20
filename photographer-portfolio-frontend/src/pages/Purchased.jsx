@@ -738,9 +738,17 @@ function Purchased() {
 
   const isOrderPaid = () => {
     if (paymentConfirmed === true) {
-      return showPurchasedImages;
+      return (
+        <>
+          {showPurchasedImages()}
+        </>
+      );
     }
-    return showErrorMessage;
+    return (
+      <>
+        {showErrorMessage()}
+      </>
+    );
   };
 
   return (
@@ -760,7 +768,9 @@ function Purchased() {
         {isLoading ? (
           <LoadingSpinner />
         ) : (
-          isOrderPaid
+          <>
+            {isOrderPaid()}
+          </>
         )}
       </div>
     </>
