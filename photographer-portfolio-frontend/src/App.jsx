@@ -18,17 +18,17 @@ import {
 import RoutesContainer from './routes/RoutesContainer'; // react router v6
 
 // // google analytics
-const TRACKING_ID = 'G-5EQQ443LWM'; // OUR_TRACKING_ID
+const TRACKING_ID = process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID; // OUR_TRACKING_ID
 ReactGA.initialize(TRACKING_ID);
 
 // // facebook pixel
 function FacebookPixel() {
   const location = useLocation();
-  const facebookPixelId = '5969461459733693';
+  const facebookPixelId = process.env.REACT_APP_FACEBOOK_ANALYTICS_TRACKING_ID;
   useEffect(() => {
     ReactPixel.init(facebookPixelId);
     ReactPixel.pageView();
-  }, [location]);
+  }, [location, facebookPixelId]);
   return null;
 }
 

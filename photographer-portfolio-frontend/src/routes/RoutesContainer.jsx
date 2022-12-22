@@ -16,7 +16,7 @@ import {
   PrivacyPolicy,
 } from '../imports';
 
-function RoutesContainer() {
+export default function RoutesContainer() {
   return (
     <Routes>
       <Route path="/" element={<SectionWelcome />} />
@@ -38,5 +38,3 @@ function RoutesContainer() {
     </Routes>
   );
 }
-
-export default RoutesContainer;
