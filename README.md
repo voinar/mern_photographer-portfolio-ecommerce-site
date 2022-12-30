@@ -17,7 +17,7 @@
 
 ### 🛍️ Storefront 
 * Database (Firebase)
-* Content displayed via feed from cloud storage
+* Content displayed via feed from Firebase cloud storage
 * Payment gateway integration
 * Order validation via Netlify Functions API
 * Mailing notifications via REST API
