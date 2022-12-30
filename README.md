@@ -1,7 +1,7 @@
 ### Photographer portfolio site & content shop
 
 # Features
-### Portfolio section
+### 🎨 Portfolio section
 * Intro section w/ swipe gestures browsing for mobile
 * Sections showcasing author's works
 * Specific content variables for mobile view
@@ -11,7 +11,7 @@
 * Cookies consent popup (GDPR)
 * Responsive Web Design
 
-### Storefront 
+### 🛍️ Storefront 
 * Database (Firebase)
 * Content displayed via feed from cloud storage
 * Payment gateway integration
@@ -19,18 +19,18 @@
 * Mailing notifications via REST API
   
 # Tech
-### Frontend: 
+### 🖥️ Frontend: 
 * React w/hooks, React Router v6, Helmet, Context API
 * SCSS
 * Axios
 * Eslint w/airbnb rules
 
-### Backend: 
+### 🗄 Backend: 
 * Node.js
 * Express.js
 * Firebase (Cloud Storage, Firestore Database)
 * Netlify Functions
 
-### See live
+### 👀 See live (dev branch)
 * Portfolio: https://photographer-portfolio-shop-preview.netlify.app/
-* Shop: https://photographer-portfolio-shop-preview.netlify.app/sklep
+* Shop: https://photographer-portfolio-shop-preview.netlify.app/sklep - you can create an order and proceed through the payment gateway in sandbox mode.
