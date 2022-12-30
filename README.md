@@ -1,5 +1,9 @@
 ### Photographer portfolio site & content shop
 
+### 👀 See live (test branch)
+* Portfolio: https://photographer-portfolio-shop-preview.netlify.app/
+* Shop: https://photographer-portfolio-shop-preview.netlify.app/sklep - you can create an order and proceed through the payment gateway in sandbox mode.
+
 # Features
 ### 🎨 Portfolio section
 * Intro section w/ swipe gestures browsing for mobile
@@ -30,7 +34,3 @@
 * Express.js
 * Firebase (Cloud Storage, Firestore Database)
 * Netlify Functions
-
-### 👀 See live (dev branch)
-* Portfolio: https://photographer-portfolio-shop-preview.netlify.app/
-* Shop: https://photographer-portfolio-shop-preview.netlify.app/sklep - you can create an order and proceed through the payment gateway in sandbox mode.
