@@ -16,7 +16,7 @@
 * Responsive Web Design
 
 ### 🛍️ Storefront 
-* Database (Firebase)
+* Database (Firebase DB)
 * Content displayed via feed from Firebase cloud storage
 * Payment gateway integration
 * Order validation via Netlify Functions API
